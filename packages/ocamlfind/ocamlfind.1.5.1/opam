@@ -1,5 +1,6 @@
 opam-version: "1"
 maintainer: "contact@ocamlpro.com"
+substs: ["ocamlfind.install"]
 build: [
   [
     "./configure"
@@ -23,6 +24,7 @@ remove: [
   [make "uninstall"]
 ]
 depends: [
+  "ocaml"
   "conf-m4"
 ]
 # needs 3.10.0 for ocamldep -modules but for some reason, when using

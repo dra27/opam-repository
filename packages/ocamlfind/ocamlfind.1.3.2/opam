@@ -1,5 +1,6 @@
 opam-version: "1"
 maintainer: "contact@ocamlpro.com"
+substs: ["ocamlfind.install"]
 build: [
   [
     "./configure"
@@ -17,6 +18,7 @@ build: [
   [make "opt"]
 ]
 depends: [
+  "ocaml"
   "conf-m4"
 ]
 available: ocaml-version > "3.12.2"

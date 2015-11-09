@@ -1,0 +1,6 @@
+bin: [
+  "src/findlib/ocamlfind%{exe}%" {"ocamlfind%{exe}%"}
+  "?src/findlib/ocamlfind_opt%{exe}%" {"ocamlfind%{exe}%"}
+  "tools/safe_camlp4"
+]
+toplevel: ["src/findlib/topfind"]

@@ -1,6 +1,7 @@
 opam-version: "1"
 maintainer: "contact@ocamlpro.com"
 patches: [ "1.5.4-sed-bsd-compat.patch" ]
+substs: ["ocamlfind.install"]
 build: [
   [
     "./configure"
@@ -23,6 +24,7 @@ remove: [
   [make "uninstall"]
 ]
 depends: [
+  "ocaml"
   "conf-m4"
 ]
 available: [ocaml-version >= "3.12.0"] # ocamlfind refers to cmxs
