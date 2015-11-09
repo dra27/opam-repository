@@ -1,5 +1,6 @@
 opam-version: "1"
 maintainer: "contact@ocamlpro.com"
+substs: ["ocamlfind.install"]
 build: [
   ["./configure" "-bindir" bin "-sitelib" lib "-mandir" man "-config" "%{lib}%/findlib.conf" "-no-topfind" {preinstalled}]
   [make "all"]

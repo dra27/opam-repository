@@ -5,6 +5,7 @@ homepage:     "http://projects.camlcity.org/projects/findlib.html"
 bug-reports:  "mailto:gerd@gerd-stolpmann.de"
 dev-repo:     "https://github.com/whitequark/ocaml-findlib.git"
 
+substs: ["ocamlfind.install"]
 build: [
   ["./configure" "-bindir" bin "-sitelib" lib "-mandir" man "-config" "%{lib}%/findlib.conf" "-no-topfind" {preinstalled}]
   [make "all"]

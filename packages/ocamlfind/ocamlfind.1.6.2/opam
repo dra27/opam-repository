@@ -5,6 +5,7 @@ homepage:     "http://projects.camlcity.org/projects/findlib.html"
 bug-reports:  "https://gitlab.camlcity.org/gerd/lib-findlib/issues"
 dev-repo:     "https://gitlab.camlcity.org/gerd/lib-findlib.git"
 
+substs: ["ocamlfind.install"]
 build: [
   ["./configure" "-bindir" bin "-sitelib" lib "-mandir" man "-config" "%{lib}%/findlib.conf" "-no-topfind" {preinstalled}]
   [make "all"]

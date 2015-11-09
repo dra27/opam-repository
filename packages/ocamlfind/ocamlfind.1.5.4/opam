@@ -1,6 +1,7 @@
 opam-version: "1"
 maintainer: "contact@ocamlpro.com"
 patches: [ "1.5.4-sed-bsd-compat.patch" ]
+substs: ["ocamlfind.install"]
 build: [
   ["./configure" "-bindir" bin "-sitelib" lib "-mandir" man "-config" "%{lib}%/findlib.conf" "-no-topfind" {preinstalled}]
   [make "all"]
