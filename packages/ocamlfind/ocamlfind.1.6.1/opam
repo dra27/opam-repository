@@ -22,3 +22,4 @@ depends: [
   "conf-m4" {build}
   "conf-ncurses"
 ]
+patches: ["0001-Fix-quoting-error-in-Makefile.patch"]
