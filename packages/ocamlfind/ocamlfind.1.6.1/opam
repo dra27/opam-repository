@@ -3,7 +3,7 @@ maintainer:   "Thomas Gazagnaire <thomas@gazagnaire.org>"
 homepage:     "http://projects.camlcity.org/projects/findlib.html"
 bug-reports:  "mailto:gerd@gerd-stolpmann.de"
 dev-repo: "git+https://github.com/whitequark/ocaml-findlib.git"
-patches: ["no-awk-check.patch"]
+patches: ["no-awk-check.patch" "0001-Fix-quoting-error-in-Makefile.patch"]
 substs: ["ocamlfind.install"]
 build: [
   [
@@ -56,6 +56,7 @@ authors: "Gerd Stolpmann <gerd@gerd-stolpmann.de>"
 extra-files: [
   ["ocamlfind.install.in" "md5=a1e7aca48a0fdb8b8c9e1cf4bd8aba94"]
   ["no-awk-check.patch" "md5=0378123bf1a45fccdea434c053ddb687"]
+  ["0001-Fix-quoting-error-in-Makefile.patch" "md5=d2c021c5c6e1328d11bf2fd6f85c3769"]
 ]
 url {
   src: "http://download.camlcity.org/download/findlib-1.6.1.tar.gz"

@@ -1,0 +1,27 @@
+From 170335ff77dc698eb06827bce869fd6d69468bc2 Mon Sep 17 00:00:00 2001
+From: David Allsopp <david.allsopp@metastack.com>
+Date: Sun, 15 May 2016 09:23:49 +0100
+Subject: [PATCH] Fix quoting error in Makefile
+
+Double-quotes error introduced in 39682a68c34b474100e52bd86c4bab202c86b085
+causes an invalid directory to be created on Windows.
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index bf3aabb..2b6d4a7 100644
+--- a/Makefile
++++ b/Makefile
+@@ -71,7 +71,7 @@ findlib.conf: findlib.conf.in
+ 
+ .PHONY: install-doc
+ install-doc:
+-	mkdir -p "$(prefix)$(OCAMLFIND_MAN)/man1" "$(prefix)$(OCAMLFIND_MAN)/man3 $(prefix)$(OCAMLFIND_MAN)/man5"
++	mkdir -p "$(prefix)$(OCAMLFIND_MAN)/man1" "$(prefix)$(OCAMLFIND_MAN)/man3" "$(prefix)$(OCAMLFIND_MAN)/man5"
+ 	-cp doc/ref-man/ocamlfind.1 "$(prefix)$(OCAMLFIND_MAN)/man1"
+ 	-cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 "$(prefix)$(OCAMLFIND_MAN)/man5"
+ 
+-- 
+2.6.2.windows.1
+
