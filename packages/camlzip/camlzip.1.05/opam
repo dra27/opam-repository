@@ -4,8 +4,9 @@ authors: ["Xavier Leroy"]
 homepage: "http://forge.ocamlcore.org/projects/camlzip/"
 license: "LGPL-2.1+ with OCaml linking exception"
 build: [
-  [make "all"]
-  [make "allopt"]
+  ["sed" "-i" "-e" "\"s/\\/usr\\/local/C:\\/Dev\\/OCaml/\"" "Makefile"]
+  [make "ZLIB_LIBDIR=C:/Cygwin/lib" "ZLIB_INCLUDE=C:/Cygwin/usr/include" "all"]
+  [make "ZLIB_LIBDIR=C:/Cygwin/lib" "ZLIB_INCLUDE=C:/Cygwin/usr/include" "allopt"]
   [make "install-findlib"]
 ]
 remove: [
