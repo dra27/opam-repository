@@ -22,3 +22,4 @@ depends: [
   "ocaml"
   "conf-m4" {build}
 ]
+patches: ["0001-Fix-quoting-error-in-Makefile.patch"]
