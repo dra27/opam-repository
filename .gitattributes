@@ -1,0 +1,11 @@
+# Default behaviour, for if core.autocrlf isn't set
+* text=auto
+
+# Shell scripts, etc. must have LF endings, even on Windows
+*.sh text eol=lf
+configure text eol=lf
+pkgconfigure text eol=lf
+
+# Treat patches as binary for safety
+*.patch binary
+*.diff binary
