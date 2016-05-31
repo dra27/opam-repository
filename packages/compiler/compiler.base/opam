@@ -1,0 +1,20 @@
+opam-version: "2.0"
+synopsis: "Compiler configuration for this switch"
+authors: "David Allsopp"
+maintainer: "david.allsopp@metastack.com" # For now...
+bug-reports: "https://github.com/ocaml/opam-repository/issues"
+dev-repo: "git+https://github.com/ocaml/opam-repository.git"
+homepage: "https://opam.ocaml.org"
+build: ["./gen.sh" switch-cc switch-libc switch-arch "0.3.1"]
+flags: compiler
+setenv: [
+  [PATH += "%{msvs-path}%"]
+  [INCLUDE =+ "%{msvs-inc}%"]
+  [LIB =+ "%{msvs-lib}%"]
+]
+extra-source "msvs-tools-0.3.1.tar.gz" {
+  # The version number of msvs-tools needs to be the same as the sixth parameter of the build instruction
+  src: "https://github.com/metastack/msvs-tools/archive/0.3.1.tar.gz"
+  checksum: "md5=173d0c89641fe8794045c64c1379f1d9"
+}
+extra-files: ["gen.sh" "md5=8c11a739a2e90d38bcde9842150f712f"]
