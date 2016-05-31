@@ -1,0 +1,25 @@
+From e62a774c00ed4c80b2f0f4955f24e4784b08879a Mon Sep 17 00:00:00 2001
+From: David Allsopp <david.allsopp@metastack.com>
+Date: Tue, 19 Jul 2016 17:01:59 +0100
+Subject: [PATCH] Allow compilation of 0.30+ in OCaml 3.11.x
+
+---
+ create_dll.ml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/create_dll.ml b/create_dll.ml
+index 98e8499..1b5ee30 100644
+--- a/create_dll.ml
++++ b/create_dll.ml
+@@ -120,7 +120,7 @@ let create_dll oc objs =
+ 
+       List.iter
+         (function
+-          | {sym_name=name; value=ofs; storage; section = `Section s} as sym when s.sec_pos >= 0 ->
++          | {sym_name=name; value=ofs; storage=storage; section = `Section s} as sym when s.sec_pos >= 0 ->
+               let info = Hashtbl.find sec_info s.sec_pos in
+               let rva = lazy (Int32.add ofs (Lazy.force info.sec_info_vaddress)) in
+               if storage = 2
+-- 
+2.6.2.windows.1
+
