@@ -1,0 +1,20 @@
+opam-version: "2.0"
+descr: """
+Compiler configuration for this switch
+"""
+authors: "David Allsopp"
+maintainer: "david.allsopp@metastack.com" # For now...
+bug-reports: "https://github.com/ocaml/opam-repository/issues"
+dev-repo: "git+https://github.com/ocaml/opam-repository.git"
+homepage: "https://opam.ocaml.org"
+build: ["./gen.sh" ocaml:target-version os arch switch-cc switch-libc switch-arch "0.2.0"]
+flags: compiler
+setenv: [
+  [PATH += "%{msvs-path}%"]
+  [INCLUDE =+ "%{msvs-inc}%"]
+  [LIB =+ "%{msvs-lib}%"]
+]
+extra-sources: [
+  # The version number of msvs-tools needs to be the same as the sixth parameter of the build instruction
+  "https://github.com/metastack/msvs-tools/archive/0.2.0.tar.gz" {"msvs-tools-0.2.0.tar.gz"} "9d2d3a36e235c775a5b957f9a0a6ed52"
+]
