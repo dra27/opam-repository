@@ -1,0 +1,8 @@
+bin: [
+  "flexlink.exe"
+  "flexdll_%{compiler:ocaml-win-conf}%.%{compiler:o}%"
+  "flexdll_initer_%{compiler:ocaml-win-conf}%.%{compiler:o}%"
+]
+lib: [
+  "flexdll.h"
+]

@@ -1,0 +1,27 @@
+opam-version: "2.0"
+synopsis: "FlexDLL C Library"
+authors: "Alain Frisch"
+maintainer: "Alain Frisch <alain.frisch@lexifi.com>"
+bug-reports: "https://github.com/alainfrisch/flexdll/issues"
+dev-repo: "git+https://github.com/alainfrisch/flexdll.git"
+homepage: "https://github.com/alainfrisch/flexdll#readme"
+depends: "compiler"
+available: os = "win32"
+build: [
+  [make "MSVC_DETECT=0" "CHAINS=%{compiler:ocaml-win-conf}%" "support"]
+  ["unzip" "flexdll-bin-0.34.zip" "flexlink.exe"]
+]
+patches: "MSVC_DETECT-0.32-0.34.patch"
+substs: "flexdll.install"
+extra-source "flexdll-bin-0.34.zip" {
+  src: "http://alain.frisch.fr/flexdll/flexdll-bin-0.34.zip"
+  checksum: "md5=71a999475439117791588929f6eacec4"
+}
+url {
+  src: "http://alain.frisch.fr/flexdll/flexdll-0.34.tar.gz"
+  checksum: "md5=c0fc9d6c79e83f0f504b5f0694becd40"
+}
+extra-files: [
+  ["flexdll.install.in" "md5=99b39f9f94f31b6d60b3212106e31f4c"]
+  ["MSVC_DETECT-0.32-0.34.patch" "md5=29cf91f67d96e989bf2ab3c09f27b99f"]
+]

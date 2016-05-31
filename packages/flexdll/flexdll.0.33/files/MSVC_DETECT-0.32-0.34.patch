@@ -1,0 +1,39 @@
+From 16e46ec602d8c1142f1b2cf56c0358fdd3ff630a Mon Sep 17 00:00:00 2001
+From: David Allsopp <david.allsopp@metastack.com>
+Date: Wed, 15 Jun 2016 09:57:51 +0100
+Subject: [PATCH] Back-port MSVC_DETECT from 05c2dbf2
+
+---
+ Makefile | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/Makefile b/Makefile
+index 238a42d..eeaf282 100644
+--- a/Makefile
++++ b/Makefile
+@@ -29,6 +29,9 @@ CHAINS = mingw mingw64 cygwin cygwin64 msvc msvc64
+ 
+ # This Makefile assumes the 32-bit version of VS 2008 or Win7 SDK is in the path.
+ 
++MSVC_DETECT=1
++
++ifeq ($(MSVC_DETECT),1)
+ MSVCC_ROOT = $(shell which cl.exe | cygpath -f - -ad | xargs -d \\n dirname | cygpath -f - -m)
+ MSVC_LIB1 = $(shell dirname $(MSVCC_ROOT))
+ MSVC_LIB2 = $(shell which ResGen.exe | cygpath -f - -ad | xargs -d \\n dirname | xargs -d \\n dirname | cygpath -f - -m)
+@@ -45,6 +48,12 @@ show_root:
+ 
+ MSVCC = $(MSVCC_ROOT)/cl.exe /nologo /MD -D_CRT_SECURE_NO_DEPRECATE /GS-
+ MSVCC64 = $(MSVCC_ROOT)/amd64/cl.exe /nologo /MD -D_CRT_SECURE_NO_DEPRECATE /GS-
++else
++MSVC_PREFIX=
++MSVC64_PREFIX=
++MSVCC=cl /nologo /MD -D_CRT_SECURE_NO_DEPRECATE /GS-
++MSVCC64=cl /nologo /MD -D_CRT_SECURE_NO_DEPRECATE /GS-
++endif
+ OCAMLOPT = ocamlopt
+ #OCAMLOPT = FLEXLINKFLAGS=-real-manifest ocamlopt
+ #LINKFLAGS = unix.cmxa
+-- 
+2.6.2.windows.1
+
