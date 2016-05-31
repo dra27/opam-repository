@@ -1,0 +1,45 @@
+From ae6807f79a0c3aecad213d4235436594048925e2 Mon Sep 17 00:00:00 2001
+From: David Allsopp <david.allsopp@metastack.com>
+Date: Wed, 15 Jun 2016 10:25:06 +0100
+Subject: [PATCH] Back-port compilation of flexlink.exe with msvc from dd4a115
+
+---
+ Makefile | 15 +++++++++------
+ 1 file changed, 9 insertions(+), 6 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index c472b0d..cb7e7a0 100644
+--- a/Makefile
++++ b/Makefile
+@@ -45,11 +45,14 @@ OCAMLOPT = ocamlopt
+ #OCAMLOPT = FLEXLINKFLAGS=-real-manifest ocamlopt
+ #LINKFLAGS = unix.cmxa
+ 
+-#ifeq ($(SYSTEM), win64)
+-#LINKFLAGS=
+-#else
+-LINKFLAGS = -ccopt "-link version_res.o"
+-#endif
++ifeq ($(TOOLCHAIN), msvc)
++RES=version.res
++version.res: version.rc
++	rc /nologo $^
++else
++RES=version_res.o
++endif
++LINKFLAGS = -ccopt "-link $(RES)"
+ 
+ support:
+ 	for i in $(CHAINS); do $(MAKE) build_$$i ; done 
+@@ -62,7 +65,7 @@ build_mingw64: flexdll_mingw64.o flexdll_initer_mingw64.o
+ 
+ OBJS = version.ml coff.ml cmdline.ml create_dll.ml reloc.ml
+ 
+-flexlink.exe: $(OBJS) version_res.o
++flexlink.exe: $(OBJS) $(RES)
+ 	@echo Building flexlink.exe with TOOLCHAIN=$(TOOLCHAIN)
+ 	rm -f flexlink.exe
+ 	$(OCAMLOPT) -w -105 -o flexlink.exe $(LINKFLAGS) $(OBJS)
+-- 
+2.6.2.windows.1
+

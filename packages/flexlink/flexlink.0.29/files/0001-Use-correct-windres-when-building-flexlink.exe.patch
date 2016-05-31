@@ -1,0 +1,25 @@
+From 7a153e7903d1effcc505561a08ec4a6eec453887 Mon Sep 17 00:00:00 2001
+From: David Allsopp <david.allsopp@metastack.com>
+Date: Tue, 23 Jun 2015 11:29:01 +0100
+Subject: [PATCH] Use correct windres when building flexlink.exe
+
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index 4f28db7..53019cf 100644
+--- a/Makefile
++++ b/Makefile
+@@ -84,7 +84,7 @@ version.res: version.rc
+ 	rc version.rc
+ 
+ version_res.o: version.rc
+-	windres version.rc version_res.o
++	$(TOOLPREF)windres version.rc version_res.o
+ 
+ flexdll_msvc.obj: flexdll.h flexdll.c
+ 	$(MSVC_PREFIX) $(MSVCC) /DMSVC -c /Fo"flexdll_msvc.obj" flexdll.c
+-- 
+2.6.2.windows.1
+
