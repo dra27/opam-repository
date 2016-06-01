@@ -1,0 +1,24 @@
+opam-version: "2.0"
+synopsis: "FlexDLL C Library"
+authors: "Alain Frisch"
+maintainer: "Alain Frisch <alain.frisch@lexifi.com>"
+bug-reports: "https://github.com/alainfrisch/flexdll/issues"
+dev-repo: "git+https://github.com/alainfrisch/flexdll.git"
+homepage: "https://github.com/alainfrisch/flexdll#readme"
+depends: "compiler"
+available: os = "win32"
+build: [
+  ["./assemble.sh" ocaml:target-version compiler:ocaml-win-conf compiler:o]
+]
+extra-source "flexdll-bin-0.35.zip" {
+  src: "http://alain.frisch.fr/flexdll/flexdll-bin-0.35.zip"
+  checksum: "md5=aaddcef5180248f2c01202b98da71664"
+}
+url {
+  src: "http://alain.frisch.fr/flexdll/flexdll-0.35.tar.gz"
+  checksum: "md5=e4449eacf020675e763c21551e841642"
+}
+extra-files: [
+  ["flexdll.install" "md5=6f52403429934075d76e70f42e3b180a"]
+  ["assemble.sh" "md5=363191e2e55cfd562341c33736078568"]
+]
