@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Patches to ocamltopwin:
+#   1. Disable the use of the registry to store the location of ocaml.exe
+#   2. Hardcode the location of ocaml.exe and ocaml:lib
+sed -i -e "/GetOcamlPath/d" \
+       -e "s/OcamlPath.*[^;]/& = \"$(echo $1| sed -e "s/\\\\/\\\\\\\\\\\\\\\\/g")\\\\\\\\bin\\\\\\\\ocaml.exe\"/" \
+       -e "s/LibDir.*[^;]/& = \"$(echo $1| sed -e "s/\\\\/\\\\\\\\\\\\\\\\/g")\\\\\\\\lib\\\\\\\\ocaml\"/" ocaml.c
