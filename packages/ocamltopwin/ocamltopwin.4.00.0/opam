@@ -1,0 +1,23 @@
+opam-version: "2.0"
+descr: """
+A simplistic user interface for the OCaml toplevel under MS Windows.
+"""
+authors: ["Jacob Navia" "Chris Watford"]
+maintainer: "david.allsopp@metastack.com"
+bug-reports: "https://forge.ocamlcore.org/tracker/?atid=1231&group_id=295&func=browse"
+dev-repo: "git+https://github.com/metastack/ocamltopwin"
+homepage: "https://forge.ocamlcore.org/projects/ocamltopwin"
+depends: ["ocaml" {>= "4.00.0" & build}]
+build: [
+  ["./configure" prefix]
+  [make]
+]
+available: os = "win32" & ocaml-version >= "4.00.0"
+url {
+  src: "https://github.com/metastack/ocamltopwin/archive/25f9c436469ad382e1bc847aeca9d78d997e2b8f.tar.gz"
+  checksum: "1b1f52d337697a2b2b869a8a7f7d574a"
+}
+patches: "84bd039bf845d77c926cd32b68f607a3b9b6bf84.patch"
+extra-sources: [
+  ["https://github.com/metastack/ocamltopwin/commit/84bd039bf845d77c926cd32b68f607a3b9b6bf84.patch" "08910b0fbafb03b230386db4720a801c"]
+]
