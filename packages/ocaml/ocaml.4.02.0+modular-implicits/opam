@@ -17,7 +17,7 @@ substs: "ocaml.config"
 url {
   src: "https://github.com/ocamllabs/ocaml-modular-implicits/archive/modular-implicits.tar.gz"
 }
-also-install: ["flexlink" {= "0.31" & os = "win32"}]
+also-install: ["flexlink" {((= "0.31" & (switch-cc != "cc" & "%{cc}%" != "cc") | (switch-arch != "x86_64" & "%{target-arch}%" != "x86_64")) | (= "0.32" & (switch-cc = "cc" | "%{cc}%" = "cc") & (switch-arch = "x86_64" | "%{target-arch}%" = "x86_64"))) & os = "win32"}]
 patches: [
   "GPR405-to-4.02.1.patch" {os = "win32"}
   "gpr%23465-3.12.0%2B.patch"

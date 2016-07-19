@@ -61,4 +61,4 @@ extra-sources: [
 url {
   src: "http://caml.inria.fr/pub/distrib/ocaml-4.02/ocaml-4.02.0.tar.gz"
 }
-also-install: ["flexlink" {= "0.31" & os = "win32"}]
+also-install: ["flexlink" {((= "0.31" & (switch-cc != "cc" & "%{cc}%" != "cc") | (switch-arch != "x86_64" & "%{target-arch}%" != "x86_64")) | (= "0.32" & (switch-cc = "cc" | "%{cc}%" = "cc") & (switch-arch = "x86_64" | "%{target-arch}%" = "x86_64"))) & os = "win32"}]

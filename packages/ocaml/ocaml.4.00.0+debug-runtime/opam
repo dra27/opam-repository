@@ -18,7 +18,7 @@ substs: "ocaml.config"
 url {
   src: "http://caml.inria.fr/pub/distrib/ocaml-4.00/ocaml-4.00.0.tar.gz"
 }
-also-install: ["flexlink" {= "0.29" & os = "win32"} "win32-tcl-tk" {< "8.6.0" & os = "win32"}]
+also-install: ["flexlink" {((= "0.29" & (switch-cc != "cc" & "%{cc}%" != "cc") | (switch-arch != "x86_64" & "%{target-arch}%" != "x86_64")) | (= "0.32" & (switch-cc = "cc" | "%{cc}%" = "cc") & (switch-arch = "x86_64" | "%{target-arch}%" = "x86_64"))) & os = "win32"} "win32-tcl-tk" {< "8.6.0" & os = "win32"}]
 patches: [
   "GPR405-to-4.01.0.patch" {os = "win32"}
   "gpr%23465-3.12.0%2B.patch"

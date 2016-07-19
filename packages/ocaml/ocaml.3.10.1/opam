@@ -22,7 +22,7 @@ url {
   src: "http://caml.inria.fr/pub/distrib/ocaml-3.10/ocaml-3.10.1.tar.gz"
 }
 also-install: ["win32-tcl-tk" {< "8.5.0" & os = "win32"}]
-available: os != "win32" | switch-arch != "x86_64" & "%{target-arch}%" != "x86_64" | switch-cc != "cc" & "%{cc}%" != "cc"
+available: os != "win32" | (switch-arch != "x86_64" & "%{target-arch}%" != "x86_64") | (switch-cc != "cc" & "%{cc}%" != "cc")
 patches: [
   "GPR405-to-4.01.0.patch" {os = "win32"}
   "gpr%23465-3.09.0%2B.patch"

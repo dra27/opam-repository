@@ -78,4 +78,4 @@ url {
   src: "http://caml.inria.fr/pub/distrib/ocaml-3.12/ocaml-3.12.0.tar.gz"
 }
 also-install: ["flexlink" {= "0.29" & os = "win32"} "win32-tcl-tk" {< "8.6.0" & os = "win32"}]
-available: os != "win32" | switch-arch != "x86_64" & "%{target-arch}%" != "x86_64" | switch-cc != "cc" & "%{cc}%" != "cc"
+available: os != "win32" | (switch-arch != "x86_64" & "%{target-arch}%" != "x86_64") | (switch-cc != "cc" & "%{cc}%" != "cc")
