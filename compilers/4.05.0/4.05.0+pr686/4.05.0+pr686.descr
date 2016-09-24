@@ -1,1 +1,1 @@
-Unix.stat: Raise on overflow of inode number
+Unix.stat: Raise on overflow of inode number(trunk)
