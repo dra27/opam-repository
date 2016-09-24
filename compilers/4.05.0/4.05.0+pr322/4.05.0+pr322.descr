@@ -1,1 +1,2 @@
 Fix PR#6745 by forcing alias export if already in scope
+Target branch: trunk
