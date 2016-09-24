@@ -1,1 +1,2 @@
 objinfo: tell when the object file comes from a different OCaml version
+Target branch: trunk
