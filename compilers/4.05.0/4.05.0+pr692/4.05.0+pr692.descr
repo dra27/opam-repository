@@ -1,1 +1,1 @@
-configure: optimistically enable native dynlink on recent 32bit darwin hosts
+configure: optimistically enable native dynlink on recent 32bit darwin hosts(trunk)
