@@ -1,1 +1,2 @@
 configure: use preprocessor to get infos about target arch
+Target branch: trunk
