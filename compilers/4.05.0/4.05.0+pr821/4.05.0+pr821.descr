@@ -1,1 +1,2 @@
 Compact even a one-chunk heap when calling Gc.major/Gc.full_major
+Target branch: trunk
