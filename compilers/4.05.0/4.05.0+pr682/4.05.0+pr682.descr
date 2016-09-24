@@ -1,1 +1,1 @@
-WIP: Hide bound variables marked with [@ocaml.private] from signatures
+WIP: Hide bound variables marked with [@ocaml.private] from signatures (trunk)
