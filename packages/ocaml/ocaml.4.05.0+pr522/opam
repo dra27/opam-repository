@@ -1,0 +1,18 @@
+opam-version: "2.0"
+descr: """
+MPR#7193: in strict-sequence, trailing ";" force unit type on expression
+"""
+maintainer: "contact@ocamlpro.com"
+depends: ["base-unix" "base-bigarray" "base-threads"]
+flags: compiler
+setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+build: [
+  ["./configure" "-prefix" prefix "-with-debug-runtime"]
+  [make "world"]
+  [make "world.opt"]
+]
+install: [make "install"]
+substs: "ocaml.config"
+url {
+  src: "https://github.com/alainfrisch/ocaml/archive/semi-colon-forces-unit.tar.gz"
+}

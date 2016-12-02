@@ -1,0 +1,49 @@
+opam-version: "2.0"
+descr: """
+OCaml 4.04.0 compiled in 32-bit mode for 64-bit Linux and OS X hosts
+"""
+maintainer: "contact@ocamlpro.com"
+depends: ["base-unix" "base-bigarray" "base-threads"]
+flags: compiler
+setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+build: [
+  ["mkdir" "-p" "%{lib}%/ocaml/"]
+  ["sh" "-exc" "echo \"* : g = 1\" > %{lib}%/ocaml/ocaml_compiler_internal_params"]
+  [
+    "./configure"
+    "-prefix"
+    prefix
+    "-with-debug-runtime"
+    "-cc"
+    "gcc -m32"
+    "-as"
+    "as --32"
+    "-aspp"
+    "gcc -m32 -c"
+    "-host"
+    "i386-linux"
+    "-partialld"
+    "ld -r -melf_i386"
+  ] {os = "linux"}
+  [
+    "./configure"
+    "-prefix"
+    prefix
+    "-with-debug-runtime"
+    "-cc"
+    "gcc -Wl,-read_only_relocs,suppress -arch i386 -m32"
+    "-as"
+    "as -arch i386"
+    "-aspp"
+    "gcc -arch i386 -m32 -c"
+    "-host"
+    "i386-apple-darwin13.2.0"
+  ] {os = "darwin"}
+  [make "world"]
+  [make "world.opt"]
+]
+install: [make "install"]
+substs: "ocaml.config"
+url {
+  src: "https://github.com/ocaml/ocaml/archive/4.04.0.tar.gz"
+}

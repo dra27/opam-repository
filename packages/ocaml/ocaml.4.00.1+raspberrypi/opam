@@ -1,0 +1,19 @@
+opam-version: "2.0"
+descr: """
+Native backend for Raspberry-PI
+"""
+maintainer: "contact@ocamlpro.com"
+depends: ["base-unix" "base-bigarray" "base-threads"]
+flags: compiler
+setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+build: [
+  ["./configure" "-prefix" prefix]
+  [make "world" "world.opt"]
+]
+install: [make "install"]
+substs: "ocaml.config"
+patches: "dc0776f55108a20dad5a9c06188545dc08dbf462.patch"
+extra-sources: ["https://github.com/avsm/ocaml/commit/dc0776f55108a20dad5a9c06188545dc08dbf462.patch" "84843356ceefd4b6dde7a7b74d48a769"]
+url {
+  src: "http://caml.inria.fr/pub/distrib/ocaml-4.00/ocaml-4.00.1.tar.bz2"
+}

@@ -1,0 +1,27 @@
+opam-version: "2.0"
+descr: """
+BER-101 MetaOCaml
+"""
+maintainer: "contact@ocamlpro.com"
+depends: ["base-unix" "base-bigarray" "base-threads" "base-metaocaml-ocamlfind"]
+flags: compiler
+setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+build: [
+  ["./configure" "-prefix" "%{prefix}%"]
+  ["%{make}%" "world"]
+  ["%{make}%" "world.opt"]
+]
+install: [
+  ["%{make}%" "-i" "install"]
+  ["%{make}%" "-C" "ber-metaocaml-101" "all"]
+  ["%{make}%" "-C" "ber-metaocaml-101" "install"]
+]
+substs: "ocaml.config"
+patches: ["ber-101.patch" "bd7fa181cb64742c3b6cbb8ee13436554eb18cd7...fix-clang-build.diff"]
+extra-sources: [
+  ["http://pim.happyleptic.org/~rixed/metaocaml-opam/ber-101.patch" "ff90d48d21044f1aa14544479a61fe37"]
+  ["https://github.com/diml/ocaml/compare/bd7fa181cb64742c3b6cbb8ee13436554eb18cd7...fix-clang-build.diff" "a8c6dd8e547a7b766138f7ca3eb1cbfd"]
+]
+url {
+  src: "http://caml.inria.fr/pub/distrib/ocaml-4.01/ocaml-4.01.0.tar.gz"
+}

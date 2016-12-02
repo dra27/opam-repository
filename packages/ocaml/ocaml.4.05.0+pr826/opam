@@ -1,0 +1,18 @@
+opam-version: "2.0"
+descr: """
+fix PR#7369: Str.regexp raises "Invalid_argument: index out of bounds"
+"""
+maintainer: "contact@ocamlpro.com"
+depends: ["base-unix" "base-bigarray" "base-threads"]
+flags: compiler
+setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+build: [
+  ["./configure" "-prefix" prefix "-with-debug-runtime"]
+  [make "world"]
+  [make "world.opt"]
+]
+install: [make "install"]
+substs: "ocaml.config"
+url {
+  src: "https://github.com/damiendoligez/ocaml/archive/pr7369.tar.gz"
+}

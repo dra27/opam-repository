@@ -1,0 +1,23 @@
+opam-version: "2.0"
+descr: """
+OCaml 4.02, with improved type error messages
+"""
+maintainer: "contact@ocamlpro.com"
+depends: ["base-unix" "base-bigarray" "base-threads"]
+flags: compiler
+setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+build: [
+  ["./configure" "-prefix" "%{prefix}%"]
+  ["%{make}%" "world"]
+  ["%{make}%" "world.opt"]
+]
+install: ["%{make}%" "install"]
+substs: "ocaml.config"
+patches: "improved-error.patch"
+extra-sources: [
+  "https://gist.githubusercontent.com/andrewray/1928825fea090e50c0de/raw/e121b5cd176cdf6b882bc402276235b1c0a71b69/improved-error.patch"
+  "047e4294cf4a00448985cabb7b75fba6"
+]
+url {
+  src: "http://caml.inria.fr/pub/distrib/ocaml-4.02/ocaml-4.02.0.tar.gz"
+}

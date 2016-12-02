@@ -1,0 +1,18 @@
+opam-version: "2.0"
+descr: """
+MPR#7037: fix erroneous Location.input_name setting in Pparse.file
+"""
+maintainer: "contact@ocamlpro.com"
+depends: ["base-unix" "base-bigarray" "base-threads"]
+flags: compiler
+setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+build: [
+  ["./configure" "-prefix" prefix "-with-debug-runtime"]
+  [make "world"]
+  [make "world.opt"]
+]
+install: [make "install"]
+substs: "ocaml.config"
+url {
+  src: "https://github.com/gasche/ocaml/archive/PR7037-input_name-in-Pparse.tar.gz"
+}

@@ -1,0 +1,24 @@
+opam-version: "2.0"
+descr: """
+Mirage compiler for xen
+"""
+maintainer: "contact@ocamlpro.com"
+depends: ["lwt" "ocamlfind" "xenbigarray"]
+flags: compiler
+setenv: [
+  [MIRAGE_OS = "xen"]
+  [MIRAGE_NET = "direct"]
+]
+build: [
+  ["./configure" "-prefix" prefix]
+  [make "world"]
+  [make "world.opt"]
+]
+install: [
+  [make "install"]
+  ["sh" "-c" "rm %{lib}%/ocaml/bigarray.*"]
+]
+substs: "ocaml.config"
+url {
+  src: "http://caml.inria.fr/pub/distrib/ocaml-4.00/ocaml-4.00.1.tar.gz"
+}

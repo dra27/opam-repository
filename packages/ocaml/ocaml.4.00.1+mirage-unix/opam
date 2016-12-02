@@ -1,0 +1,21 @@
+opam-version: "2.0"
+descr: """
+Mirage compiler for unix
+"""
+maintainer: "contact@ocamlpro.com"
+depends: ["base-unix" "base-threads" "base-bigarray" "lwt" "ocamlfind"]
+flags: compiler
+setenv: [
+  [MIRAGE_OS = "unix"]
+  [MIRAGE_NET = "direct"]
+]
+build: [
+  ["./configure" "-prefix" prefix]
+  [make "world"]
+  [make "world.opt"]
+]
+install: [make "install"]
+substs: "ocaml.config"
+url {
+  src: "http://caml.inria.fr/pub/distrib/ocaml-4.00/ocaml-4.00.1.tar.gz"
+}

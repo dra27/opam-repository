@@ -1,0 +1,19 @@
+opam-version: "2.0"
+descr: """
+French translation of error messages
+"""
+maintainer: "contact@ocamlpro.com"
+depends: ["base-unix" "base-bigarray" "base-threads"]
+flags: compiler
+setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+build: [
+  ["./configure" "-prefix" prefix]
+  [make "world" "world.opt"]
+]
+install: [make "install"]
+substs: "ocaml.config"
+patches: "ocaml-4.00.1.fr.patch"
+extra-sources: ["http://www.ocamlpro.com/contribs/ocaml-french/ocaml-4.00.1.fr.patch" "0f9583bdb3b8f4e5d3ca34a1aebc7980"]
+url {
+  src: "http://caml.inria.fr/pub/distrib/ocaml-4.00/ocaml-4.00.1.tar.bz2"
+}

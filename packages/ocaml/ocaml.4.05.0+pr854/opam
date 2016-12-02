@@ -1,0 +1,18 @@
+opam-version: "2.0"
+descr: """
+Add Debuginfo.print_compact
+"""
+maintainer: "contact@ocamlpro.com"
+depends: ["base-unix" "base-bigarray" "base-threads"]
+flags: compiler
+setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+build: [
+  ["./configure" "-prefix" prefix "-with-debug-runtime"]
+  [make "world"]
+  [make "world.opt"]
+]
+install: [make "install"]
+substs: "ocaml.config"
+url {
+  src: "https://github.com/mshinwell/ocaml/archive/debuginfo_print_compact.tar.gz"
+}

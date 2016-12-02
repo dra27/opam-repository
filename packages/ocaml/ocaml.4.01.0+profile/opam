@@ -1,0 +1,25 @@
+opam-version: "2.0"
+descr: """
+4.01.0 release with profiling enabled
+"""
+maintainer: "contact@ocamlpro.com"
+depends: ["base-unix" "base-bigarray" "base-threads"]
+flags: compiler
+setenv: [
+  [OCAMLPARAM = "p=1,g=1,_"]
+  [CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"]
+]
+build: [
+  ["./configure" "-prefix" prefix "-with-debug-runtime"]
+  [make "world"]
+  [make "world.opt"]
+]
+install: [make "install"]
+substs: "ocaml.config"
+patches: "bd7fa181cb64742c3b6cbb8ee13436554eb18cd7...fix-clang-build.diff"
+extra-sources: [
+  "https://github.com/diml/ocaml/compare/bd7fa181cb64742c3b6cbb8ee13436554eb18cd7...fix-clang-build.diff" "a8c6dd8e547a7b766138f7ca3eb1cbfd"
+]
+url {
+  src: "http://caml.inria.fr/pub/distrib/ocaml-4.01/ocaml-4.01.0.tar.gz"
+}

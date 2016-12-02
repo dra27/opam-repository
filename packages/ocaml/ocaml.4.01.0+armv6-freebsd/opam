@@ -1,0 +1,22 @@
+opam-version: "2.0"
+descr: """
+OCaml 4.01.0 with patches for native code compilation on armv6 FreeBSD10-RELEASE (ie raspberrypi)
+"""
+maintainer: "contact@ocamlpro.com"
+depends: ["base-unix" "base-bigarray" "base-threads"]
+flags: compiler
+setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+build: [
+  ["./configure" "-prefix" prefix]
+  [make "world"]
+  [make "world.opt"]
+]
+install: [make "install"]
+substs: "ocaml.config"
+patches: "freebsd10-armv6-natdynlink.patch"
+extra-sources: [
+  "https://github.com/andrewray/mirage-fpga/releases/download/v0.1/freebsd10-armv6-natdynlink.patch" "44062e1512c4ad6152845ce309034273"
+]
+url {
+  src: "http://caml.inria.fr/pub/distrib/ocaml-4.01/ocaml-4.01.0.tar.gz"
+}

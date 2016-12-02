@@ -1,0 +1,26 @@
+opam-version: "2.0"
+descr: """
+BER MetaOCaml (http://okmij.org/ftp/ML/MetaOCaml.html)
+"""
+maintainer: "contact@ocamlpro.com"
+depends: ["base-unix" "base-bigarray" "base-threads"]
+flags: compiler
+setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+build: [
+  ["./configure" "-prefix" prefix "-no-tk"]
+  [make "core"]
+  [make "coreboot"]
+  [make "all"]
+  [make "ocamlopt"]
+]
+install: [
+  [make "-i" "install"]
+  [make "-C" "ber-metaocaml-100" "all"]
+  [make "-C" "ber-metaocaml-100" "install"]
+]
+substs: "ocaml.config"
+patches: "ber.patch"
+extra-sources: ["http://eneide.happyleptic.org/~rixed/metaocaml-opam/ber.patch" "bab414d8422f16ba5561aa8edcf9d3be"]
+url {
+  src: "http://caml.inria.fr/pub/distrib/ocaml-4.00/ocaml-4.00.1.tar.bz2"
+}

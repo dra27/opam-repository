@@ -1,0 +1,18 @@
+opam-version: "2.0"
+descr: """
+Allow -with-frame-pointers for clang under linux.
+"""
+maintainer: "contact@ocamlpro.com"
+depends: ["base-unix" "base-bigarray" "base-threads"]
+flags: compiler
+setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+build: [
+  ["./configure" "-prefix" prefix "-with-debug-runtime"]
+  [make "world"]
+  [make "world.opt"]
+]
+install: [make "install"]
+substs: "ocaml.config"
+url {
+  src: "https://github.com/bschommer/ocaml/archive/fp-clang.tar.gz"
+}
