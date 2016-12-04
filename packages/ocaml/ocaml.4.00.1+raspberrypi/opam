@@ -17,3 +17,4 @@ extra-sources: ["https://github.com/avsm/ocaml/commit/dc0776f55108a20dad5a9c0618
 url {
   src: "http://caml.inria.fr/pub/distrib/ocaml-4.00/ocaml-4.00.1.tar.bz2"
 }
+available: os != "win32"

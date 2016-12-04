@@ -18,3 +18,4 @@ substs: "ocaml.config"
 url {
   src: "https://github.com/ocaml/ocaml/archive/trunk.tar.gz"
 }
+available: os != "win32"

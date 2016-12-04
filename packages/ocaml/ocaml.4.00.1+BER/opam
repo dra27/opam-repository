@@ -24,3 +24,4 @@ extra-sources: ["http://eneide.happyleptic.org/~rixed/metaocaml-opam/ber.patch" 
 url {
   src: "http://caml.inria.fr/pub/distrib/ocaml-4.00/ocaml-4.00.1.tar.bz2"
 }
+available: os != "win32"

@@ -16,3 +16,4 @@ substs: "ocaml.config"
 url {
   src: "http://caml.inria.fr/pub/distrib/ocaml-4.02/ocaml-4.02.0.tar.gz"
 }
+available: os != "win32"

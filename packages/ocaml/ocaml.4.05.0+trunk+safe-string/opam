@@ -3,16 +3,19 @@ descr: """
 OCaml 4.05.0 with -safe-string enabled.
 """
 maintainer: "contact@ocamlpro.com"
-depends: ["base-unix" "base-bigarray" "base-threads"]
+depends: ["base-unix" "base-bigarray" "base-threads" "compiler" "flexdll" {os = "win32" & >= "0.35"}]
 flags: compiler
-setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+setenv: CAML_LD_LIBRARY_PATH = "%{<$lib$/stublibs}%"
 build: [
-  ["./configure" "-prefix" prefix "-with-debug-runtime" "-safe-string"]
+  ["./configure" "-prefix" prefix "-with-debug-runtime" "-safe-string"] {os != "win32"}
+  ["./win.sh" "4.05.0" compiler:ocaml-win-conf prefix flexdll:share "-with-debug-runtime" "-safe-string"] {os = "win32"}
+  [make "flexdll"] {os = "win32"}
   [make "world"]
   [make "world.opt"]
 ]
-install: [make "install"]
+install: [make "INSTALL_DISTRIB=" {os = "win32"} "install"]
 substs: "ocaml.config"
 url {
   src: "https://github.com/ocaml/ocaml/archive/trunk.tar.gz"
 }
+also-install: ["flexlink" {= "0.35" & os = "win32"}]

@@ -3,20 +3,92 @@ descr: """
 Official 3.09.2 release
 """
 maintainer: "contact@ocamlpro.com"
-depends: ["base-unix" "base-bigarray" "base-threads"]
+depends: ["base-unix" "base-bigarray" "base-threads" "compiler" "win32-tcl-tk" {os = "win32" & >= "8.3.0"}]
 flags: compiler
-setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+setenv: CAML_LD_LIBRARY_PATH = "%{<$lib$/stublibs}%"
 build: [
-  ["./configure" "-prefix" prefix]
+  ["./configure" "-prefix" prefix] {os != "win32"}
+  ["./win.sh" compiler:ocaml-win-conf prefix win32-tcl-tk:lib win32-tcl-tk:version compiler:a] {os = "win32"}
   [make "world"]
-  [make "world.opt"]
+  [make "world.opt" {os != "win32"} "opt" {os = "win32"} "opt.opt" {os = "win32"}]
 ]
 install: [
   [make "install"]
-  ["mkdir" "-p" "%{prefix}%/lib/ocaml/compiler-libs"]
-  ["cp" "-r" "typing" "parsing" "utils" "%{prefix}%/lib/ocaml/compiler-libs/"]
+  ["mkdir" "-p" "%{<$prefix$/lib/ocaml/compiler-libs}%"]
+  ["cp" "--no-preserve=mode" {os = "win32"} "-r" "typing" "parsing" "utils" "%{<$prefix$/lib/ocaml/compiler-libs/}%"]
 ]
 substs: "ocaml.config"
 url {
   src: "http://caml.inria.fr/pub/distrib/ocaml-3.09/ocaml-3.09.2.tar.gz"
 }
+also-install: ["win32-tcl-tk" {< "8.5.0" & os = "win32"}]
+available: os != "win32" | switch-arch != "x86_64" & "%{target-arch}%" != "x86_64"
+patches: [
+  "GPR405-to-4.01.0.patch" {os = "win32"}
+  "gpr%23465-3.09.0%2B.patch"
+  "GPR658-to-3.09.3.patch" {os = "win32"}
+  "GPR678-to-4.00.1.patch" {os = "win32"}
+  "cc-profile.patch" {os = "win32"}
+  "debugtype-to-3.09.2.patch" {os = "win32"}
+  "mingw-to-3.09.3.patch" {os = "win32"}
+  "msvc-3.09.patch" {os = "win32"}
+  "ocamldoc-build.patch" {os = "win32"}
+  "PR3821.patch" {os = "win32"}
+  "PR4614.patch"
+  "PR4700.patch" {os = "win32"}
+  "PR5011.patch"
+]
+extra-sources: [
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/GPR405-to-4.01.0.patch"
+    "1536effeecbcacd079390abd57cfe31b"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/gpr%23465-3.09.0%2B.patch"
+    "d206a404c8795c34c6fb86a175b027fe"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/GPR658-to-3.09.3.patch"
+    "3149c70871af31d178a2a3f4844d0ec2"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/GPR678-to-4.00.1.patch"
+    "106454e5e5bf88e447e96837abef0957"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/cc-profile.patch"
+    "71ebd6a61589c60529886ad29f27a6c4"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/debugtype-to-3.09.2.patch"
+    "76751d177c74504010e04f888dbae832"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/mingw-to-3.09.3.patch"
+    "2cd86833385b0a43c57e5c8705c5f353"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/msvc-3.09.patch"
+    "c0539ace88384f821a82678943faca79"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/ocamldoc-build.patch"
+    "3bb063f019cd5a801ff2c8ab1965a266"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/PR3821.patch"
+    "7972d7593a359b51fd9ce4cf43d5c5bd"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/PR4614.patch"
+    "149f851a633ea90e7314be31bdac62fc"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/PR4700.patch"
+    "14ee232da5b97028ab64ba319b61a4c6"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/PR5011.patch"
+    "e18e8224835c0766fcee767be9105360"
+  ]
+]

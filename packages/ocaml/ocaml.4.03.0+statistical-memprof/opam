@@ -16,3 +16,4 @@ substs: "ocaml.config"
 url {
   src: "https://github.com/jhjourdan/ocaml/archive/memprof.tar.gz"
 }
+available: os != "win32"

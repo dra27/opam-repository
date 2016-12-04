@@ -3,18 +3,21 @@ descr: """
 latest 4.05 snapshot with flambda activated
 """
 maintainer: "contact@ocamlpro.com"
-depends: ["base-unix" "base-bigarray" "base-threads"]
+depends: ["base-unix" "base-bigarray" "base-threads" "compiler" "flexdll" {os = "win32" & >= "0.35"}]
 flags: compiler
-setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+setenv: CAML_LD_LIBRARY_PATH = "%{<$lib$/stublibs}%"
 build: [
-  ["mkdir" "-p" "%{lib}%/ocaml/"]
-  ["sh" "-exc" "echo \"* : g = 1\" > %{lib}%/ocaml/ocaml_compiler_internal_params"]
-  ["./configure" "-prefix" prefix "-with-debug-runtime" "-flambda"]
+  ["mkdir" "-p" "%{<$lib$/ocaml/}%"]
+  ["sh" "-exc" "echo \"* : g = 1\" > %{<$lib$/ocaml/ocaml_compiler_internal_params}%"]
+  ["./configure" "-prefix" prefix "-with-debug-runtime" "-flambda"] {os != "win32"}
+  ["./win.sh" "4.05.0" compiler:ocaml-win-conf prefix flexdll:share "-with-debug-runtime" "-flambda"] {os = "win32"}
+  [make "flexdll"] {os = "win32"}
   [make "world"]
   [make "world.opt"]
 ]
-install: [make "install"]
+install: [make "INSTALL_DISTRIB=" {os = "win32"} "install"]
 substs: "ocaml.config"
 url {
   src: "https://github.com/ocaml/ocaml/archive/trunk.tar.gz"
 }
+also-install: ["flexlink" {= "0.35" & os = "win32"}]

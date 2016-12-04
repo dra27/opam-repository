@@ -3,22 +3,79 @@ descr: """
 Official 3.12.0 release
 """
 maintainer: "contact@ocamlpro.com"
-depends: ["base-unix" "base-bigarray" "base-threads"]
+depends: ["base-unix" "base-bigarray" "base-threads" "compiler" "flexdll" {os = "win32" & >= "0.23"} "win32-tcl-tk" {os = "win32" & >= "8.5.0"}]
 flags: compiler
-setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+setenv: CAML_LD_LIBRARY_PATH = "%{<$lib$/stublibs}%"
 build: [
-  ["./configure" "-prefix" prefix]
+  ["./configure" "-prefix" prefix] {os != "win32"}
+  ["./win.sh" "3.12.0" compiler:ocaml-win-conf prefix flexdll:lib win32-tcl-tk:lib win32-tcl-tk:version compiler:a] {os = "win32"}
   [make "world"]
   [make "world.opt"]
 ]
 install: [
   [make "install"]
-  ["mkdir" "-p" "%{prefix}%/lib/ocaml/compiler-libs"]
-  ["cp" "-r" "typing" "parsing" "utils" "%{prefix}%/lib/ocaml/compiler-libs/"]
+  ["mkdir" "-p" "%{<$prefix$/lib/ocaml/compiler-libs}%"]
+  ["cp" "--no-preserve=mode" {os = "win32"} "-r" "typing" "parsing" "utils" "%{<$prefix$/lib/ocaml/compiler-libs/}%"]
 ]
 substs: "ocaml.config"
-patches: "fix-binutils.patch" {os != "win32"}
-extra-sources: ["http://caml.inria.fr/mantis/file_download.php?file_id=418&type=bug" {"fix-binutils.patch"} "8c664a0a346424ea2ec6fc6f713170c6"]
+patches: [
+  "fix-binutils.patch" {os != "win32"}
+  "GPR405-to-4.01.0.patch" {os = "win32"}
+  "gpr%23465-3.12.0%2B.patch"
+  "GPR658-to-4.01.0.patch" {os = "win32"}
+  "GPR678-to-4.00.1.patch" {os = "win32"}
+  "mingw-to-3.12.1.patch" {os = "win32"}
+  "ocamldoc-build.patch" {os = "win32"}
+  "win-runtimed-to-4.00.1.patch" {os = "win32"}
+  "tcl-tk-amd64-3.11-85.patch" {os = "win32"}
+  "PR5011-3.12+4.00.patch"
+  "PR6766.patch" {os = "win32"}
+]
+extra-sources: [
+  ["http://caml.inria.fr/mantis/file_download.php?file_id=418&type=bug" {"fix-binutils.patch"} "8c664a0a346424ea2ec6fc6f713170c6"]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/GPR405-to-4.01.0.patch"
+    "1536effeecbcacd079390abd57cfe31b"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/gpr%23465-3.12.0%2B.patch"
+    "35d8fca8437d5a900497b16324863b46"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/GPR658-to-4.01.0.patch"
+    "f1348b8495608a8ce6553b272ea4e2d2"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/GPR678-to-4.00.1.patch"
+    "106454e5e5bf88e447e96837abef0957"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/mingw-to-3.12.1.patch"
+    "93721cd96038174f0a34c8dab415cbdd"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/ocamldoc-build.patch"
+    "3bb063f019cd5a801ff2c8ab1965a266"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/win-runtimed-to-4.00.1.patch"
+    "ad5523fb98c08c261865170ca071ec33"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/tcl-tk-amd64-3.11-85.patch"
+    "16aadedcb6d57aaf023db43444848a41"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/PR5011-3.12+4.00.patch"
+    "83536dd1f9eb292091391f139dae702a"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/PR6766.patch"
+    "f09039decccfc8c31286475a915724ed"
+  ]
+]
 url {
   src: "http://caml.inria.fr/pub/distrib/ocaml-3.12/ocaml-3.12.0.tar.gz"
 }
+also-install: ["flexlink" {= "0.29" & os = "win32"} "win32-tcl-tk" {< "8.6.0" & os = "win32"}]
+available: os != "win32" | switch-arch != "x86_64" & "%{target-arch}%" != "x86_64" | switch-cc != "cc" & "%{cc}%" != "cc"

@@ -3,22 +3,89 @@ descr: """
 Official 3.11.2 release
 """
 maintainer: "contact@ocamlpro.com"
-depends: ["base-unix" "base-bigarray" "base-threads"]
+depends: ["base-unix" "base-bigarray" "base-threads" "compiler" "flexdll" {os = "win32" & >= "0.22"} "win32-tcl-tk" {os = "win32" & >= "8.5.0"}]
 flags: compiler
-setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+setenv: CAML_LD_LIBRARY_PATH = "%{<$lib$/stublibs}%"
 build: [
-  ["./configure" "-prefix" prefix]
+  ["./configure" "-prefix" prefix] {os != "win32"}
+  ["./win.sh" "3.11.2" compiler:ocaml-win-conf prefix flexdll:lib win32-tcl-tk:lib win32-tcl-tk:version compiler:a] {os = "win32"}
   [make "world"]
-  [make "world.opt"]
+  [make "world.opt" {os != "win32"} "opt" {os = "win32"} "opt.opt" {os = "win32"}]
 ]
 install: [
   [make "install"]
-  ["mkdir" "-p" "%{prefix}%/lib/ocaml/compiler-libs"]
-  ["cp" "-r" "typing" "parsing" "utils" "%{prefix}%/lib/ocaml/compiler-libs/"]
+  ["mkdir" "-p" "%{<$prefix$/lib/ocaml/compiler-libs}%"]
+  ["cp" "--no-preserve=mode" {os = "win32"} "-r" "typing" "parsing" "utils" "%{<$prefix$/lib/ocaml/compiler-libs/}%"]
 ]
 substs: "ocaml.config"
-patches: "3.11.2_binutils.patch"
-extra-sources: ["http://www.ocamlpro.com/patches/3.11.2_binutils.patch" "041f12c823520d687a7bbbce10cd57e3"]
+patches: [
+  "3.11.2_binutils.patch"
+  "GPR405-to-4.01.0.patch" {os = "win32"}
+  "gpr%23465-3.09.0%2B.patch"
+  "GPR658-to-3.11.2.patch" {os = "win32"}
+  "GPR678-to-4.00.1.patch" {os = "win32"}
+  "mingw-to-3.12.1.patch" {os = "win32"}
+  "msvc64-3.11.patch" {os = "win32"}
+  "ocamldoc-build.patch" {os = "win32"}
+  "win-runtimed-to-4.00.1.patch" {os = "win32"}
+  "tcl-tk-amd64-3.11-85.patch" {os = "win32"}
+  "PR4683.patch" {os = "win32"}
+  "PR4700.patch" {os = "win32"}
+  "PR5011-3.11.patch"
+]
+extra-sources: [
+  ["http://www.ocamlpro.com/patches/3.11.2_binutils.patch" "041f12c823520d687a7bbbce10cd57e3"]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/GPR405-to-4.01.0.patch"
+    "1536effeecbcacd079390abd57cfe31b"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/gpr%23465-3.09.0%2B.patch"
+    "d206a404c8795c34c6fb86a175b027fe"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/GPR658-to-3.11.2.patch"
+    "869d3ddfa02239eeb5c647c16b5b3e32"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/GPR678-to-4.00.1.patch"
+    "106454e5e5bf88e447e96837abef0957"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/mingw-to-3.12.1.patch"
+    "93721cd96038174f0a34c8dab415cbdd"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/msvc64-3.11.patch"
+    "b4396c0d4eb26ee5baafeb2000bfffb0"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/ocamldoc-build.patch"
+    "3bb063f019cd5a801ff2c8ab1965a266"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/win-runtimed-to-4.00.1.patch"
+    "ad5523fb98c08c261865170ca071ec33"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/tcl-tk-amd64-3.11-85.patch"
+    "16aadedcb6d57aaf023db43444848a41"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/PR4683.patch"
+    "43d443fa93f09e3caa5bc3f4cd82fd94"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/PR4700.patch"
+    "14ee232da5b97028ab64ba319b61a4c6"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/PR5011-3.11.patch"
+    "b2b2dc404a22304baa03d05f4e7831f9"
+  ]
+]
 url {
   src: "http://caml.inria.fr/pub/distrib/ocaml-3.11/ocaml-3.11.2.tar.gz"
 }
+also-install: ["flexlink" {= "0.29" & os = "win32"} "win32-tcl-tk" {< "8.6.0" & os = "win32"}]
+available: os != "win32" | switch-arch != "x86_64" & "%{target-arch}%" != "x86_64" | switch-cc != "cc" & "%{cc}%" != "cc"

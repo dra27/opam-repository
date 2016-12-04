@@ -3,13 +3,15 @@ descr: """
 Official 4.03.0 release with flambda activated
 """
 maintainer: "contact@ocamlpro.com"
-depends: ["base-unix" "base-bigarray" "base-threads"]
+depends: ["base-unix" "base-bigarray" "base-threads" "compiler" "flexdll" {os = "win32" & >= "0.35"}]
 flags: compiler
-setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+setenv: CAML_LD_LIBRARY_PATH = "%{<$lib$/stublibs}%"
 build: [
-  ["mkdir" "-p" "%{lib}%/ocaml/"]
-  ["sh" "-exc" "echo \"* : g = 1\" > %{lib}%/ocaml/ocaml_compiler_internal_params"]
-  ["./configure" "-prefix" prefix "-with-debug-runtime" "-flambda"]
+  ["mkdir" "-p" "%{<$lib$/ocaml/}%"]
+  ["sh" "-exc" "echo \"* : g = 1\" > %{<$lib$/ocaml/ocaml_compiler_internal_params}%"]
+  ["./configure" "-prefix" prefix "-with-debug-runtime" "-flambda"] {os != "win32"}
+  ["./win.sh" "4.03.0" compiler:ocaml-win-conf prefix flexdll:share "-with-debug-runtime" "-flambda"] {os = "win32"}
+  [make "flexdll"] {os = "win32"}
   [make "world"]
   [make "world.opt"]
 ]
@@ -18,3 +20,33 @@ substs: "ocaml.config"
 url {
   src: "https://github.com/ocaml/ocaml/archive/4.03.0.tar.gz"
 }
+also-install: ["flexlink" {= "0.35" & os = "win32"}]
+patches: [
+  "gpr%23465-3.12.0%2B.patch"
+  "GPR582.patch" {os = "win32"}
+  "GPR658.patch" {os = "win32"}
+  "GPR678.patch" {os = "win32"}
+  "GPR820-4.02.2+.patch" {os = "win32"}
+]
+extra-sources: [
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/gpr%23465-3.12.0%2B.patch"
+    "35d8fca8437d5a900497b16324863b46"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/GPR582.patch"
+    "45c486b419ce72d53641b5fc9f7d6a34"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/GPR658.patch"
+    "666ca9e439b718e741d08c4702926004"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/GPR678.patch"
+    "8544ea38f1fad93b471694c0d32028d8"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/GPR820-4.02.2+.patch"
+    "0890b265759b825a94792d8a787c5c53"
+  ]
+]

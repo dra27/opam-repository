@@ -35,3 +35,4 @@ extra-sources: [
 url {
   src: "http://caml.inria.fr/pub/distrib/ocaml-4.01/ocaml-4.01.0.tar.gz"
 }
+available: os != "win32"

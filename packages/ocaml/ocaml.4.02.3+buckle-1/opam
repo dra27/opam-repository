@@ -7,11 +7,13 @@ descr: """
 Provides patches required for [bucklescript](https://github.com/bloomberg/bucklescript)
 """
 maintainer: "contact@ocamlpro.com"
-depends: ["base-unix" "base-bigarray" "base-threads"]
+depends: ["base-unix" "base-bigarray" "base-threads" "compiler" "flexdll" {os = "win32" & >= "0.31"}]
 flags: compiler
-setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+setenv: CAML_LD_LIBRARY_PATH = "%{<$lib$/stublibs}%"
 build: [
-  ["./configure" "-prefix" prefix "-with-debug-runtime"]
+  ["./configure" "-prefix" prefix "-with-debug-runtime"] {os != "win32"}
+  ["./win.sh" "4.02.3" compiler:ocaml-win-conf prefix flexdll:lib "-with-debug-runtime"] {os = "win32"}
+  [make "world"] {os = "win32"}
   [make "world.opt"]
 ]
 install: [make "install"]
@@ -19,3 +21,43 @@ substs: "ocaml.config"
 url {
   src: "https://github.com/bloomberg/ocaml/archive/4.02.3+buckle-1.tar.gz"
 }
+also-install: ["flexlink" {= "0.34" & os = "win32"}]
+patches: [
+  "GPR405.patch" {os = "win32"}
+  "gpr%23465-3.12.0%2B.patch"
+  "GPR658-to-4.02.3.patch" {os = "win32"}
+  "GPR678.patch" {os = "win32"}
+  "GPR820-4.02.2+.patch" {os = "win32"}
+  "PR6766.patch" {os = "win32"}
+  "PR6797.patch" {os = "win32"}
+]
+extra-sources: [
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/GPR405.patch"
+    "7507593816415e330d6f0669de729cf6"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/gpr%23465-3.12.0%2B.patch"
+    "35d8fca8437d5a900497b16324863b46"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/GPR658-to-4.02.3.patch"
+    "e6d1d60cd86dfd605ab79682275ff4b2"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/GPR678.patch"
+    "8544ea38f1fad93b471694c0d32028d8"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/GPR820-4.02.2+.patch"
+    "0890b265759b825a94792d8a787c5c53"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/PR6766.patch"
+    "f09039decccfc8c31286475a915724ed"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/PR6797.patch"
+    "ec342fc5e47504c41addbf8a7910047a"
+  ]
+]

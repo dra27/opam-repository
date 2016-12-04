@@ -3,20 +3,65 @@ descr: """
 Official 4.01.0 release of JoCaml, that is, OCaml extended for concurrent and distributed programming.
 """
 maintainer: "contact@ocamlpro.com"
-depends: ["base-unix" "base-bigarray" "base-threads"]
+depends: ["base-unix" "base-bigarray" "base-threads" "compiler" "flexdll" {os = "win32" & >= "0.31"} "win32-tcl-tk" {os = "win32" & >= "8.5.0"}]
 flags: compiler
-setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+setenv: CAML_LD_LIBRARY_PATH = "%{<$lib$/stublibs}%"
 build: [
-  ["./configure" "-prefix" prefix "-with-debug-runtime"]
+  ["./configure" "-prefix" prefix "-with-debug-runtime"] {os != "win32"}
+  ["./win.sh" "4.01.0" compiler:ocaml-win-conf prefix flexdll:lib win32-tcl-tk:lib win32-tcl-tk:version compiler:a "-with-debug-runtime"]
+    {os = "win32"}
   [make "world"]
   [make "world.opt"]
 ]
 install: [make "install"]
 substs: "ocaml.config"
-patches: "bd7fa181cb64742c3b6cbb8ee13436554eb18cd7...fix-clang-build.diff"
+patches: [
+  "bd7fa181cb64742c3b6cbb8ee13436554eb18cd7...fix-clang-build.diff"
+  "GPR405-to-4.01.0.patch" {os = "win32"}
+  "gpr%23465-3.12.0%2B.patch"
+  "GPR658-to-4.01.0.patch" {os = "win32"}
+  "GPR678-4.01.0.patch" {os = "win32"}
+  "win-runtimed.patch" {os = "win32"}
+  "tcl-tk-amd64-4.x.patch" {os = "win32"}
+  "GPR820.patch" {os = "win32"}
+  "PR6766.patch" {os = "win32"}
+]
 extra-sources: [
-  "https://github.com/diml/ocaml/compare/bd7fa181cb64742c3b6cbb8ee13436554eb18cd7...fix-clang-build.diff" "a8c6dd8e547a7b766138f7ca3eb1cbfd"
+  ["https://github.com/diml/ocaml/compare/bd7fa181cb64742c3b6cbb8ee13436554eb18cd7...fix-clang-build.diff" "a8c6dd8e547a7b766138f7ca3eb1cbfd"]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/GPR405-to-4.01.0.patch"
+    "1536effeecbcacd079390abd57cfe31b"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/gpr%23465-3.12.0%2B.patch"
+    "35d8fca8437d5a900497b16324863b46"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/GPR658-to-4.01.0.patch"
+    "f1348b8495608a8ce6553b272ea4e2d2"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/GPR678-4.01.0.patch"
+    "06b9c8dd0a8fe4495245356243d17900"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/win-runtimed.patch"
+    "baded8ba704d8bafb0b9ad58973825d1"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/tcl-tk-amd64-4.x.patch"
+    "0bf4a5ae41ad89c8773191fc1e361ae6"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/GPR820.patch"
+    "65af8ed87a308d6e2d00fdfcb521c805"
+  ]
+  [
+    "https://raw.githubusercontent.com/metastack/ocaml-legacy/2fc7d01bc27c3f099ddc64ca8450bc9d858a01a4/PR6766.patch"
+    "f09039decccfc8c31286475a915724ed"
+  ]
 ]
 url {
   src: "http://jocaml.inria.fr/pub/distri/jocaml-4.01/jocaml-4.01.0.tar.gz"
 }
+also-install: ["flexlink" {= "0.31" & os = "win32"} "win32-tcl-tk" {< "8.6.0" & os = "win32"}]

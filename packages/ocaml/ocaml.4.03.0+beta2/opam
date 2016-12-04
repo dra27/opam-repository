@@ -18,3 +18,4 @@ substs: "ocaml.config"
 url {
   src: "https://codeload.github.com/ocaml/ocaml/legacy.tar.gz/4.03.0+beta2"
 }
+available: os != "win32"

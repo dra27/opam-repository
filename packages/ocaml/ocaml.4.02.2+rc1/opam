@@ -16,3 +16,4 @@ substs: "ocaml.config"
 url {
   src: "http://github.com/ocaml/ocaml/tarball/4.02.2+rc1"
 }
+available: os != "win32"

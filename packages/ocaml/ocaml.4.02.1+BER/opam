@@ -18,3 +18,4 @@ substs: "ocaml.config"
 url {
   src: "https://github.com/metaocaml/ber-metaocaml/archive/ber-n102.tar.gz"
 }
+available: os != "win32"
