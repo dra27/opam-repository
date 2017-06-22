@@ -19,3 +19,4 @@ packages: [
   "base-threads"
 ]
 env: [[CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"]]
+patches: ["https://raw.githubusercontent.com/dra27/ocaml/mpr7557/mpr7557.patch"]
