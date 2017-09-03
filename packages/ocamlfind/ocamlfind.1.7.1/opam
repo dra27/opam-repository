@@ -40,7 +40,7 @@ install: [
   [make "install"]
   ["install" "-m" "0755" "ocaml-stub" "%{bin}%/ocaml"] {ocaml:preinstalled}
 ]
-patches: [ "termux.patch" "no-awk-check.patch" ]
+patches: [ "termux.patch" "no-awk-check.patch" "0001-Fix-configure-on-newer-Cygwin-tools.patch" ]
 depends: [
   "ocaml" {>= "3.12.0" & < "4.07"}
   "conf-m4" {build}
@@ -59,6 +59,7 @@ extra-files: [
   ["ocamlfind.install.in" "md5=a1e7aca48a0fdb8b8c9e1cf4bd8aba94"]
   ["ocaml-stub" "md5=181f259c9e0bad9ef523e7d4abfdf87a"]
   ["no-awk-check.patch" "md5=0378123bf1a45fccdea434c053ddb687"]
+  ["0001-Fix-configure-on-newer-Cygwin-tools.patch" "md5=7e5e15e3d76c7ed76b04e005b8d4b5e0"]
 ]
 url {
   src: "http://download.camlcity.org/download/findlib-1.7.1.tar.gz"
