@@ -27,4 +27,4 @@ remove: [
 patches: [ "termux.patch" ]
 available: [ (!preinstalled) & (ocaml-version >= "4.03") & (ocaml-version < "4.04") ]
 bug-reports: "https://github.com/ocaml/camlp4/issues"
-dev-repo: "https://github.com/ocaml/camlp4.git"
+dev-repo: "https://github.com/ocaml/camlp4.git#4.03"

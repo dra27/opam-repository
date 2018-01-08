@@ -29,4 +29,4 @@ remove: [
 
 available: [ (!preinstalled) & (ocaml-version >= "4.05") & (ocaml-version < "4.06") ]
 bug-reports: "https://github.com/ocaml/camlp4/issues"
-dev-repo: "https://github.com/ocaml/camlp4.git"
+dev-repo: "https://github.com/ocaml/camlp4.git#4.05"
