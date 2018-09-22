@@ -1,0 +1,6 @@
+version = "VERSION"
+description = "Portable drawing primitives"
+archive(byte) = "graphics.cma"
+archive(native) = "graphics.cmxa"
+plugin(byte) = "graphics.cma"
+plugin(native) = "graphics.cmxs"
