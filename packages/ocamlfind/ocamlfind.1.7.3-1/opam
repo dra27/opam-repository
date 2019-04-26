@@ -8,6 +8,7 @@ patches: [
   "threads.patch"
   "no-awk-check.patch"
 ]
+substs: ["ocamlfind.install"]
 build: [
   [
     "./configure"
@@ -58,7 +59,7 @@ in programs and scripts."""
 authors: "Gerd Stolpmann <gerd@gerd-stolpmann.de>"
 extra-files: [
   ["threads.patch" "md5=4b43d4fe52ccd44b319fbbaba8d3ef3a"]
-  ["ocamlfind.install" "md5=06f2c282ab52d93aa6adeeadd82a2543"]
+  ["ocamlfind.install.in" "md5=a1e7aca48a0fdb8b8c9e1cf4bd8aba94"]
   ["ocaml-stub" "md5=181f259c9e0bad9ef523e7d4abfdf87a"]
   ["check-num-in-sitelib.patch" "md5=0ced9df5a3235cc6dbf0bb41b180e72d"]
   ["no-awk-check.patch" "md5=0378123bf1a45fccdea434c053ddb687"]

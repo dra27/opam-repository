@@ -4,6 +4,7 @@ homepage:     "http://projects.camlcity.org/projects/findlib.html"
 bug-reports:  "https://gitlab.camlcity.org/gerd/lib-findlib/issues"
 dev-repo: "git+https://gitlab.camlcity.org/gerd/lib-findlib.git"
 patches: ["no-awk-check.patch"]
+substs: ["ocamlfind.install"]
 build: [
   [
     "./configure"
@@ -54,7 +55,7 @@ interpreting the META files, so that it is very easy to use libraries
 in programs and scripts."""
 authors: "Gerd Stolpmann <gerd@gerd-stolpmann.de>"
 extra-files: [
-  ["ocamlfind.install" "md5=06f2c282ab52d93aa6adeeadd82a2543"]
+  ["ocamlfind.install.in" "md5=a1e7aca48a0fdb8b8c9e1cf4bd8aba94"]
   ["ocaml-stub" "md5=181f259c9e0bad9ef523e7d4abfdf87a"]
   ["no-awk-check.patch" "md5=0378123bf1a45fccdea434c053ddb687"]
 ]
