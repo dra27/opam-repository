@@ -28,6 +28,8 @@ for i in ../ocaml-base-compiler/* ; do
     PATCH=to-3.10.2
   elif [[ $VERSION -lt 4000 ]] ; then
     PATCH=to-3.12.1
+  elif [[ $VERSION -eq 4080 ]] ; then
+    PATCH=5bb4b7b8caba64e34553c3dbb53caf3954d1648c.patch
   else
     PATCH=
   fi
@@ -61,8 +63,14 @@ EOF
     sed -i -e "s/extra-source {/$(fgrep extra-source $i/opam | head -n 1)/" $PACKAGE/opam
   fi
   if [[ -n $PATCH ]] ; then
-    PATCH=PR5477-$PATCH.patch
-    URL=https://raw.githubusercontent.com/metastack/ocaml-legacy/master/$PATCH
+    if [[ $PATCH == *.patch ]] ; then
+      NAME=$PATCH
+      URL=https://github.com/ocaml/ocaml/commit/$PATCH
+    else
+      NAME=PR5477.patch
+      PATCH=PR5477-$PATCH.patch
+      URL=https://raw.githubusercontent.com/metastack/ocaml-legacy/master/$PATCH
+    fi
     if [[ ! -e scripts/$PATCH ]] ; then
       CHECKSUM=$(curl -Ls $URL | md5sum | cut -d ' ' -f 1 > scripts/$PATCH)
     else
@@ -70,18 +78,18 @@ EOF
     fi
     if [[ $EXTRAS -gt 0 ]] ; then
       cat >> $PACKAGE/opam <<EOF
-extra-source "PR5477.patch" {
+extra-source "$NAME" {
   src:
     "$URL"
   checksum: "md5=$CHECKSUM"
 }
 EOF
-      opam-ed -f $PACKAGE/opam -i "append patches \"PR5477.patch\""
+      opam-ed -f $PACKAGE/opam -i "append patches \"$NAME\""
     else
       opam-ed -f $PACKAGE/opam -i "add extra-source.src \"$URL\"" \
                                   "add extra-source.checksum \"md5=$CHECKSUM\"" \
-                                  "append patches \"PR5477.patch\""
-      sed -i -e 's/extra-source {/extra-source "PR5477.patch" {/' $PACKAGE/opam
+                                  "append patches \"$NAME\""
+      sed -i -e "s/extra-source {/extra-source \"$NAME\" {/" $PACKAGE/opam
     fi
   fi
 done
