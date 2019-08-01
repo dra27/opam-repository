@@ -35,11 +35,13 @@ for i in ../ocaml-base-compiler/* ; do
   mkdir -p $PACKAGE/files
   sed -e "s/VERSION/$RAW_VERSION/" scripts/META > $PACKAGE/files/META
   cp -f scripts/install.sh $PACKAGE/files/install.sh
+  cp -f scripts/graphics.install $PACKAGE/files/graphics.install
   cp -f scripts/opam $PACKAGE/opam
   cat >> $PACKAGE/opam <<EOF
 extra-files: [
   ["META" "md5=$(md5sum $PACKAGE/files/META | cut -d ' ' -f 1)"]
-  ["install.sh" "md5=$(md5sum $PACKAGE/files/install.sh | cut -d ' ' -f 1)"]]
+  ["install.sh" "md5=$(md5sum $PACKAGE/files/install.sh | cut -d ' ' -f 1)"]
+  ["graphics.install" "md5=$(md5sum $PACKAGE/files/graphics.install | cut -d ' ' -f 1)"]]
 EOF
   EXTRAS=$(opam-ed -f $i/opam 'field-list' | fgrep extra-source.src | wc -l)
   if [[ $EXTRAS -gt 1 ]] ; then
