@@ -6,3 +6,4 @@ urls.txt
 *.tar.gz
 *.zip
 *.tgz
+packages/graphics/scripts/*.patch
