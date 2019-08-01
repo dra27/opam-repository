@@ -6,6 +6,11 @@ if [ ! -d ../ocaml-base-compiler ] ; then
   exit 1
 fi
 
+if ! command -v opam-ed &>/dev/null ; then
+  echo "opam-ed is required for this script">&2
+  exit 1
+fi
+
 for i in ../ocaml-base-compiler/* ; do
   if [ -d "$i" ] ; then
     RAW_VERSION=${i#../ocaml-base-compiler/ocaml-base-compiler.}
