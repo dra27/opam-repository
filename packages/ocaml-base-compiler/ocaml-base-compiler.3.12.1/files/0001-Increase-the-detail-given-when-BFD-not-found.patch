@@ -1,0 +1,62 @@
+From 0a201a9278192224a603ef549b78b89dede12ad3 Mon Sep 17 00:00:00 2001
+From: David Allsopp <david.allsopp@metastack.com>
+Date: Tue, 21 Mar 2017 11:16:31 +0000
+Subject: [PATCH] Increase the detail given when BFD not found
+
+---
+ configure | 37 +++++++++++++++++++++++++++++++------
+ 1 file changed, 31 insertions(+), 6 deletions(-)
+
+diff --git a/configure b/configure
+index 1e646486aa..a666a21469 100755
+--- a/configure
++++ b/configure
+@@ -1587,14 +1587,39 @@ fi
+ 
+ # Look for BFD library
+ 
+-if ./hasgot -i bfd.h && \
+-   ./hasgot -lbfd -ldl -liberty -lz bfd_openr; then
++if $shared_libraries_supported && ./hasgot -i bfd.h ; then
++  echo "BFD library found."
++  echo LIBBFD_INCLUDE= >>Makefile
++  if sh ./hasgot -lbfd bfd_openr; then
++    LIBBFD_LINK="-lbfd"
++    echo "BFD links with $LIBBFD_LINK"
++    echo "#define HAS_LIBBFD" >> s.h
++  elif sh ./hasgot -lbfd -ldl bfd_openr; then
++    LIBBFD_LINK="-lbfd -ldl"
++    echo "BFD links with $LIBBFD_LINK"
++    echo "#define HAS_LIBBFD" >> s.h
++  elif sh ./hasgot -lbfd -ldl -liberty bfd_openr; then
++    LIBBFD_LINK="-lbfd -ldl -liberty"
++    echo "BFD links with $LIBBFD_LINK"
++    echo "#define HAS_LIBBFD" >> s.h
++  elif sh ./hasgot -lbfd -ldl -liberty -lz bfd_openr; then
++    LIBBFD_LINK="-lbfd -ldl -liberty -lz"
++    echo "BFD links with $LIBBFD_LINK"
++    echo "#define HAS_LIBBFD" >> s.h
++  else
++    echo "Could not determine link options for the BFD library"
++    LIBBFD_LINK=
++  fi
++  echo "LIBBFD_LINK=$LIBBFD_LINK" >> Makefile
++elif sh ./hasgot -DPACKAGE=ocaml -I/opt/local/include -i bfd.h && \
++     sh ./hasgot -DPACKAGE=ocaml -L/opt/local/lib -lbfd -ldl \
++                 -liberty -lz -lintl bfd_openr
++then
++  # MacOSX with binutils from MacPorts
+   echo "BFD library found."
+   echo "#define HAS_LIBBFD" >> s.h
+-  echo "LIBBFD_LINK=-lbfd -ldl -liberty -lz" >> Makefile
+-else
+-  echo "BFD library not found, 'objinfo' will be unable to display info on .cmxs files"
+-  echo "LIBBFD_LINK=" >> Makefile
++  echo "LIBBFD_LINK=-L/opt/local/lib -lbfd -ldl -liberty -lz -lintl" >> Makefile
++  echo LIBBFD_INCLUDE=-I/opt/local/include >>Makefile
+ fi
+ 
+ # Final twiddling of compiler options to work around known bugs
+-- 
+2.20.1
+

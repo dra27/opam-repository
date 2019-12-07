@@ -28,3 +28,9 @@ url {
   src: "http://caml.inria.fr/pub/distrib/ocaml-3.12/ocaml-3.12.1.tar.gz"
   checksum: "md5=814a047085f0f901ab7d8e3a4b7a9e65"
 }
+patches: ["0001-Backport-PR5453-to-3.12.1.patch" "0001-Labtk-now-supports-8.6.patch" "0001-Increase-the-detail-given-when-BFD-not-found.patch"]
+extra-files: [
+  ["0001-Backport-PR5453-to-3.12.1.patch" "md5=d454eb3c1cb607b812e5ddb86505aabf"]
+  ["0001-Labtk-now-supports-8.6.patch" "md5=1e360e01e7962da4a0ce330e2d857475"]
+  ["0001-Increase-the-detail-given-when-BFD-not-found.patch" "md5=01e0e506abb2160b80eb06c024148a72"]
+]

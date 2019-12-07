@@ -1,0 +1,56 @@
+From 9900a9da8a6a4ff4656c00f3f3cb7c8069d409d9 Mon Sep 17 00:00:00 2001
+From: Pierre Weis <Pierre.Weis@inria.fr>
+Date: Wed, 27 Feb 2013 19:31:47 +0000
+Subject: [PATCH] Labtk now supports 8.6.
+
+git-svn-id: http://caml.inria.fr/svn/ocaml/trunk@13327 f963ae5c-01c2-4b8c-9fe0-0dff7051ff02
+---
+ configure                         | 3 +++
+ otherlibs/labltk/support/camltk.h | 9 ++++++---
+ 2 files changed, 9 insertions(+), 3 deletions(-)
+
+diff --git a/configure b/configure
+index 7b1fd1dcf6..1e646486aa 100755
+--- a/configure
++++ b/configure
+@@ -1470,6 +1470,8 @@ if test $has_tk = true; then
+   for tk_incs in \
+     "-I/usr/local/include" \
+     "-I/usr/include" \
++    "-I/usr/local/include/tcl8.6 -I/usr/local/include/tk8.6" \
++    "-I/usr/include/tcl8.6 -I/usr/include/tk8.6" \
+     "-I/usr/local/include/tcl8.5 -I/usr/local/include/tk8.5" \
+     "-I/usr/include/tcl8.5 -I/usr/include/tk8.5" \
+     "-I/usr/local/include/tcl8.4 -I/usr/local/include/tk8.4" \
+@@ -1495,6 +1497,7 @@ if test $has_tk = true; then
+     8.3) tclmaj=8 tclmin=3 tkmaj=8 tkmin=3 ;;
+     8.4) tclmaj=8 tclmin=4 tkmaj=8 tkmin=4 ;;
+     8.5) tclmaj=8 tclmin=5 tkmaj=8 tkmin=5 ;;
++    8.6) tclmaj=8 tclmin=6 tkmaj=8 tkmin=6 ;;
+     *) echo "This version is not known."; has_tk=false ;;
+     esac
+   else
+diff --git a/otherlibs/labltk/support/camltk.h b/otherlibs/labltk/support/camltk.h
+index 5be206faa8..51c906cab3 100644
+--- a/otherlibs/labltk/support/camltk.h
++++ b/otherlibs/labltk/support/camltk.h
+@@ -27,10 +27,13 @@
+ #define CONST84
+ #endif
+ 
++/*Tcl_GetResult(), Tcl_GetStringResult(), Tcl_SetResult(), */
++  /*Tcl_SetStringResult(), Tcl_GetErrorLine() */
++
+ /* if Tcl_GetStringResult is not defined, we use interp->result */
+-#ifndef Tcl_GetStringResult
+-#  define Tcl_GetStringResult(interp) (interp->result)
+-#endif
++/*#ifndef Tcl_GetStringResult*/
++/*#  define Tcl_GetStringResult(interp) (interp->result)*/
++/*#endif*/
+ 
+ /* cltkMisc.c */
+ /* copy a Caml string to the C heap. Must be deallocated with stat_free */
+-- 
+2.20.1
+
