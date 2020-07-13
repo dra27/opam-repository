@@ -26,12 +26,12 @@ depends: [
 available: [os = "linux"]
 depexts: [
   ["bubblewrap"] {os-distribution = "debian"}
-  ["bubblewrap"] {os-distribution = "ubuntu" & os-version >= "17.0"}
+  ["bubblewrap"] {os-distribution = "ubuntu"}
   ["bubblewrap"] {os-distribution = "alpine"}
   ["bubblewrap"] {os-distribution = "fedora"}
   ["bubblewrap"] {os-distribution = "rhel"}
-  ["bubblewrap" "epel-release"] {os-distribution = "centos" & os-version >= "7"}
-  ["bubblewrap"] {os-distribution = "opensuse" & os-version >= "15"}
+  ["bubblewrap" "epel-release"] {os-distribution = "centos"}
+  ["bubblewrap"] {os-distribution = "opensuse"}
   ["bubblewrap"] {os-distribution = "mageia"}
 ]
 synopsis: "Use Bubblewrap to sandbox executables"

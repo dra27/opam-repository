@@ -19,9 +19,9 @@ depexts: [
   ["llvm-4.0-dev"] {os-distribution = "debian"}
 
   # ubuntu
-  ["llvm-3.8-dev"] {os-distribution = "ubuntu" & os-version = "14.04"} #trusty
-  ["llvm-4.0-dev"] {os-distribution = "ubuntu" & os-version = "16.04"} #xenial
-  ["llvm-4.0-dev"] {os-distribution = "ubuntu" & os-version = "18.04"} #bionic
+  ["llvm-3.8-dev"] {os-distribution = "ubuntu"} #trusty
+  ["llvm-4.0-dev"] {os-distribution = "ubuntu"} #xenial
+  ["llvm-4.0-dev"] {os-distribution = "ubuntu"} #bionic
 
   # macos
   ["llvm-4.0"] {os = "macos" & os-distribution = "macports"}

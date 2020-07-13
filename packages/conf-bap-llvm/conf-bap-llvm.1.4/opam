@@ -19,10 +19,10 @@ depexts: [
   ["llvm-4.0-dev"] {os-distribution = "debian"}
 
   # ubuntu
-  ["llvm-3.8-dev"] {os-distribution = "ubuntu" & os-version = "14.04"} #trusty
-  ["llvm-6.0-dev"] {os-distribution = "ubuntu" & os-version = "16.04"} #xenial
-  ["llvm-6.0-dev"] {os-distribution = "ubuntu" & os-version = "18.04"} #bionic
-  ["llvm-6.0-dev"] {os-distribution = "ubuntu" & os-version = "18.10"}
+  ["llvm-3.8-dev"] {os-distribution = "ubuntu"} #trusty
+  ["llvm-6.0-dev"] {os-distribution = "ubuntu"} #xenial
+  ["llvm-6.0-dev"] {os-distribution = "ubuntu"} #bionic
+  ["llvm-6.0-dev"] {os-distribution = "ubuntu"}
 
   # fedora
   ["llvm-devel" "llvm-static"] {os-distribution = "fedora"}
