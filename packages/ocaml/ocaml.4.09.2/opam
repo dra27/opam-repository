@@ -7,7 +7,7 @@ maintainer: "platform@lists.ocaml.org"
 depends: [
   "ocaml-config"
   "ocaml-base-compiler" {= "4.09.2"} |
-  "ocaml-variants" {>= "4.09.2" & < "4.09.3~"} |
+  "ocaml-variants" {(>= "4.09.2" & < "4.09.3~") | = "4.09+trunk"} |
   "ocaml-system" {>= "4.09.2" & < "4.09.3~"}
 ]
 setenv: [
