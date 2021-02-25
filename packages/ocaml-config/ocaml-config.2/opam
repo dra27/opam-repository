@@ -11,7 +11,7 @@ homepage: "https://opam.ocaml.org/"
 bug-reports: "https://github.com/ocaml/opam/issues"
 depends: [
   "ocaml-base-compiler" {>= "4.12.0~"} |
-  "ocaml-variants" {>= "4.12.0~"} |
+  "ocaml-variants" {>= "4.12" } |
   "ocaml-system" {>= "4.12.0~"}
 ]
 substs: "gen_ocaml_config.ml"
