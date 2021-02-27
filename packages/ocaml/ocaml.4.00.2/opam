@@ -6,7 +6,7 @@ and polls it to initialise specific variables like `ocaml:native-dynlink`"""
 maintainer: "platform@lists.ocaml.org"
 depends: [
   "ocaml-config"
-  "ocaml-base-compiler" {= "4.00.2"} |
+  "ocaml-base-compiler" {>= "4.00" & < "4.01.0~"} |
   "ocaml-variants" {>= "4.00.2" & < "4.00.3~"} |
   "ocaml-system" {>= "4.00.2" & < "4.00.3~"}
 ]
