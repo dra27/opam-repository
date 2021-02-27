@@ -4,7 +4,7 @@ maintainer: "platform@lists.ocaml.org"
 authors: ["Xavier Leroy" "Damien Doligez" "Jacques Garrigue" "Didier Rémy" "Jérôme Vouillon"]
 homepage: "https://ocaml.org"
 bug-reports: "https://github.com/ocaml/ocaml/issues"
-dev-repo: "git+https://github.com/ocaml/ocaml.git#3.07"
+dev-repo: "git+https://github.com/dra27/ocaml.git#3.07"
 depends: [
   "ocaml" {= "3.07" & post}
   "base-unix" {post}
