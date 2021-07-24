@@ -1,0 +1,9 @@
+opam-version: "2.0"
+synopsis: "Jobserver sleep-1 package"
+maintainer: "david.allsopp@metastack.com"
+authors: "David Allsopp <david.alslopp@metastack.com>"
+homepage: "https://opam.ocaml.org/"
+bug-reports: "https://github.com/ocaml/opam/issues"
+license: "LGPL-2.1-only WITH OCaml-LGPL-linking-exception"
+extra-files: ["Makefile" "md5=55c463bed5e8dfef58f715d256fa9b88"]
+build: [make "BATCH=sleep-2"]
