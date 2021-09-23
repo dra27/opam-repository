@@ -16,7 +16,7 @@ depends: [
 conflict-class: "ocaml-core-compiler"
 flags: compiler
 setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
-build: ["sh" "./build.sh" prefix os jobs "abbo"]
+build: ["sh" "./build.sh" prefix os jobs "abbo" {os != "win32"} "bbbo" {os = "win32"}]
 install: ["sh" "./build.sh" prefix]
 url {
   src: "https://github.com/dra27/ocaml/archive/3cf195ca890749affa8d1e820bec92630438763c.tar.gz"
