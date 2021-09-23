@@ -39,7 +39,12 @@ else
   fi
 
   if [ "$2" = "win32" ] ; then
+    rm -rf flexdll
+    tar -xzf flexdll.tar.gz
+    mv flexdll-0.39 flexdll
     ./configure --prefix "$1" --host=x86_64-pc-windows --enable-relative -C
+    # Just a warning on 4.13
+    make "-j$3" flexdll
   else
     ./configure --prefix "$1" --enable-relative -C
   fi

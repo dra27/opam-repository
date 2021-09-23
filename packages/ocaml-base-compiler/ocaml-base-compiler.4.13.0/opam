@@ -22,9 +22,13 @@ url {
   src: "https://github.com/dra27/ocaml/archive/2179215a87c1e4f7f7e3cc5b600d8e154990b58a.tar.gz"
   checksum: "md5=b31ad7b742cca6756f3639cdd40ca7c3"
 }
+extra-source "flexdll.tar.gz" {
+  src: "https://github.com/alainfrisch/flexdll/archive/refs/tags/0.39.tar.gz"
+  checksum: "md5=c8493c7b6e95c4763b89213a9a710af5"
+}
 extra-files: [
   ["ocaml-base-compiler.install" "md5=3e969b841df1f51ca448e6e6295cb451"]
-  ["build.sh" "md5=b29b1b22587f243ab58bb9ed5e0c7601"]
+  ["build.sh" "md5=2b928b39269da3b49d6f71c0830ef113"]
 ]
 post-messages: [
   "A failure in the middle of the build may be caused by build parallelism

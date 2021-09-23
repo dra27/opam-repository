@@ -17,6 +17,7 @@ conflict-class: "ocaml-core-compiler"
 flags: compiler
 setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
 build: [
+  ["sh" "-c" "rm -rf flexdll ; tar -xzf flexdll.tar.gz ; mv flexdll-0.39 flexdll"] {os = "win32"}
   [
     "./configure"
     "--prefix=%{prefix}%"
@@ -53,6 +54,10 @@ build: [
 install: [make "install"]
 url {
   src: "git+https://github.com/dra27/ocaml.git#relocatable-base-4.13"
+}
+extra-source "flexdll.tar.gz" {
+  src: "https://github.com/alainfrisch/flexdll/archive/refs/tags/0.39.tar.gz"
+  checksum: "md5=c8493c7b6e95c4763b89213a9a710af5"
 }
 extra-files: ["ocaml-variants.install" "md5=3e969b841df1f51ca448e6e6295cb451"]
 post-messages: [
