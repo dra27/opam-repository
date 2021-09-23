@@ -20,6 +20,7 @@ build: [
     "./configure"
     "--prefix=%{prefix}%"
     "-C"
+    "--host=x86_64-pc-windows" {os = "win32"}
     "--with-afl" {ocaml-option-afl:installed}
     "--disable-native-compiler" {ocaml-option-bytecode-only:installed}
     "--disable-force-safe-string" {ocaml-option-default-unsafe-string:installed}

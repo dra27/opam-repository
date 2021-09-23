@@ -38,6 +38,10 @@ else
     export ASPP='cc -c'
   fi
 
-  ./configure --prefix "$1" --enable-relative -C
+  if [ "$2" = "win32" ] ; then
+    ./configure --prefix "$1" --host=x86_64-pc-windows --enable-relative -C
+  else
+    ./configure --prefix "$1" --enable-relative -C
+  fi
   make "-j$3"
 fi

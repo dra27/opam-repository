@@ -24,7 +24,7 @@ url {
 }
 extra-files: [
   ["ocaml-base-compiler.install" "md5=3e969b841df1f51ca448e6e6295cb451"]
-  ["build.sh" "md5=917894c9007e6f1dc5df48de483a8fcd"]
+  ["build.sh" "md5=b29b1b22587f243ab58bb9ed5e0c7601"]
 ]
 post-messages: [
   "A failure in the middle of the build may be caused by build parallelism
