@@ -18,5 +18,6 @@ setenv: [
 description: """
 Uses msvs-tools to detect Visual Studio and set-up the environment."""
 url {
-  src: "git+https://github.com/dra27/msvs-tools.git#opam"
+  src: "https://github.com/dra27/msvs-tools/archive/56378802698446dbf8d6945a82bd6f4ea0ffbc5e.tar.gz"
+  checksum: "md5=24bc076e15c2e26461b3e1dd1f80dc54"
 }
