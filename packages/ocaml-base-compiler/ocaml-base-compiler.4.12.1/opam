@@ -20,8 +20,8 @@ setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
 build: ["sh" "./build.sh" prefix os jobs "abbo" {os != "win32"} "bbbo" {os = "win32"}]
 install: ["sh" "./build.sh" prefix]
 url {
-  src: "https://github.com/dra27/ocaml/archive/a458bcb4ed59f232ebabf426bf46cc660cd9bfc7.tar.gz"
-  checksum: "md5=5471947826427dae1ee8e9575a6eaa57"
+  src: "https://github.com/dra27/ocaml/archive/31ff340093a887736d9b8900beb7e7523e80daad.tar.gz"
+  checksum: "md5=03e6bda62e6a65cd0bb09c37469d9af5"
 }
 extra-source "flexdll.tar.gz" {
   src: "https://github.com/alainfrisch/flexdll/archive/refs/tags/0.39.tar.gz"
