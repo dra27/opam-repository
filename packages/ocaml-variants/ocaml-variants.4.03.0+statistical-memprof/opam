@@ -38,7 +38,7 @@ install: [make "install"]
 url {
   src: "https://github.com/jhjourdan/ocaml/archive/memprof_4.03.tar.gz"
 }
-patches: ["fix-gcc10.patch"]
+patches: ["fix-gcc10.patch" "alt-signal-stack.patch"]
 extra-files: [ ["fix-gcc10.patch" "md5=4370afea8ee2dea768b0fcba52394a2f"] ]
 available: !(os = "macos" & arch = "arm64")
 license: "LGPL-2.1-or-later WITH OCaml-LGPL-linking-exception"
@@ -53,3 +53,7 @@ authors: [
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 homepage: "https://ocaml.org"
 dev-repo: "git+https://github.com/ocaml/ocaml.git#4.03"
+extra-source "alt-signal-stack.patch" {
+  src: "https://github.com/dra27/ocaml/commit/f124b2fcf3471e23699e3d2a0baedea7c1bf4c76.patch"
+  checksum: "sha256=d8958380238e1904a6210270d2ebdaf45354bcc139df085ee769e2ae48cb030a"
+}

@@ -34,7 +34,7 @@ build: [
   [make "world.opt"]
 ]
 install: [make "install"]
-patches: "ocaml-4.06.1+termux.patch"
+patches: ["ocaml-4.06.1+termux.patch" "alt-signal-stack.patch"]
 url {
   src: "https://github.com/ocaml/ocaml/archive/4.06.1.tar.gz"
   checksum: "md5=d02eb67b828de22c3f97d94b3c46acba"
@@ -56,3 +56,7 @@ authors: [
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 homepage: "https://ocaml.org"
 dev-repo: "git+https://github.com/ocaml/ocaml.git#4.06"
+extra-source "alt-signal-stack.patch" {
+  src: "https://github.com/dra27/ocaml/commit/c5825a3a5bcaa26a6bc23b27a41c5c73ce2c120f.patch"
+  checksum: "sha256=e1019b902ff1ba752bd512d819ac72a5357ea7441874ccc96db3768d75f0ae37"
+}

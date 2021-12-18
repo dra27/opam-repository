@@ -32,6 +32,10 @@ url {
   src: "http://caml.inria.fr/pub/distrib/ocaml-4.00/ocaml-4.00.0.tar.gz"
   checksum: "md5=fa11560a45793bd9fa45c1295a6f4a91"
 }
-patches: ["fix-gcc10.patch"]
+patches: ["fix-gcc10.patch" "alt-signal-stack.patch"]
 extra-files: ["fix-gcc10.patch" "md5=eb8555e57846757138861e14d2665ed1"]
 available: arch != "arm64" & arch != "ppc64"
+extra-source "alt-signal-stack.patch" {
+  src: "https://github.com/dra27/ocaml/commit/610a4205e76fe4eb9440f7f1f9b65384f7738ca5.patch"
+  checksum: "sha256=0763a6eccd752f7937474b6eb3ab5cdf0a951d55b75365df58e5bd918e159155"
+}

@@ -54,3 +54,8 @@ authors: [
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 homepage: "https://ocaml.org"
 dev-repo: "git+https://github.com/ocaml/ocaml.git#4.02"
+patches: ["alt-signal-stack.patch"]
+extra-source "alt-signal-stack.patch" {
+  src: "https://github.com/dra27/ocaml/commit/204de9cee12b278833fbfbe6848a00eb80db559a.patch"
+  checksum: "sha256=667a0ace91e9953bbf8a57dd740f80199b04116d0d7d3e88c43086fa7c364300"
+}

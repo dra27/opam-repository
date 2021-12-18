@@ -36,7 +36,10 @@ install: [
   ["mkdir" "-p" "%{prefix}%/lib/ocaml/compiler-libs"]
   ["cp" "-r" "typing" "parsing" "utils" "%{prefix}%/lib/ocaml/compiler-libs/"]
 ]
-patches: "fix-binutils.patch" {os != "win32"}
+patches: [
+  "fix-binutils.patch" {os != "win32"}
+  "alt-signal-stack.patch"
+]
 url {
   src: "http://caml.inria.fr/pub/distrib/ocaml-3.12/ocaml-3.12.0.tar.gz"
   checksum: "md5=3ba7cc65123c3579f14e7c726d3ee782"
@@ -46,3 +49,7 @@ extra-source "fix-binutils.patch" {
   checksum: "md5=8c664a0a346424ea2ec6fc6f713170c6"
 }
 available: arch != "arm64" & arch != "arm32" & arch != "ppc64"
+extra-source "alt-signal-stack.patch" {
+  src: "https://github.com/dra27/ocaml/commit/5c792077eb0095c25ce6414a7af1c9548bec860f.patch"
+  checksum: "sha256=de3661104d8943ced0033808a847544fea7f2c8ae29242faf0a82ff6eb5b9d3c"
+}

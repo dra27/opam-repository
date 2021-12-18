@@ -31,6 +31,7 @@ install: [make "install"]
 patches: [
   "bd7fa181cb64742c3b6cbb8ee13436554eb18cd7...fix-clang-build.diff"
   "fix-gcc10.patch"
+  "alt-signal-stack.patch"
 ]
 url {
   src: "http://caml.inria.fr/pub/distrib/ocaml-4.00/ocaml-4.00.1.tar.gz"
@@ -43,3 +44,7 @@ extra-source "bd7fa181cb64742c3b6cbb8ee13436554eb18cd7...fix-clang-build.diff" {
 }
 extra-files: ["fix-gcc10.patch" "md5=eb8555e57846757138861e14d2665ed1"]
 available: arch != "arm64" & arch != "ppc64"
+extra-source "alt-signal-stack.patch" {
+  src: "https://github.com/dra27/ocaml/commit/610a4205e76fe4eb9440f7f1f9b65384f7738ca5.patch"
+  checksum: "sha256=0763a6eccd752f7937474b6eb3ab5cdf0a951d55b75365df58e5bd918e159155"
+}

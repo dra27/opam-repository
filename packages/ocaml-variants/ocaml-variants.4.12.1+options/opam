@@ -77,3 +77,8 @@ depopts: [
   "ocaml-option-nnp"
   "ocaml-option-nnpchecker"
 ]
+patches: ["alt-signal-stack.patch"]
+extra-source "alt-signal-stack.patch" {
+  src: "https://github.com/dra27/ocaml/commit/8188af5080627bb14215886612c6cd6d8f55399e.patch"
+  checksum: "sha256=7721506992281a3fae5cb084580391cef040c26bdd6c40accebe4c532ecb9fbb"
+}

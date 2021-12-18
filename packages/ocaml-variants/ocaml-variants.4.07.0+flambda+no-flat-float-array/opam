@@ -56,7 +56,7 @@ post-messages: [
    to force a sequential build instead."
   {failure & jobs > 1 & os != "cygwin" & opam-version >= "2.0.5"}
 ]
-patches: ["fix-gcc10.patch"]
+patches: ["fix-gcc10.patch" "alt-signal-stack.patch"]
 extra-files: [ ["fix-gcc10.patch" "md5=b054fa6b6651763edc8e16b6bc4c58f6"] ]
 available: !(os = "macos" & arch = "arm64")
 license: "QPL-1.0 AND LGPL-2.1-or-later WITH OCaml-LGPL-linking-exception"
@@ -71,3 +71,7 @@ authors: [
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 homepage: "https://ocaml.org"
 dev-repo: "git+https://github.com/ocaml/ocaml.git#4.07"
+extra-source "alt-signal-stack.patch" {
+  src: "https://github.com/dra27/ocaml/commit/aab5f5151f6733f7c2e05bbf3cb5a0141ea34fd6.patch"
+  checksum: "sha256=97151e287af44b7c507610b5034952cbf851f1890116f13bd9f3e754ef76de48"
+}

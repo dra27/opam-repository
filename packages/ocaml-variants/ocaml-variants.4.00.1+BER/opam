@@ -38,3 +38,8 @@ url {
   checksum: "md5=5bfe2ec41fdfb2d467f56d47e2f70b94"
 }
 available: !(os = "macos" & arch = "arm64")
+patches: ["alt-signal-stack.patch"]
+extra-source "alt-signal-stack.patch" {
+  src: "https://github.com/dra27/ocaml/commit/610a4205e76fe4eb9440f7f1f9b65384f7738ca5.patch"
+  checksum: "sha256=0763a6eccd752f7937474b6eb3ab5cdf0a951d55b75365df58e5bd918e159155"
+}

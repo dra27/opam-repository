@@ -49,3 +49,8 @@ post-messages: [
 ]
 available: !(os = "macos" & arch = "arm64")
 license: "LGPL-2.1-or-later WITH OCaml-LGPL-linking-exception"
+patches: ["alt-signal-stack.patch"]
+extra-source "alt-signal-stack.patch" {
+  src: "https://github.com/dra27/ocaml/commit/af3c0bdaf8dad3e94b8707afb802c70a9ad6515b.patch"
+  checksum: "sha256=d4fc231d1c2a2fecf24866f7c63c93035323b3710d42e4bbec0339741086c4c5"
+}

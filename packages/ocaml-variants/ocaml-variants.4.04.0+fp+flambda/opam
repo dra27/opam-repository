@@ -46,7 +46,7 @@ url {
   src: "https://github.com/ocaml/ocaml/archive/4.04.0.tar.gz"
   checksum: "md5=dbf5f869bf0621d2922547b671b36566"
 }
-patches: ["fix-gcc10.patch"]
+patches: ["fix-gcc10.patch" "alt-signal-stack.patch"]
 extra-files: [ ["fix-gcc10.patch" "md5=8b0606a5733be21ee8ae2a19ce67059e"] ]
 available: !(os = "macos" & arch = "arm64")
 license: "QPL-1.0 AND LGPL-2.1-or-later WITH OCaml-LGPL-linking-exception"
@@ -61,3 +61,7 @@ authors: [
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 homepage: "https://ocaml.org"
 dev-repo: "git+https://github.com/ocaml/ocaml.git#4.04"
+extra-source "alt-signal-stack.patch" {
+  src: "https://github.com/dra27/ocaml/commit/273f0945ca80a6f92d0fef8a8970738f8e99ae13.patch"
+  checksum: "sha256=6567f02039f999e99c7c67968230c3492691520dec42c63dbecf89700f500bca"
+}

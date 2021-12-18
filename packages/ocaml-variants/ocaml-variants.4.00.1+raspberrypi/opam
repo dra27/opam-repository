@@ -23,7 +23,9 @@ build: [
   [make "world" "world.opt"]
 ]
 install: [make "install"]
-patches: "dc0776f55108a20dad5a9c06188545dc08dbf462.patch"
+patches: [
+  "dc0776f55108a20dad5a9c06188545dc08dbf462.patch" "alt-signal-stack.patch"
+]
 url {
   src: "http://caml.inria.fr/pub/distrib/ocaml-4.00/ocaml-4.00.1.tar.bz2"
   checksum: "md5=1c9dca1130edc0d1fa4647ae2cd7564a"
@@ -46,3 +48,7 @@ authors: [
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 homepage: "https://ocaml.org"
 dev-repo: "git+https://github.com/ocaml/ocaml.git#4.00"
+extra-source "alt-signal-stack.patch" {
+  src: "https://github.com/dra27/ocaml/commit/610a4205e76fe4eb9440f7f1f9b65384f7738ca5.patch"
+  checksum: "sha256=0763a6eccd752f7937474b6eb3ab5cdf0a951d55b75365df58e5bd918e159155"
+}

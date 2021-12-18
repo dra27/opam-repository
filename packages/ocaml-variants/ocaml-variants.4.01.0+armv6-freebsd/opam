@@ -28,7 +28,7 @@ build: [
   [make "world.opt"]
 ]
 install: [make "install"]
-patches: "freebsd10-armv6-natdynlink.patch"
+patches: ["freebsd10-armv6-natdynlink.patch" "alt-signal-stack.patch"]
 url {
   src: "http://caml.inria.fr/pub/distrib/ocaml-4.01/ocaml-4.01.0.tar.gz"
   checksum: "md5=04dfdd7da189462a4f10ec6530359cef"
@@ -51,3 +51,7 @@ authors: [
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 homepage: "https://ocaml.org"
 dev-repo: "git+https://github.com/ocaml/ocaml.git#4.01"
+extra-source "alt-signal-stack.patch" {
+  src: "https://github.com/dra27/ocaml/commit/76eab72e8c55f2070570b0b6732287cff1a2c482.patch"
+  checksum: "sha256=c362aaccda09c16bbd76fa7d13c2e4c0d21df339fbc3825cf0081486333b9cb2"
+}
