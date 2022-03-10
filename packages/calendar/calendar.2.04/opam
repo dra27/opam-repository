@@ -18,7 +18,5 @@ install: [make "install"]
 synopsis: "Library for handling dates and times in your program"
 flags: light-uninstall
 url {
-  src:
-    "https://download.ocamlcore.org/calendar/calendar/2.04/calendar-2.04.tar.gz"
-  checksum: "md5=625b4f32c9ff447501868fa1c44f4f4f"
+  src: "https://github.com/dra27/calendar/archive/cleaner-libdir.tar.gz"
 }

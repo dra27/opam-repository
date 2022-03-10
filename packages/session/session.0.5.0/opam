@@ -26,6 +26,5 @@ storage for HTTP servers. The library supports CoHTTP and Webmachine; Async and
 Lwt; and pluggable backing stores based on a functor interface.
 """
 url {
-  src: "https://github.com/inhabitedtype/ocaml-session/archive/0.5.0.tar.gz"
-  checksum: "md5=96a6cf425da69c010ecef492af339e8c"
+  src: "https://github.com/dra27/ocaml-session/archive/cleaner-libdir.tar.gz"
 }
