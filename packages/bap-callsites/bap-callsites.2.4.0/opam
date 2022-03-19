@@ -1,0 +1,35 @@
+opam-version: "2.0"
+maintainer: "Ivan Gotovchits <ivg@ieee.org>"
+authors: "BAP Team"
+homepage: "https://github.com/BinaryAnalysisPlatform/bap/"
+bug-reports: "https://github.com/BinaryAnalysisPlatform/bap/issues"
+dev-repo: "git://github.com/BinaryAnalysisPlatform/bap/"
+license: "MIT"
+build: [
+  ["./configure"
+                 "--prefix=%{prefix}%"
+                 "--mandir=%{man}%"
+                 "--enable-callsites"]
+  [make]
+]
+
+install: [
+  [make "install"]
+]
+
+remove: [
+        [ "ocamlfind" "remove" "bap-plugin-callsites"]
+        [ "bapbundle" "remove" "callsites.plugin"]
+        ]
+
+depends: [
+  "ocaml" {>= "4.08.0" }
+  "oasis" {build & >= "0.4.7"}
+  "bap-std" {= "2.4.0"}
+  "cmdliner"
+]
+synopsis: "Inject data definition terms at callsites"
+
+url {
+  src: "https://github.com/dra27/bap/archive/cleaner-libdir.tar.gz"
+}
