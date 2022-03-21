@@ -35,9 +35,7 @@ depends: [
 synopsis: "Build system designed for scalability and portability"
 flags: light-uninstall
 url {
-  src: "http://download.camlcity.org/download/omake-0.10.3.tar.gz"
-  checksum: "md5=e0cefca108852a5db6ecfc16742af047"
-  mirrors: "http://download2.camlcity.org/download/omake-0.10.3.tar.gz"
+  src: "https://github.com/dra27/omake/archive/cleaner-libdir.tar.gz"
 }
 
 extra-files: [

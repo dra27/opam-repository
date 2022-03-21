@@ -49,11 +49,6 @@ depends: [
   "base-threads"
 ]
 url {
-  src:
-    "https://github.com/ocaml/dune/releases/download/3.0.3/fiber-3.0.3.tbz"
-  checksum: [
-    "sha256=d504499a1658f0d99caefbffd7386f2e31d46ceca73167157fe4686c41e5732f"
-    "sha512=aa1bdf87a00994d18ddc9d9d6ef914813c10dbc8c68c34c00467669092dde9adc95718937f8a60a2e1307b25f281196b20e913b2f82e2ee6aadd24d54dca88aa"
-  ]
+  src: "https://github.com/dra27/dune/archive/cleaner-libdir.tar.gz"
 }
 x-commit-hash: "68c36597dfb99187ccbadf578988deaf690c4e25"
