@@ -6,7 +6,7 @@ bug-reports: "https://github.com/BinaryAnalysisPlatform/bap/issues"
 dev-repo: "git+https://github.com/BinaryAnalysisPlatform/bap/"
 license: "MIT"
 build: [
-  ["ocaml" "unix.cma" "find-radare2.ml"]
+  ["ocaml" "-I" "+unix" "unix.cma" "find-radare2.ml"]
 ]
 depends: [
    "ocaml" {>= "4.02"}

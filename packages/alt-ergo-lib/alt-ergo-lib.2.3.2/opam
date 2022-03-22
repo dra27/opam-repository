@@ -3,7 +3,7 @@ authors: "Alt-Ergo developers"
 maintainer: "OCamlPro <alt-ergo@ocamlpro.com>"
 license: "OCamlPro Non-Commercial Purpose License, version 1"
 build: [
-  ["ocaml" "unix.cma" "configure.ml" name]
+  ["ocaml" "-I" "+unix" "unix.cma" "configure.ml" name]
   ["dune" "subst"] {dev}
   ["dune" "build" "-p" name "-j" jobs]
 ]
