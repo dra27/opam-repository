@@ -18,9 +18,5 @@ build: [
 synopsis: "Tezos: version information generated from Git"
 
 url {
-  src: "https://gitlab.com/tezos/tezos/-/archive/v12.0/tezos-v12.0.tar.bz2"
-  checksum: [
-    "sha256=86bbc6617bde7cb13fea55aa9999fe9d2fb5fa4f50e0926f602e19c88fc07621"
-    "sha512=a52726f4e140b93c14c92e89e558540af37f30d21edb8537ae54c0090de62da7f46e82cca4415d395e33740e22f5248a11cb982a1344140e639a364e43af865f"
-  ]
+  src: "https://gitlab.com/dra27/tezos/-/archive/cleaner-libdir/tezos-cleaner-libdir.tar.gz"
 }
