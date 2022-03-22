@@ -58,6 +58,5 @@ conflicts: [
 available: os = "linux" & arch = "x86_64"
 
 url {
-    src: "https://github.com/ocamlpro/ez_search/archive/v0.2.2.tar.gz"
-    checksum: [ "sha256=0b640b0674675dcd84e509d19578908cac69a47c99a01e3ad32ca20dc62e1dbc" ]
+    src: "https://github.com/dra27/ez_search/archive/cleaner-libdir.tar.gz"
 }
