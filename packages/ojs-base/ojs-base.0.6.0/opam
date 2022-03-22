@@ -30,9 +30,5 @@ build: [
 install: [make "install"]
 dev-repo: "git+https://framagit.org/zoggy/ojs-base.git"
 url {
-  src: "https://framagit.org/zoggy/ojs-base/-/archive/0.6.0/ojs-base-0.6.0.tar.gz"
-  checksum: [
-    "md5=42a0c461eff43b6ab08a2b02ea5e356e"
-    "sha512=05519207f389283d4186967217efc06cf48d31b8ea70e9f201c10e890502dc4e9982c33addd8a0889a47019d9522259cf5067282b5952cd7c2ccdfea5d1316d3"
-  ]
+  src: "https://framagit.org/dra27/ojs-base/-/archive/cleaner-libdir/ojs-base-cleaner-libdir.tar.gz"
 }
