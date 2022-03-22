@@ -49,9 +49,5 @@ build: [
 ]
 dev-repo: "git+https://gitlab.com/irill/dose3.git"
 url {
-  src: "https://gitlab.com/irill/dose3/-/archive/7.0.0/dose3-7.0.0.tar.gz"
-  checksum: [
-    "md5=bc99cbcea8fca29dca3ebbee54be45e1"
-    "sha512=98dc4bd28e9f4aa8384be71b31783ae1afac577ea587118b8457b554ffe302c98e83d0098971e6b81803ee5c4f2befe3a98ef196d6b0da8feb4121e982ad5c2f"
-  ]
+  src: "https://gitlab.com/dra27/dose3/-/archive/cleaner-libdir/dose3-cleaner-libdir.tar.gz"
 }
