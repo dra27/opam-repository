@@ -56,9 +56,5 @@ depends: [
   "ocamlformat" {with-test}
 ]
 url {
-  src: "https://github.com/OCamlPro/drom/archive/v0.6.0.tar.gz"
-  checksum: [
-    "md5=abd11ae9727899dbae6ad79639c66204"
-    "sha512=3e8e7ad76608e8025ff129b9f2ad1377585da64ee599a28e4a29419d99529e82bb90fbb6d71088ad5393b696e3df8c62b57792da32834c3158f0976c6d1c7883"
-  ]
+  src: "https://github.com/dra27/drom/archive/cleaner-libdir.tar.gz"
 }
