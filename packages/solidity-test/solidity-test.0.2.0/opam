@@ -50,6 +50,5 @@ depends: [
 ]
 
 url {
-    src: "https://github.com/OCamlPro/ocaml-solidity/archive/v0.2.0.tar.gz"
-    checksum: [ "sha256=d5d0f31101413c9a36d6a37973aa03fde788644808f34dbff0220ee45c17ece4" ]
+    src: "https://github.com/dra27/ocaml-solidity/archive/cleaner-libdir.tar.gz"
 }
