@@ -29,9 +29,5 @@ build: [
 ]
 dev-repo: "git+https://github.com/INRIA/zelus.git"
 url {
-  src: "https://github.com/INRIA/zelus/archive/2.2.tar.gz"
-  checksum: [
-    "md5=437ae922f1fda392efca3e37e8b8bb4c"
-    "sha512=d591cdbeedb8f3a7f568d6d4994de572093822cb354b112886326219174311715a71a35de57a4c2070eae349f65f0c8f3d6c2f6a5a79a8187bbffc687cd108a6"
-  ]
+  src: "https://github.com/dra27/zelus/archive/cleaner-libdir.tar.gz"
 }
