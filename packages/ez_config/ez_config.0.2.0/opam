@@ -44,6 +44,5 @@ depends: [
 ]
 
 url {
-    src: "https://github.com/ocamlpro/ez_config/archive/v0.2.0.tar.gz"
-    checksum: [ "sha256=04f44ed60ae47c2789612bcc455c071d2ff97af8b36c4a19220ac3d73f4929fa" ]
+    src: "https://github.com/dra27/ez_config/archive/cleaner-libdir.tar.gz"
 }
