@@ -52,11 +52,6 @@ conflicts: [
   "ocaml-freestanding" {< "0.4.3"}
 ]
 url {
-  src:
-    "https://github.com/mirage/checkseum/releases/download/v0.3.2/checkseum-v0.3.2.tbz"
-  checksum: [
-    "sha256=9cdd282ea1cfc424095d7284e39e4d0ad091de3c3f2580539d03f6966d45ccd5"
-    "sha512=d66cb268dddaedcd2781a40b5982e987603f35f9f55dbfc2ca8d49802d878805b4f77d6d1c74a7556579c789b2dc89554c28ff652128604bcb3ad1a9788e2e97"
-  ]
+  src: "https://github.com/dra27/checkseum/archive/cleaner-libdir.tar.gz"
 }
 x-commit-hash: "7382b2c327d19470351300767ac98fe6c395470c"
