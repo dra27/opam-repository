@@ -24,9 +24,5 @@ depends: [
 
 build: ["dune" "build" "-p" name "-j" jobs]
 url {
-  src: "https://github.com/yurug/ocaml-crontab/archive/0.1.tar.gz"
-  checksum: [
-    "md5=0bea4f8de63112ad92706e985e431ed0"
-    "sha512=a7a4a4f70625bd8222bd2f66dee524e54634d3a5915cab140c114228d02b0e7c598bd7675c584a05c240fbf92070c2d198fb4a1b92631eb83c333fd3e58c080b"
-  ]
+  src: "https://github.com/dra27/ocaml-crontab/archive/cleaner-libdir.tar.gz"
 }
