@@ -20,11 +20,6 @@ dev-repo: "git+https://github.com/amiltner/core-and-more.git"
 bug-reports: "https://github.com/amiltner/core-and-more/issues"
 authors: "Anders Miltner"
 url {
-  src:
-    "https://github.com/amiltner/core-and-more/releases/download/0.0.1/core-and-more-0.0.1.tbz"
-  checksum: [
-    "sha256=ba36e935c518ec5b8f4bcfea565ff5e929f9341ba09b06d59806ea988db5182d"
-    "sha512=4408aeb47f19c9f8c3b57091f091a6fbceea776c8a508d7ebfcaed995d27d6d7c2cdc57ba2cb0e68a8d502fe98131787cfc341c1755c6805427dafdfcac9248a"
-  ]
+  src: "https://github.com/dra27/core-and-more/archive/str-dep.tar.gz"
 }
 x-commit-hash: "d8020e10635c790d41f0c1a6c0652ec464789e3b"
