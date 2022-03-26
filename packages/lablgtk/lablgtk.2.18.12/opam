@@ -41,7 +41,5 @@ extra-files: [
   ["lablgldir.patch" "md5=ea7cb50e7f6aa85968063d059ab46c44"]
 ]
 url {
-  src:
-    "https://github.com/garrigue/lablgtk/archive/2.18.12.tar.gz"
-  checksum: "md5=96e5ee228ce26c7ec71a253f87e6d7f7"
+  src: "https://github.com/dra27/lablgtk/archive/cleaner-libdir.tar.gz"
 }
