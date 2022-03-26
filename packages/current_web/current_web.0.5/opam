@@ -54,11 +54,6 @@ build: [
 dev-repo: "git+https://github.com/ocurrent/ocurrent.git"
 x-commit-hash: "439d1b539335ee3aa974ff6c02e09885f40056b5"
 url {
-  src:
-    "https://github.com/ocurrent/ocurrent/releases/download/v0.5/current-v0.5.tbz"
-  checksum: [
-    "sha256=f8c884318a46a568d965c7e8bac00dfe2339efac04ca6f0cbabef916d8b917ca"
-    "sha512=e0633239a7d02cdde6264db96c39ed7e3d1adf3a7f09bb25ad002d388f203b561e8c808daee90539bc0ee15c547d2ab4bef1789dcc9c22ed00b151bad0083f64"
-  ]
+  src: "https://github.com/dra27/ocurrent/archive/cleaner-libdir.tar.gz"
 }
 license: "Apache-2.0"
