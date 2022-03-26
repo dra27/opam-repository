@@ -35,10 +35,5 @@ Three subcommands to `certify` are provided:
 * `certify sign`: sign a certificate
 """
 url {
-  src:
-    "https://github.com/yomimono/ocaml-certify/releases/download/v0.3.3/certify-v0.3.3.tbz"
-  checksum: [
-    "sha256=86252719dcbb7af84589727193663b7c082ceaaa5c4382faae383952fb2e8459"
-    "sha512=fa15cca647ecc14c6efd17fdb4609cb1987826d515bf7c96e0aff34f8ade0c114aaf9e0f47c8d16bb29c358445884fe5e82b2d260140517c0ffb893a7e55937f"
-  ]
+  src: "https://github.com/dra27/ocaml-certify/archive/deps.tar.gz"
 }
