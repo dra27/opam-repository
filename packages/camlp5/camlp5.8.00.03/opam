@@ -60,8 +60,5 @@ post-messages:
 
 dev-repo: "git+https://github.com/camlp5/camlp5.git"
 url {
-  src: "https://github.com/camlp5/camlp5/archive/refs/tags/rel8.00.03.tar.gz"
-  checksum: [
-    "sha512=a6259d2d491ed1f967dd383f03d3da65a3f383d28340111f57883c6d56cee2d267c0f752ba98bcdb72c24cf724a606718de26b6c55b84ad9b5f8f6d620f3cba1"
-  ]
+  src: "https://github.com/dra27/camlp5/archive/cleaner-libdir.tar.gz"
 }
