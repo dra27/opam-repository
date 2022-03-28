@@ -23,7 +23,7 @@ diff -urN pxp-1.2.9/tools/src/odoc/Makefile pxp.1.2.9/tools/src/odoc/Makefile
  OCAMLC_OPTIONS += -I +ocamldoc
  CLEAN_LIST += chtml.ml
  
-+PACKAGES = compiler-libs.common
++PACKAGES = compiler-libs.common,str
 +
  .PHONY: all
  all: chtml.cmo

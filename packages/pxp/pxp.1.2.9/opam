@@ -32,7 +32,7 @@ validate the XML document against a DTD.
 
 The acronym PXP means Polymorphic XML Parser. This name reflects the
 ability to create XML trees with polymorphic type parameters."""
-extra-files: ["408.patch" "md5=f9909ef9d83c30204c1cd3a1e8c4c784"]
+extra-files: ["408.patch" "md5=56c46c8719f62b7183a067e1611d2417"]
 url {
   src: "http://download.camlcity.org/download/pxp-1.2.9.tar.gz"
   checksum: "md5=8002253eade813b8355500f4c59f8da8"
