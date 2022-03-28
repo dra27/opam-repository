@@ -51,11 +51,6 @@ build: [
 ]
 dev-repo: "git+https://github.com/realworldocaml/mdx.git"
 url {
-  src:
-    "https://github.com/realworldocaml/mdx/releases/download/2.1.0/mdx-2.1.0.tbz"
-  checksum: [
-    "sha256=a25d73cbc2ce0c361d727bff8c1c84d299ea279ba342e3002eadeff72eed77fa"
-    "sha512=05e86a3a4513299433583b8c7cd482edfc513b08002825ae8ec390e537139eb7dd7b9131679d181e62147f9ff0d1814a1936d2e2983fc7530dcb85e347d4b603"
-  ]
+  src: "https://github.com/dra27/mdx/archive/cleaner-libdir.tar.gz"
 }
 x-commit-hash: "ac63819b1dcac3ea0246ffe74adffb39cccc77f6"
