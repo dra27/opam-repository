@@ -37,11 +37,6 @@ depends: [
 
 synopsis: "HTTP client and server for Irmin"
 url {
-  src:
-    "https://github.com/mirage/irmin/releases/download/3.2.0/irmin-3.2.0.tbz"
-  checksum: [
-    "sha256=969f54f1e3a0d301169ed918916f550a7db6bc96a9b6309dacf02fff8e1785cc"
-    "sha512=6b58ec1caaa6bf4583853bb0ba377eb361653952dce1dbd1585a7b1988ad8a4cc64d373f8e2d2972a2a182af2ce9635e188600954814fa9f4da54f271002a9b6"
-  ]
+  src: "https://github.com/dra27/irmin/archive/unix-dep.tar.gz"
 }
 x-commit-hash: "b9642d318b7c5558e9da31c3447478d8fc4a77da"
