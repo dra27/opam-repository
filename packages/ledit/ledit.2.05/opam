@@ -16,6 +16,5 @@ One-line editor written in OCaml. It provides line editing for the
 Caml toplevels, as well as other interactive Unix commands."""
 extra-files: ["ledit.install" "md5=6d2953bf016b55439a707382d368c4ce"]
 url {
-  src: "https://github.com/chetmurthy/ledit/archive/ledit-2-05.tar.gz"
-  checksum: "md5=44a5892905ae45b2e7b40b29ac904405"
+  src: "https://github.com/dra27/ledit/archive/cleaner-libdir.tar.gz"
 }
