@@ -1,6 +1,7 @@
 opam-version: "2.0"
 maintainer: "https://github.com/ocaml/opam-repository/issues"
 build: [
+  ["sed" "-ib" "/PACKS/s/$/ unix/" "Makefile"]
   [make "all"]
   [make "opt"]
 ]
