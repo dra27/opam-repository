@@ -29,8 +29,5 @@ build: [
 install: [make "install"]
 dev-repo: "git+https://github.com/chetmurthy/not-ocamlfind"
 url {
-  src: "https://github.com/chetmurthy/not-ocamlfind/archive/0.07.02.tar.gz"
-  checksum: [
-    "sha512=b4ba4a1133a57e1cb1a44f4472c698ba3df02e4526524f09cd481ed0b4a875b5fea6b2968588efc88f38f4f599ee9f8ce69731e21a632fb5c44d9525c1ff27e6"
-  ]
+  src: "https://github.com/dra27/not-ocamlfind/archive/cleaner-libdir.tar.gz"
 }
