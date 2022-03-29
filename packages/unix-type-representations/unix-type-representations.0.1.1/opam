@@ -24,6 +24,5 @@ synopsis:
   "Functions that expose the underlying types of some abstract types in the Unix module."
 url {
   src:
-    "https://github.com/yallop/ocaml-unix-type-representations/archive/0.1.1.tar.gz"
-  checksum: "md5=e78a1b4e08ff39a3698e6e30a829aff9"
+    "https://github.com/dra27/ocaml-unix-type-representations/archive/unix-dep.tar.gz"
 }
