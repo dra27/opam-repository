@@ -31,10 +31,5 @@ build: [
 ]
 dev-repo: "git+https://framagit.org/zoggy/ojs-base.git"
 url {
-  src:
-    "https://framagit.org/zoggy/ojs-base/-/archive/0.7.0/ojs-base-0.7.0.tar.bz2"
-  checksum: [
-    "md5=85b8a0746e9be8c20cf082f2573b5895"
-    "sha512=ec707820ff69ddbf9c631cf6a1c8748e82346daded1a4f73c5702128d07858f915e62d529e5fec01e99263f33eefb1586067341c058535806e0092b9d040644a"
-  ]
+  src: "https://framagit.org/dra27/ojs-base/-/archive/deps/ojs-base-deps.tar.gz"
 }
