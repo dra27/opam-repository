@@ -29,6 +29,5 @@ description: """
 * Notifications"""
 flags: light-uninstall
 url {
-  src: "https://github.com/juergenhoetzel/ocaml-systemd/archive/1.2.tar.gz"
-  checksum: "md5=f9206f1284addca555934100b1e68928"
+  src: "https://github.com/dra27/ocaml-systemd/archive/unix-dep.tar.gz"
 }
