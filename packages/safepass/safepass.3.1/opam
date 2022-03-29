@@ -12,9 +12,5 @@ depends: [
   "dune" {>= "2.0"}
 ]
 url {
-  src: "https://github.com/darioteixeira/ocaml-safepass/archive/v3.1.tar.gz"
-  checksum: [
-    "md5=e4dd243aa94c6895158f117ea6b4dbe3"
-    "sha512=87eef5f9c39067c9581cca56cdc7dec7d3e412c8ec0474a7dc6150ef9dc76aebfd791cfc3dc0256a887fa24f78be9c82d452743f1152b1635fbc555487c50327"
-  ]
+  src: "https://github.com/dra27/ocaml-safepass/archive/unix-dep.tar.gz"
 }
