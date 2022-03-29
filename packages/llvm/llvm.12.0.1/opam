@@ -9,7 +9,10 @@ doc: "http://llvm.moe/ocaml"
 bug-reports: "http://llvm.org/bugs/"
 dev-repo: "git+http://llvm.org/git/llvm.git"
 homepage: "http://llvm.moe"
-build: ["bash" "-ex" "install.sh" "%{conf-llvm:config}%" lib "%{conf-cmake:cmd}%" make "build"]
+build: [
+  ["sed" "-ib" "/bitwriter_ocaml/a  PKG      unix" "bindings/ocaml/bitwriter/CMakeLists.txt"]
+  ["bash" "-ex" "install.sh" "%{conf-llvm:config}%" lib "%{conf-cmake:cmd}%" make "build"]
+]
 install: ["bash" "-ex" "install.sh" "%{conf-llvm:config}%" lib "%{conf-cmake:cmd}%" make "install"]
 depends: [
   "ocaml" {>= "4.00.0"}
