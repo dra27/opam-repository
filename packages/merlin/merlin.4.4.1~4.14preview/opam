@@ -67,5 +67,5 @@ See https://github.com/OCamlPro/opam-user-setup
   {success & !user-setup:installed}
 ]
 url {
-  src: "git+https://github.com/kit-ty-kate/merlin.git#414"
+  src: "https://github.com/dra27/merlin/archive/deps.tar.gz"
 }
