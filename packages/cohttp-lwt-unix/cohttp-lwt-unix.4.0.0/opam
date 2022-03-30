@@ -40,6 +40,7 @@ depends: [
   "ounit" {with-test}
 ]
 build: [
+  ["sed" "-ib" "s/libraries cohttp/& unix/" "cohttp_server/dune"]
   ["dune" "subst"] {dev}
   ["dune" "build" "-p" name "-j" jobs]
   ["dune" "runtest" "-p" name "-j" jobs] {with-test}
