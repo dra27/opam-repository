@@ -52,7 +52,7 @@ build: [
 ]
 install: [make "install"]
 url {
-  src: "https://github.com/ocaml/ocaml/archive/trunk.tar.gz"
+  src: "https://github.com/dra27/ocaml/archive/lib-layout-topdirs.cmi.tar.gz"
 }
 post-messages: [
   "A failure in the middle of the build may be caused by build parallelism
