@@ -49,8 +49,7 @@ build: [
 ]
 install: [make "install"]
 url {
-  src: "https://github.com/ocaml/ocaml/archive/4.14.0.tar.gz"
-  checksum: "sha256=39f44260382f28d1054c5f9d8bf4753cb7ad64027da792f7938344544da155e8"
+  src: "https://github.com/dra27/ocaml/archive/volatile_field.tar.gz"
 }
 extra-files: ["ocaml-variants.install" "md5=3e969b841df1f51ca448e6e6295cb451"]
 post-messages: [

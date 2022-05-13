@@ -52,7 +52,7 @@ build: [
 ]
 install: [make "install"]
 url {
-  src: "https://github.com/ocaml/ocaml/archive/trunk.tar.gz"
+  src: "https://github.com/kayceesrk/ocaml/archive/volatile_field.tar.gz"
 }
 post-messages: [
   "A failure in the middle of the build may be caused by build parallelism
