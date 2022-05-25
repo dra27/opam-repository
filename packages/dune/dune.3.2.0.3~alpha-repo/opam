@@ -52,5 +52,5 @@ build: [
 ]
 dev-repo: "git+https://github.com/ocaml/dune.git"
 url {
-  src: "https://github.com/dra27/dune/archive/check-symbols.tar.gz"
+  src: "https://github.com/dra27/dune/archive/check-symbols-caml_unix.tar.gz"
 }
