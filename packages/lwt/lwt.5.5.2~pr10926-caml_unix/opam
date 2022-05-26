@@ -39,7 +39,7 @@ depopts: [
 ]
 
 conflicts: [
-  "ocaml-variants" {= "5.0.0+pr10926-caml_unix"}
+  "ocaml-variants" {!= "5.0.0+pr10926-caml_unix"}
 ]
 
 build: [
@@ -57,5 +57,5 @@ Meanwhile, OCaml code, including code creating and waiting on promises, runs in
 a single thread by default. This reduces the need for locks or other
 synchronization primitives. Code can be run in parallel on an opt-in basis."
 url {
-  src: "https://github.com/dra27/lwt/archive/check-symbols.tar.gz"
+  src: "https://github.com/dra27/lwt/archive/check-symbols-caml_unix.tar.gz"
 }
