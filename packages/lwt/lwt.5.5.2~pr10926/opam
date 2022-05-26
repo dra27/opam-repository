@@ -57,9 +57,5 @@ Meanwhile, OCaml code, including code creating and waiting on promises, runs in
 a single thread by default. This reduces the need for locks or other
 synchronization primitives. Code can be run in parallel on an opt-in basis."
 url {
-  src: "https://github.com/ocsigen/lwt/archive/refs/tags/5.5.0.tar.gz"
-  checksum: [
-    "md5=94272fac89c5bf21a89c102b8a8f35a5"
-    "sha512=8951b94555e930634375816d71815b9d85daad6ffb7dab24864661504d11be26575ab0b237196c54693efa372a9b69cdc1d5068a20a250dc0bbb4a3c03c5fda1"
-  ]
+  src: "https://github.com/dra27/lwt/archive/check-symbols.tar.gz"
 }
