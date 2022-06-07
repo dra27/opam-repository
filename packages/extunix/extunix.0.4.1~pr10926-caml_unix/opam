@@ -1,0 +1,67 @@
+opam-version: "2.0"
+synopsis: "Collection of thin bindings to various low-level system API"
+description: """
+Motto: "Be to Unix, what extlib is to stdlib"
+
+* Implement thin C bindings that directly map to underlying system API.
+* Provide common consistent ocaml interface: naming convention, exceptions.
+* Simple to build - no extra dependencies.
+"""
+maintainer: ["ygrek@autistici.org" "Antonin Décimo <antonin@tarides.com>"]
+authors: [
+  "Andre Nathan"
+  "Antonin Décimo"
+  "Dmitry Grebeniuk"
+  "François Bobot"
+  "Gerd Stolpmann"
+  "Goswin von Brederlow"
+  "Joshua Smith"
+  "Kaustuv Chaudhuri"
+  "Markus W. Weissmann"
+  "Mehdi Dogguy"
+  "Niki Yoshiuchi"
+  "Pierre Chambart"
+  "Roman Vorobets"
+  "Stéphane Glondu"
+  "Sylvain Le Gall"
+  "ygrek"
+  "Zhenya Lykhovyd"
+]
+license: "LGPL-2.1-only with OCaml-LGPL-linking-exception"
+tags: ["org:ygrek"]
+homepage: "https://github.com/ygrek/extunix"
+bug-reports: "https://github.com/ygrek/extunix/issues"
+depends: [
+  "dune" {>= "2.8"}
+  "ocaml" {>= "4.06"}
+  "dune-configurator" {>= "2.9" & build}
+  "ppxlib" {>= "0.18" & build}
+  "ounit2" {with-test}
+  "base-bytes"
+  "base-bigarray"
+  "base-unix"
+  "odoc" {with-doc}
+]
+build: [
+  ["dune" "subst"] {dev}
+  [
+    "dune"
+    "build"
+    "-p"
+    name
+    "-j"
+    jobs
+    "@install"
+    "@runtest" {with-test}
+    "@doc" {with-doc}
+  ]
+]
+conflicts: [
+  "ocaml-variants" {!= "5.0.0+pr10926-caml_unix"}
+]
+dev-repo: "git+https://github.com/ygrek/extunix.git"
+depexts: [["libexecinfo-dev"] {os = "alpine"}]
+url {
+  src:
+    "https://github.com/dra27/extunix/archive/check-symbols-caml_unix.tar.gz"
+}

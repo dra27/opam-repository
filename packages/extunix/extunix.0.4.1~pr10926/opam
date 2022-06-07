@@ -56,14 +56,12 @@ build: [
     "@doc" {with-doc}
   ]
 ]
+conflicts: [
+  "ocaml-variants" {= "5.0.0+pr10926-caml_unix"}
+]
 dev-repo: "git+https://github.com/ygrek/extunix.git"
 depexts: [["libexecinfo-dev"] {os = "alpine"}]
 url {
   src:
-    "https://github.com/ygrek/extunix/releases/download/v0.4.0/extunix-0.4.0.tbz"
-  checksum: [
-    "sha256=6814472d982a703ae2b02fa8bc219be69cab12f2db618e4550dd1d6c275633d2"
-    "sha512=66f515dd2ec189fdb2e70d66f27e8b55dab11da04e362f95bc6bbcfd514fd9114508fb28a4d8ade59dd573d2947484dc7d74c1eec655c645e1531d01f110e8d7"
-  ]
+    "https://github.com/dra27/extunix/archive/check-symbols.tar.gz"
 }
-x-commit-hash: "d69c250c644e84c38f6215c9ace0b59d62a8a668"
