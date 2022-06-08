@@ -37,10 +37,6 @@ caching as possible.
 """
 url {
   src:
-    "https://github.com/mirage/mirage-block-unix/releases/download/v2.14.0/mirage-block-unix-2.14.0.tbz"
-  checksum: [
-    "sha256=c321b924621e306c71dd7b5b225f59ad0d389e6f5a3d2bd77fa08d76df723db5"
-    "sha512=46095af6866f8eb96570b44d1467a3b41d8c7f4fb9214b842f4d38297e897c04601686def5447106462a7bf708da9f2c062f12fbb02f1e58da704151887f0122"
-  ]
+    "https://github.com/dra27/mirage-block-unix/archive/check-symbols.tar.gz"
 }
 x-commit-hash: "73abd255ed9ae3aa6dd3f3cab272cca242a2c5e8"

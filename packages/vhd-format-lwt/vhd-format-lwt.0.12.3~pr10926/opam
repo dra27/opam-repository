@@ -37,9 +37,5 @@ This package provides an Lwt compatible interface to the library.
 x-commit-hash: "d80cceda1c28d8ad4716afb91d8bfc6e5c5cbc69"
 url {
   src:
-    "https://github.com/mirage/ocaml-vhd/releases/download/v0.12.2/vhd-format-v0.12.2.tbz"
-  checksum: [
-    "sha256=c14d8ed7714d6f422ed17bd6e8a20f9a15cfc0f29497d2d7c6725fdcf3c410eb"
-    "sha512=3b9b9434f54fa481e84dcfbd9b4757fd1bd9d5c6e22d76f5d43881dfa1433404b2bc0993306a941da7c9f1bb16f39d20d8190cb3f21e122c13a50603d0800766"
-  ]
+    "https://github.com/dra27/ocaml-vhd/archive/check-symbols.tar.gz"
 }
