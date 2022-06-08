@@ -17,6 +17,9 @@ depends: [
   "dune"          {>= "2.0.0"}
 ]
 synopsis: "Bindings to the posix *at functions"
+conflicts: [
+  "ocaml-variants" {!= "5.0.0+pr10926-caml_unix"}
+]
 description: "
 Posixat is a small library that just binds the various *at posix
 functions.
@@ -26,6 +29,5 @@ descriptor. For instance this allows to reliably maintain several
 working directories inside the same process.
 "
 url {
-src: "https://ocaml.janestreet.com/ocaml-core/v0.15/files/posixat-v0.15.0.tar.gz"
-checksum: "sha256=1a6838c6b713ff810af365a81556d9dc73256a6a02fbe302e7bd9a8cec226e72"
+src: "https://github.com/dra27/posixat/archive/check-symbols-caml_unix.tar.gz"
 }
