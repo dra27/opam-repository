@@ -11,15 +11,13 @@ build: [
 ]
 depends: [
   "ocaml"         {>= "4.08.0"}
+  "ocaml-variants" {= "5.0.0+pr10926-caml_unix" | = "4.14.0+pr10926-caml_unix"}
   "base"          {>= "v0.15" & < "v0.16"}
   "ppx_optcomp"   {>= "v0.15" & < "v0.16"}
   "ppx_sexp_conv" {>= "v0.15" & < "v0.16"}
   "dune"          {>= "2.0.0"}
 ]
 synopsis: "Bindings to the posix *at functions"
-conflicts: [
-  "ocaml-variants" {!= "5.0.0+pr10926-caml_unix"}
-]
 description: "
 Posixat is a small library that just binds the various *at posix
 functions.

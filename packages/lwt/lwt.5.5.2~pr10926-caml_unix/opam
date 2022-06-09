@@ -23,6 +23,7 @@ depends: [
   "mmap" {>= "1.1.0" & "os" != "win32"} # mmap is needed as long as Lwt supports OCaml < 4.06.0.
   "ocaml" {>= "4.02.0" & "os" != "win32 " | >= "4.06.0"}
   ("ocaml" {>= "4.08.0"} | "ocaml-syntax-shims")
+  "ocaml-variants" {= "5.0.0+pr10926-caml_unix" | = "4.14.0+pr10926-caml_unix"}
   "ocplib-endian"
   "result" # result is needed as long as Lwt supports OCaml 4.02.
   "seq" # seq is needed as long as Lwt supports OCaml < 4.07.0.
@@ -36,10 +37,6 @@ depopts: [
   "base-threads"
   "base-unix"
   "conf-libev"
-]
-
-conflicts: [
-  "ocaml-variants" {!= "5.0.0+pr10926-caml_unix"}
 ]
 
 build: [

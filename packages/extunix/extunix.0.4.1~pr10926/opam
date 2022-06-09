@@ -57,7 +57,7 @@ build: [
   ]
 ]
 conflicts: [
-  "ocaml-variants" {= "5.0.0+pr10926-caml_unix"}
+  "ocaml-variants" {= "5.0.0+pr10926-caml_unix" | = "4.14.0+pr10926-caml_unix"}
 ]
 dev-repo: "git+https://github.com/ygrek/extunix.git"
 depexts: [["libexecinfo-dev"] {os = "alpine"}]
