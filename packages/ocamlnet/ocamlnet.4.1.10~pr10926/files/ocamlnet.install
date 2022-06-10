@@ -1,0 +1,4 @@
+bin: [
+  "code/src/rpc-generator/ocamlrpcgen"
+  "code/src/netplex/netplex-admin"
+]
