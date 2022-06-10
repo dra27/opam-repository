@@ -30,6 +30,5 @@ Unix-specific extensions to some of the modules defined in [core] and [core_kern
 "
 depexts: ["linux-headers"] {os-family = "alpine"}
 url {
-src: "https://ocaml.janestreet.com/ocaml-core/v0.15/files/core_unix-v0.15.0.tar.gz"
-checksum: "sha256=0af9d2c0d2029a80858c730171e0bd70a1981b3e7021f8c31cd8dc54925da02d"
+src: "https://github.com/dra27/core_unix/archive/check-symbols.tar.gz"
 }
