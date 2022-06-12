@@ -11,6 +11,7 @@ build: [
 ]
 depends: [
   "ocaml"                    {>= "4.08.0"}
+  "ocaml-variants" {= "5.0.0+pr10926-caml_unix" | = "4.14.0+pr10926-caml_unix"}
   "core"                     {>= "v0.15" & < "v0.16"}
   "core_kernel"              {>= "v0.15" & < "v0.16"}
   "expect_test_helpers_core" {>= "v0.15" & < "v0.16"}
@@ -24,14 +25,11 @@ depends: [
   "dune"                     {>= "2.0.0"}
   "spawn"                    {>= "v0.15"}
 ]
-conflicts: [
-  "ocaml-variants" {= "5.0.0+pr10926-caml_unix" | = "4.14.0+pr10926-caml_unix"}
-]
 synopsis: "Unix-specific portions of Core"
 description: "
 Unix-specific extensions to some of the modules defined in [core] and [core_kernel].
 "
 depexts: ["linux-headers"] {os-family = "alpine"}
 url {
-src: "https://github.com/dra27/core_unix/archive/check-symbols.tar.gz"
+src: "https://github.com/dra27/core_unix/archive/check-symbols-caml_unix.tar.gz"
 }

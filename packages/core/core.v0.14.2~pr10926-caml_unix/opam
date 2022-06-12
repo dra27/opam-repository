@@ -11,6 +11,7 @@ build: [
 ]
 depends: [
   "ocaml" {>= "4.08.0"}
+  "ocaml-variants" {= "5.0.0+pr10926-caml_unix" | = "4.14.0+pr10926-caml_unix"}
   "core_kernel"  {>= "v0.14" & < "v0.15"}
   "jst-config"   {>= "v0.14" & < "v0.15"}
   "ppx_jane"     {>= "v0.14" & < "v0.15"}
@@ -20,9 +21,6 @@ depends: [
   "dune"         {>= "2.0.0"}
   "spawn"        {>= "v0.12"}
 ]
-conflicts: [
-  "ocaml-variants" {= "5.0.0+pr10926-caml_unix" | = "4.14.0+pr10926-caml_unix"}
-]
 synopsis: "Industrial strength alternative to OCaml's standard library"
 description: "
 The Core suite of libraries is an industrial strength alternative to
@@ -31,5 +29,5 @@ largest industrial user of OCaml.
 "
 depexts: ["linux-headers"] {os-distribution = "alpine"}
 url {
-src: "https://github.com/dra27/core/archive/check-symbols.tar.gz"
+src: "https://github.com/dra27/core/archive/check-symbols-caml_unix.tar.gz"
 }
