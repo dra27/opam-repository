@@ -21,7 +21,8 @@ depends: [
   "dune" {>= "1.8.0"}
   "dune-configurator"
   "mmap" {>= "1.1.0" & "os" != "win32"} # mmap is needed as long as Lwt supports OCaml < 4.06.0.
-  "ocaml" {>= "5.0.0~~"}
+  "ocaml" {< "5.0.0~~"}
+  "ocaml-variants" {= "5.0.0+pr10926-caml_unix" | = "4.14.0+pr10926-caml_unix"}
   "ocplib-endian"
   "result" # result is needed as long as Lwt supports OCaml 4.02.
   "seq" # seq is needed as long as Lwt supports OCaml < 4.07.0.
@@ -35,10 +36,6 @@ depopts: [
   "base-threads"
   "base-unix"
   "conf-libev"
-]
-
-conflicts: [
-  "ocaml-variants" {= "5.0.0+pr10926-caml_unix" | = "4.14.0+pr10926-caml_unix"}
 ]
 
 build: [
@@ -56,5 +53,5 @@ Meanwhile, OCaml code, including code creating and waiting on promises, runs in
 a single thread by default. This reduces the need for locks or other
 synchronization primitives. Code can be run in parallel on an opt-in basis."
 url {
-  src: "https://github.com/dra27/lwt/archive/check-symbols.tar.gz"
+  src: "https://github.com/dra27/lwt/archive/check-symbols-caml_unix-4.14.tar.gz"
 }
