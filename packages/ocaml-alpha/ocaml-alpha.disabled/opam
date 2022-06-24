@@ -1,0 +1,17 @@
+opam-version: "2.0"
+maintainer: "platform@lists.ocaml.org"
+bug-reports: "https://github.com/ocaml/opam-alpha-repository/issues"
+authors: ["David Allsopp" "Florian Angeletti" "Kate Deplaix"]
+homepage: "https://ocaml.org"
+synopsis: "Virtual package for detecting opam-alpha-repository"
+description: """
+This package indicates if the opam-alpha-repository collection of patched
+packages has been added to your switch.
+
+This package is installed by adding opam-alpha-repository to your switch:
+
+opam repository add alpha git+https://github.com/ocaml/opam-alpha-repository.git
+
+or
+
+opam switch create ocaml-alpha-testing --repositories alpha=git+https://github.com/ocaml/opam-alpha-repository.git ..."""
