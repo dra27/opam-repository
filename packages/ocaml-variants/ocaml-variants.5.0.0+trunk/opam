@@ -14,6 +14,7 @@ depends: [
   "base-domains" {post}
   "base-nnp" {post}
   "ocaml-option-bytecode-only" {arch != "arm64" & arch != "x86_64"}
+  "ocaml-alpha" {post}
   "ocaml-beta" {opam-version < "2.1.0"}
 ]
 conflict-class: "ocaml-core-compiler"
@@ -63,6 +64,24 @@ post-messages: [
   "You can try installing again including --jobs=1
    to force a sequential build instead."
   {failure & jobs > 1 & os != "cygwin" & opam-version >= "2.0.5"}
+  "Thank you for testing OCaml pre-releases!
+
+   git+https://github.com/ocaml/opam-alpha-repository appears to be enabled in this
+   switch, meaning some packages may install pre-release patched versions."
+  {ocaml-alpha:version != "disabled"}
+  "Thank you for testing OCaml pre-releases!
+
+   During the release cycle, there can be a lag between packages being fixed for
+   compatibility with the latest release of OCaml and an actual package-release
+   being made to opam-repository. You may wish to add opam-alpha-repository to
+   your switch by issuing:
+
+   opam repo add alpha git+https://github.com/ocaml/opam-alpha-repository
+
+   This will enable patched, but unreleased, versions of some packages which are
+   used for automated testing and made available to aid development and testing of
+   the new release. These packages are automatically upgraded when a new upstream
+   release is made to the official opam-repository." {ocaml-alpha:version = "disabled"}
 ]
 conflicts: [ "ocaml-option-fp" ]
 depopts: [
