@@ -15,6 +15,7 @@ depends: [
   "batteries" {>= "2.6.0"}
   "webidl" {>= "1.3"}
 ]
+available: os != "win32"
 synopsis: "generate bucklescript code from Javascript type specifications"
 description: """
 * generate bucklescript code from Web IDL

@@ -54,3 +54,4 @@ url {
   src: "https://github.com/janestreet/memtrace_viewer_with_deps/archive/v0.14.0.tar.gz"
   checksum: "md5=0e4c01e80b13dc3184ee2bb10b41884a"
 }
+available: os != "win32"

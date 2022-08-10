@@ -21,6 +21,7 @@ depopts: [
 conflicts: [
   "deriving-ocsigen" {< "0.5"}
 ]
+available: os != "win32"
 synopsis: "Compiler from OCaml bytecode to Javascript"
 flags: light-uninstall
 extra-files: ["js_of_ocaml.install" "md5=4830aaa8e0a0c2778adcfe34e05afef3"]

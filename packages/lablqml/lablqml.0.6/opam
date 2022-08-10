@@ -38,3 +38,4 @@ url {
   src: "https://github.com/Kakadu/lablqml/archive/0.6.1.tar.gz"
   checksum: "md5=78d82c02437eb2dcd4ebf2c60bf3946f"
 }
+available: os != "win32"

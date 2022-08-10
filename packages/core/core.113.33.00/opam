@@ -27,6 +27,7 @@ depends: [
   "typerep" {>= "113.24.00" & < "113.25.00"}
   "variantslib" {>= "113.24.00" & < "113.25.00"}
 ]
+available: os != "win32"
 synopsis: "Industrial strength alternative to OCaml's standard library"
 description: """
 The Core suite of libraries is an industrial strength alternative to

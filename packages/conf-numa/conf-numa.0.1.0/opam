@@ -12,7 +12,7 @@ depexts: [
   ["libnuma-devel"] {os-family = "suse"}
   ["libnuma-dev"] {os-distribution = "alpine"}
 ]
-available: os != "macos" & os != "freebsd" & os != "openbsd"
+available: os != "macos" & os != "freebsd" & os != "openbsd" & os != "win32"
 synopsis: "Package relying on libnuma"
 description: """
 Virtual package relying on a libnuma system installation.

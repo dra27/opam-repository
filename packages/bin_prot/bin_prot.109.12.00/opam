@@ -10,6 +10,7 @@ depends: [
 ]
 dev-repo: "git+https://github.com/janestreet/bin_prot"
 install: [make "install"]
+available: os != "win32"
 synopsis: "A binary protocol generator"
 description: """
 Part of Jane Street’s Core library

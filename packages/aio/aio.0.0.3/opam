@@ -13,6 +13,7 @@ depexts: [
 ]
 patches: ["meta.patch"]
 install: [make "install"]
+available: os != "win32"
 synopsis: "Linux kernel AIO access library for ocaml"
 description: """
 Use this if you want very efficient I/O on Linux. Note this is not

@@ -8,6 +8,7 @@ dev-repo: "git+https://github.com/ocaml-ppx/ppx_view.git"
 build: [
   ["jbuilder" "build" "-p" name "-j" jobs]
 ]
+available: os != "win32"
 depends: [
   "ocaml" {>= "4.04" & < "4.08.0"}
   "jbuilder" {>= "1.0+beta7"}

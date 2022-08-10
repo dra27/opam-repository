@@ -31,3 +31,4 @@ url {
     "https://github.com/astrada/google-drive-ocamlfuse/archive/v0.6.26.tar.gz"
   checksum: "md5=f74df0ef69c9067c6c8944ca5f00f972"
 }
+available: os != "win32"

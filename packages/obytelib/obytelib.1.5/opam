@@ -24,3 +24,4 @@ url {
   src: "https://github.com/bvaugon/obytelib/archive/1.5.tar.gz"
   checksum: "md5=98825775219d1e6e9dde62bbeffb3fd2"
 }
+available: os != "win32"

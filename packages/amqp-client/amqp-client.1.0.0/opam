@@ -21,6 +21,7 @@ conflicts: [
   "lwt" {< "2.4.6"}
   "async_unix" {>="v0.9"}
 ]
+available: os != "win32"
 synopsis: "Amqp client library compatable with async and lwt."
 description: """
 This library provides high level client bindings for amqp. The library

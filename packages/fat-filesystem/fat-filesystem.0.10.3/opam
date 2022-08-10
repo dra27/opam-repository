@@ -30,6 +30,7 @@ tags: [
   "org:mirage"
   "org:xapi-project"
 ]
+available: os != "win32"
 synopsis: "FAT filesystem implementation"
 description: """
 This allows FAT-formatted data to be read and written from

@@ -43,3 +43,4 @@ url {
   archive: "http://www-verimag.imag.fr/DIST-TOOLS/SYNCHRONE/pool/lutin.2.70.4-fix.tgz"
   checksum: "md5=3b8375658938b3757ab2a14e5a54a51a"
 }
+available: os != "win32"

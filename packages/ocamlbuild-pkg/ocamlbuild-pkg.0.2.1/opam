@@ -13,6 +13,7 @@ depends: [
   "ocamlfind" {build & >= "1.6.1"}
   "ocamlbuild"
 ]
+available: os != "win32"
 tags: [
   "ocamlbuild"
   "package"

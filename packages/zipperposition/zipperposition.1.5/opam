@@ -27,6 +27,7 @@ depends: [
   "msat" {>= "0.5" & < "0.8"}
   "menhir" {build & < "20211215"}
 ]
+available: os != "win32"
 synopsis:
   "A fully automatic theorem prover for typed first-order and beyond."
 description: """

@@ -12,6 +12,7 @@ depends: [
   "xmlm" {< "1.3.0"}
 ]
 install: [make "install"]
+available: os != "win32"
 synopsis: "Diffs on XML trees."
 flags: light-uninstall
 url {

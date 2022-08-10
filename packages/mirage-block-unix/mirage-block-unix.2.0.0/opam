@@ -25,6 +25,7 @@ depends: [
   "ocamlbuild" {build}
   "cstruct-lwt"
 ]
+available: os != "win32"
 synopsis: "MirageOS disk block driver for Unix"
 flags: light-uninstall
 url {

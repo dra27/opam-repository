@@ -22,6 +22,7 @@ depends: [
   "mesh" {= "0.9.0"}
   "lacaml" {with-test}
 ]
+available: os != "win32"
 synopsis: "Triangular mesh generation with EasyMesh"
 description: """
 [EasyMesh][] is a two-dimensional quality mesh generator developed by

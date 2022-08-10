@@ -22,6 +22,7 @@ depends: [
   "cmdliner"
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 synopsis: "A TLS proxy using OCaml-TLS"
 description: """
 The tlstunnel is a UNIX binary which provides a TLS listener socket,

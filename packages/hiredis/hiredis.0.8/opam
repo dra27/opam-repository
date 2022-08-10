@@ -17,6 +17,7 @@ depends: [
   "hiredis-value" {>= "0.8"}
   "conduit-lwt-unix" {<"2.0.0"}
 ]
+available: os != "win32"
 synopsis: "Redis tools based on the Hiredis C library"
 description:
   "Hiredis provides a simple interface for communicating with Redis from OCaml"

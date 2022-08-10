@@ -29,3 +29,4 @@ url {
     "sha512=0f9e47a545dba43ab749e9d26127f52da4be6cd12aee01dd3f284202ea5d76ecaec966a23c65160d8f51ad43641d01f9620fae2081cd738cbd0ccb9ed7f5db05"
   ]
 }
+available: os != "win32"

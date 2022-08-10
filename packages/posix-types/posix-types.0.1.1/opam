@@ -14,6 +14,7 @@ depends: [
   "ocamlfind" {build}
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 synopsis:
   "ctypes-compatible type representations for the types exposed in <sys/types.h>."
 description: """

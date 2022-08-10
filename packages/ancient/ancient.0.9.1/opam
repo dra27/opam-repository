@@ -37,3 +37,4 @@ processes.  In this mode, the structures are backed by a disk file,
 and any process that has read/write access that disk file can map that
 file in and see the structures.
 """
+available: os != "win32"

@@ -36,6 +36,7 @@ conflicts: [
   "lwt" {< "2.4.5"}
   "mysql" {< "1.1.1"}
 ]
+available: os != "win32"
 install: [make "install"]
 synopsis: "Native OCaml implementation of RDF Graphs and Sparql 1.1 Query."
 flags: light-uninstall

@@ -19,6 +19,7 @@ depends: [
   "depext" {build}
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 x-ci-accept-failures: ["debian-unstable"]
 post-messages: [
   "

@@ -24,6 +24,7 @@ depends: [
 ]
 dev-repo: "git+https://github.com/djs55/message-switch"
 install: [make "install"]
+available: os != "win32"
 synopsis: "A simple store-and-forward message switch."
 description: """
 The switch stores messages in queues with well-known names. Clients use

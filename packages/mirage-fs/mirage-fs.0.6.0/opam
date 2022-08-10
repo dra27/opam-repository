@@ -12,6 +12,7 @@ depends: [
   "ocamlbuild" {build}
 ]
 dev-repo: "git+https://github.com/mirage/mirage-fs"
+available: os != "win32"
 synopsis: "MirageOS filesystem utilities"
 description:
   "These are now here for historical reference only (pre MirageOS 1.0)"

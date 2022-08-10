@@ -11,6 +11,7 @@ depends: [
   "camlp4"
   "num"
 ]
+available: os != "win32"
 install: [make "install"]
 synopsis: "Cross-platform multi-network peer-to-peer daemon"
 description: """

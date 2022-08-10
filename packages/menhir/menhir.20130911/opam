@@ -14,6 +14,7 @@ install: [
   "libdir=%{lib}%/menhir"
   "mandir=%{man}%/man1"
 ]
+available: os != "win32"
 synopsis: "LR(1) parser generator"
 flags: light-uninstall
 extra-files: ["menhir.install" "md5=625cece5f684bf14fcc2b0e9dc26cedd"]

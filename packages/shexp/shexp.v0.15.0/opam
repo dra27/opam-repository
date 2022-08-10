@@ -27,3 +27,4 @@ url {
 src: "https://ocaml.janestreet.com/ocaml-core/v0.15/files/shexp-v0.15.0.tar.gz"
 checksum: "sha256=4af322366779ce139a625c5d815d76d82a2ae7d9bc2efec33b5c3b824e04e6d3"
 }
+available: os != "win32"

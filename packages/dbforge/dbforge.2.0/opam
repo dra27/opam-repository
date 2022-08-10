@@ -18,6 +18,7 @@ depends: [
   "xml-light"
 ]
 install: [make "install"]
+available: os != "win32"
 synopsis:
   "A tool to describe database schemas and generate OCaml code to access these databases."
 extra-files: ["dbforge.install" "md5=9f4defb2eb0a5be350e947226ac51657"]

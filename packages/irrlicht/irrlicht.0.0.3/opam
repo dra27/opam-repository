@@ -25,6 +25,7 @@ depexts: [
   ["libirrlicht-dev" "g++"] {os-family = "debian"}
   ["libirrlicht-devel" "g++"] {os-distribution = "mageia"}
 ]
+available: os != "win32"
 install: ["ocaml" "setup.ml" "-install"]
 synopsis: "An OCaml binding for the Irrlicht Engine"
 description: """

@@ -7,6 +7,7 @@ homepage: "https://github.com/hammerlab/genspio"
 bug-reports: "https://github.com/hammerlab/genspio/issues"
 dev-repo: "git+https://github.com/hammerlab/genspio.git"
 license: "Apache-2.0"
+available: os != "win32"
 build: [
   ["ocaml" "please.mlt" "configure"]
   ["jbuilder" "build" "-p" "genspio" "-j" jobs ]

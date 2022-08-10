@@ -19,6 +19,7 @@ depends: [
   "conduit-lwt-unix" {>= "1.0.0" & <"2.0.0"}
   "lwt" {with-test & < "5.0.0"}
 ]
+available: os != "win32"
 synopsis: "Redis tools based on the Hiredis C library"
 description:
   "Hiredis provides a unified interface for creating Redis clients, pools of clients and servers."

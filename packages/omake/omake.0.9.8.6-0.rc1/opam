@@ -29,6 +29,7 @@ patches: [
   "readline.patch"
   "netbsd_fam.patch"
 ]
+available: os != "win32"
 synopsis: "Build system designed for scalability and portability"
 flags: light-uninstall
 extra-files: [

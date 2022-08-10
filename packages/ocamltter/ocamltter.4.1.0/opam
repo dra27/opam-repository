@@ -30,6 +30,7 @@ depends: [
   "tiny_json"
   "ppx_monadic"
 ]
+available: os != "win32"
 synopsis: "The OCAMLTTER OAuth1 library and twitter, flickr clients"
 description: """
 OCAMLTTER is an OAuth1 library with a CUI twitter client and a flickr uploader.

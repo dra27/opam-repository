@@ -10,6 +10,7 @@ depends: [
   "ocamlfind"
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 synopsis: "MirageOS filesystem utilities"
 url {
   src: "https://github.com/mirage/mirage-fs/tarball/mirage-fs-0.3.0"

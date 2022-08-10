@@ -7,6 +7,7 @@ build: [
   [make]
 ]
 dev-repo: "git+https://github.com/masateruk/micro-caml"
+available: os != "win32"
 synopsis: "Translate OCaml code into C code"
 depends: ["ocaml"]
 extra-files: ["ucaml.install" "md5=25d555ca28a54aded0ee7aba4ab80d83"]

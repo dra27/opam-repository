@@ -4,6 +4,7 @@ build: [
   ["./configure" "--prefix" prefix]
   [make]
 ]
+available: os != "win32"
 install: [make "install"]
 synopsis: "The Open Source eDonkey client"
 depends: [

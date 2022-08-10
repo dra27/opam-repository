@@ -14,6 +14,7 @@ depends: [
   "xml-light"
   "ounit"
 ]
+available: os != "win32"
 synopsis: "OCaml parser for OFX files"
 description:
   "This library includes an Ofx type that maps to an OFX file. The OFX file-format is an XML-based format for storing data about financial transactions."

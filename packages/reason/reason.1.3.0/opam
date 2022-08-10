@@ -32,6 +32,7 @@ depends: [
 conflicts: [
   "utop" {< "1.17"}
 ]
+available: os != "win32"
 synopsis: "Reason: Meta Language Toolchain"
 description: """
 reason allows development of Meta Language syntax trees in non-text format. It

@@ -19,6 +19,7 @@ depexts: [
 ]
 dev-repo: "git+https://github.com/mirage/ocaml-gnt"
 install: [make "PREFIX=%{prefix}%" "install"]
+available: os != "win32"
 synopsis: "Xen grant table bindings"
 description: """
 These allow your program (running either in userspace or in kernelspace

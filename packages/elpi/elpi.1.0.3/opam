@@ -25,6 +25,7 @@ depends: [
   "ocaml-migrate-parsetree" {< "2.0.0"}
   "re"
 ]
+available: os != "win32"
 synopsis: "ELPI - Embeddable λProlog Interpreter"
 description: """
 ELPI implements a variant of λProlog enriched with Constraint Handling Rules,

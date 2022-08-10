@@ -32,3 +32,4 @@ url {
   checksum: "md5=13f2cb1e3b9d90348852252fb0f2d09f"
   mirrors: "https://mirrors.aegis.cylab.cmu.edu/bap/2.3.0/v2.3.0.tar.gz"
 }
+available: os != "win32"

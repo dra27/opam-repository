@@ -29,3 +29,4 @@ url {
 extra-files: [
   [ "with-re.patch" "sha256=96ca06d5e11337ce9cac4cde13d05965f698946223a592e0c03c3abd4461ca3f" ]
 ]
+available: os != "win32"

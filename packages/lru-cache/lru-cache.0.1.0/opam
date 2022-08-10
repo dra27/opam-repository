@@ -19,6 +19,7 @@ depends: [
   "ocaml" {>= "4.02.0"}
   "ocamlfind"
 ]
+available: os != "win32"
 synopsis: "A simple implementation of a LRU cache."
 description: """
 ocaml-lru-cache is a simple OCaml implementation of a cache using

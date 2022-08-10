@@ -17,6 +17,7 @@ depends: [
   "ocaml" {>= "4.04.0" & < "4.13"}
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 install: [make "install"]
 synopsis:
   "OCaml bytecode library tools to read, write and evaluate OCaml bytecode files"

@@ -27,6 +27,7 @@ conflicts: [
   "lwt" {<"2.5.2"}
   "lwt" {>= "5.0.0"}
 ]
+available: os != "win32"
 synopsis: "Declaring terminals."
 description: """
 Notty is a declarative terminal library for OCaml structured around a notion

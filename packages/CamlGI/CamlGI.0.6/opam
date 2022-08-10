@@ -8,6 +8,7 @@ depends: [
   "camlp4"
 ]
 install: [make "install"]
+available: os != "win32"
 synopsis: "FastCGI and CGI library"
 description: """
 CamlGI is a library to enable you to write CGI and FastCGI in

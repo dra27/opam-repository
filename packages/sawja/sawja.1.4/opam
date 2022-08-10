@@ -10,6 +10,7 @@ depends: [
   "ocamlfind"
   "javalib" {= "2.2.2"}
 ]
+available: os != "win32"
 install: [make "install"]
 synopsis:
   "Provide a high level representation of Java bytecode programs and static analysis tools."

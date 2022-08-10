@@ -16,6 +16,7 @@ build: [
   ]
   [make]
 ]
+available: os != "win32"
 install: [make "install"]
 synopsis:
   "Text-based front-end to Remind, a sophisticated calendar and alarm program"

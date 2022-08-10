@@ -13,6 +13,7 @@ depends: [
   "ocamlfind" {build}
   "omake" {build & < "0.10"}
 ]
+available: os != "win32"
 install: [
   [ "ocaml" "setup.ml" "-install" ]
 ]

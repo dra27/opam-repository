@@ -28,3 +28,4 @@ url {
   src: "https://github.com/janestreet/async_unix/archive/v0.13.1.tar.gz"
   checksum: "md5=0393b0971fa8003bb190223e486dc70e"
 }
+available: os != "win32"

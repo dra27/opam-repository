@@ -26,6 +26,7 @@ depends: [
   "magic-mime" {>= "1.0"}
   "base64" {>= "2.0" & < "3.0.0"}
 ]
+available: os != "win32"
 synopsis:
   "Components to create web applications using js_of_ocaml and websockets."
 description: "Components include directories, file editor, message box."

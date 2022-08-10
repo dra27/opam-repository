@@ -22,6 +22,7 @@ depends: [
   "ocamlfind" {build}
   "ounit" {with-test & >= "2.0.0"}
 ]
+available: os != "win32"
 synopsis: "Functions to manipulate real file (POSIX like) and filename."
 flags: light-uninstall
 url {

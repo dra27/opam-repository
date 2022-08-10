@@ -41,3 +41,4 @@ url {
   src: "https://github.com/ocsigen/eliom/archive/6.3.0.tar.gz"
   checksum: "md5=9b04857b90f3872715471cc91314fe9d"
 }
+available: os != "win32"

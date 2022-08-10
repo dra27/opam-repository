@@ -11,6 +11,7 @@ depends: [
   "ocamlrss" {>= "2.0" & < "2.1.0"}
   "pcre"
 ]
+available: os != "win32"
 install: [make "install"]
 synopsis:
   "A static web site generator, able to handle blog posts as well as regular pages."

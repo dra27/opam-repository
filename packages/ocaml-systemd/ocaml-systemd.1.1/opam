@@ -20,6 +20,7 @@ depexts: [
   ["libsystemd-dev"] {os-family = "debian"}
   ["systemd-devel"] {os-distribution = "centos"}
 ]
+available: os != "win32"
 synopsis: "OCaml module for native access to the systemd facilities"
 description: """
 * Logging to the Journal

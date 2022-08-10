@@ -15,3 +15,4 @@ url {
   src: "https://github.com/xapi-project/cdrom/archive/v0.9.4.tar.gz"
   checksum: "md5=a8dd8e015afc44e8b7d65a9ef62d8fcd"
 }
+available: os != "win32"

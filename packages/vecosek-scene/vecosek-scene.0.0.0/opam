@@ -7,6 +7,7 @@ homepage: "https://gitlab.com/smondet/vecosek"
 bug-reports: "https://gitlab.com/smondet/vecosek/issues"
 dev-repo: "git+https://gitlab.com/smondet/vecosek.git"
 license: "ISC"
+available: os != "win32"
 build: [
   ["ocaml" "please.ml" "configure"]
   ["jbuilder" "build" "-p" "vecosek-scene" "-j" jobs ]

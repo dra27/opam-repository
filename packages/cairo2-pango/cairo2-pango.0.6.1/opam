@@ -31,3 +31,4 @@ url {
     "https://github.com/Chris00/ocaml-cairo/releases/download/0.6.1/cairo2-0.6.1.tbz"
   checksum: "md5=468f8fdb88431b2cc6c2edcab5082e73"
 }
+available: os != "win32"

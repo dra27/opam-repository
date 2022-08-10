@@ -36,7 +36,7 @@ depexts: [
     {os-distribution = "gentoo"}
   ["boost" "binutils"] {os-distribution = "arch"}
 ]
-available: os != "macos"
+available: os != "macos" & os != "win32"
 post-messages: [
   "This package requires llvm-3.8, clang-3.8, boost and binutils" {failure}
 ]

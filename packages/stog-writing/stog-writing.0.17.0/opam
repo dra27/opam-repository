@@ -15,6 +15,7 @@ depends: [
   "stog" {>= "0.17.0" & < "0.18"}
   "menhir" {>= "20120123"}
 ]
+available: os != "win32"
 synopsis:
   "Plugin for Stog to use footnotes and bibliographies in stog-generated web sites."
 description: "No longer description :)"

@@ -15,6 +15,7 @@ depends: [
   "ocamlnet" {>= "3.6" & != "4.1.9"}
   "ocamlrss" {>= "2.2.2"}
 ]
+available: os != "win32"
 install: [make "install-lib"]
 synopsis:
   "A static web site generator, able to handle blog posts as well as regular pages."

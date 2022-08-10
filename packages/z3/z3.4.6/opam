@@ -23,6 +23,7 @@ depends: [
   "conf-python-2-7" {build}
   "conf-c++" {build}
 ]
+available: os != "win32"
 x-ci-accept-failures: ["debian-unstable"]
 synopsis: "Z3 solver"
 flags: light-uninstall

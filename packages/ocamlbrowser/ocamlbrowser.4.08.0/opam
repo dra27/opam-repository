@@ -30,3 +30,4 @@ url {
   src: "https://github.com/garrigue/labltk/archive/8.06.6.tar.gz"
   checksum: "md5=9afcf033a4d9f62430a3157f89349b67"
 }
+available: os != "win32"

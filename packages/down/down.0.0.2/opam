@@ -50,3 +50,4 @@ url {
 archive: "https://erratique.ch/software/down/releases/down-0.0.2.tbz"
 checksum: "dbf05954ba652009bf1de5356145d09f"
 }
+available: os != "win32"

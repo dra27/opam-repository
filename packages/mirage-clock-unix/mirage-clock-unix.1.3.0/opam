@@ -21,6 +21,7 @@ build: [
   [ "jbuilder" "subst" "-p" name ] {dev}
   [ "jbuilder" "build" "-p" name "-j" jobs ]
 ]
+available: os != "win32"
 synopsis: "Libraries and module types for portable clocks"
 description: """
 This library implements portable support for an operating system timesource

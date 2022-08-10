@@ -25,3 +25,4 @@ url {
   src: "https://framagit.org/nberth/mlcuddidl/-/archive/3.0.7/mlcuddidl-3.0.7.tar.gz"
   checksum: "md5=0b726780bd06b7156a621efdf6df164f"
 }
+available: os != "win32"

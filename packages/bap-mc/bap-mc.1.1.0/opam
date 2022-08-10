@@ -27,6 +27,7 @@ depends: [
   "bap-std" {= "1.1.0"}
   "cmdliner"
 ]
+available: os != "win32"
 synopsis: "BAP machine instruction playground"
 description: "A BAP version of llvm-mc tool."
 flags: light-uninstall

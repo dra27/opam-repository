@@ -69,3 +69,4 @@ url {
 archive: "http://erratique.ch/software/vg/releases/vg-0.9.2.tbz"
 checksum: "87f2f4d8528cbdb3aa4f1433783e9f42"
 }
+available: os != "win32"

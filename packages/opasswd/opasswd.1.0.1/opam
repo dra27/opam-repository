@@ -21,6 +21,7 @@ depends: [
   "ctypes-foreign"
 ]
 tags: [ "org:xapi-project" ]
+available: os != "win32"
 synopsis:
   "OCaml bindings to the glibc passwd file and shadow password file interface."
 flags: light-uninstall

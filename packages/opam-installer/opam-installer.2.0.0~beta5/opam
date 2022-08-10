@@ -25,6 +25,7 @@ depends: [
   "cmdliner" {>= "0.9.8"}
   "jbuilder" {>= "1.0+beta12"}
 ]
+available: os != "win32"
 synopsis: "Installation of files to a prefix, following opam conventions"
 url {
   src: "https://github.com/ocaml/opam/archive/2.0.0-beta5.tar.gz"

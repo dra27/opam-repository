@@ -17,6 +17,7 @@ install: [
   ["sh" "./install_man.sh"]
   ["ocaml" "setup.ml" "-install"]
 ]
+available: os != "win32"
 remove: ["ocaml" "%{etc}%/valentine/_oasis_remove_.ml" "%{etc}%/valentine"]
 depends: [
   "ocaml" {>= "4.02.0"}

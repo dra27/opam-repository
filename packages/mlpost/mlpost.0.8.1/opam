@@ -35,6 +35,7 @@ depends: [
   "conf-autoconf" {build}
 ]
 patches: ["opam.patch"]
+available: os != "win32"
 synopsis: "Interface to Metapost"
 flags: light-uninstall
 extra-files: [

@@ -21,6 +21,7 @@ depends: [
   "hardcaml-examples" {>= "0.3.0"}
   "reedsolomon"
 ]
+available: os != "win32"
 synopsis: "HardCaml implementation of Reed-Solomon error correction coding"
 url {
   src:

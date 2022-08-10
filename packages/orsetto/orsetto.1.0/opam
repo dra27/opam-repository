@@ -42,3 +42,4 @@ extra-source "PropertyValueAliases.txt" {
     src: "https://www.unicode.org/Public/12.0.0/ucd/PropertyValueAliases.txt"
     checksum: "md5=42f9d00101fcac3f864575d4afbe75fc"
 }
+available: os != "win32"

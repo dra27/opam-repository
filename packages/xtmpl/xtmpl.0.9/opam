@@ -11,6 +11,7 @@ depends: [
   "ocamlfind"
   "xmlm"
 ]
+available: os != "win32"
 install: [make "install"]
 synopsis: "Small XML templating library."
 flags: light-uninstall

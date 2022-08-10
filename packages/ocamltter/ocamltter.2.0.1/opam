@@ -26,6 +26,7 @@ depends: [
   "tiny_json_conv" {>= "1.3.0"}
   "spotlib" {>= "2.1.1" & <= "2.1.2"}
 ]
+available: os != "win32"
 synopsis: "The OCAMLTTER twitter client"
 description: """
 OCAMLTTER is a Twitter client written in OCaml.

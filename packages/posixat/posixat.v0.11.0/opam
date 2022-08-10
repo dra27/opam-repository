@@ -18,6 +18,7 @@ depends: [
   "jbuilder" {>= "1.0+beta18.1"}
   "ocaml-migrate-parsetree" {>= "1.0" & < "2.0.0"}
 ]
+available: os != "win32"
 synopsis: "Bindings to the posix *at functions"
 description: """
 Posixat is a small library that just binds the various *at posix

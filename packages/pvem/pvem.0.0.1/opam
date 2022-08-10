@@ -10,6 +10,7 @@ depends: [
   "ocaml" {>= "4.00.0"}
   "ocamlfind"
 ]
+available: os != "win32"
 install: ["ocaml" "please.ml" "install"]
 synopsis: "Polymorphic-Variants-based Error Monad"
 description: """

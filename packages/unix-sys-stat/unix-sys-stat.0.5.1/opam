@@ -25,6 +25,7 @@ depends: [
 ]
 depopts: ["base-unix" "lwt"]
 conflicts: ["lwt" {< "2.4.7"} "lwt" {>= "4.0.0"}]
+available: os != "win32"
 synopsis:
   "ocaml-unix-sys-stat provides access to the features exposed in sys/stat.h"
 description: """

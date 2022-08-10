@@ -23,6 +23,7 @@ depends: [
   "ocamlbuild" {build}
 ]
 install: ["sh" "./compile.sh" "install" "3.4" make prefix lib]
+available: os != "win32"
 synopsis: "The official LLVM binding"
 description: "Note: LLVM should be installed first."
 extra-files: [

@@ -18,6 +18,7 @@ depexts: [
   ["gdbm"] {os-distribution = "arch"}
   ["sys-libs/gdbm"] {os-distribution = "gentoo"}
 ]
+available: os != "win32"
 synopsis: "Virtual package relying on gdbm"
 description:
   "This package can only install if the gdbm or ndbm library is installed on the system."

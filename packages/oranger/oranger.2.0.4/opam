@@ -37,3 +37,4 @@ url {
   src: "https://github.com/UnixJunkie/oranger/archive/v2.0.4.tar.gz"
   checksum: "md5=c95f50d6c076ac4abf45c9f6f9edba57"
 }
+available: os != "win32"

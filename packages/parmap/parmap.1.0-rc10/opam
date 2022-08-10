@@ -20,6 +20,7 @@ depends: [
   "ocamlfind" {build}
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 synopsis: "Minimalistic library allowing to exploit multicore architecture"
 description: """
 Parmap is a minimalistic library allowing to exploit multicore

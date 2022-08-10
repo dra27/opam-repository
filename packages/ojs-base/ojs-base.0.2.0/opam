@@ -19,6 +19,7 @@ depends: [
   "yojson" {= "1.1.8"}
   "ppx_deriving_yojson" {= "2.0"}
 ]
+available: os != "win32"
 install: [make "install"]
 synopsis:
   "Components to create web applications using js_of_ocaml and websockets"

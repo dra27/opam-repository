@@ -18,6 +18,7 @@ depends: [
 ]
 depopts: ["deriving"]
 conflicts: ["deriving" {< "0.6"}]
+available: os != "win32"
 synopsis: "Compiler from OCaml bytecode to Javascript"
 flags: light-uninstall
 url {

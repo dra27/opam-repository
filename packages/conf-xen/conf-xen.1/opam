@@ -19,7 +19,7 @@ depexts: [
   ["xenstore"] {os-distribution = "arch"}
   ["xen-tools"] {os = "freebsd"}
 ]
-available: os != "macos"
+available: os != "macos" & os != "win32"
 synopsis:
   "Virtual package relying on Xen headers"
 description: """

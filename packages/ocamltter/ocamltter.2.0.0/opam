@@ -17,6 +17,7 @@ depends: [
 ]
 dev-repo: "git+https://github.com/yoshihiro503/ocamltter"
 install: ["ocaml" "setup.ml" "-install"]
+available: os != "win32"
 synopsis: "The OCAMLTTER twitter client"
 description: """
 OCAMLTTER is a Twitter client written in OCaml.

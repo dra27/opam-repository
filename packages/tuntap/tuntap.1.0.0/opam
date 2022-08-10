@@ -22,6 +22,7 @@ depends: [
 ]
 dev-repo: "git+https://github.com/mirage/ocaml-tuntap"
 install: [make "PREFIX=%{prefix}%" "install"]
+available: os != "win32"
 synopsis: "TUN/TAP bindings"
 description: """
 This is an OCaml library for handling TUN/TAP devices.  TUN refers to layer 3

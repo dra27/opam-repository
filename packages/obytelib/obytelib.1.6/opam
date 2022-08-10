@@ -20,3 +20,4 @@ url {
   src: "https://github.com/bvaugon/obytelib/archive/refs/tags/1.6.tar.gz"
   checksum: "md5=fdceccf13c6f3d046f0b0372962b5711"
 }
+available: os != "win32"

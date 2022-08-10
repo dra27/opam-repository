@@ -9,6 +9,7 @@ depends: [
   "ocaml" {< "4.03.0"}
   "ocamlfind"
 ]
+available: os != "win32"
 install: [make "install" "DESTDIR=%{lib}%"]
 synopsis:
   "Allows to use in-memory data structures which are larger than available memory and so are kept in swap"

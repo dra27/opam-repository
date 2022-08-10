@@ -36,6 +36,7 @@ depends: [
   "camomile"
   "camlp4"
 ]
+available: os != "win32"
 install: [make "install"]
 synopsis:
   "Provides enough service to build a basic internationalized program"

@@ -21,6 +21,7 @@ depends: [
   "re" {>= "1.7.3"}
   "iri"
 ]
+available: os != "win32"
 synopsis: "XML templating library and ppx."
 description:
   "Provide an XML parser, templating and rewrite engine for XML documents."

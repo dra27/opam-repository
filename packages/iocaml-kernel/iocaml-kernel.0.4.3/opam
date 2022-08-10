@@ -29,3 +29,4 @@ url {
   src: "https://github.com/andrewray/iocaml/archive/v0.4.3.tar.gz"
   checksum: "md5=08f5ef3e7eea3e7f8c1745f7ee7a374b"
 }
+available: os != "win32"

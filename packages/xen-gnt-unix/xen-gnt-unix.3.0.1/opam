@@ -18,6 +18,7 @@ depends: [
   "io-page-unix" {>= "2.0.0"}
   "conf-xen" {build}
 ]
+available: os != "win32"
 synopsis: "Grant table bindings for OCaml."
 description: """
 These are used to create Xen device driver "backends" (servers)

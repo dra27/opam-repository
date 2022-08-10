@@ -26,6 +26,7 @@ conflicts: [
   "ocb-stubblr" {<"0.1.0"}
   "lwt" {<"2.5.2"}
 ]
+available: os != "win32"
 synopsis: "Declaring terminals"
 description: """
 Notty is a declarative terminal library for OCaml structured around a notion

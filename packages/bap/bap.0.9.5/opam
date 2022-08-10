@@ -67,6 +67,7 @@ depexts:
     "llvm"
     "m4"
   ] {os-distribution = "ubuntu"}
+available: os != "win32"
 synopsis: "Binary Analysis Platform"
 description: """
 BAP library provides basic facilities for performing binary

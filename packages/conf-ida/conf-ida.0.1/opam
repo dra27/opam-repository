@@ -15,6 +15,7 @@ depends: [
 ]
 substs: [ "find-ida.ml" ]
 flags: [ conf ]
+available: os != "win32"
 x-ci-accept-failures: ["debian-unstable"]
 
 synopsis: "Checks that IDA Pro is installed"

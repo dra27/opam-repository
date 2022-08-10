@@ -15,6 +15,7 @@ depends: [
   "ocamlbuild" {build}
 ]
 depexts: ["linux-headers"] {os-distribution = "alpine"}
+available: os != "win32"
 synopsis: "A platform-independent library to read and write raw packets."
 description: """
 Rawlink is an ocaml library for sending and receiving raw packets at the link

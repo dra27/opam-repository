@@ -24,6 +24,7 @@ depends: [
   "bap-demangle" {= "1.1.0"}
   "text-tags"
 ]
+available: os != "win32"
 synopsis: "Print plugin - print project in various formats"
 url {
   src: "https://github.com/BinaryAnalysisPlatform/bap/archive/v1.1.0.tar.gz"

@@ -31,3 +31,4 @@ url {
     "https://github.com/Z3Prover/z3/archive/z3-4.8.1.tar.gz"
   checksum: "md5=aa2a5f2c029114db52ddc91027ab446b"
 }
+available: os != "win32"

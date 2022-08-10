@@ -40,3 +40,4 @@ url {
     "md5=adaea0b3bc67b24df5d6eec800d249f7"
   ]
 }
+available: os != "win32"

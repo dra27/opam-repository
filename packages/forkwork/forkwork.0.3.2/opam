@@ -19,6 +19,7 @@ depends: [
 depopts: ["kaputt"]
 dev-repo: "git+https://github.com/mlin/forkwork"
 install: ["ocaml" "setup.ml" "-install"]
+available: os != "win32"
 synopsis: "Fork child processes to perform work on multiple cores"
 description: """
 ForkWork is intended for workloads that a master process can partition

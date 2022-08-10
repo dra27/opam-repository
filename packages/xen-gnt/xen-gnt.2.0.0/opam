@@ -18,6 +18,7 @@ depends: [
 depexts: [
   ["libxen-dev"] {os-family = "debian"}
 ]
+available: os != "win32"
 dev-repo: "git+https://github.com/mirage/ocaml-gnt"
 install: [make "PREFIX=%{prefix}%" "install"]
 synopsis: "Xen grant table bindings"

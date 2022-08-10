@@ -49,3 +49,4 @@ depends: [
 depopts: [ "conf-swi-prolog" ]
 
 messages: [ "Note that if you wish to use the deduction features of MetAcsl, you must install the conf-swi-prolog package (and swi-prolog itself)" {!conf-swi-prolog:installed} ]
+available: os != "win32"

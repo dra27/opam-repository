@@ -15,6 +15,7 @@ depends: [
   "mlbdd"
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 synopsis: "Abstract domain library for sets"
 description: """
 SETr is an interface for set abstractions. It defines common infrastructure for

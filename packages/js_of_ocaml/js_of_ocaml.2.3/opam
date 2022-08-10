@@ -26,6 +26,7 @@ conflicts: [
   "tyxml"    {>= "3.6.0"}
   "reactiveData" {>= "0.2"}
 ]
+available: os != "win32"
 synopsis: "Compiler from OCaml bytecode to Javascript"
 flags: light-uninstall
 url {

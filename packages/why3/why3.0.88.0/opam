@@ -21,6 +21,7 @@ tags: [
   "automated theorem prover"
   "interactive theorem prover"
 ]
+available: os != "win32"
 depends: [
   "ocaml" {>= "4.02.3"}
   "why3-base" {= "0.88.0"}

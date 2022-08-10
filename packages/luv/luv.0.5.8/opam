@@ -39,3 +39,4 @@ url {
   src: "https://github.com/aantron/luv/releases/download/0.5.8/luv-0.5.8.tar.gz"
   checksum: "md5=9d0e3498b9f59993b0d42f80793d8fad"
 }
+available: os != "win32"

@@ -21,6 +21,7 @@ depends: [
 depexts: [
   ["libxen-dev"] {os-family = "debian"}
 ]
+available: os != "win32"
 install: [make "PREFIX=%{prefix}%" "install"]
 synopsis: "Xen grant table bindings"
 description: """

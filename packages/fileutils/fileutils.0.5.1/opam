@@ -19,6 +19,7 @@ depends: [
   "ounit" {>= "2.0.0"}
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 synopsis:
   "Library to provide pure OCaml functions to manipulate real file (POSIX like) and filename."
 flags: light-uninstall

@@ -11,6 +11,7 @@ depends: [
 ]
 patches: ["opam.patch"]
 install: [make "install" "OCAMLLIBDIR=%{lib}%" "HOME=%{prefix}%"]
+available: os != "win32"
 synopsis: "File-synchronization tool for Unix and Windows"
 description: """
 Unison is a file-synchronization tool for Unix and Windows. It allows

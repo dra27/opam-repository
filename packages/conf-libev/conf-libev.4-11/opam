@@ -21,6 +21,7 @@ depexts: [
   ["libev"] {os = "openbsd"}
   ["libev"] {os-distribution = "arch"}
 ]
+available: os != "win32"
 synopsis: "High-performance event loop/event model with lots of features"
 description: """
 Libev is modelled (very loosely) after libevent and the Event perl

@@ -29,3 +29,4 @@ url {
   src: "https://github.com/rdicosmo/parmap/archive/1.0-rc11.tar.gz"
   checksum: "md5=e4935472fc0f22e362a4ac3626375ba5"
 }
+available: os != "win32"

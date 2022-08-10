@@ -23,6 +23,7 @@ x-ci-accept-failures: [
   "oraclelinux-7" # package not present by default
   "oraclelinux-8" # package not present by default
 ]
+available: os != "win32"
 synopsis: "Virtual package for GLPK (GNU Linear Programming Kit)"
 description: """
 This package relies on GLPK being installed on the system. It requires static

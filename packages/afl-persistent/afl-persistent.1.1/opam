@@ -8,6 +8,7 @@ license: "MIT"
 build:
 [[ "ocaml" "pkg/pkg.ml" "build"
            "--pinned" "%{pinned}%"]]
+available: os != "win32"
 depends: [
   "ocaml" {>= "4.05"}
   "topkg" {build & >= "0.7.6"}

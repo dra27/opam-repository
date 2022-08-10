@@ -24,6 +24,7 @@ depends: [
   "cryptokit"
   "base-unix"
 ]
+available: os != "win32"
 synopsis: "DAFT Allows File Transfers"
 description: """
 Securely move files using the command line; for example during

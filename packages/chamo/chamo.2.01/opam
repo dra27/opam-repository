@@ -13,6 +13,7 @@ depends: [
   "lablgtk" {>= "2.16.0" & < "2.18"}
   "pcre"
 ]
+available: os != "win32"
 install: [make "install"]
 synopsis:
   "A source code editor, even if it can be used to edit any text file."

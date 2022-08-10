@@ -23,6 +23,7 @@ depends: [
   "fileutils"
   "re"
 ]
+available: os != "win32"
 synopsis: "BAP function start identification benchmark game"
 flags: light-uninstall
 url {

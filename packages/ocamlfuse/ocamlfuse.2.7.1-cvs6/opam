@@ -31,3 +31,4 @@ url {
   src: "https://github.com/astrada/ocamlfuse/archive/v2.7.1_cvs6.tar.gz"
   checksum: "md5=e01b1a61338596c34f93d5cc5defe2ad"
 }
+available: os != "win32"

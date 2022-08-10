@@ -20,6 +20,7 @@ tags: [
   "automated theorem prover"
   "interactive theorem prover"
 ]
+available: os != "win32"
 build: [
   [
     "./configure"

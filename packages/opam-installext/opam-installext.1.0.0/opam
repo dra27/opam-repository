@@ -9,6 +9,7 @@ build: [make]
 install: [make "install" "PREFIX=%{prefix}%"]
 remove: ["rm" "-f" "%{prefix}%/bin/opam-installext"]
 post-messages: [ "installext is deprecated. Please `opam install depext` instead." ]
+available: os != "win32"
 synopsis: "OPAM plugin to install external system dependencies"
 description: """
 This plugin will use the `depexts` metadata in the OPAM database to install any

@@ -23,6 +23,7 @@ depends: [
   "ocamlbuild" {build}
   "conf-m4" {build}
 ]
+available: os != "win32"
 synopsis: "OCaml interface to the CUDD BDD library"
 flags: light-uninstall
 url {

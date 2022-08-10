@@ -45,3 +45,4 @@ url {
     "sha512=fc839959864e1a95250e83dd3eb7192da175a921c9fcd1e381be52875cbece126750aa7d0512341e2d6e252ba65a9b986434b3cbf9bd81b154f4aed6b42fed3f"
   ]
 }
+available: os != "win32"

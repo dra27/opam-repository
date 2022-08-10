@@ -23,6 +23,7 @@ depends: [
   "ocamlfind" {build}
   "pprint" {build}
 ]
+available: os != "win32"
 synopsis: "A tool for the analysis of Electrum formal specifications."
 description: """
 Electrum is a formal specification language based upon relational

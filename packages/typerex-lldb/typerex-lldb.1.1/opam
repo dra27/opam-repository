@@ -26,6 +26,7 @@ depends: [
   "conf-lldb" {= "3.5"}
   "lwt"
 ]
+available: os != "win32"
 synopsis:
   "A set of tools and libs built on top of the LLDB debugging framework"
 description: """

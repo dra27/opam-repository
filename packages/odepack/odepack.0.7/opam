@@ -30,3 +30,4 @@ url {
     "https://github.com/Chris00/ocaml-odepack/releases/download/0.7/odepack-0.7.tbz"
   checksum: "md5=8ea18c4c07ca934ddd09a1f911683f4d"
 }
+available: os != "win32"

@@ -28,6 +28,7 @@ depends: [
   "bap-llvm" {= "1.1.0"}
   "cmdliner"
 ]
+available: os != "win32"
 synopsis: "BAP x86 lifter"
 extra-files: ["setup-llvm-version.sh" "md5=d46974f2d2f7234cafefa4fdab89b1b4"]
 url {

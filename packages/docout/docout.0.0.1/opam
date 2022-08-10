@@ -4,6 +4,7 @@ maintainer: "seb@mondet.org"
 homepage: "https://bitbucket.org/smondet/docout"
 dev-repo: "git+https://bitbucket.org/smondet/docout.git"
 bug-reports: "https://bitbucket.org/smondet/docout/issues"
+available: os != "win32"
 build: [
     ["ocaml" "please.ml" "build"]
     ]

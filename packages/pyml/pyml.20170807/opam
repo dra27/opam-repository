@@ -13,6 +13,7 @@ depends: [
   "ocamlfind" {build}
 ]
 depopts: ["utop"]
+available: os != "win32"
 synopsis: "OCaml bindings for Python"
 url {
   src: "https://github.com/ocaml/opam-source-archives/raw/main/pyml-20170807.tar.gz"

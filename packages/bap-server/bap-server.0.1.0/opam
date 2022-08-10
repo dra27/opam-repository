@@ -46,3 +46,4 @@ url {
     "https://github.com/BinaryAnalysisPlatform/bap-server/archive/v0.1.0.tar.gz"
   checksum: "md5=9bb465ad8f216009cfb0eda23509e02e"
 }
+available: os != "win32"

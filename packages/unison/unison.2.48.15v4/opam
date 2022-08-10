@@ -27,3 +27,4 @@ url {
     "https://github.com/bcpierce00/unison/archive/v2.48.15v4.tar.gz"
   checksum: "md5=7b9e3905fa06d0b7621c705ceb92f432"
 }
+available: os != "win32"

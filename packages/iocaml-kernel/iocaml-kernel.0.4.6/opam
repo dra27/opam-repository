@@ -27,6 +27,7 @@ conflicts: [
 ]
 dev-repo: "git+https://github.com/andrewray/iocaml"
 install: [make "install"]
+available: os != "win32"
 synopsis: "An OCaml kernel for the IPython notebook."
 extra-files: ["4.00.1.patch" "md5=90ef664038efc80ba0352ff19297aa4f"]
 url {

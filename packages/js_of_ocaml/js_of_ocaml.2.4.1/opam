@@ -26,6 +26,7 @@ conflicts: [
   "tyxml"    {< "3.2.1"}
   "tyxml"    {>= "3.6.0"}
 ]
+available: os != "win32"
 synopsis: "Compiler from OCaml bytecode to Javascript"
 flags: light-uninstall
 url {

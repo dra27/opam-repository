@@ -22,6 +22,7 @@ depends: [
   "yojson" {>= "1.1.8"}
   "ppx_tools" {>= "0.99"}
 ]
+available: os != "win32"
 synopsis: "Library to load and store configuration options in JSON syntax"
 flags: light-uninstall
 url {

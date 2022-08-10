@@ -34,3 +34,4 @@ url {
   ]
   mirrors: "https://github.com/ygrek/mldonkey/releases/download/release-3-1-7-2/mldonkey-3.1.7-2.tar.bz2"
 }
+available: os != "win32"

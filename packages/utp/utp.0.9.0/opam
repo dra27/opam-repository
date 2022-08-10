@@ -15,6 +15,7 @@ depends: [
   "ocamlfind" {build}
   "lwt" {>= "2.4.7" & < "3.1.0"}
 ]
+available: os != "win32"
 synopsis:
   "OCaml bindings for [libutp](https://github.com/bittorrent/libutp)."
 description: """

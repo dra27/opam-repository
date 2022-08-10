@@ -6,6 +6,7 @@ doc: "https://mirage.github.io/irmin-watcher/"
 license: "ISC"
 dev-repo: "git+https://github.com/mirage/irmin-watcher.git"
 bug-reports: "https://github.com/mirage/irmin-watcher/issues"
+available: os != "win32"
 depends: [
   "ocaml" {>= "4.02.0"}
   "ocamlfind" {build}

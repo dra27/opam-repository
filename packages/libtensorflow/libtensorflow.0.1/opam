@@ -34,3 +34,4 @@ extra-source "libtensorflow-darwin.tar.gz" {
   src: "https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-darwin-x86_64-1.10.0.tar.gz"
   checksum: "md5=402c3ac68d7467c176e64c65bf03f2e6"
 }
+available: os != "win32"

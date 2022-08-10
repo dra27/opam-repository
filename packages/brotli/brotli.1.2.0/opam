@@ -26,6 +26,7 @@ depends: [
 depexts: [
   ["clang" "libc++-dev"] {os-family = "debian"}
 ]
+available: os != "win32"
 messages: [
  "Note, you'll need to have libbrotli installed: https://github.com/bagder/libbrotli"
 ]

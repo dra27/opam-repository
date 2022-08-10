@@ -44,3 +44,4 @@ url {
     "https://github.com/Chris00/L-BFGS-ocaml/releases/download/0.9.1/lbfgs-0.9.1.tbz"
   checksum: "md5=ea8f6d93fee97aea47030510bebf4d6a"
 }
+available: os != "win32"

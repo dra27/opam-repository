@@ -39,3 +39,4 @@ url {
   src: "https://github.com/UnixJunkie/parany/archive/v7.0.2.tar.gz"
   checksum: "md5=5c4019324c06585ca4338f96c51fce6c"
 }
+available: os != "win32"

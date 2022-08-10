@@ -18,6 +18,7 @@ depends: [
   "ocamlbuild" {build}
 ]
 install: [make "install"]
+available: os != "win32"
 synopsis: "API for the Github website"
 flags: light-uninstall
 url {

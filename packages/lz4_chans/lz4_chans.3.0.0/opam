@@ -27,3 +27,4 @@ url {
   src: "https://github.com/UnixJunkie/lz4-chans/archive/v3.0.0.tar.gz"
   checksum: "md5=99c95f75ee1c57c7e59820ab7046e777"
 }
+available: os != "win32"

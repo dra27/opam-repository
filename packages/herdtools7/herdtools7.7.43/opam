@@ -16,6 +16,7 @@ depends: [
   "ocaml" {>= "4.02.0"}
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 synopsis:
   "Short description herdtools7, a tool suite for shared memory models."
 description: """

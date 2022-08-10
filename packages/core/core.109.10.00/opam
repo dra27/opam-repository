@@ -17,6 +17,7 @@ depends: [
   "comparelib" {= "109.10.00"}
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 install: [make "install"]
 synopsis: "Industrial strength alternative to OCaml's standard library"
 description: """

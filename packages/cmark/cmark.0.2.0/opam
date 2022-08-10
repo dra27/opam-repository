@@ -17,6 +17,7 @@ depends: [
 depexts: [
   ["cmark"] {os = "macos" & os-distribution = "homebrew"}
 ]
+available: os != "win32"
 synopsis:
   "OCaml bindings for the CMark Common Markdown parsing and rendering library."
 url {

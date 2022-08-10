@@ -28,3 +28,4 @@ url {
   src: "https://github.com/ocaml-community/obus/archive/1.2.0.tar.gz"
   checksum: "md5=0896d5078bfd486a65cf9fa73a984b3f"
 }
+available: os != "win32"

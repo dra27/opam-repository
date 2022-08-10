@@ -29,3 +29,4 @@ url {
   src: "https://github.com/ocaml/opam-source-archives/raw/main/rfsm-1.4.2.tar.gz"
   checksum: "md5=2febda48d5fed77b887778f65d4c2685"
 }
+available: os != "win32"

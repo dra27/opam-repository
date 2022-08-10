@@ -21,3 +21,4 @@ url {
     src: "https://bitbucket.org/jhw/conjury/get/r2.0.tar.gz"
     checksum: "md5=515624798f90fe6ec07a03e7cd5aa726"
 }
+available: os != "win32"

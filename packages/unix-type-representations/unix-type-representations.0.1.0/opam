@@ -23,6 +23,7 @@ depends: [
   "ctypes-foreign" {with-test}
   "ounit" {with-test}
 ]
+available: os != "win32"
 synopsis:
   "Functions that expose the underlying types of some abstract types in the Unix module."
 flags: light-uninstall

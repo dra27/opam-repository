@@ -24,6 +24,7 @@ depends: [
   "pcre"
   "camlp4"
 ]
+available: os != "win32"
 install: [make "install-lib"]
 synopsis:
   "A source code editor, even if it can be used to edit any text file."

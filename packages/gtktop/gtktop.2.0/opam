@@ -12,6 +12,7 @@ depends: [
   "lablgtk" {>= "2.16.0"}
   "conf-glade"
 ]
+available: os != "win32"
 install: [make "install"]
 synopsis: "A small library to ease the creation of graphical toplevels."
 dev-repo: "git+https://github.com/zoggy/gtktop.git"

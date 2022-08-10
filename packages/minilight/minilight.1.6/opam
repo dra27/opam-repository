@@ -28,6 +28,7 @@ build: [
   "ocaml/src/camera.ml"
   "ocaml/src/minilight.ml"
 ]
+available: os != "win32"
 synopsis: "Minimal global illumination renderer."
 description: """
 MiniLight is a minimal global illumination renderer. It is primarily an exercise

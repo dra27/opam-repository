@@ -26,6 +26,7 @@ depends: [
   "bap-abi" {= "1.1.0"}
   "bap-c" {= "1.1.0"}
 ]
+available: os != "win32"
 synopsis: "BAP ARM lifter"
 url {
   src: "https://github.com/BinaryAnalysisPlatform/bap/archive/v1.1.0.tar.gz"

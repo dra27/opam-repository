@@ -41,3 +41,4 @@ url {
   src: "http://ocsigen.org/download/eliom-3.0.2.tar.gz"
   checksum: "md5=ce0681a712c2c8e1e5f03d4fa7d85a3e"
 }
+available: os != "win32"

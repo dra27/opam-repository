@@ -22,6 +22,7 @@ depends: [
   "ppx_deriving" {>= "3.0"}
   "ppx_deriving_yojson" {>= "2.4"}
 ]
+available: os != "win32"
 synopsis: "JSON type providers"
 description: """
 A solution for dynamically creating JSON-based types from Web-hosted

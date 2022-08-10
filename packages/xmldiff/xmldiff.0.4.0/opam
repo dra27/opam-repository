@@ -21,6 +21,7 @@ depopts: ["js_of_ocaml"]
 conflicts: [
   "js_of_ocaml" {< "2.4.0"}
 ]
+available: os != "win32"
 install: [make "install"]
 synopsis: "Diffs on XML trees."
 flags: light-uninstall

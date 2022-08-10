@@ -23,6 +23,7 @@ depends: [
   "cmdliner"
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 install: [make "install"]
 synopsis: "FAT filesystem implementation"
 url {

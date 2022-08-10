@@ -13,6 +13,7 @@ depends: [
   "type_conv" {>= "112.01.00" & < "112.02.00"}
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 bug-reports: "https://github.com/janestreet/bin_prot/issues"
 dev-repo: "git+https://github.com/janestreet/bin_prot.git"
 install: [[make "install"]]

@@ -15,6 +15,7 @@ depends: [
   "ocamlfind"
   "javalib" {= "2.3.1"}
 ]
+available: os != "win32"
 synopsis:
   "Provide a high level representation of Java bytecode programs and static analysis tools."
 description: """

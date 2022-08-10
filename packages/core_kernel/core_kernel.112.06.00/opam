@@ -25,6 +25,7 @@ depends: [
   "variantslib" {>= "109.15.00" & < "109.16.00"}
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 patches: [
   "build_with_trunk.patch"
   "include_compatibility.patch"

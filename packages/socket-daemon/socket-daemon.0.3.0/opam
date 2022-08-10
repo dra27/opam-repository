@@ -25,6 +25,7 @@ depends: [
   "lwt" {>= "2.5" & < "4.0.0"}
   "ppx_deriving_yojson" {>= "3.0"}
 ]
+available: os != "win32"
 synopsis:
   "Create daemons listening to a socket for stop, restart, ..., orders"
 description: """

@@ -15,6 +15,7 @@ depends: [
   "ocamlfind" {build}
   "lwt"
 ]
+available: os != "win32"
 synopsis: "Process pool implementation for OCaml."
 flags: light-uninstall
 url {

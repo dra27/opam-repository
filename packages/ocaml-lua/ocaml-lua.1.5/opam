@@ -39,6 +39,7 @@ depexts: [
   ["lua-dev"] {os-distribution = "alpine"}
   ["lua51-devel"] {os-family = "suse"}
 ]
+available: os != "win32"
 install: [make "install"]
 synopsis: "Lua bindings"
 description: """

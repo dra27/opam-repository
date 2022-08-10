@@ -11,6 +11,7 @@ depends: [
   "camlp4"
 ]
 install: [make "install" "OCAMLLIB=%{lib}%"]
+available: os != "win32"
 synopsis: "Text editors/IDE helper module"
 description: """
 Odb-server provides services to code editors and integrated

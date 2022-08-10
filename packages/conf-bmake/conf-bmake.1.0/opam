@@ -21,6 +21,7 @@ depexts: [
   ["bmake"] {os-distribution = "ol"}
   ["bmake"] {os-distribution = "rhel"}
 ]
+available: os != "win32"
 synopsis: "Virtual package relying on a BSD Make compatible program"
 description: """
 This package can only install if a BSD Make compatible program is

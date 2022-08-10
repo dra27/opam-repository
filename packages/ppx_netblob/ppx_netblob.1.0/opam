@@ -17,6 +17,7 @@ depends: [
   "cohttp" {build & >= "0.13.0" & < "0.99"}
   "lwt" {build}
 ]
+available: os != "win32"
 synopsis: "fill strings with data collected from the internet"
 description: """
 this package is based on ppx_blob, except it uses cohttp to fetch blobs from

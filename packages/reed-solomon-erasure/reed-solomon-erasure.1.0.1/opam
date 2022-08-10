@@ -15,6 +15,7 @@ depends: [
   "ctypes"
   "ctypes-foreign"
 ]
+available: os != "win32"
 conflicts: [
   "dune"
 ]

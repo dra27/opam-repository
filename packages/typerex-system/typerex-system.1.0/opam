@@ -25,6 +25,7 @@ depends: [
   "typerex-clibs"
   "conf-zlib"
 ]
+available: os != "win32"
 remove: [
   [ "ocp-build" "uninstall" "-install-lib" lib "ocp-cpbackup" ]
   [ "ocp-build" "uninstall" "-install-lib" lib "ocp-fdupes" ]

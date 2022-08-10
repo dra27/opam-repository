@@ -33,6 +33,7 @@ depends: [
   "ocamlbuild" {build}
   "conf-autoconf" {build}
 ]
+available: os != "win32"
 synopsis: "Interface to Metapost"
 flags: light-uninstall
 extra-files: ["mlpost.install" "md5=44b10147a8e97efd1286ee03f4ba50e9"]

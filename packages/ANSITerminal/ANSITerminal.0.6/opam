@@ -21,6 +21,7 @@ depends: [
   "ocamlbuild" {build}
   "ocamlfind" {build}
 ]
+available: os != "win32"
 synopsis: "Allow to use the colors and cursor movements on ANSI terminals"
 description: """
 ANSITerminal is a module allowing to use the colors and cursor

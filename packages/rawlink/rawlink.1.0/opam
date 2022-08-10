@@ -39,3 +39,4 @@ url {
     "https://github.com/haesbaert/rawlink/releases/download/v1.0/rawlink-v1.0.tbz"
   checksum: "md5=90a85604ed73955f9fefedfd6b624598"
 }
+available: os != "win32"

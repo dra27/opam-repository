@@ -18,6 +18,7 @@ depends: [
   "base-unix"
   "ocamlnet"
 ]
+available: os != "win32"
 synopsis:
   "Parallelize any computation over independent items, even if there is an infinite number of them."
 flags: light-uninstall

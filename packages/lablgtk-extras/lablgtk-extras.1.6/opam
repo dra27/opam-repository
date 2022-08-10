@@ -21,6 +21,7 @@ depends: [
   "lablgtk" {>= "2.16.0"}
   "conf-gtksourceview" {= "2"}
 ]
+available: os != "win32"
 synopsis:
   "A collection of additional tools and libraries to develop ocaml applications based on Lablgtk2."
 description: """

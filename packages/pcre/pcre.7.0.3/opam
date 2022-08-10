@@ -13,6 +13,7 @@ depends: [
 ]
 dev-repo: "git+https://github.com/mmottl/pcre-ocaml"
 install: [make "install"]
+available: os != "win32"
 synopsis:
   "Interface to the PCRE (Perl-compatibility regular expressions) library"
 description: """

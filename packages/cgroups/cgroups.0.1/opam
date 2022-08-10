@@ -15,6 +15,7 @@ depends: [
   "base-unix"
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 synopsis: "An OCaml interface for the Linux control groups"
 description: """
 Cgroups is an OCaml library aimed at providing functions for

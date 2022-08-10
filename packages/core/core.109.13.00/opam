@@ -18,6 +18,7 @@ depends: [
   "herelib" {= "109.13.00"}
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 install: [make "install"]
 synopsis: "Industrial strength alternative to OCaml's standard library"
 description: """

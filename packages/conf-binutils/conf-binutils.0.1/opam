@@ -23,6 +23,7 @@ depexts: [
 ]
 synopsis: "Checks that binutils are installed"
 
+available: os != "win32"
 depends: [
   "ocaml"
   "base-unix"

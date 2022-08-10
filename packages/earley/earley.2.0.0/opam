@@ -30,3 +30,4 @@ url {
     "https://github.com/rlepigre/ocaml-earley/releases/download/2.0.0/earley-2.0.0.tbz"
   checksum: "md5=fe3c39748b8d79fc012ffbbc5210a9a6"
 }
+available: os != "win32"

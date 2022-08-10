@@ -10,6 +10,7 @@ depends: [
   "config-file" {>= "1.1"}
   "ocamlrss" {>= "2.0" & < "2.1.0"}
 ]
+available: os != "win32"
 install: [make "install"]
 synopsis:
   "A static web site generator, able to handle blog posts as well as regular pages."

@@ -5,6 +5,7 @@ homepage: "http://www.ocamlpro.com/blog/2011/08/10/ocaml-pack-functors.html"
 build: [
   [make]
 ]
+available: os != "win32"
 synopsis: "ocp-pack and ocp-split"
 description: """
 ocp-pack packs a list of sources in the same manner as the -pack option.

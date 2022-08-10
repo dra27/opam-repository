@@ -19,3 +19,4 @@ url {
   src: "https://github.com/chetmurthy/ledit/archive/ledit-2-05.tar.gz"
   checksum: "md5=44a5892905ae45b2e7b40b29ac904405"
 }
+available: os != "win32"

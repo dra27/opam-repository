@@ -27,6 +27,7 @@ authors: [
   "Fran\195\167ois Pessaux"
   "Pierre Weis"
 ]
+available: os != "win32"
 install: [
   [ "omake" "install" ]
 ]

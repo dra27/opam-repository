@@ -35,3 +35,4 @@ url {
 archive: "https://erratique.ch/software/tsdl/releases/tsdl-0.9.8.tbz"
 checksum: "369236c7a00e485381722e3d9bae66c6"
 }
+available: os != "win32"

@@ -27,3 +27,4 @@ url {
   src: "http://nberth.space/pool/mlcuddidl/mlcuddidl-3.0.5.tar.gz"
   checksum: "md5=ea9f57b449fcb12f4c2ac292e86865fc"
 }
+available: os != "win32"

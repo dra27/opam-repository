@@ -54,6 +54,7 @@ conflicts: [
 ]
 dev-repo: "git+https://github.com/ocsigen/ocsigenserver"
 install: [make "install"]
+available: os != "win32"
 synopsis: "A full-featured and extensible Web server"
 description: """
 It implements most features of the HTTP protocol, and has a very

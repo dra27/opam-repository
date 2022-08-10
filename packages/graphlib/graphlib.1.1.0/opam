@@ -29,6 +29,7 @@ depends: [
   "ocamlgraph"
   "regular"
 ]
+available: os != "win32"
 synopsis: "Generic Graph library"
 description: """
 Graphlib is a generic library that extends a well known OCamlGraph

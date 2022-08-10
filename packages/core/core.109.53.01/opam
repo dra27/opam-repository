@@ -25,6 +25,7 @@ depends: [
   "variantslib" {= "109.15.00"}
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 dev-repo: "git+https://github.com/janestreet/core"
 bug-reports: "https://github.com/janestreet/core/issues"
 install: [[make "install"]]

@@ -20,6 +20,7 @@ depends: [
 depexts: [
   ["libmilter-dev"] {os-family = "debian"}
 ]
+available: os != "win32"
 synopsis: "OCaml libmilter bindings"
 description: """
 This package provides OCaml bindings for sendmail's libmilter, allowing

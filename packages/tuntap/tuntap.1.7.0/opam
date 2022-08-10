@@ -41,3 +41,4 @@ url {
     "https://github.com/mirage/ocaml-tuntap/releases/download/v1.7.0/tuntap-v1.7.0.tbz"
   checksum: "md5=d571f02c7e2169e11bcc7e0292f70e65"
 }
+available: os != "win32"

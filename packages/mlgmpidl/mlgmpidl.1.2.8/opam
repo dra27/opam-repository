@@ -34,3 +34,4 @@ url {
   src: "https://github.com/nberth/mlgmpidl/archive/1.2.8.tar.gz"
   checksum: "md5=39878cf00005c01392d2f271afa33cd4"
 }
+available: os != "win32"

@@ -20,6 +20,7 @@ depends: [
   "ocamlfind"
   "xmlm"
 ]
+available: os != "win32"
 synopsis: "Small XML templating library."
 flags: light-uninstall
 url {

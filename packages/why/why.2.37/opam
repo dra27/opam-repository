@@ -21,6 +21,7 @@ tags: [
   "C"
   "ACSL"
 ]
+available: os != "win32"
 build: [
   ["./configure" "--prefix" prefix]
   [make]

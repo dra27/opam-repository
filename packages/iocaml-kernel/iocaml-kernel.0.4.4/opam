@@ -26,6 +26,7 @@ depexts: [
 ]
 dev-repo: "git+https://github.com/andrewray/iocaml"
 install: [make "install"]
+available: os != "win32"
 synopsis: "An OCaml kernel for the IPython notebook."
 url {
   src: "https://github.com/andrewray/iocaml/archive/v0.4.4.tar.gz"

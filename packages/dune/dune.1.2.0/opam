@@ -12,6 +12,7 @@ build: [
   ["./boot.exe" "--release" "--subst"] {pinned}
   ["./boot.exe" "--release" "-j" jobs]
 ]
+available: os != "win32"
 conflicts: [
   "jbuilder" {!= "transition"}
 ]

@@ -22,3 +22,4 @@ url {
   src: "http://wwwlehre.dhbw-stuttgart.de/~sschulz/WORK/E_DOWNLOAD/V_2.6/E.tgz"
   checksum: "sha512=20ba97779b81b215296215e6fb10db742c16684c6a38a4612ee2c28a72917aaea8f87daea4cd49557f5b47720c62cffd38445cf779e6690dd0f0924d26b37683"
 }
+available: os != "win32"

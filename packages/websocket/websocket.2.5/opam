@@ -44,6 +44,7 @@ conflicts: [
   "nocrypto" {< "0.5.0"}
 ]
 
+available: os != "win32"
 synopsis: "Websocket library"
 url {
   src: "https://github.com/vbmithr/ocaml-websocket/archive/2.5.tar.gz"

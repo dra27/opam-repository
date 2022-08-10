@@ -36,6 +36,7 @@ depexts: [
   ["mingw64-x86_64-gcc-fortran"] {os = "cygwin"}
   ["gcc"] {os = "macos" & os-distribution = "homebrew"}
 ]
+available: os != "win32"
 synopsis: "Bound-constrainted optimization in many variables"
 description: """
 This library provide an algorithm to minimize and maximize functions

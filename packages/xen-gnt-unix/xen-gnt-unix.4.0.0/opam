@@ -35,3 +35,4 @@ url {
     "https://github.com/mirage/ocaml-gnt/releases/download/v4.0.0/xen-gnt-v4.0.0.tbz"
   checksum: "md5=3d64522c82c663546ebb0904f52d7c05"
 }
+available: os != "win32"

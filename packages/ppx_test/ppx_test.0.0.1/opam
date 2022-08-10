@@ -22,6 +22,7 @@ depends: [
   "omake" {build}
   "pcre"
 ]
+available: os != "win32"
 synopsis: "A ppx replacement of pa_ounit."
 description: """
 ppx_test tries to replace pa_ounit. It provides the following syntax sugars:

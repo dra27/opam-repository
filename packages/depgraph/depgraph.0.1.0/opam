@@ -13,6 +13,7 @@ depends: [
   "cmdliner"
   "ocamlgraph"
 ]
+available: os != "win32"
 synopsis: "dot graphs out of ocamldep output"
 description: """
 depgraph will read source ml and mli source files from STDIN and use ocamldep

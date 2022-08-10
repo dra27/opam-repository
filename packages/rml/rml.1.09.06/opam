@@ -27,3 +27,4 @@ url {
   src: "http://rml.lri.fr/distrib/rml-1.09.06-2020-09-23.tar.gz"
   checksum: "md5=af5bfc1f6bd75e528f2ff7793e34284c"
 }
+available: os != "win32"

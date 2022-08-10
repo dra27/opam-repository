@@ -21,6 +21,7 @@ depends: [
 ]
 dev-repo: "git+https://github.com/mlin/forkwork"
 install: ["ocaml" "setup.ml" "-install"]
+available: os != "win32"
 synopsis: "Fork child processes to perform work on multiple cores."
 description: "https://github.com/mlin/forkwork"
 url {

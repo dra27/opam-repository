@@ -148,3 +148,4 @@ url {
   src: "https://frama-c.com/download/frama-c-19.0-Potassium.tar.gz"
   checksum: "md5=6120ea705d82a5f41a38d623da833d7f"
 }
+available: os != "win32"

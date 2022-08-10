@@ -21,6 +21,7 @@ depends: [
   "oasis" {build & >= "0.4"}
   "ocamlfind" {build}
 ]
+available: os != "win32"
 synopsis: "Simple readline like functionality with nice hints feature."
 description: """
 These are self contained OCaml bindings to linenoise,

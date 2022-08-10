@@ -11,6 +11,7 @@ remove: [["ocamlfind" "remove" "findlib-lint"]]
 depends: ["ocaml" "ocamlfind"]
 dev-repo: "git+https://github.com/zoggy/findlib-lint"
 install: [make "install-lib"]
+available: os != "win32"
 synopsis: "Simple tool performing checks on installed findlib META files"
 description: """
 By now, only checks that META files declare a ``archive`` variable

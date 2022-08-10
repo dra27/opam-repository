@@ -38,3 +38,4 @@ url {
   src: "https://github.com/mfp/extprot/releases/download/v1.6.0/extprot-1.6.0.tar.gz"
   checksum: "md5=7cb1c2821c493a96505c4905ddf03caa"
 }
+available: os != "win32"

@@ -14,6 +14,7 @@ depexts: [
   ["libasound2-dev"] {os-family = "debian"}
 ]
 install: [make "install"]
+available: os != "win32"
 synopsis:
   "Bindings for the ALSA library which provides functions for using soundcards"
 flags: light-uninstall

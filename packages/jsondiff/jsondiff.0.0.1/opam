@@ -11,6 +11,7 @@ depends: [
 ]
 dev-repo: "git+https://github.com/MyLifeLabs/jsondiff"
 install: [make "install" "PREFIX=%{prefix}%"]
+available: os != "win32"
 synopsis: "JSON sensitive diffing"
 flags: light-uninstall
 extra-files: ["jsondiff.install" "md5=f5d0dccc2e03f7413830bb47f0ecbc1e"]

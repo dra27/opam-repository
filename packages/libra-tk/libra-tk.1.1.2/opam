@@ -28,6 +28,7 @@ depends: [
   "ocaml-expat"
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 synopsis: "Learning and inference with discrete probabilistic models"
 description: """
 The Libra Toolkit is a collection of algorithms for learning and

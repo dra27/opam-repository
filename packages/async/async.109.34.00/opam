@@ -31,3 +31,4 @@ url {
     "https://ocaml.janestreet.com/ocaml-core/109.34.00/individual/async-109.34.00.tar.gz"
   checksum: "md5=be3d8ecb425b1fa4eaf6c178e58e3789"
 }
+available: os != "win32"

@@ -28,6 +28,7 @@ depends: [
   "sequence" {>= "0.5"}
   "visitors"
 ]
+available: os != "win32"
 synopsis: "Formal analysis for the Electrod formal specification language"
 description: """
 Electrod is a model finder inspired by Kodkod. It takes as input a

@@ -19,6 +19,7 @@ depends: [
   "apron" {>= "20151015"}
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 synopsis: "Logico-numerical domain(s) based on BDDs and APRON"
 url {
   src: "http://nberth.space/pool/bddapron/bddapron-2.3.1.tar.gz"

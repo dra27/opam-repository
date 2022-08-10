@@ -20,6 +20,7 @@ depends: [
   "oasis" {build}
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 synopsis: "Lwt-enabled multiprocessing library"
 description: "Allows to run lwt threads in different process."
 flags: light-uninstall

@@ -38,3 +38,4 @@ url {
     "https://ocaml.janestreet.com/ocaml-core/112.24/files/async_unix-112.24.tar.gz"
   checksum: "md5=4e862863adc95acb37be7edf972fe723"
 }
+available: os != "win32"

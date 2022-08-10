@@ -11,6 +11,7 @@ build: [
   [make]
 ]
 install: [make "install"]
+available: os != "win32"
 synopsis: "annotation parser for external editors and IDEs"
 depends: ["ocaml" {< "4.07.0"}]
 url {

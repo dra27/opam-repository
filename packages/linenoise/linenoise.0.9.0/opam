@@ -39,6 +39,7 @@ and compile with:
 $ ocamlfind ocamlopt ex.ml -package linenoise -linkpkg -o T
   "
 ]
+available: os != "win32"
 synopsis: "Simple readline like functionality"
 description: """
 These are self contained OCaml bindings to linenoise,

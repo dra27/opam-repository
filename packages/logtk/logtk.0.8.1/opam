@@ -41,6 +41,7 @@ conflicts: [
   "msat" { < "0.5" }
   "menhir" { >= "20211215"}
 ]
+available: os != "win32"
 synopsis: "Logic Toolkit"
 description: """
 Maintenance release, updated to be compatible with more recent version

@@ -39,6 +39,7 @@ depends: [
   "pcre" {build}
   "base-bytes" {build}
 ]
+available: os != "win32"
 synopsis: "Create and maintain Debian package for an OASIS package"
 description: """
 This program is a helper to translate _oasis file into a debian/

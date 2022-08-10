@@ -18,6 +18,7 @@ depends: [
   "unix-type-representations"
 ]
 depopts: ["lwt" "base-threads"]
+available: os != "win32"
 synopsis: "Unix fcntl.h types, maps, and support"
 description: """
 unix-fcntl provides access to the features exposed in fcntl.h in a way

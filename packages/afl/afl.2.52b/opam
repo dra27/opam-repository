@@ -17,6 +17,7 @@ remove: [
 patches: [
   "add-uninstall-target.patch"
 ]
+available: os != "win32"
 synopsis:
   "American Fuzzy Lop fuzzer by Michal Zalewski, repackaged for convenient use in opam."
 authors: "Michal Zalewski"

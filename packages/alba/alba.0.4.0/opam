@@ -14,6 +14,7 @@ depends: [
   "ocamlbuild" {build}
   "menhir" {build}
 ]
+available: os != "win32"
 synopsis: "A compiler for the Albatross programming language"
 description: "The Albatross compiler verifies programs statically."
 url {

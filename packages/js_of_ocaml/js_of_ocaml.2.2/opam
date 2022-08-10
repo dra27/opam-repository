@@ -21,6 +21,7 @@ conflicts: [
   "deriving" {< "0.6"}
   "lwt"      {< "2.4"}
 ]
+available: os != "win32"
 synopsis: "Compiler from OCaml bytecode to Javascript"
 flags: light-uninstall
 url {

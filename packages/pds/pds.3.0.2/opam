@@ -23,6 +23,7 @@ authors: [
 	"orbitz@gmail.com"
 ]
 
+available: os != "win32"
 homepage: "https://bitbucket.org/mimirops/pds"
 bug-reports: "https://bitbucket.org/mimirops/pds/issues"
 dev-repo: "git+https://bitbucket.org/mimirops/pds.git"

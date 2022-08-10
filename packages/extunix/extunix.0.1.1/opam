@@ -46,6 +46,7 @@ depends: [
   "ounit" {with-test}
   "ocamlbuild" {build & != "0.9.0"}
 ]
+available: os != "win32"
 synopsis: "Collection of thin bindings to various low-level system API"
 description: """
 Motto: "Be to Unix, what extlib is to stdlib"

@@ -38,3 +38,4 @@ The package provides bindings for MPFR-4.0.1.
 You'll need to have MPFR-4.0.1 installed on your system.
 See opam info mlmpfr for all available versions."""
 extra-files: ["test.c" "md5=254413af53ad6166094d2f4fd7942135"]
+available: os != "win32"

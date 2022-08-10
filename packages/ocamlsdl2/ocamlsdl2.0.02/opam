@@ -41,3 +41,4 @@ url {
   src: "https://github.com/fccm/OCamlSDL2/archive/v0.02.tar.gz"
   checksum: "md5=6c13de0e9ba191494bee860e8e383278"
 }
+available: os != "win32"

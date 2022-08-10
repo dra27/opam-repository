@@ -23,6 +23,7 @@ depends: [
   "bap" {= "1.0.0"}
   "conf-ida"
 ]
+available: os != "win32"
 synopsis: "An IDA Pro integration library"
 flags: light-uninstall
 extra-files: ["bap.cfg.in" "md5=aec3a830555380469b523da74daef069"]

@@ -9,6 +9,7 @@ tags: [ "ocaml" "bucklescript" "stdlib" "functional programming" ]
 build: [
   [ "./scripts/opam_install.sh" ]
 ]
+available: os != "win32"
 synopsis: "bsb-native is BuckleScript's bsb but for ocamlc and ocamlopt"
 description: "bsb-native is BuckleScript's bsb but for ocamlc and ocamlopt"
 depends: [

@@ -27,6 +27,7 @@ depopts: [
 conflicts: [
   "lablgtk" { >= "2.18.6" }
 ]
+available: os != "win32"
 install: [
   [ "omake" "install" ]
 ]

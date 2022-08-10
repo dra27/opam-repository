@@ -18,6 +18,7 @@ depends: [
   "topkg" {build}
   "lwt" {>= "3.3.0"}
 ]
+available: os != "win32"
 synopsis: "Redis tools based on the Hiredis C library"
 description:
   "Hiredis provides a simple interface for communicating with Redis from OCaml"

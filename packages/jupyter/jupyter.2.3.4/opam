@@ -53,3 +53,4 @@ url {
   src: "https://github.com/akabe/ocaml-jupyter/releases/download/v2.3.4/jupyter-2.3.4.tbz"
   checksum: "md5=e6521b3aaaa635a5822f29900db47e90"
 }
+available: os != "win32"

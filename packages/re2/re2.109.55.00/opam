@@ -20,3 +20,4 @@ url {
     "https://ocaml.janestreet.com/ocaml-core/109.55.00/individual/re2-109.55.00.tar.gz"
   checksum: "md5=55a7ccf7f8e579b0f5ad4a39de8a84f7"
 }
+available: os != "win32"

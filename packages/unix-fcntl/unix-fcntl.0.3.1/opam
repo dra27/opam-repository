@@ -27,6 +27,7 @@ depopts: [
   "base-threads"
 ]
 conflicts: ["lwt" {< "2.4.7"}]
+available: os != "win32"
 synopsis: "Unix fcntl.h types, maps, and support"
 description: """
 unix-fcntl provides access to the features exposed in fcntl.h in a way

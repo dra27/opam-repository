@@ -23,3 +23,4 @@ url {
     "http://downloads.sourceforge.net/project/savonet/ocaml-taglib/0.3.0/ocaml-taglib-0.3.0.tar.gz"
   checksum: "md5=6537ae1592eae3b4cf7ad38ea59440b1"
 }
+available: os != "win32"

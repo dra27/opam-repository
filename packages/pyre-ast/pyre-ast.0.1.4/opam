@@ -45,3 +45,4 @@ url {
   ]
 }
 x-commit-hash: "e95220c9a7bb20c57b32a72e2a0aaba9ef0efa34"
+available: os != "win32"

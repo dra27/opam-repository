@@ -24,6 +24,7 @@ depends: [
   "ocamlfind" {build}
   "conf-gfortran"
 ]
+available: os != "win32"
 synopsis: "Binding to ODEPACK."
 description: """
 This is a collection of solvers for the initial value problem for

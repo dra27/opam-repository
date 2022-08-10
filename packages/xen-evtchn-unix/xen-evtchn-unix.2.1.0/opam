@@ -34,3 +34,4 @@ url {
     "https://github.com/mirage/ocaml-evtchn/releases/download/v2.1.0/xen-evtchn-v2.1.0.tbz"
   checksum: "md5=5df050f2aaca4cc9d006042633277dbd"
 }
+available: os != "win32"

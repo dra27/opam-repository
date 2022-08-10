@@ -7,6 +7,7 @@ depends: [
   "ocamlbuild" {build}
 ]
 install: [make "install"]
+available: os != "win32"
 synopsis: "A quite complete and fast LATEX to HTML translator"
 extra-files: ["hevea.install" "md5=2a9bd30df084035a4db13a7238a3003d"]
 url {

@@ -15,6 +15,7 @@ remove: [
   ["sh" "-c" "cd src-flowcaml && %{make}% uninstall"]
 ]
 install: ["sh" "-c" "cd src-flowcaml && %{make}% install"]
+available: os != "win32"
 synopsis:
   "Flow Caml is an extension of OCaml with a type system tracing information flow."
 description: """

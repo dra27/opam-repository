@@ -13,6 +13,7 @@ depends: [
   "pcre"
 ]
 install: [make "install"]
+available: os != "win32"
 synopsis: "An extension to the standard library"
 description: """
 Annexlib contains a lot of the routines I find myself needing all the

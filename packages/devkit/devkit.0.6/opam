@@ -41,6 +41,7 @@ depopts: [
   "gperftools"
   "jemalloc" {<= "0.1"}
 ]
+available: os != "win32"
 synopsis: "development kit - general purpose library"
 flags: light-uninstall
 url {

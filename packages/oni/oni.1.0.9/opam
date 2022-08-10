@@ -7,6 +7,7 @@ dev-repo: "hg+https://bitbucket.org/jhw/oni"
 bug-reports: "https://bitbucket.org/jhw/oni/issues"
 install: [["./etc/install.sh" "install"]]
 remove: [["./etc/install.sh" "remove"]]
+available: os != "win32"
 depends: [
   "ocaml" {>= "4.00.1" & < "4.01.0"}
   "ocamlfind" {build}

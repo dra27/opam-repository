@@ -13,6 +13,7 @@ depends: [
   "ocamlbuild" {build}
 ]
 install: ["ocaml" "setup.ml" "-install"]
+available: os != "win32"
 synopsis: "Tiny binding around PAM"
 flags: light-uninstall
 url {

@@ -15,6 +15,7 @@ depexts: [
 ]
 dev-repo: "git+https://github.com/abate/ocaml-buddy"
 install: [make "install"]
+available: os != "win32"
 synopsis: "Bindings for the Buddy BDD library."
 url {
   src: "https://github.com/abate/ocaml-buddy/archive/0.6.1.tar.gz"

@@ -11,6 +11,7 @@ depends: [
   "ocamlbuild" {build}
 ]
 dev-repo: "git+https://github.com/mirage/mirage-fs"
+available: os != "win32"
 synopsis: "MirageOS filesystem utilities"
 url {
   src: "https://github.com/mirage/mirage-fs/archive/mirage-fs-0.5.0.tar.gz"

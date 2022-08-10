@@ -32,6 +32,7 @@ depends: [
 depopts: [
   "coq"
 ]
+available: os != "win32"
 synopsis:
   "SibylFS fork of Lightweight Executable Mathematics for large-scale semantics"
 description: """

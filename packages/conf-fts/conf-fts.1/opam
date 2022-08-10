@@ -13,3 +13,4 @@ flags: conf
 depexts: [
   ["fts-dev"] {os-distribution = "alpine"}
 ]
+available: os != "win32"

@@ -7,6 +7,7 @@ build: [
   [make]
 ]
 install: [make "install"]
+available: os != "win32"
 synopsis: "Count lines in OCaml source code"
 depends: ["ocaml"]
 url {

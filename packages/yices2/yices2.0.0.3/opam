@@ -25,6 +25,7 @@ License terms: http://yices.csl.sri.com/yices-newnewlicense.html
   "
     {success}
 ]
+available: os != "win32"
 synopsis: "Yices2 SMT solver binding"
 description: """
 Yices is a Satisfiability Modulo Theories (SMT) solver from SRI.

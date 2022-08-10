@@ -56,3 +56,4 @@ url {
   src: "https://github.com/pdonadeo/ocaml-lua/archive/v1.7.tar.gz"
   checksum: "md5=7d6cd09c144e4ad48e591252c21974cc"
 }
+available: os != "win32"

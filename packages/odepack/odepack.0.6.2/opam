@@ -11,6 +11,7 @@ depends: [
   "ocamlbuild" {build}
   "conf-gfortran"
 ]
+available: os != "win32"
 install: ["ocaml" "setup.ml" "-install"]
 synopsis: "Binding to odepac"
 description: """

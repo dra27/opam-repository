@@ -29,6 +29,7 @@ depends: [
   "ocamlfind" {build}
   "rope" {build}
 ]
+available: os != "win32"
 synopsis: "A compiler targeting Ethereum Virtual Machine"
 description: """
 Bamboo compiles a simple language to Ethereum Virtual Machine. The

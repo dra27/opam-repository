@@ -33,3 +33,4 @@ url {
     "https://github.com/rlepigre/ocaml-earley/archive/ocaml-earley_1.1.0.tar.gz"
   checksum: "md5=6dc57553fb1901ea454f6e30214955aa"
 }
+available: os != "win32"

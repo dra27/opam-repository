@@ -15,6 +15,7 @@ depends: [
   "conf-zlib"
   "num"
 ]
+available: os != "win32"
 synopsis: "Cross-platform multi-network peer-to-peer daemon"
 description: """
 Supported networks include:

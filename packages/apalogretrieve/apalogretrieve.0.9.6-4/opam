@@ -2,6 +2,7 @@ opam-version: "2.0"
 maintainer: "https://github.com/ocaml/opam-repository/issues"
 homepage: "http://www.first.in-berlin.de/software/tools/apalogretrieve/"
 build: [["sh" "compile.native"]]
+available: os != "win32"
 synopsis:
   "Retrieve data from an Apache logfile with a syntax derived from the SQL language."
 description: """

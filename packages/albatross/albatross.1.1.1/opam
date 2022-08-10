@@ -51,9 +51,8 @@ by albatross are network interfaces of kind `tap`, which are connected to
 already existing bridges, block devices, memory, and CPU. Each unikernel is
 pinned (`cpuset` / `taskset`) to a specific core.
 """
-available: [
-  arch != "ppc64" & arch != "x86_32" & arch != "arm32"
-]
+available:
+  arch != "ppc64" & arch != "x86_32" & arch != "arm32" & os != "win32"
 depexts: ["linux-headers"] {os-distribution = "alpine"}
 x-commit-hash: "e9820132810a1685e6b473bcacb146dba9dc0e22"
 url {

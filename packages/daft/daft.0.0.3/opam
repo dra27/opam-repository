@@ -48,3 +48,4 @@ url {
   src: "https://github.com/UnixJunkie/daft/archive/v0.0.3.tar.gz"
   checksum: "md5=519d004fa8b1cfea74cde758732973de"
 }
+available: os != "win32"

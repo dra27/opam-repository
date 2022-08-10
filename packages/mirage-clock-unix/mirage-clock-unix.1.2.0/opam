@@ -44,6 +44,7 @@ build: [
   ] {with-test}
   ["ocaml" "pkg/pkg.ml" "test" "-n" name] {with-test}
 ]
+available: os != "win32"
 synopsis: "A Mirage-compatible Clock library for Unix"
 url {
   src:

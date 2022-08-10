@@ -14,6 +14,7 @@ depends: [
   "ocaml" {< "4.03.0"}
   "ocp-build" {>= "1.99.6" & < "1.99.17"}
 ]
+available: os != "win32"
 install: [make "install.opam"]
 synopsis: "Global Manager for OCaml versions and OPAM switches"
 flags: light-uninstall

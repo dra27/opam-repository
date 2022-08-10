@@ -25,6 +25,7 @@ depexts: [
 ]
 bug-reports: "https://github.com/savonet/ocaml-taglib/issues"
 dev-repo: "git+https://github.com/savonet/ocaml-taglib.git"
+available: os != "win32"
 synopsis:
   "Bindings for the taglib library which provides functions for reading tags in headers of audio files"
 flags: light-uninstall

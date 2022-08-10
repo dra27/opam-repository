@@ -20,6 +20,7 @@ depends: [
   "oasis" {build}
   "parsexp" {>= "v0.9.0" & < "v0.10"}
 ]
+available: os != "win32"
 synopsis: "BAP Rule Engine Library"
 description: """
 BARE is a library that provides non-linear pattern matching on streams

@@ -82,3 +82,4 @@ url {
   ]
 }
 x-commit-hash: "0476fbec66e99750abe9d60c3aa9cb9a52189bea"
+available: os != "win32"

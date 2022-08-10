@@ -48,3 +48,4 @@ url {
     "sha256=a48d64d1e53619519e8a16260b06536a59159337561f048281fd9c71b4d113e3"
   ]
 }
+available: os != "win32"

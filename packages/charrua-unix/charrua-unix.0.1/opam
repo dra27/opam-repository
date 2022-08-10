@@ -5,6 +5,7 @@ homepage: "https://github.com/haesbaert/charrua-unix"
 bug-reports: "https://github.com/haesbaert/charrua-unix/issues"
 license: "ISC"
 dev-repo: "git+https://github.com/haesbaert/charrua-unix.git"
+available: os != "win32"
 build: [
   ["sh" "build.sh"]
 ]

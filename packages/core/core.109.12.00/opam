@@ -29,3 +29,4 @@ url {
   src: "https://github.com/janestreet/core/archive/109.12.00.tar.gz"
   checksum: "md5=b885a11d7d1b1a7048d8c0e7e0eedc86"
 }
+available: os != "win32"

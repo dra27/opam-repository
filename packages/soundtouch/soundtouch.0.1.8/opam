@@ -22,6 +22,7 @@ depexts: [
 ]
 bug-reports: "https://github.com/savonet/ocaml-soundtouch/issues"
 dev-repo: "git+https://github.com/savonet/ocaml-soundtouch.git"
+available: os != "win32"
 synopsis:
   "Bindings for the soundtouch library which provides functions for changing pitch and timestretching audio data"
 flags: light-uninstall

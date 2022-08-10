@@ -17,6 +17,7 @@ depends: [
   "ocamlbuild" {build}
 ]
 depexts: ["linux-headers"] {os-distribution = "alpine"}
+available: os != "win32"
 synopsis: "Portable library to read and write raw packets."
 description: """
 [![Build Status](https://travis-ci.org/haesbaert/rawlink.svg)](https://travis-ci.org/haesbaert/rawlink)

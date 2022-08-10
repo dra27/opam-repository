@@ -11,6 +11,7 @@ depends: [
   "base-bytes"
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 build: [ [ make ] ]
 depexts: [
   ["libelf-dev"] {os-family = "debian"}

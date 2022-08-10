@@ -20,6 +20,7 @@ build: [
 depends: ["ocaml" "camlp4" "conf-ncurses"]
 x-ci-accept-failures: ["debian-unstable"]
 install: [make "install"]
+available: os != "win32"
 synopsis:
   "Text-based front-end to Remind, a sophisticated calendar and alarm program"
 extra-files: ["wyrd.install" "md5=cb866bfdfc06f8d236079fdc745ac648"]

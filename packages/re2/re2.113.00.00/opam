@@ -30,3 +30,4 @@ url {
     "https://ocaml.janestreet.com/ocaml-core/113.00/files/re2-113.00.00.tar.gz"
   checksum: "md5=cac068fe5dc1659732dfa73513e421b2"
 }
+available: os != "win32"

@@ -18,6 +18,7 @@ depends: [
   "ocamlbuild" {build}
 ]
 patches: ["fix_META.patch"]
+available: os != "win32"
 install: [make "install"]
 synopsis: "Industrial strength alternative to OCaml's standard library"
 description: """

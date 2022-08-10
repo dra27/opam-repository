@@ -24,6 +24,7 @@ depends: [
 conflicts: [
   "utop" {< "1.17"}
 ]
+available: os != "win32"
 synopsis: "Reason: Syntax & Toolchain for OCaml"
 description: """
 Reason provides a new ES6-inspired syntax for OCaml. It's also the umbrella

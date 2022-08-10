@@ -13,6 +13,7 @@ depends: [
   "base-threads"
   "lwt" {< "2.5.0"}
 ]
+available: os != "win32"
 install: ["ocaml" "please.ml" "install"]
 synopsis: "Access to the Operating system with Pvem and Lwt_unix"
 description: """

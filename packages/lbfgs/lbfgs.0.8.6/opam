@@ -30,6 +30,7 @@ depexts: [
   ["gcc"] {os = "macos" & os-distribution = "homebrew"}
 ]
 install: ["ocaml" "setup.ml" "-install"]
+available: os != "win32"
 synopsis:
   "Minimization of multidimensional functions on bounded or unbounded domains."
 description: """

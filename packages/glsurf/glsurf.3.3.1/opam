@@ -21,6 +21,7 @@ depends: [
   "ocamlfind" {build}
   "num"
 ]
+available: os != "win32"
 synopsis: "GlSurf, implicit curves and surfaces drawing and discretization"
 description: """
 GlSurf is a program (similar to Surf) to draw surfaces and curves from

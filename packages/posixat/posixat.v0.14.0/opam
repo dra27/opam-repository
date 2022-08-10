@@ -29,3 +29,4 @@ url {
   src: "https://ocaml.janestreet.com/ocaml-core/v0.14/files/posixat-v0.14.0.tar.gz"
   checksum: "md5=d06ae7fe70c495bc2c3e992066511105"
 }
+available: os != "win32"

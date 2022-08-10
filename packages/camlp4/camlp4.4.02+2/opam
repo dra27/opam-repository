@@ -19,7 +19,7 @@ depends: [
   "conf-which" {build}
   "ocamlbuild" {build}
 ]
-available: os != "cygwin"
+available: os != "cygwin" & os != "win32"
 install: [
   [make "install" "install-META"]
 ]

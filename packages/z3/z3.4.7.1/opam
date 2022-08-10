@@ -23,6 +23,7 @@ depends: [
   "conf-python-2-7" {build}
   "conf-c++" {build}
 ]
+available: os != "win32"
 synopsis: "Z3 solver"
 flags: light-uninstall
 extra-files: ["fix-parallel-build.patch" "md5=54516d6bf1f1005508f5cbfe9c53dad2"]

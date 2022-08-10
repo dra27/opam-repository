@@ -27,6 +27,7 @@ depends: [
   "bap-std" {= "1.1.0"}
   "cmdliner"
 ]
+available: os != "win32"
 synopsis: "BAP frontend"
 description: "The command-line interface to the Binary Analysis Platform."
 flags: light-uninstall

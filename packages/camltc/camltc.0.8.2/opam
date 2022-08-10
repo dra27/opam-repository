@@ -13,6 +13,7 @@ depends: [
   "ounit"
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 dev-repo: "git+https://github.com/toolslive/camltc"
 install: [make "-C" "src" "install" "DESTDIR=%{prefix}%"]
 synopsis: "Tokyo Cabinet bindings for OCaml."

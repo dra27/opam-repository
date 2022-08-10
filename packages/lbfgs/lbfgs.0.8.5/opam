@@ -23,6 +23,7 @@ depexts: [
   ["mingw64-x86_64-gcc-fortran"] {os = "cygwin"}
   ["gcc"] {os = "macos" & os-distribution = "homebrew"}
 ]
+available: os != "win32"
 install: ["ocaml" "setup.ml" "-install"]
 synopsis:
   "Minimization of multidimensional functions on bounded or unbounded domains."

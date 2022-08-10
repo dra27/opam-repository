@@ -26,6 +26,7 @@ conflicts: [
   "ctypes" {< "0.4.0"}
   "ctypes" {>= "0.6.0"}
 ]
+available: os != "win32"
 synopsis: "Unix errno types, maps, and support"
 description: """
 unix-errno can be used with or without ctypes and OCaml's Unix

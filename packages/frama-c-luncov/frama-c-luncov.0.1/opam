@@ -45,3 +45,4 @@ depends: [
   "ocaml" { >= "4.08.1" }
   "frama-c" { >= "24.0" & < "25.0" }
 ]
+available: os != "win32"

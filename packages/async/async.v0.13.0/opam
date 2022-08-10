@@ -31,3 +31,4 @@ url {
   src: "https://ocaml.janestreet.com/ocaml-core/v0.13/files/async-v0.13.0.tar.gz"
   checksum: "md5=fbfc7059179bc9ddd5dc1411e7d2e815"
 }
+available: os != "win32"

@@ -30,6 +30,7 @@ depends: [
   "ocamlbuild" {build}
   "ounit" {with-test}
 ]
+available: os != "win32"
 post-messages: [
   "This package requires installation of libsodium-dev (>= 1.0.9)"
     {failure & os = "debian"}

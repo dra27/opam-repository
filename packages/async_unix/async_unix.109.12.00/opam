@@ -21,3 +21,4 @@ url {
   src: "https://github.com/janestreet/async_unix/archive/109.12.00.tar.gz"
   checksum: "md5=7c89a13b1009420afd06038914083cea"
 }
+available: os != "win32"

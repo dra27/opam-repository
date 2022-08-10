@@ -33,3 +33,4 @@ extra-source "libtorch-macos.zip" {
   src: "https://download.pytorch.org/libtorch/cpu/libtorch-macos-1.0.0.zip"
   checksum: "md5=82f52647daa39c189a573115d440d09d"
 }
+available: os != "win32"

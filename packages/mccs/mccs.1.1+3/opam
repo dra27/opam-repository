@@ -15,6 +15,7 @@ depends: [
   "cudf" {>= "0.7"}
   "conf-c++" {build}
 ]
+available: os != "win32"
 synopsis: "Multi Criteria CUDF Solver with OCaml bindings"
 description: """
 This is a stripped-down version of the mccs solver (written in C++), including

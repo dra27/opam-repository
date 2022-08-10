@@ -21,6 +21,7 @@ depends: [
   "expect"
   "ocamlbuild"
 ]
+available: os != "win32"
 install: ["ocaml" "setup.ml" "-install"]
 synopsis: "Architecture for building OCaml libraries and applications"
 description: """

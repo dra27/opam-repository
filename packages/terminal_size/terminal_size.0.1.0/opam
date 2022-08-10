@@ -15,6 +15,7 @@ depends: [
   "ocamlfind" {build}
   "topkg" {build}
 ]
+available: os != "win32"
 synopsis: "Get the dimensions of the terminal"
 description: """
 You can use this small library to detect the dimensions of the terminal window

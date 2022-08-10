@@ -17,6 +17,7 @@ depends: [
   "ounit"
   "conf-m4" {build}
 ]
+available: os != "win32"
 synopsis: "Stream operations in the style of Core's API."
 url {
   src: "https://github.com/biocaml/cfstream/archive/1.2.3.tar.gz"

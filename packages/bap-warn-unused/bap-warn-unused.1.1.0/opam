@@ -26,6 +26,7 @@ depends: [
   "bap-std" {= "1.1.0"}
   "cmdliner"
 ]
+available: os != "win32"
 synopsis:
   "Emit a warning if an unused result may cause a bug or security issue"
 url {

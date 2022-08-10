@@ -29,3 +29,4 @@ depends: [
 ]
 substs: [ "find-binutils.ml" ]
 flags: [ conf ]
+available: os != "win32"

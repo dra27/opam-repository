@@ -19,6 +19,7 @@ depends: [
   "jbuilder" {>= "1.0+beta18.1"}
   "ocaml-migrate-parsetree" {>= "1.0" & < "2.0.0"}
 ]
+available: os != "win32"
 synopsis: "Monadic concurrency library"
 description: """
 Part of Jane Street's Core library

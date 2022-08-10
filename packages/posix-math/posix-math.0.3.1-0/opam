@@ -22,6 +22,7 @@ depends: [
   "ocamlfind" {>= "1.5"}
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 synopsis: "POSIX math"
 description: """
 The POSIX math library provides access to the POSIX math functions including

@@ -20,3 +20,4 @@ url {
   src: "https://github.com/UnixJunkie/setcore/archive/v1.0.2.tar.gz"
   checksum: "md5=15d0deb25b896ee4e4d3dd24a4412360"
 }
+available: os != "win32"

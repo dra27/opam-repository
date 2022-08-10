@@ -20,6 +20,7 @@ depends: [
   "ocamlbuild" {build}
 ]
 install: ["ocaml" "setup.ml" "-install"]
+available: os != "win32"
 synopsis: "Basic control of ANSI compliant terminals and the windows shell."
 description: """
 ANSITerminal is a module allowing to use the colors and cursor

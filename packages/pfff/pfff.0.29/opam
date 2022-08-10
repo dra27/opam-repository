@@ -25,6 +25,7 @@ depends: [
   "camlp4"
   "num"
 ]
+available: os != "win32"
 bug-reports: "https://github.com/facebook/pfff/issues"
 dev-repo: "git+https://github.com/facebook/pfff.git"
 synopsis:

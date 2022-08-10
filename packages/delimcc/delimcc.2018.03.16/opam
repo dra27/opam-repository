@@ -12,6 +12,7 @@ depends: [
   "ocamlfind" {build}
 ]
 install: [make "findlib-install"]
+available: os != "win32"
 synopsis:
   "Oleg's delimited continuations library for byte-code and native OCaml"
 conflicts: ["ocaml-system"]

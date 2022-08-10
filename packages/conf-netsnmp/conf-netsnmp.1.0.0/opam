@@ -18,7 +18,7 @@ build: [
   ["sh" "-exc" "cc -c $CFLAGS -I/usr/local/include files/test.c"]
 ]
 
-available: os != "macos"
+available: os != "macos" & os != "win32"
 synopsis: "Package relying on net-snmp libs"
 description: """
 Virtual package relying on net-snmp system libraries installation.

@@ -26,6 +26,7 @@ depends: [
   "tiny_json_conv" {= "1.4.0"}
   "spotlib" {= "2.2.0"}
 ]
+available: os != "win32"
 patches: [
   "cleanup.patch"
 ]

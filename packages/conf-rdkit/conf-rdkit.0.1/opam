@@ -13,6 +13,7 @@ depexts: [
   ["librdkit-dev" "python-rdkit"] {os-family = "debian"}
   ["rdkit-devel" "python2-rdkit"] {os-distribution = "centos"}
 ]
+available: os != "win32"
 post-messages:
     "This package requires rdkit to be installed. If you are using homebrew, you might want to try:
     'brew tap rdkit/rdkit; pip3 install numpy; brew install --HEAD rdkit --with-python3 --with-inchi'"

@@ -26,3 +26,4 @@ url {
  src: "https://github.com/UnixJunkie/cpu/archive/v2.0.0.tar.gz"
  checksum: "md5=644ca40ddbe7c34f8431ec3868958aec"
 }
+available: os != "win32"

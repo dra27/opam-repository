@@ -21,6 +21,7 @@ depends: [
 ]
 dev-repo: "git+https://github.com/avsm/ocaml-github"
 install: [make "PREFIX=%{prefix}%" "install"]
+available: os != "win32"
 synopsis: "API for the Github website"
 flags: light-uninstall
 url {

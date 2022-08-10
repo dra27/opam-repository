@@ -21,6 +21,7 @@ depends: [
   "xmlm"
   "js_of_ocaml" {>= "2.5" & < "3.0"}
 ]
+available: os != "win32"
 synopsis: "XML templating library and ppx."
 flags: light-uninstall
 url {

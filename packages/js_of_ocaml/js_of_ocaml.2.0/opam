@@ -18,6 +18,7 @@ depends: [
 ]
 depopts: ["deriving"]
 conflicts: ["deriving" {< "0.6"}]
+available: os != "win32"
 synopsis: "Compiler from OCaml bytecode to Javascript"
 flags: light-uninstall
 extra-files: ["js_of_ocaml.install" "md5=9693c4c6ec26305451a05aa9e6650406"]

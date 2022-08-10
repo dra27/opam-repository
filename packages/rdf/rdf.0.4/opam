@@ -19,6 +19,7 @@ depopts: ["mysql" "postgresql"]
 conflicts: [
   "mysql" {< "1.1.1"}
 ]
+available: os != "win32"
 install: [make "install"]
 synopsis: "Native OCaml library to manipulate RDF graphs."
 url {

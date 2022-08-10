@@ -17,6 +17,7 @@ depends: [
   "conf-which"
   "ocamlbuild"
 ]
+available: os != "win32"
 install: [make "install"]
 synopsis:
   "OCaml bytecode library tools to read, write and evaluate OCaml bytecode files"

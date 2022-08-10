@@ -27,6 +27,7 @@ depexts: [
   ["xen-devel"] {os-distribution = "fedora"}
   ["xenstore"] {os-distribution = "arch"}
 ]
+available: os != "win32"
 synopsis: "Xen event channel bindings."
 description:
   "These are needed for building Xen device drivers (e.g. mirage-block-xen)"

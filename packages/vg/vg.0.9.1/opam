@@ -68,3 +68,4 @@ url {
   src: "http://erratique.ch/software/vg/releases/vg-0.9.1.tbz"
   checksum: "md5=a2403d2bb52aaccf678623ffad5135bb"
 }
+available: os != "win32"

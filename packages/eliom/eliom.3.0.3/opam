@@ -49,3 +49,4 @@ url {
   src: "http://ocsigen.org/download/eliom-3.0.3.tar.gz"
   checksum: "md5=f7ffba1582c6a5dc90b20c74930fc3e3"
 }
+available: os != "win32"

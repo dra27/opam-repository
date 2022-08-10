@@ -12,6 +12,7 @@ depends: [
   "ocamlbuild" {build}
   "num"
 ]
+available: os != "win32"
 install: [make "install"]
 depexts: ["patch"] {os-distribution = "alpine"}
 synopsis:

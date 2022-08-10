@@ -7,6 +7,7 @@ remove: [[make "uninstall" "PREFIX=%{prefix}%"]]
 dev-repo: "git+https://github.com/mlin/twt"
 install: [make "install" "PREFIX=%{prefix}%"]
 conflicts: "ocaml+twt"
+available: os != "win32"
 synopsis: "The Whitespace Thing, a layout preprocessor for OCaml code"
 description: "https://github.com/mlin/twt"
 depends: ["ocaml"]

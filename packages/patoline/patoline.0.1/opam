@@ -26,6 +26,7 @@ depends: [
   "ocaml" "ocamlfind" "camomile" "camlimages" "dypgen" "sqlite3" "camlzip"
 ]
 install: [make "install"]
+available: os != "win32"
 synopsis: "A new typesetting system, programmable in ocaml."
 dev-repo: "git+https://github.com/patoline/patoline.git"
 url {

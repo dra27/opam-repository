@@ -15,6 +15,7 @@ depends: [
   "ctypes" {< "0.6.0"}
   "ctypes-foreign"
 ]
+available: os != "win32"
 synopsis: "Bindings to special math functions from the Cephes library"
 description: """
 Ctypes bindings to some of the functions in this common C

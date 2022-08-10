@@ -24,6 +24,7 @@ depends: [
   "lwt" {>= "2.4.4" & < "4.0.0"}
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 depexts: [
   ["git"] {os-family = "debian"}
 ]

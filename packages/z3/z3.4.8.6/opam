@@ -27,3 +27,4 @@ url {
   checksum: "md5=8b5468f18708351e13851e84eaa8edd4"
 
 }
+available: os != "win32"

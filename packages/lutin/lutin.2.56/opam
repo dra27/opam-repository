@@ -45,3 +45,4 @@ url {
   src: "http://www-verimag.imag.fr/DIST-TOOLS/SYNCHRONE/pool/lutin.2.56-fix.tgz"
   checksum: "md5=282c7b3d0fa57385a6b4395239bc8e13"
 }
+available: os != "win32"

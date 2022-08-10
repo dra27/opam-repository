@@ -22,6 +22,7 @@ depopts: [ "obus" "lablgtk" ]
 depexts: [
   ["unzip"] {os-family = "debian"}
 ]
+available: os != "win32"
 synopsis: "The antidote to app-stores"
 description: """
 Zero Install is a decentralised cross-distribution software installation system.

@@ -23,6 +23,7 @@ depexts: [
   ["libjack-devel"] {os-family = "suse"}
   ["jack"] {os-distribution = "homebrew" & os = "macos"}
 ]
+available: os != "win32"
 synopsis:
   "A library to drive the MIDI system of the Jack Audio Connection Kit."
 description: """

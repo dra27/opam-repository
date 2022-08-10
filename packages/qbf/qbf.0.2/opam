@@ -23,6 +23,7 @@ depends: [
   "ounit" {with-test}
 ]
 depopts: ["ctypes" "random-generator"]
+available: os != "win32"
 synopsis: "QBF solving in OCaml, including bindings to solvers"
 description: """
 Ocaml-qbf provides a unified API to several QBF solvers, along with

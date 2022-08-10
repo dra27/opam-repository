@@ -24,6 +24,7 @@ conflicts: [
   "ctypes" {>= "0.6.0"}
   "unix-errno" {< "0.4.0"}
 ]
+available: os != "win32"
 synopsis:
   "ocaml-unix-dirent provides access to the features exposed in dirent.h"
 description: """

@@ -47,3 +47,4 @@ url {
   src: "https://github.com/ahrefs/devkit/archive/v0.7.tar.gz"
   checksum: "md5=59eba7e37bc51538263d0840e274defb"
 }
+available: os != "win32"

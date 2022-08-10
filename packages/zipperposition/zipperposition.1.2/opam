@@ -44,6 +44,7 @@ depopts: [
   "qcheck" {with-test}
 ]
 conflicts: "logtk"
+available: os != "win32"
 synopsis:
   "A fully automatic theorem prover for typed first-order and beyond."
 description: """

@@ -75,3 +75,4 @@ url {
   src: "https://github.com/LPCIC/elpi/archive/v1.2.0.tar.gz"
   checksum: "b55fc75513bdbd3ba097ee480e30d0b9"
 }
+available: os != "win32"

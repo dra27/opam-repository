@@ -34,6 +34,7 @@ depends: [
 depopts: [
   "qtest" {with-test}
 ]
+available: os != "win32"
 synopsis: "A counter-example finder for higher-order logic."
 description: """
 Nunchaku is a counter-example finder for higher-order logic, designed to be

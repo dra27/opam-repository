@@ -17,6 +17,7 @@ depexts: [
   ["unixodbc"] {os = "macos" & os-distribution = "homebrew"}
 ]
 install: [make "findlib_install"]
+available: os != "win32"
 synopsis: "Interface to various ODBC drivers"
 description: """
 Supported ODBC drivers include PostgreSQL, MySQL, unixODBC, DB2 and

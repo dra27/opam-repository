@@ -26,3 +26,4 @@ is available on the system.
 """
 extra-files: [["test.c" "md5=6bd897a5b6772876b502e094204bf813"] ["Makefile" "md5=0d17141340d7764515de07513fd664bf"]]
 flags: conf
+available: os != "win32"

@@ -13,6 +13,7 @@ depends: [
   "cmdliner"
   "opam-client" {>= "2.0.0~beta3.1" & <= "2.0.0~rc2"}
 ]
+available: os != "win32"
 synopsis: "A tool that creates stand-alone source bundles from opam packages"
 description: """
 opam-bundle is a command-line tool that, given a selection of packages,

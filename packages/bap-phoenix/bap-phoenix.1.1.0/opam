@@ -31,6 +31,7 @@ depends: [
   "ocamlgraph"
   "ezjsonm"
 ]
+available: os != "win32"
 synopsis: "BAP plugin that dumps information in a phoenix decompiler format"
 description: "Useful for visualization and project exploration"
 url {

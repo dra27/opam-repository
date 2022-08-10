@@ -12,6 +12,7 @@ install: [
   [make "install"]
 ]
 homepage: "http://sawja.inria.fr"
+available: os != "win32"
 depends: [
   "ocaml" {>= "4.02"}
   "ocamlfind" {build}

@@ -17,6 +17,7 @@ depends: [
   "ocamlfind"
 ]
 install: [make "ocamlfind-install"]
+available: os != "win32"
 synopsis: "Distributed computing library."
 flags: light-uninstall
 url {

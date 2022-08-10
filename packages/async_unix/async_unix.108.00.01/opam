@@ -27,3 +27,4 @@ url {
     "https://ocaml.janestreet.com/ocaml-core/108.00.01/individual/async_unix-108.00.01.tar.gz"
   checksum: "md5=5df5c16faaa39c5810f3f46bbab512d0"
 }
+available: os != "win32"

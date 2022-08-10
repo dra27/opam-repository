@@ -23,6 +23,7 @@ depends: [
   "lwt" {with-test}
 ]
 depexts: ["linux-headers"] {os-distribution = "alpine"}
+available: os != "win32"
 synopsis: "OCaml library for handling TUN/TAP devices"
 description: """
 This is an OCaml library for handling TUN/TAP devices.  TUN refers to layer 3

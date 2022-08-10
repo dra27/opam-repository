@@ -16,6 +16,7 @@ depends: [
   "ocaml" {>= "4.02.0"}
   "ocamlbuild" {build}
 ]
+available: os != "win32"
 synopsis: "This is herdtools7, a tool suite to test weak memory models."
 description: """
 We provide the following tools:

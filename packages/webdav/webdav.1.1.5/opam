@@ -15,6 +15,7 @@ depends: [
   "ocamlnet" {>= "4.1.0" & != "4.1.9"}
   "pxp" {>= "1.2.8"}
 ]
+available: os != "win32"
 synopsis: "Implements the client side of the WebDAV protocol (RFC 4918)"
 description: """
 The file locking part of WebDAV is omitted, though.

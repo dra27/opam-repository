@@ -6,6 +6,7 @@ doc: "https://vbmithr.github.io/ocaml-ipv6-multicast/doc"
 license: "ISC"
 dev-repo: "git+https://github.com/vbmithr/ocaml-ipv6-multicast.git"
 bug-reports: "https://github.com/vbmithr/ocaml-ipv6-multicast/issues"
+available: os != "win32"
 depends: [
   "ocaml" {>= "4.02.0"}
   "ocamlfind" {build}

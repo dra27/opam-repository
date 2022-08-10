@@ -34,6 +34,7 @@ depends: [
 depexts: [
   ["clang"] {os-family = "debian"}
 ]
+available: os != "win32"
 synopsis: "BAP LLVM backend"
 description:
   "Provides a loader and a disassembler, based on LLVM-MC library."

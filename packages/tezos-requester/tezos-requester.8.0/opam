@@ -12,7 +12,8 @@ depends: [
   "alcotest-lwt" { with-test & >= "1.1.0" }
   "tezos-test-services" { with-test & = version }
 ]
-available: [ arch != "x86_32" & arch != "arm32" & arch != "ppc32" ]
+available:
+  arch != "x86_32" & arch != "arm32" & arch != "ppc32" & os != "win32"
 build: [
   ["rm" "-r" "vendors"]
   ["dune" "build" "-p" name "-j" jobs]
