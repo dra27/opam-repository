@@ -4,19 +4,23 @@ homepage: "http://gmplib.org/"
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 license: "GPL-1.0-or-later"
 build: [
-  ["sh" "-exc" "cc -c $CFLAGS -I/usr/local/include test.c"] {os != "macos"}
+  ["sh" "-exc" "cc -c $CFLAGS -I/usr/local/include test.c"] {os != "macos" & os != "win32"}
   [
     "sh"
     "-exc"
     "cc -c $CFLAGS -I/opt/local/include -I/usr/local/include test.c"
   ] {os = "macos"}
+  ["./test-win.sh"] {os = "win32"}
 ]
-depends: ["conf-gmp"]
+depends: ["conf-gmp" "ocaml" {os = "win32"}]
 synopsis:
   "Virtual package relying on a GMP lib with constant-time modular exponentiation"
 description: """
 This package can only install if the GMP lib is installed on the system and
 corresponds to a version that has the mpz_powm_sec function."""
 authors: "Etienne Millon <etienne@cryptosense.com>"
-extra-files: ["test.c" "md5=29317f477fa828e18428660ef31064fb"]
+extra-files: [
+  ["test.c" "md5=29317f477fa828e18428660ef31064fb"]
+  ["test-win.sh" "md5=7e29c8a562bd70fcc6da8e9e643ef2e9"]
+]
 flags: conf

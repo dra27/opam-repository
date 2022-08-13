@@ -37,6 +37,7 @@ depends: [
   "ocaml-migrate-parsetree" {< "2.0.0"}
   "ppx_tools_versioned" {= "5.0alpha"}
 ]
+patches: "patch-spacetag-reason-parser.1.13.3" {os = "win32"}
 synopsis: "Reason Parser: Meta Language Toolchain"
 description: """
 reason allows development of Meta Language syntax trees in non-text format. It
@@ -44,6 +45,10 @@ allows a development model that is equivalent to collaborating on syntax trees
 that have been committed to a source code repository.
 
 This is the parser sub-package."""
+extra-files: [
+  "patch-spacetag-reason-parser.1.13.3"
+  "md5=e217551b6407e363b2deab2d454e9d3a"
+]
 url {
   src:
     "https://github.com/facebook/reason/releases/download/1.13.3/reason-parser-1.13.3.tar.gz"

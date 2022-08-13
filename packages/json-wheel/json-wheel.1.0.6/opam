@@ -8,8 +8,13 @@ depends: [
   "ocamlnet"
 ]
 install: [make "install" "PREFIX=%{prefix}%"]
+patches: "patch-ocamlmakefile-json-wheel.1.0.6" {os = "win32"}
 synopsis: "JSON parser and writer, with optional C-style comments"
 flags: light-uninstall
+extra-files: [
+  "patch-ocamlmakefile-json-wheel.1.0.6"
+  "md5=d4199d4649d7c48463fbd5c95c7dfca7"
+]
 url {
   src:
     "https://github.com/mjambon/mjambon2016/raw/master/json-wheel-1.0.6.tar.bz2"

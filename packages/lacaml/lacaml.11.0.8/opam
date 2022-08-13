@@ -48,3 +48,4 @@ url {
     "sha512=933fbbe2e9c1739f052daf15e4c2863b4bede7ee69f29c08862be18b0c11a25b3e09fc67d3f2421892c194ebfdfc1dc3ad0501d4250a5bdbfbbb35528c4cc7dd"
   ]
 }
+patches: "lacaml-11.0.8.patch" {os = "win32"}

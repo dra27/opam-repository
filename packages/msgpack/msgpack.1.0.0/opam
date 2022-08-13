@@ -4,6 +4,7 @@ authors: "MIZUNO Hiroki <mzp.ppp@gmail.com>"
 homepage: "http://github.com/msgpack/msgpack-ocaml/"
 bug-reports: "https://github.com/msgpack/msgpack-ocaml/issues"
 patches: [
+  "patch-oasis-msgpack.1.0.0" {os = "win32"}
   "no-camlp4.patch"
 ]
 build: [
@@ -35,7 +36,10 @@ description: """
 MessagePack is an efficient binary serialization format.
 If meta_conv is installed, conv module will be installed."""
 flags: light-uninstall
-extra-files: ["no-camlp4.patch" "md5=44c557f6cc2d2d74f55c25cd01c0e569"]
+extra-files: [
+  ["patch-oasis-msgpack.1.0.0" "md5=1dfe32e6190dc06372291972530e1bcd"]
+  ["no-camlp4.patch" "md5=a06b40777397d09dee604cbf4e2dbb79"]
+]
 url {
   src: "https://github.com/msgpack/msgpack-ocaml/archive/1.0.0.tar.gz"
   checksum: "md5=0a75171441f7aeb72dee2c453658400a"

@@ -34,8 +34,19 @@ depends: [
   "ounit" {with-test}
   "uint" {with-test}
 ]
+patches: [
+  "patch-topkg-ppx_deriving_protobuf.2.5" {os = "win32"}
+  "ppx_deriving_protobuf-2.4.patch" {os = "win32"}
+]
 synopsis: "A Protocol Buffers codec generator for OCaml >=4.02"
 description: "A Protocol Buffers codec generator for OCaml >=4.02"
+extra-files: [
+  ["ppx_deriving_protobuf-2.4.patch" "md5=744e244a745cf21cd2cc87acadb3971f"]
+  [
+    "patch-topkg-ppx_deriving_protobuf.2.5"
+    "md5=ffaee5699de8d614bc13fb07fb5f98cc"
+  ]
+]
 url {
   src:
     "https://github.com/whitequark/ppx_deriving_protobuf/archive/v2.5.tar.gz"

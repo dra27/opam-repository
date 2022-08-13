@@ -40,6 +40,7 @@ conflicts: [
   "ppx_deriving" {< "2.0" | >= "5.0"}
   "yojson" {>= "2.0.0"}
 ]
+patches: "patch-oasis-cconv.0.4" {os = "win32"}
 synopsis:
   "Combinators for Type Conversion in OCaml, and ppx_deriving plugin."
 description: """
@@ -51,6 +52,7 @@ conversion to Json (yojson), S-expressions (sexplib) and B-encode.
 The library cconv.ppx contains a ppx_deriving plugin for automatically derive
 encoders and decoders."""
 flags: light-uninstall
+extra-files: ["patch-oasis-cconv.0.4" "md5=bd337b5a7552ef221c5ff0733e66b6a4"]
 url {
   src: "https://github.com/c-cube/cconv/archive/0.4.tar.gz"
   checksum: "md5=25d873aa26a0521ab3b015fdb7f26e28"

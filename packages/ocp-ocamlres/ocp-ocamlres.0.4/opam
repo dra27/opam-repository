@@ -33,3 +33,4 @@ url {
   src: "https://github.com/OCamlPro/ocp-ocamlres/archive/v0.4.tar.gz"
   checksum: "md5=725eb557e659c6febf8dc3044b323bd8"
 }
+patches: "ocp-ocamlres-0.4.patch" {os = "win32"}

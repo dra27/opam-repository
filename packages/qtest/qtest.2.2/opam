@@ -24,6 +24,7 @@ depends: [
   "base-bytes"
 ]
 conflicts: "qcheck"
+patches: "iTeML-2.2.patch" {os = "win32"}
 synopsis: "iTeML / qtest : Inline (Unit) Tests for OCaml."
 description: """
 qtest extracts inline unit tests written using a special
@@ -31,7 +32,10 @@ syntax in comments. Those tests are then run using the oUnit framework.
 The possibilities range from trivial tests -- extremely simple to use --
 to sophisticated random generation of test cases."""
 flags: light-uninstall
-extra-files: ["qtest.install" "md5=36d87746d47b206cbf45ab88dc199b8c"]
+extra-files: [
+  ["qtest.install" "md5=36d87746d47b206cbf45ab88dc199b8c"]
+  ["iTeML-2.2.patch" "md5=e77256e0a0d652730a065173a0a823e9"]
+]
 url {
   src: "https://github.com/vincent-hugot/iTeML/archive/v2.2.tar.gz"
   checksum: "md5=fe868226df34153f3a17e480a38c1e64"

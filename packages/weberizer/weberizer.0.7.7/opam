@@ -21,10 +21,14 @@ depends: [
   "ocamlbuild" {build}
 ]
 install: ["ocaml" "setup.ml" "-install"]
+patches: "patch-oasis-weberizer.0.7.7" {os = "win32"}
 synopsis: "HTML templating system."
 description: "Weberizer compiles HTML templates into OCaml modules."
 flags: light-uninstall
-extra-files: ["weberizer.install" "md5=7ad457d1ba0fe8b0872168082a18e8fe"]
+extra-files: [
+  ["weberizer.install" "md5=7ad457d1ba0fe8b0872168082a18e8fe"]
+  ["patch-oasis-weberizer.0.7.7" "md5=1331f934b95e5c7a3af6f28c7b6f3598"]
+]
 url {
   src:
     "https://github.com/Chris00/weberizer/releases/download/0.7.7/weberizer-0.7.7.tar.gz"

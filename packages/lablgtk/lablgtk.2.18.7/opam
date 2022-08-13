@@ -24,7 +24,10 @@ depopts: [
   "conf-glade"
   "lablgl"
 ]
-patches: ["lablgldir.patch"]
+patches: [
+  "lablgldir.patch"
+  "lablgtk-2.18.7.patch" {os = "win32"}
+]
 post-messages: [
   "This package requires gtk+ 2.0 development packages installed on your system"
     {failure}
@@ -38,6 +41,7 @@ flags: light-uninstall
 extra-files: [
   ["lablgtk.install" "md5=1a3468258dd50aab33b9844db158b11a"]
   ["lablgldir.patch" "md5=8cf5f3efbcb7bb8294424c30f77ea81f"]
+  ["lablgtk-2.18.7.patch" "md5=af5675b666c239aacd7f0485a5ec2321"]
 ]
 url {
   src:

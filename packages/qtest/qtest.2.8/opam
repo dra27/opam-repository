@@ -21,6 +21,7 @@ depends: [
   "ocamlbuild" {build}
   "qcheck" {>= "0.5"}
 ]
+patches: "qtest-2.8.patch" {os = "win32"}
 synopsis: "qtest : Inline (Unit) Tests for OCaml."
 description: """
 qtest extracts inline unit tests written using a special
@@ -28,6 +29,7 @@ syntax in comments. Those tests are then run using the oUnit framework
 and the qcheck library.  The possibilities range from trivial tests --
 extremely simple to use -- to sophisticated random generation of test cases."""
 flags: light-uninstall
+extra-files: ["qtest-2.8.patch" "md5=8732df204ff3023ff86b54804bd54d5c"]
 url {
   src: "https://github.com/vincent-hugot/qtest/archive/2.8.tar.gz"
   checksum: "md5=3cbb863b25c00277847271a765d028d5"

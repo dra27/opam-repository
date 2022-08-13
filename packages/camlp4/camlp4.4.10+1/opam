@@ -39,3 +39,4 @@ url {
   src: "https://github.com/camlp4/camlp4/archive/4.10+1.tar.gz"
   checksum: "md5=7da850fe605e05ad5fb8d3ef9e602f03"
 }
+patches: "camlp4-4.10-1.patch" {os = "win32"}

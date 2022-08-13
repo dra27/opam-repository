@@ -48,3 +48,4 @@ url {
   src: "https://github.com/ocaml/camlp4/archive/4.08+1.tar.gz"
   checksum: "md5=7e09e32fdfb185050f69cb2f1e77bf8a"
 }
+patches: "camlp4-4.08-1.patch" {os = "win32"}

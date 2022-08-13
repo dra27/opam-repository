@@ -35,11 +35,15 @@ depends: [
 conflicts: [
   "utop" {< "1.17"}
 ]
+patches: "patch-spacetag-reason.3.0.0" {os = "win32"}
 synopsis: "Reason: Syntax & Toolchain for OCaml"
 description: """
 Reason gives OCaml a new syntax that is remniscient of languages like
 JavaScript. It's also the umbrella project for a set of tools for the OCaml &
 JavaScript ecosystem."""
+extra-files: [
+  "patch-spacetag-reason.3.0.0" "md5=afa48d9d1f32e1f3369e356d53a41748"
+]
 url {
   src: "https://github.com/facebook/reason/archive/3.0.0.tar.gz"
   checksum: "md5=f3ce46cf6819fc742b74d0e08a27e853"

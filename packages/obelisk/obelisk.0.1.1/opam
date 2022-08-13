@@ -14,8 +14,10 @@ depends: [
   "ocamlbuild"
   "menhir"
 ]
+patches: "Obelisk-0.1.1.patch" {os = "win32"}
 synopsis:
   "Obelisk is a simple tool which produces pretty-printed output from a Menhir parser file (.mly)."
+extra-files: ["Obelisk-0.1.1.patch" "md5=de3e90a99d74ca6b0ce0439a27909158"]
 url {
   src: "https://github.com/Lelio-Brun/Obelisk/archive/v0.1.1.tar.gz"
   checksum: "md5=de4f5866a96fb43444e78e8fbc75c119"

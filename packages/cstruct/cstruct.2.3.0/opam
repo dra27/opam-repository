@@ -43,6 +43,7 @@ depopts: [
   "lwt"
   "base-unix"
 ]
+patches: "ocaml-cstruct-2.3.0.patch" {os = "win32"}
 synopsis: "access C structures via a camlp4 extension"
 description: """
 Cstruct is a library and syntax extension to make it easier to access C-like
@@ -65,6 +66,9 @@ type pcap_header = {
 ```
 
 For Camlp4 support, please use a version of Cstruct that is `<=1.9.0`"""
+extra-files: [
+  "ocaml-cstruct-2.3.0.patch" "md5=44547dc5d575f666bdeda61913fd002a"
+]
 url {
   src: "https://github.com/mirage/ocaml-cstruct/archive/v2.3.0.tar.gz"
   checksum: "md5=f84097a0618715e2849542ee8e893454"

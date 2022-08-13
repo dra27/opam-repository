@@ -62,3 +62,4 @@ url {
   ]
 }
 x-commit-hash: "4c48711a8cb37c8e7b78b4520d9d998388572669"
+patches: "mirage-crypto-v0.10.4.patch" {os = "win32"}

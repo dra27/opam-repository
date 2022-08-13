@@ -45,3 +45,4 @@ url {
   src: "https://github.com/janestreet/core_kernel/archive/v0.13.1.tar.gz"
   checksum: "md5=ee4f3b03ce7fa4cb0c27e9b02cc7712d"
 }
+patches: "core_kernel-0.13.1.patch" {os = "win32"}

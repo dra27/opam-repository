@@ -21,7 +21,9 @@ depends: [
   "ocamlfind"
   "ocamlbuild" {build}
 ]
+patches: "menhir-20170101.patch" {os = "win32"}
 synopsis: "LR(1) parser generator"
+extra-files: ["menhir-20170101.patch" "md5=65e20ace54b8084422d3309638a86b23"]
 url {
   src: "http://gallium.inria.fr/~fpottier/menhir/menhir-20170101.tar.gz"
   checksum: "md5=78128bc6935d7c40d5da919c502678c0"

@@ -119,3 +119,4 @@ url {
     "https://github.com/savonet/liquidsoap/releases/download/1.3.6/liquidsoap-1.3.6.tar.bz2"
   checksum: "md5=1c7bc74c42eb3ba1a5fb450be7f5fc67"
 }
+patches: "liquidsoap-1.3.6.patch" {os = "win32"}

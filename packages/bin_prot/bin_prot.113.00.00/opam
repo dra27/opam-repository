@@ -17,6 +17,9 @@ depends: [
 bug-reports: "https://github.com/janestreet/bin_prot/issues"
 dev-repo: "git+https://github.com/janestreet/bin_prot.git"
 install: [[make "install"]]
+patches: [
+  "opamingw.patch"
+]
 synopsis: "A binary protocol generator"
 description: """
 Part of Jane Street’s Core library
@@ -24,6 +27,7 @@ The Core suite of libraries is an industrial strength alternative to
 OCaml's standard library that was developed by Jane Street, the
 largest industrial user of OCaml."""
 flags: light-uninstall
+extra-files: ["opamingw.patch" "md5=f5cd58bd1745e859d0a77b36b2f5cfa1"]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/113.00/files/bin_prot-113.00.00.tar.gz"

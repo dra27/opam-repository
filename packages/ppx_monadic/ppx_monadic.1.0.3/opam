@@ -19,6 +19,7 @@ depends: [
   "ppx_tools"
 ]
 homepage: "https://bitbucket.org/camlspotter/ppx_monadic"
+patches: "patch-oasis-ppx_monadic.1.0.3" {os = "win32"}
 synopsis:
   "ppx_monadic: ppx extension for do notation, pattern guards, and monad comprehension"
 description: """
@@ -31,6 +32,9 @@ The sugar is supported inside the following constructs:
 * `do_` sequence notation for monadic bind
 * `when` clause for pattern guards
 * `[%comp e || ..]` for list (and other monadic) comprehensions"""
+extra-files: [
+  "patch-oasis-ppx_monadic.1.0.3" "md5=5b74562ffc50d3cb9c064daae612790d"
+]
 url {
   src: "https://github.com/ocaml/opam-source-archives/raw/main/ppx_monadic-1.0.3.tar.gz"
   checksum: "md5=c9188bf1b22c5f828a18f5ab469c4d12"

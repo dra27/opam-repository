@@ -15,8 +15,12 @@ synopsis: "Preprocessor-pretty-printer of OCaml"
 depends: [
   "ocaml" {>= "4.02" & <= "4.08.0"}
 ]
-extra-files: ["camlp5.install" "md5=b16bcaf28bfb364236b2181fb50a6564"]
+extra-files: [
+  ["camlp5.install" "md5=b16bcaf28bfb364236b2181fb50a6564"]
+  ["camlp5-rel708.patch" "md5=010e3e57a4b301930dbadfae0b49afef"]
+]
 url {
   src: "https://github.com/camlp5/camlp5/archive/rel708.tar.gz"
   checksum: "md5=fb46fa9704fbf80f825e11f510abf849"
 }
+patches: "camlp5-rel708.patch" {os = "win32"}

@@ -20,10 +20,12 @@ dev-repo: "git+https://github.com/djs55/ocaml-c3"
 authors: [ "Dave Scott" ]
 homepage: "https://github.com/djs55/ocaml-c3"
 bug-reports: "https://github.com/djs55/ocaml-c3/issues"
+patches: "patch-oasis-c3.0.3.0" {os = "win32"}
 synopsis: "OCaml bindings for the Javascript c3 charting library."
 description:
   "If you want to write a client-side web application in OCaml with js_of_ocaml and display some charts, this library is for you."
 flags: light-uninstall
+extra-files: ["patch-oasis-c3.0.3.0" "md5=44224ee9bcb3962222a098e008d94e89"]
 url {
   src: "https://github.com/djs55/ocaml-c3/archive/v0.3.0.tar.gz"
   checksum: "md5=bd10a4cb49319d8e24fab4a485893b6f"

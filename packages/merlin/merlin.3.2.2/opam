@@ -71,3 +71,4 @@ url {
     "https://github.com/ocaml/merlin/releases/download/v3.2.2/merlin-v3.2.2.tbz"
   checksum: "md5=ede35b65f8ac9c440cfade5445662c54"
 }
+patches: "merlin-v3.2.2.patch" {os = "win32"}

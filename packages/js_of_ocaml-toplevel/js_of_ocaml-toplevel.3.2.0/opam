@@ -18,7 +18,11 @@ depends: [
 ]
 depopts: [ "camlp4" ]
 
+patches: "js_of_ocaml-3.2.0.patch" {os = "win32"}
 synopsis: "Compiler from OCaml bytecode to Javascript"
+extra-files: [
+  "js_of_ocaml-3.2.0.patch" "md5=76196a1a3c78503b868f2d0934ca2376"
+]
 url {
   src: "https://github.com/ocsigen/js_of_ocaml/archive/3.2.0.tar.gz"
   checksum: "md5=5f7d6121f2b549b5ee83a625a142219b"

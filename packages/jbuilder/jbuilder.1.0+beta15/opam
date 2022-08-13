@@ -14,6 +14,7 @@ depends: [
   "ocaml" {>= "4.02.3" & < "4.08.0"}
   "ocamlfind" {build}
 ]
+patches: "jbuilder-1.0-beta15.patch" {os = "win32"}
 synopsis: "Fast, portable and opinionated build system"
 description: """
 jbuilder is a build system that was designed to simplify the release
@@ -32,6 +33,9 @@ It also supports multi-context builds, such as building against
 several opam roots/switches simultaneously. This helps maintaining
 packages across several versions of OCaml and gives cross-compilation
 for free."""
+extra-files: [
+  "jbuilder-1.0-beta15.patch" "md5=0943543e9cd6bc333a0687d5aa53632a"
+]
 url {
   src:
     "https://github.com/janestreet/jbuilder/releases/download/1.0+beta15/jbuilder-1.0.beta15.tbz"

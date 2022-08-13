@@ -26,3 +26,4 @@ url {
   src: "http://gallium.inria.fr/~fpottier/menhir/menhir-20181006.tar.gz"
   checksum: "md5=d2174b0d4bd8feb66a7484be6f1eed14"
 }
+patches: "menhir-20181006.patch" {os = "win32"}

@@ -12,7 +12,10 @@ depends: [
   "sexplib" {>= "v0.9.1" & < "v0.10"}
 ]
 depopts: "base-native-int63"
-patches: "metaocaml.patch" {ocaml:compiler = "4.04.0+BER"}
+patches: [
+  "metaocaml.patch" {ocaml:compiler = "4.04.0+BER"}
+  "base-0.9.3.patch" {os = "win32"}
+]
 synopsis: "Full standard library replacement for OCaml"
 description: """
 Base is a complete and portable alternative to the OCaml standard
@@ -25,7 +28,10 @@ features such as I/O are not offered by Base. They are instead
 provided by companion libraries such as stdio:
 
   https://github.com/janestreet/stdio"""
-extra-files: ["metaocaml.patch" "md5=35e4b6516daba35e7633ee95bc2ebe4a"]
+extra-files: [
+  ["metaocaml.patch" "md5=35e4b6516daba35e7633ee95bc2ebe4a"]
+  ["base-0.9.3.patch" "md5=4ed2db1675a0cd6449e20927b8a211ec"]
+]
 url {
   src: "https://github.com/janestreet/base/archive/v0.9.3.tar.gz"
   checksum: "md5=3edb19585be84ea308323ccd41213e57"

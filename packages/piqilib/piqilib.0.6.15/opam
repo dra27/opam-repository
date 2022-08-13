@@ -32,3 +32,4 @@ url {
   src: "https://github.com/alavrik/piqi/archive/v0.6.15.tar.gz"
   checksum: "md5=a5fb9df76f44fa64aec2e91682519d4f"
 }
+patches: "piqi-0.6.15.patch" {os = "win32"}

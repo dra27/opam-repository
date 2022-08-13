@@ -11,12 +11,16 @@ depends: [
   "ocamlbuild" {build}
 ]
 dev-repo: "git+https://github.com/UnixJunkie/interval-tree"
+patches: "patch-oasis-itv-tree.2.0" {os = "win32"}
 install: ["ocaml" "setup.ml" "-install"]
 synopsis: "float intervals tree library"
 description: """
 interval tree for float intervals, you can create a tree once then
 query it many times (queries are fast)"""
 flags: light-uninstall
+extra-files: [
+  "patch-oasis-itv-tree.2.0" "md5=6d0577d59fd54677993a54790e73b591"
+]
 url {
   src: "https://github.com/UnixJunkie/interval-tree/archive/v2.0.tar.gz"
   checksum: "md5=5dcc9b3eaa5e085c3507cf9785abcc45"

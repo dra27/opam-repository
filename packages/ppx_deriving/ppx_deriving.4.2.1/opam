@@ -37,11 +37,15 @@ depends: [
   "ounit" {with-test}
 ]
 available: opam-version >= "1.2"
+patches: "ppx_deriving-4.2.1.patch" {os = "win32"}
 synopsis: "Type-driven code generation for OCaml >=4.02"
 description: """
 ppx_deriving provides common infrastructure for generating
 code based on type definitions, and a set of useful plugins
 for common tasks."""
+extra-files: [
+  "ppx_deriving-4.2.1.patch" "md5=bce286bf61174413945dfb11c59e4912"
+]
 url {
   src: "https://github.com/ocaml-ppx/ppx_deriving/archive/v4.2.1.tar.gz"
   checksum: "md5=2195fccf2a527c3ff9ec5b4e36e2f0a8"

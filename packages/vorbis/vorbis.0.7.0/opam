@@ -25,8 +25,16 @@ depexts: [
 ]
 bug-reports: "https://github.com/savonet/ocaml-vorbis/issues"
 dev-repo: "git+https://github.com/savonet/ocaml-vorbis.git"
+patches: [
+  "ocaml-vorbis-0.7.0.patch" {os = "win32"}
+  "patch-ocamlmakefile-vorbis.0.7.0" {os = "win32"}
+]
 synopsis: "Bindings to libvorbis"
 flags: light-uninstall
+extra-files: [
+  ["patch-ocamlmakefile-vorbis.0.7.0" "md5=4b82250075306ea622ad66462232d0f2"]
+  ["ocaml-vorbis-0.7.0.patch" "md5=9b4e8b62e860b3ec1311743effbd73ee"]
+]
 url {
   src:
     "https://github.com/savonet/ocaml-vorbis/releases/download/0.7.0/ocaml-vorbis-0.7.0.tar.gz"

@@ -19,6 +19,7 @@ depends: [
   ("sqlite3" {>= "2.0.4"} | "sqlite3" {= "2.0.3"})
   "ocamlbuild" {build}
 ]
+patches: [ "patch-aa" { os = "win32" } ]
 install: ["ocaml" "setup.ml" "-install"]
 synopsis: "Type-safe, convenient SQLite database access."
 description: """
@@ -41,6 +42,7 @@ with Lwt
 * support for SQL stmt syntax checks and some extra semantic checking
 (column names, etc)"""
 flags: light-uninstall
+extra-files: ["patch-aa" "md5=c6a23e9aa94f215e766e3da113cd1b4a"]
 url {
   src:
     "https://download.ocamlcore.org/ocaml-sqlexpr/ocaml-sqlexpr/0.5.5/ocaml-sqlexpr-0.5.5.tar.gz"

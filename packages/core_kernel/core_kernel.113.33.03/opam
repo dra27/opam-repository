@@ -27,6 +27,10 @@ depends: [
   "typerep" {>= "113.33.03" & < "113.34.00"}
   "variantslib" {>= "113.33.03" & < "113.34.00"}
 ]
+patches: [
+  "patch-aa" {os = "win32"}
+  "patch-oasis-core_kernel.113.33.03" {os = "win32"}
+]
 synopsis: "Industrial strength alternative to OCaml's standard library"
 description: """
 The Core suite of libraries is an industrial strength alternative to
@@ -34,6 +38,12 @@ OCaml's standard library that was developed by Jane Street, the
 largest industrial user of OCaml.
 
 Core_kernel is the system-independent part of Core."""
+extra-files: [
+  [
+    "patch-oasis-core_kernel.113.33.03" "md5=be8f528819920d216c46031831e5701b"
+  ]
+  ["patch-aa" "md5=73652a2e6419d2d082a035ae08187d35"]
+]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/113.33/files/core_kernel-113.33.03.tar.gz"

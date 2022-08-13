@@ -18,3 +18,4 @@ url {
   src: "https://github.com/UnixJunkie/bytearray/archive/v1.0.1.tar.gz"
   checksum: "md5=9f57799ca9e971ab5886310f17012546"
 }
+patches: "bytearray-1.0.1.patch" {os = "win32"}

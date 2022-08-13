@@ -17,8 +17,10 @@ depends: [
   "ocamlfind"
   "conf-autoconf" {build}
 ]
+patches: "bitv-1.2.patch" {os = "win32"}
 synopsis: "A bit vector library"
 flags: light-uninstall
+extra-files: ["bitv-1.2.patch" "md5=051ad681374dd0743224531ce1b7ac38"]
 url {
   src: "https://www.lri.fr/~filliatr/ftp/ocaml/ds/bitv-1.2.tar.gz"
   checksum: "md5=a08de015cead540ed69e16886e90189e"

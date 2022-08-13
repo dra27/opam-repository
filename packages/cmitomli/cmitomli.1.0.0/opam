@@ -17,6 +17,7 @@ doesn't require any other argument than the input cmi file."""
 depends: [
   "ocaml" {>= "4.00.0"}
 ]
+extra-files: ["cmitomli-1.0.0.patch" "md5=164b5d770ff9cf332c1379dfa577e3ec"]
 url {
   src: "https://github.com/mjambon/cmitomli/archive/v1.0.0.tar.gz"
   checksum: "md5=76fe691d99987aa02749bf504309ecef"

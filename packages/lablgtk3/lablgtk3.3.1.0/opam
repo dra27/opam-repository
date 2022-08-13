@@ -36,3 +36,4 @@ url {
     "sha512=4bda466717414567a8833c40b06f9b48253035c4580addf4f34de50c9335bc9eecec34165b00aa63c0f4b8c29f21fbc7620e67b83501e385dfa5bd5875d7e0a6"
   ]
 }
+patches: "lablgtk3-3.1.0.patch" {os = "win32"}

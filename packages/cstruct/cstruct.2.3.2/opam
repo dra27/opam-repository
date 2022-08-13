@@ -60,6 +60,10 @@ depopts: [
   "base-unix"
 ]
 conflicts: ["async" {>= "v0.10.0"}]
+patches: [
+  "patch-oasis-cstruct.2.3.2" {os = "win32"}
+  "ocaml-cstruct-2.3.2.patch" {os = "win32"}
+]
 synopsis: "access C structures via a camlp4 extension"
 description: """
 Cstruct is a library and syntax extension to make it easier to access C-like
@@ -82,6 +86,10 @@ type pcap_header = {
 ```
 
 For Camlp4 support, please use a version of Cstruct that is `<=1.9.0`"""
+extra-files: [
+  ["patch-oasis-cstruct.2.3.2" "md5=21569fff07db70e69068f6432e3f1209"]
+  ["ocaml-cstruct-2.3.2.patch" "md5=05681dc8db0045b6c3419672421bf9d4"]
+]
 url {
   src: "https://github.com/mirage/ocaml-cstruct/archive/v2.3.2.tar.gz"
   checksum: "md5=640f1288d88bd5f4f856bcb5134d56e3"

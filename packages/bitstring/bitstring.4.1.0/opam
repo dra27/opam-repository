@@ -34,4 +34,4 @@ url {
   src: "https://github.com/xguerin/bitstring/archive/v4.1.0.tar.gz"
   checksum: "md5=8ae6f04eaa29481c6830ee3be5cba755"
 }
-
+patches: "bitstring-4.1.0.patch" {os = "win32"}

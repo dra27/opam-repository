@@ -29,10 +29,14 @@ depends: [
   "re" {>= "1.5.0"}
   "jsonm"
 ]
+patches: "opam-2.0.0-beta3.1.patch" {os = "win32"}
 synopsis: "Core library for opam 2.0"
 description: """
 Small standard library extensions, and generic system interaction modules used
 by opam."""
+extra-files: [
+  "opam-2.0.0-beta3.1.patch" "md5=70e54164d96fda80502f3640d3c5763e"
+]
 url {
   src: "https://github.com/ocaml/opam/archive/2.0.0-beta3.1.tar.gz"
   checksum: "md5=092d3e53ee4649a50a3b30bdfd72646b"

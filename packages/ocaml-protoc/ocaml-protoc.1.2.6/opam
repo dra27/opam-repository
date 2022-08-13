@@ -31,3 +31,4 @@ url {
     "sha512=414357d7c5e708b985048aedf7f9141e2894fac044c255dda2dd29fdd239a0a63d5ec8999e70998fe12ea5a41a7618c01ccda86ee4dfd396de54b8282c473d6b"
   ]
 }
+patches: "ocaml-protoc-1.2.6.patch" {os = "win32"}

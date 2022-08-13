@@ -46,3 +46,4 @@ url {
 src: "https://ocaml.janestreet.com/ocaml-core/v0.15/files/core-v0.15.0.tar.gz"
 checksum: "sha256=3a656f2b8605dd052da6459ad8dace3263d21efe15ef2b3bd36aaa8f8ce85e1f"
 }
+patches: "core-v0.15.0.patch" {os = "win32"}

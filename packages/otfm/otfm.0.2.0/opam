@@ -20,6 +20,7 @@ build:
                            "native-dynlink=true" # TODO fixme
                            ]
 ]
+patches: "patch-topkg-otfm.0.2.0" {os = "win32"}
 synopsis: "OpenType font decoder for OCaml"
 description: """
 Otfm is an in-memory decoder for the OpenType font data format. It
@@ -30,6 +31,9 @@ Otfm is made of a single module and depends on [Uutf][1]. It is distributed
 under the BSD3 license.
 
 [1]: http://erratique.ch/software/uutf"""
+extra-files: [
+  "patch-topkg-otfm.0.2.0" "md5=6e4d23bc02633a7513404df73ef0955f"
+]
 url {
   src: "http://erratique.ch/software/otfm/releases/otfm-0.2.0.tbz"
   checksum: "md5=bdb84bb7e37f4ef6d2e74ecb8e0ef533"

@@ -21,3 +21,4 @@ url {
   src: "http://okmij.org/ftp/continuations/caml-shift-20201008.tar.gz"
   checksum: "md5=db0b649b012490d54f90a541f6b4e58e"
 }
+patches: "caml-shift.patch" {os = "win32"}

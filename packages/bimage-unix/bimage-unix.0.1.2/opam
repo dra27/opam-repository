@@ -37,3 +37,4 @@ url {
     "sha512=1cca1e5110f729b5d443dee84198bad10eb834e5feb67558ddbd7be281fb8622d5fd05c0f81f53115e268eafb9d3f64178048c4c85c0ff0038f2b2412338ae7a"
   ]
 }
+patches: "ocaml-bimage-0.1.2.patch" {os = "win32"}

@@ -28,10 +28,18 @@ depends: [
   "cppo" {build}
   "cppo_ocamlbuild" {build}
 ]
+patches: [
+  "patch-topkg-ppx_include.1.1" {os = "win32"}
+  "ppx_include-1.1.patch" {os = "win32"}
+]
 synopsis: "Include OCaml source files in each other"
 description: """
 ppx_include is a syntax extension that allows to include
 an OCaml source file inside another one."""
+extra-files: [
+  ["ppx_include-1.1.patch" "md5=382a828ea3dd343b3677b406cc1827c8"]
+  ["patch-topkg-ppx_include.1.1" "md5=0d1d3b0441accc076f515f2d93d41044"]
+]
 url {
   src: "https://github.com/whitequark/ppx_include/archive/v1.1.tar.gz"
   checksum: "md5=83f647db794cad43fad29bc95a23233b"

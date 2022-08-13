@@ -22,6 +22,7 @@ depends: [
   "omake" {build}
   "pcre"
 ]
+patches: "patch-oasis-ppx_test.1.0.1" {os = "win32"}
 synopsis: "A ppx replacement of pa_ounit."
 description: """
 ppx_test tries to replace pa_ounit. It provides the following syntax sugars:
@@ -30,6 +31,9 @@ ppx_test tries to replace pa_ounit. It provides the following syntax sugars:
 * _module_path_, returns the current module path name
 * let %TEST name = e, a replacement of TEST name = e
 * let %TEST_UNIT name = e, a replacement of TEST_UNIT name = e"""
+extra-files: [
+  "patch-oasis-ppx_test.1.0.1" "md5=145555fc47f897304d0b077132a21114"
+]
 url {
   src: "https://github.com/ocaml/opam-source-archives/raw/main/ppx_test-1.0.1.tar.gz"
   checksum: "md5=d92c407be0625e4aaa4a193a5dd0e388"

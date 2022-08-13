@@ -20,10 +20,14 @@ depends: [
   "ppx_deriving_yojson"
   "extlib" {build}
 ]
+patches: "patch-topkg-ppx_netblob.1.2.1" {os = "win32"}
 synopsis: "type-driven generation of HTTP calling code"
 description:
   "ppx_netblob (may be renamed as \"schildpad\" in the future) is a library for generating RESTful API bindings from types."
 flags: light-uninstall
+extra-files: [
+  "patch-topkg-ppx_netblob.1.2.1" "md5=bce286bf61174413945dfb11c59e4912"
+]
 url {
   src: "https://github.com/chrismamo1/ppx_netblob/archive/v1.2.1.tar.gz"
   checksum: "md5=322693a0a634e8077e0a3befe4313f43"

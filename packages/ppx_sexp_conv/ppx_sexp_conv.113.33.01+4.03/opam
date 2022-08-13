@@ -18,9 +18,20 @@ depends: [
   "ppx_type_conv" {>= "113.33.00+4.03" & < "113.34.00+4.03"}
   "sexplib" {>= "113.33.00+4.03" & < "113.34.00+4.03"}
 ]
+patches: [
+  "patch-oasis-ppx_sexp_conv.113.33.01+4.03" {os = "win32"}
+  "patch_gen_install.ml" {os = "win32"}
+]
 synopsis:
   "Generation of S-expression conversion functions from type definitions"
 description: "Part of the Jane Street's PPX rewriters collection."
+extra-files: [
+  ["patch_gen_install.ml" "md5=d8214cdae1c58dfc4ee233dc02d5cb69"]
+  [
+    "patch-oasis-ppx_sexp_conv.113.33.01+4.03"
+    "md5=23d3bb37fa639a1950c419ff7f9c4982"
+  ]
+]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/113.33/files/ppx_sexp_conv-113.33.01+4.03.tar.gz"

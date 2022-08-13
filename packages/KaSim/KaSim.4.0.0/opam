@@ -35,6 +35,7 @@ build: [
 #  [make "check"] {with-test}
 ]
 install: [ [ make "install-lib" ] ]
+patches: "KaSim-4.0.patch" {os = "win32"}
 
 synopsis: "Software suite for the Kappa language"
 url {

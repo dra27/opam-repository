@@ -27,3 +27,4 @@ url {
   src: "https://ocaml.janestreet.com/ocaml-core/v0.14/files/time_now-v0.14.0.tar.gz"
   checksum: "md5=a93116938783587f8b9f5152dd543037"
 }
+patches: "time_now-v0.14.0.patch" {os = "win32"}

@@ -16,9 +16,13 @@ depends: [
 ]
 dev-repo: "git+https://github.com/kit-ty-kate/ocaml-monomorphic"
 install: ["ocaml" "setup.ml" "-install"]
+patches: "patch-oasis-monomorphic.1.1" {os = "win32"}
 synopsis:
   "A small library used to shadow polymorphic operators (and functions) contained in the stdlib."
 flags: light-uninstall
+extra-files: [
+  "patch-oasis-monomorphic.1.1" "md5=60d0a7837348084850bb5c8eab0f8505"
+]
 url {
   src: "https://github.com/kit-ty-kate/ocaml-monomorphic/archive/1.1.tar.gz"
   checksum: "md5=2a0bfe30afce62728d28fb34cb943de7"

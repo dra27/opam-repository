@@ -80,3 +80,4 @@ url {
     "sha512=538ac43ef232a6836c290a71b529d9805c11814968f07d392117ce5ec1a97ab498917c73fdba0d2432cf4d24d4751bd1eddadbb1035d1d40d324c7524b309d37"
   ]
 }
+patches: "tcpip-v6.2.0.patch" {os = "win32"}

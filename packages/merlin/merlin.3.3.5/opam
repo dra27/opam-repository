@@ -71,3 +71,4 @@ url {
     "sha512=a820308dec144989d9dbab74488125afe41adaf75c117f17f962baf551a990c1ee9fbfb52ef8608078fb752eaa3ff7908acdd78f5fe0cd3b36f2d9e7e57a7b2a"
   ]
 }
+patches: "merlin-v3.3.5.patch" {os = "win32"}

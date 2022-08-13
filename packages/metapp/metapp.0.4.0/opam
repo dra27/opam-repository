@@ -38,3 +38,4 @@ url {
   src: "https://github.com/thierry-martinez/metapp/archive/v0.4.0.tar.gz"
   checksum: "sha512=37a83d2995447d743856287f5cb2362000f39858f41fb5e317cd24b373df6f2335cd0c2baddc980499571e760f0cf05ec34fd803233f02dabd19347837066c86"
 }
+patches: "metapp-0.4.0.patch" {os = "win32"}

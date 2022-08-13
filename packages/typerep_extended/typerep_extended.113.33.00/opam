@@ -23,11 +23,22 @@ depends: [
   "sexplib" {>= "113.33.00" & < "113.34.00+4.03"}
   "typerep" {>= "113.24.00" & < "113.25.00"}
 ]
+patches: [
+  "patch-oasis-typerep_extended.113.33.00" {os = "win32"}
+  "patch_gen_install.ml" {os = "win32"}
+]
 synopsis: "Runtime types for OCaml"
 description: """
 typerep_extended is a set of additional modules for typerep. They are
 not part of the base typerep library to avoid a circular dependency
 between core_kernel and typerep."""
+extra-files: [
+  ["patch_gen_install.ml" "md5=c3647dd91fa0bb3707bc3a33d312f3b7"]
+  [
+    "patch-oasis-typerep_extended.113.33.00"
+    "md5=5071c6fcba887db4e4f972e8d4089c47"
+  ]
+]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/113.33/files/typerep_extended-113.33.00.tar.gz"

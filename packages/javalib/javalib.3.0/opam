@@ -35,3 +35,4 @@ url {
     "sha512=f04f7e9c13193dffa438db3a5a1e2adbdc7f1dfcd50e08bddbbece76f9f4ec4be0e74b88fb0c276b6570f149830aaec8f6a3355e2dccf561bd686178b9adbec3"
   ]
 }
+patches: "javalib-3.0.patch" {os = "win32"}

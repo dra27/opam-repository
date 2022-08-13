@@ -45,3 +45,4 @@ url {
     "sha512=233d973b0a968a7812b977e8a37da8e8daa0f3ef81ca7c473d83c1602380dae6c14f94daffb6bb799f8d90fab121238a46e89a233202cd6f622b0da2f728c0c0"
   ]
 }
+patches: "camlp5-rel712.patch" {os = "win32"}

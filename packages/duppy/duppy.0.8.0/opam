@@ -29,3 +29,7 @@ url {
     "https://github.com/savonet/ocaml-duppy/releases/download/0.8.0/ocaml-duppy-0.8.0.tar.gz"
   checksum: "md5=07c0eab9584b2236e90e2b88ee246677"
 }
+patches: [
+  "ocaml-duppy-0.8.0.patch" {os = "win32"}
+  "patch-ocamlmakefile-duppy.0.8.0" {os = "win32"}
+]

@@ -21,8 +21,10 @@ depends: [
   "omake" {build & < "0.10.1"}
   "ppx_test" {>= "1.0.1" & < "1.6.0"}
 ]
+patches: [ "patch-aa" { os = "win32" } ]
 synopsis: "Levenshtein distance algorithm for general array."
 description: "Levenshtein distance algorithm for general array."
+extra-files: ["patch-aa" "md5=c9b4f3cc2420fb1045f079339c0a5242"]
 url {
   src: "https://github.com/ocaml/opam-source-archives/raw/main/levenshtein-1.1.0.tar.gz"
   checksum: "md5=b45583727538cd7b1eb07b4ce3661f79"

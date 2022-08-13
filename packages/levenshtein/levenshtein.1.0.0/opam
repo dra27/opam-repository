@@ -21,6 +21,7 @@ depends: [
   "omake" {build & < "0.10.1"}
   "pa_ounit" {>= "109.53.02"}
 ]
+patches: "patch-oasis-levenshtein.1.0.0" {os = "win32"}
 synopsis: "Levenshtein distance algorithm for general array."
 description: """
 Levenshtein distance algorithm for general array.
@@ -33,6 +34,9 @@ It provides:
 * Memoisation cache to avoid repeating distance calculations.
 * Functor to abstact the implementation of the array and cache.
 * Ready-to-use String and StringWithHashtbl modules are provided."""
+extra-files: [
+  "patch-oasis-levenshtein.1.0.0" "md5=a03602108decd5788f03a4c7a5520123"
+]
 url {
   src: "https://github.com/ocaml/opam-source-archives/raw/main/levenshtein-1.0.0.tar.gz"
   checksum: "md5=513c55272e1f1809aae4f922705abe70"

@@ -25,9 +25,17 @@ depexts: [
 ]
 bug-reports: "https://github.com/savonet/ocaml-theora/issues"
 dev-repo: "git+https://github.com/savonet/ocaml-theora.git"
+patches: [
+  "ocaml-theora-0.3.1.patch" {os = "win32"}
+  "patch-ocamlmakefile-theora.0.3.1" {os = "win32"}
+]
 synopsis:
   "Bindings for the theora library to decode video files in theora format"
 flags: light-uninstall
+extra-files: [
+  ["patch-ocamlmakefile-theora.0.3.1" "md5=8aa87f1efd51010c86b398b22b36cd85"]
+  ["ocaml-theora-0.3.1.patch" "md5=33bedfb67912674eaaaa4514477cf2a4"]
+]
 url {
   src:
     "https://github.com/savonet/ocaml-theora/releases/download/0.3.1/ocaml-theora-0.3.1.tar.gz"

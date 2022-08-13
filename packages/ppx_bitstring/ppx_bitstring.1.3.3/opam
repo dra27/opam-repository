@@ -21,7 +21,11 @@ depends: [
   "ppx_driver" {build & < "v0.9.0"}
   "ppx_tools"
 ]
+patches: "patch-oasis-ppx_bitstring.1.3.3" {os = "win32"}
 synopsis: "PPX extension for the bitstring library."
+extra-files: [
+  "patch-oasis-ppx_bitstring.1.3.3" "md5=72570d144ae91bc011a930f74762b5ee"
+]
 url {
   src: "https://github.com/xguerin/ppx_bitstring/archive/v1.3.3.tar.gz"
   checksum: "md5=09555b27b31287f506e7a4cd9659b110"

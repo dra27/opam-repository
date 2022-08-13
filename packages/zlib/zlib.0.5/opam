@@ -19,6 +19,7 @@ depends: [
   "base-bigarray"
   "conf-zlib"
 ]
+patches: [ "patch-zlib.0.5" { os = "win32" } ]
 synopsis: "Bindings to the zlib compression library"
 description: """
 providing deflate compression with or without zlib or gzip headers.
@@ -26,6 +27,7 @@ providing deflate compression with or without zlib or gzip headers.
 This library uses bigarrays as buffers and can therefore release the OCaml
 runtime during (de)compression, allowing other OCaml threads to continue."""
 flags: light-uninstall
+extra-files: ["patch-zlib.0.5" "md5=3a76e0ef72a4300770be4a77398e4724"]
 url {
   src: "https://github.com/madroach/ocaml-zlib/archive/0.5.tar.gz"
   checksum: "md5=8a3e7f0447c68a2bd2c60e1879705536"

@@ -21,9 +21,20 @@ depexts: [
 ]
 bug-reports: "https://github.com/savonet/ocaml-samplerate/issues"
 dev-repo: "git+https://github.com/savonet/ocaml-samplerate.git"
+patches: [
+  "patch-ocamlmakefile-samplerate.0.1.4" {os = "win32"}
+  "ocaml-samplerate-0.1.4.patch" {os = "win32"}
+]
 synopsis:
   "Bindings for the samplerate library which provides functions for changing samplerate of audio data"
 flags: light-uninstall
+extra-files: [
+  [
+    "patch-ocamlmakefile-samplerate.0.1.4"
+    "md5=f21e04c383108ad551a540bada5f703b"
+  ]
+  ["ocaml-samplerate-0.1.4.patch" "md5=2673421ce7af3cf82873cb86ec83391e"]
+]
 url {
   src:
     "https://github.com/savonet/ocaml-samplerate/releases/download/0.1.4/ocaml-samplerate-0.1.4.tar.gz"

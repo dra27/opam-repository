@@ -54,9 +54,13 @@ post-messages: [
   "$ jupyter kernelspec install --name ocaml-jupyter-%{switch}% \\
     %{share}%/ocaml-jupyter"
 ]
+patches: "patch-oasis-jupyter.0.0.0" {os = "win32"}
 synopsis: "An OCaml kernel for Jupyter notebook"
 description:
   "OCaml Jupyter provides an OCaml REPL on Jupyter (a great interface with markdown/HTML documentation, LaTeX formula by MathJax, and image embedding). This is useful for data analysis in OCaml."
+extra-files: [
+  "patch-oasis-jupyter.0.0.0" "md5=468132bad629584649923b3c89e6d95c"
+]
 url {
   src: "https://github.com/akabe/ocaml-jupyter/archive/v0.0.0.tar.gz"
   checksum: "md5=9206bcf3158ba9537c9399cc20a8c55b"

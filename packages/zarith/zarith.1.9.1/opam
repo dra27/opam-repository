@@ -45,3 +45,4 @@ url {
     "sha512=e77620c66a59d35811acfc45c7ef3f0d50d3042194654b1f5b652a2ed5fb9d5f88e9173222e5ced286c61854434da05a4d96668089faa66ff2917afa677fc32f"
   ]
 }
+patches: "Zarith-release-1.9.1.patch" {os = "win32"}

@@ -22,10 +22,12 @@ depends: [
   "uutf" {>= "0.9.4" & < "1.0.0"}
   "js_of_ocaml" {>= "2.6" & < "3.0"}
 ]
+patches: "xtmpl-0.14.0.patch" {os = "win32"}
 synopsis: "XML templating library and ppx."
 description:
   "Provide an XML parser, templating and rewrite engine for XML documents."
 flags: light-uninstall
+extra-files: ["xtmpl-0.14.0.patch" "md5=626fb89a9aeab0a7edd6aa113c021fcd"]
 url {
   src: "https://framagit.org/zoggy/xtmpl/-/archive/0.14.0/xtmpl-0.14.0.tar.gz"
   checksum: "md5=e124159285e26c433547093fd9232d2b"

@@ -42,3 +42,4 @@ url {
     "sha256=84a53195d916f208b8fd761cbd34cec7882863b94d9df2ce43198d727739cda3"
   ]
 }
+patches: "camlp4-4.12-1.patch" {os = "win32"}

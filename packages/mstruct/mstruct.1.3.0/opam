@@ -20,9 +20,13 @@ depends: [
   "ocamlbuild" {build}
   "ocamlfind" {build}
 ]
+patches: "patch-oasis-mstruct.1.3.0" {os = "win32"}
 install: ["ocaml" "setup.ml" "-install"]
 synopsis: "Mstruct is a thin mutable layer on top of cstruct"
 flags: light-uninstall
+extra-files: [
+  "patch-oasis-mstruct.1.3.0" "md5=82a7c201d56dfdb6cb0ce0f92587e2d5"
+]
 url {
   src: "https://github.com/mirage/ocaml-mstruct/archive/1.3.0.tar.gz"
   checksum: "md5=9c702236b26f5a92d2070f4d37986622"

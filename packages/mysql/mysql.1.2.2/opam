@@ -33,9 +33,17 @@ post-messages: [
   See also discussion in https://github.com/ocaml/opam-repository/pull/10312
 " {failure}
 ]
+patches: [
+  "ocaml-mysql-1.2.2.patch" {os = "win32"}
+  "patch-ocamlmakefile-mysql.1.2.2" {os = "win32"}
+]
 synopsis:
   "Bindings to C client library for interacting with Mysql/MariaDB/Percona databases"
 flags: light-uninstall
+extra-files: [
+  ["patch-ocamlmakefile-mysql.1.2.2" "md5=81402ece4d168a1931ea43a4be7bcf61"]
+  ["ocaml-mysql-1.2.2.patch" "md5=9c0e5fe2850523283d725f131006763b"]
+]
 url {
   src: "https://ygrek.org/p/release/ocaml-mysql/ocaml-mysql-1.2.2.tar.gz"
   checksum: "md5=8f1c38105e3d16e07920cc79d26a5027"

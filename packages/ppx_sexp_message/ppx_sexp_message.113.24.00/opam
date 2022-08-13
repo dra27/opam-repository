@@ -19,8 +19,10 @@ depends: [
   "ppx_sexp_conv" {>= "113.24.00" & < "113.25.00"}
   "ppx_tools"
 ]
+patches: [ "patch-gen_install_ml" { os = "win32" } ]
 synopsis: "A ppx rewriter for easy construction of s-expressions"
 description: "Part of the Jane Street's PPX rewriters collection."
+extra-files: ["patch-gen_install_ml" "md5=2b7f356e3c0087a01caef712458f6bf4"]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/113.24/files/ppx_sexp_message-113.24.00.tar.gz"

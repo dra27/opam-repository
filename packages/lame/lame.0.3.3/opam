@@ -29,9 +29,17 @@ depexts: [
 ]
 bug-reports: "https://github.com/savonet/ocaml-lame/issues"
 dev-repo: "git+https://github.com/savonet/ocaml-lame.git"
+patches: [
+  "patch-ocamlmakefile-lame.0.3.3" {os = "win32"}
+  "ocaml-lame-0.3.3.patch" {os = "win32"}
+]
 synopsis:
   "Bindings for the lame library which provides functions for encoding mp3 files"
 flags: light-uninstall
+extra-files: [
+  ["patch-ocamlmakefile-lame.0.3.3" "md5=262319e5ef019ff30504a2450fc2cdf2"]
+  ["ocaml-lame-0.3.3.patch" "md5=8b8d5137a56b2b68c23beb33d31ad1b4"]
+]
 url {
   src:
     "https://github.com/savonet/ocaml-lame/releases/download/0.3.3/ocaml-lame-0.3.3.tar.gz"

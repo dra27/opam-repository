@@ -46,12 +46,16 @@ conflicts: [
   "js_of_ocaml" {< "2.4.0"}
   "js_of_ocaml" {>= "3.0"}
 ]
+patches: "patch-oasis-github.1.0.0" {os = "win32"}
 synopsis: "GitHub APIv3 client bindings"
 description: """
 This library provides access to many of the most used GitHub API
 endpoints while making authorization, two-factor authentication, rate
 limit monitoring, event delivery, and polling easy to use."""
 flags: light-uninstall
+extra-files: [
+  "patch-oasis-github.1.0.0" "md5=48a9c5584cea7b238f884819259339c0"
+]
 url {
   src: "https://github.com/mirage/ocaml-github/archive/v1.0.0.tar.gz"
   checksum: "md5=f04cfe5a62801b7eeb19e9db928431fd"

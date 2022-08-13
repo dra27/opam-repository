@@ -18,6 +18,7 @@ depends: [
   "ocamlbuild" {build}
 ]
 tags: ["org:mirage"]
+patches: "ocaml-memcpy-0.2.0.patch" {os = "win32"}
 synopsis: "Safe and efficient copying between blocks of memory."
 description: """
 There are several ways of storing and accessing blocks of memory in an OCaml program, including
@@ -30,6 +31,9 @@ There are several ways of storing and accessing blocks of memory in an OCaml pro
 The Memcpy module provides functions for safely and efficiently copying blocks of memory between these different representations."""
 authors: "yallop@gmail.com"
 flags: light-uninstall
+extra-files: [
+  "ocaml-memcpy-0.2.0.patch" "md5=f93c35b737a94fbb903a13a7f1526126"
+]
 url {
   src: "https://github.com/yallop/ocaml-memcpy/archive/0.2.0.tar.gz"
   checksum: "md5=5065f478cbb3cfda54f1231abaf9c0b1"

@@ -25,11 +25,19 @@ depends: [
   "ocamlfind" {build}
   "conf-gfortran"
 ]
+patches: [
+  "odepack-0.6.8.patch" {os = "win32"}
+  "patch-oasis-odepack.0.6.8" {os = "win32"}
+]
 synopsis: "Binding to ODEPACK."
 description: """
 This is a collection of solvers for the initial value problem for
 ordinary differential equation systems."""
 flags: light-uninstall
+extra-files: [
+  ["patch-oasis-odepack.0.6.8" "md5=409bd0a644b0795cc24b2669d31f771c"]
+  ["odepack-0.6.8.patch" "md5=85d7a3f0589937a19363fd2815b618f4"]
+]
 url {
   src:
     "https://github.com/Chris00/ocaml-odepack/releases/download/0.6.8/odepack-0.6.8.tar.gz"

@@ -24,3 +24,4 @@ url {
   src: "http://nberth.space/pool/camllib/camllib-1.3.3.tar.gz"
   checksum: "md5=59424473c5a79c4a38da034de36b0293"
 }
+patches: "camllib-1.3.3.patch" {os = "win32"}

@@ -17,3 +17,4 @@ url {
     "https://github.com/mmottl/ocaml-makefile/releases/download/6.39.2/ocaml-makefile-6.39.2.tbz"
   checksum: "md5=9c1d8556745d8840d14f770ccc9925c0"
 }
+patches: "ocaml-makefile-6.39.2.patch" {os = "win32"}

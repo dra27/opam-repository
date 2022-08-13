@@ -16,9 +16,13 @@ depends: [
   "ocamlbuild" {build}
 ]
 install: [make "install"]
+patches: "ocaml-fileutils-0.4.4.patch" {ocaml:version >= "4.03.0"}
 synopsis:
   "Library to provide pure OCaml functions to manipulate real file (POSIX like) and filename."
 flags: light-uninstall
+extra-files: [
+  "ocaml-fileutils-0.4.4.patch" "md5=ba6612d39b75f56c42f9e201714244e2"
+]
 url {
   src:
     "https://download.ocamlcore.org/ocaml-fileutils/ocaml-fileutils/0.4.4/ocaml-fileutils-0.4.4.tar.gz"

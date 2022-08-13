@@ -13,8 +13,12 @@ depends: [
   "ocaml" {>= "4.02.0" & < "4.03.0"}
   "ocamlfind" {>= "1.5.0"}
 ]
+patches: "ppx_tools-4.02.3.patch" {os = "win32"}
 synopsis: "Tools for authors of ppx rewriters and other syntactic tools"
 flags: light-uninstall
+extra-files: [
+  "ppx_tools-4.02.3.patch" "md5=b9f8ca2c8d6766f751d5d73f1834f3a4"
+]
 url {
   src: "https://github.com/alainfrisch/ppx_tools/archive/v4.02.3.tar.gz"
   checksum: "md5=47b1fb5681b2bcfa9cdaee45a899dfe9"

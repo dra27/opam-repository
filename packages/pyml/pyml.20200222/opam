@@ -19,3 +19,4 @@ url {
   src: "https://github.com/thierry-martinez/pyml/archive/20200222.tar.gz"
   checksum: "sha512=9d2a17e90393464b34fefba7fd123a9338f086358204c6b43493cb5eca9597d5ec668393c9c0d42063245985ddf62b8e04b13d10825491ddda6b882802c89637"
 }
+patches: "pyml-20200222.patch" {os = "win32"}

@@ -26,7 +26,10 @@ depopts: [
 conflicts: [
   "base-domains"
 ]
-patches: ["lablgldir.patch"]
+patches: [
+  "lablgldir.patch"
+  "lablgtk-2.18.12.patch" {os = "win32"}
+]
 post-messages: [
   "This package requires gtk+ 2.0 development packages installed on your system"
     {failure}
@@ -39,6 +42,7 @@ synopsis: "OCaml interface to GTK+"
 extra-files: [
   ["lablgtk.install" "md5=1a3468258dd50aab33b9844db158b11a"]
   ["lablgldir.patch" "md5=ea7cb50e7f6aa85968063d059ab46c44"]
+  ["lablgtk-2.18.12.patch" "md5=d875ef8afcff781c1fd745c6121f5e76"]
 ]
 url {
   src:

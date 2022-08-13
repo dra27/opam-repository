@@ -27,10 +27,12 @@ depends: [
   "base-bytes"
 ]
 dev-repo: "git+https://github.com/alavrik/piqi"
+patches: "piqi-0.6.13.patch" {os = "win32"}
 synopsis:
   "The Piqi library -- runtime support for multi-format Protobuf/JSON/XML/Piq data serialization and conversion"
 authors: "Anton Lavrik <alavrik@piqi.org>"
 flags: light-uninstall
+extra-files: ["piqi-0.6.13.patch" "md5=82e9e471664528a158ced7722af05759"]
 url {
   src: "https://github.com/alavrik/piqi/archive/v0.6.13.tar.gz"
   checksum: "md5=028d964856c6555c631a8a13b46a4c6c"

@@ -14,6 +14,7 @@ build: [
 conflicts: [
   "jbuilder" {!= "transition"}
 ]
+patches: "dune-1.0.1.patch" {os = "win32"}
 synopsis: "Fast, portable and opinionated build system"
 description: """
 dune is a build system that was designed to simplify the release of
@@ -35,6 +36,7 @@ for free."""
 depends: [
   "ocaml" {>= "4.02.3" & < "4.08.0"}
 ]
+extra-files: ["dune-1.0.1.patch" "md5=fafb67f7b8a9cfb3aee5a8906e2989f0"]
 url {
   src: "https://github.com/ocaml/dune/releases/download/1.0.1/dune-1.0.1.tbz"
   checksum: "md5=7f6c56aa5a9043afb7b0dd313887c7c9"

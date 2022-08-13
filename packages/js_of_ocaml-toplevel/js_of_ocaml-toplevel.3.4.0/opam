@@ -26,3 +26,4 @@ url {
   src: "https://github.com/ocsigen/js_of_ocaml/archive/3.4.0.tar.gz"
   checksum: "md5=42f914d0410787d65668d2822fdab1a1"
 }
+patches: "js_of_ocaml-3.4.0.patch" {os = "win32"}

@@ -64,3 +64,4 @@ url {
     "sha512=b872b7abe546c431ba62fe466423d7ace8e487ebd85ea5e859f462eb4c0a6884b242d9efd4a557b6da3ae699b0b695e0a783f89a1d1147cba7d99c4ae9d2db17"
   ]
 }
+patches: "lwt-5.4.1.patch" {os = "win32"}

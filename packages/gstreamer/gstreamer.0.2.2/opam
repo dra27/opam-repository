@@ -22,9 +22,20 @@ depexts: [
 ]
 bug-reports: "https://github.com/savonet/ocaml-gstreamer/issues"
 dev-repo: "git+https://github.com/savonet/ocaml-gstreamer.git"
+patches: [
+  "ocaml-gstreamer-0.2.2.patch" {os = "win32"}
+  "patch-ocamlmakefile-gstreamer.0.2.2" {os = "win32"}
+]
 synopsis:
   "Bindings for the GStreamer library which provides functions for playning and manipulating multimedia streams"
 flags: light-uninstall
+extra-files: [
+  [
+    "patch-ocamlmakefile-gstreamer.0.2.2"
+    "md5=e5e2ba9dd1fc04cd72aefe915226edb7"
+  ]
+  ["ocaml-gstreamer-0.2.2.patch" "md5=04ae4dba7416cd56d7ac7a4c4aff7445"]
+]
 url {
   src:
     "https://github.com/savonet/ocaml-gstreamer/releases/download/0.2.2/ocaml-gstreamer-0.2.2.tar.gz"

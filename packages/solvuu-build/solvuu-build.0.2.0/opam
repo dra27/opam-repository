@@ -20,7 +20,11 @@ depends: [
   "ocamlbuild"
   "ocamlgraph"
 ]
+patches: "solvuu-build-0.2.0.patch" {os = "win32"}
 synopsis: "Solvuu's build system."
+extra-files: [
+  "solvuu-build-0.2.0.patch" "md5=66b36bc7bb0ae55cf7dac255f35290f3"
+]
 url {
   src: "https://github.com/solvuu/solvuu-build/archive/v0.2.0.tar.gz"
   checksum: "md5=5471602c946b7ea2ce4c424cb3650cd0"

@@ -21,10 +21,15 @@ depends: [
 conflicts: [
   "base-effects"
 ]
+patches: "ocaml-migrate-parsetree-1.0.11.patch" {os = "win32"}
 synopsis: "Convert OCaml parsetrees between different versions"
 description: """
 This library converts parsetrees, outcometree and ast mappers between different OCaml versions.
 High-level functions help making PPX rewriters independent of a compiler version."""
+extra-files: [
+  "ocaml-migrate-parsetree-1.0.11.patch"
+  "md5=cafa35eb59cc53035c786104e4fc9afa"
+]
 url {
   src:
     "https://github.com/ocaml-ppx/ocaml-migrate-parsetree/releases/download/v1.0.11/ocaml-migrate-parsetree-1.0.11.tbz"

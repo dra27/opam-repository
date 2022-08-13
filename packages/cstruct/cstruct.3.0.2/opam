@@ -19,11 +19,13 @@ depends: [
   "sexplib"
   "base-bytes"
 ]
+patches: "cstruct-3.0.2.patch" {os = "win32"}
 synopsis: "Access C-like structures directly from OCaml"
 description: """
 Cstruct is a library and syntax extension to make it easier to access C-like
 structures directly from OCaml.  It supports both reading and writing to these
 structures, and they are accessed via the `Bigarray` module."""
+extra-files: ["cstruct-3.0.2.patch" "md5=15321c689300c02d6a3e7b2d3ad5acd3"]
 url {
   src:
     "https://github.com/mirage/ocaml-cstruct/releases/download/v3.0.2/cstruct-3.0.2.tbz"

@@ -26,8 +26,16 @@ depends: [
 ]
 bug-reports: "https://github.com/savonet/ocaml-flac/issues"
 dev-repo: "git+https://github.com/savonet/ocaml-flac.git"
+patches: [
+  "ocaml-flac-0.1.2.patch" {os = "win32"}
+  "patch-ocamlmakefile-flac.0.1.2" {os = "win32"}
+]
 synopsis:
   "Interface for the Free Lossless Audio Codec otherwise known as FLAC"
+extra-files: [
+  ["patch-ocamlmakefile-flac.0.1.2" "md5=cda762478575859c99ba9829d29719ce"]
+  ["ocaml-flac-0.1.2.patch" "md5=675091c22a73dd8274c07aca991ee4ea"]
+]
 url {
   src:
     "https://github.com/savonet/ocaml-flac/releases/download/0.1.2/ocaml-flac-0.1.2.tar.gz"

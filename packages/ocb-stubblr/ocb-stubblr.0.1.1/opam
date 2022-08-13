@@ -15,6 +15,7 @@ depends: [
   "astring"
 ]
 build: [ "ocaml" "pkg/pkg.ml" "build" "--pinned" "%{pinned}%" "--tests" "false" ]
+patches: "ocb-stubblr-0.1.1.patch" {os = "win32"}
 synopsis: "OCamlbuild plugin for C stubs"
 description: """
 Do you get excited by C stubs? Do they sometimes make you swoon, and even faint,
@@ -33,6 +34,9 @@ directories. It can also clone the `.clib` and arrange for multiple compilations
 with different sets of discovered `cflags`.
 
 ocb-stubblr is distributed under the ISC license."""
+extra-files: [
+  "ocb-stubblr-0.1.1.patch" "md5=9d527ce5efe564fef9d836ce5cb2c3bd"
+]
 url {
   src:
     "https://github.com/pqwy/ocb-stubblr/releases/download/v0.1.1/ocb-stubblr-0.1.1.tbz"

@@ -17,8 +17,10 @@ depends: [
   "ocamlfind" {build & >= "1.5.2"}
   "ppx_tools"
 ]
+patches: "ppx_blob-0.2.patch" {os = "win32"}
 synopsis: "Include a file as a string at compile time"
 flags: light-uninstall
+extra-files: ["ppx_blob-0.2.patch" "md5=dc0167eb2d2b41ae1199a75d9ae8f9c2"]
 url {
   src: "https://github.com/johnwhitington/ppx_blob/archive/v0.2.tar.gz"
   checksum: "md5=c25401923d7e6efe6af400f1100c7923"

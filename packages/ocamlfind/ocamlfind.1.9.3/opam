@@ -42,3 +42,4 @@ url {
     "sha512=27cc4ce141576bf477fb9d61a82ad65f55478740eed59fb43f43edb794140829fd2ff89ad27d8a890cfc336b54c073a06de05b31100fc7c01cacbd7d88e928ea"
   ]
 }
+patches: "findlib-1.9.3.patch" {os = "win32"}

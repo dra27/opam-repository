@@ -29,10 +29,12 @@ depends: [
   "ppx_tools" {>= "0.99.1"}
   "ounit" {with-test}
 ]
+patches: "ppx_getenv-1.2.patch" {os = "win32"}
 synopsis:
   "A sample syntax extension that uses OCaml's new extension points API."
 description:
   "A sample syntax extension that uses OCaml's new extension points API."
+extra-files: ["ppx_getenv-1.2.patch" "md5=f781efab85397c384260941ff84b096e"]
 url {
   src: "https://github.com/whitequark/ppx_getenv/archive/v1.2.tar.gz"
   checksum: "md5=1bf49cd42863004902b4262cdf177a25"

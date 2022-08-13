@@ -20,7 +20,9 @@ depends: [
   "camlp4"
   "ocamlbuild" {build}
 ]
-patches: ["opam.patch" "opam.bolt.META.patch"]
+patches: ["opam.patch"
+          "opam.bolt.META.patch"
+          "patch-bolt-1.4" { os = "win32"}]
 
 homepage: "http://bolt.x9c.fr/"
 license: "LGPL-3.0-only"
@@ -29,6 +31,7 @@ install: [make "install"]
 synopsis: "Bolt is an OCaml Logging Tool"
 flags: light-uninstall
 extra-files: [
+  ["patch-bolt-1.4" "md5=268e0c7ee4ee2e668a1ff7919b72416d"]
   ["opam.patch" "md5=08ffba423dba98b5341b36b27a0009f4"]
   ["opam.bolt.META.patch" "md5=b62fb003991b9dd09a01ade5067056d9"]
 ]

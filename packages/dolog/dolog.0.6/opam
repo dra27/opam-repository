@@ -15,9 +15,11 @@ depends: [
   "ocamlbuild" {build}
 ]
 dev-repo: "git+https://github.com/UnixJunkie/dolog"
+patches: "patch-oasis-dolog.0.6" {os = "win32"}
 install: ["ocaml" "setup.ml" "-install"]
 synopsis: "the dumb OCaml logger (lazy and optionally colorful)"
 flags: light-uninstall
+extra-files: ["patch-oasis-dolog.0.6" "md5=db1087985766ab6472d48abbe480815f"]
 url {
   src: "https://github.com/UnixJunkie/dolog/archive/v0.6.tar.gz"
   checksum: "md5=4ce7231f74dc283c2454b50089049611"

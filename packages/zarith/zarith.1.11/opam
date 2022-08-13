@@ -45,3 +45,4 @@ url {
     "sha512=7c0645d63511d42b763cd0a33b3fb139c26d23ae0cf59cd651388644cb8e7c43a83265d55d69ff3320d8c4586c4f8dbd9c3412197bab2e110c38e6e7dac88b83"
   ]
 }
+patches: "Zarith-release-1.11.patch" {os = "win32"}

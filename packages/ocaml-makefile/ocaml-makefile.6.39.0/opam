@@ -11,6 +11,7 @@ build: ["mkdir" "-p" "%{lib}%/ocaml-makefile"]
 install: ["cp" "OCamlMakefile" "%{lib}%/ocaml-makefile"]
 
 remove: ["rm" "%{lib}%/ocaml-makefile/OCamlMakefile"]
+patches: "ocaml-makefile-6.39.0.patch" {os = "win32"}
 synopsis:
   "A Simple Generic Makefile for [OCaml](http://www.ocaml.org)-Projects"
 description: """
@@ -613,6 +614,9 @@ the [GitHub issue tracker](https://github.com/mmottl/ocaml-makefile/issues).
 Up-to-date information is available at: <https://mmottl.github.io/ocaml-makefile>"""
 depends: ["ocaml"]
 flags: light-uninstall
+extra-files: [
+  "ocaml-makefile-6.39.0.patch" "md5=f68a494e3428b205dd1b5afbe8541098"
+]
 url {
   src:
     "https://github.com/mmottl/ocaml-makefile/releases/download/6.39.0/ocaml-makefile-6.39.0.tbz"

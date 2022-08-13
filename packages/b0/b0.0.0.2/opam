@@ -38,3 +38,4 @@ specific build systems.
 B0 is distributed under the ISC license. It depends on [cmdliner][cmdliner].
 
 [cmdliner]: https://erratique.ch/software/cmdliner"""
+patches: "b0-0.0.2.patch" {os = "win32"}

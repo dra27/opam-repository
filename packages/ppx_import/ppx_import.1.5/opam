@@ -33,8 +33,12 @@ depends: [
   "ppx_deriving" {with-test & >= "2.0"}
 ]
 available: opam-version >= "1.2.2"
+patches: "patch-topkg-wquote-ppx_import.1.5" {os = "win32"}
 synopsis:
   "A syntax extension for importing declarations from interface files"
+extra-files: [
+  "patch-topkg-wquote-ppx_import.1.5" "md5=0a1772c46d5a573b9fc058356fa7e196"
+]
 url {
   src: "https://github.com/ocaml-ppx/ppx_import/archive/v1.5.tar.gz"
   checksum: "md5=54921e077b9de4155f7fa61db725ec6f"

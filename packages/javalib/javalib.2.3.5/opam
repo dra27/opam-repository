@@ -25,12 +25,14 @@ depends: [
   "extlib"
   "camomile"
 ]
+patches: "javalib-2.3.5.patch" {os = "win32"}
 synopsis:
   "Javalib is a library written in OCaml with the aim to provide a high level representation of Java .class files."
 description: """
 Thus it stands for a good starting point for people who want to develop static analyses for
 Java byte-code programs, benefiting from the strength of OCaml language."""
 flags: light-uninstall
+extra-files: ["javalib-2.3.5.patch" "md5=92f4c8a1326fe838a67266560ee8fe8f"]
 url {
   src:
     "https://gforge.inria.fr/frs/download.php/file/37655/javalib-2.3.5.tar.bz2"

@@ -26,12 +26,23 @@ depends: [
   "typerep" {>= "113.24.00" & < "113.25.00"}
   "variantslib" {>= "113.24.00" & < "113.25.00"}
 ]
+patches: [
+  "patch-oasis-async_kernel.113.33.00" {os = "win32"}
+  "patch_gen_install.ml" {os = "win32"}
+]
 synopsis: "Monadic concurrency library"
 description: """
 Part of Jane Street’s Core library
 The Core suite of libraries is an industrial strength alternative to
 OCaml's standard library that was developed by Jane Street, the
 largest industrial user of OCaml."""
+extra-files: [
+  ["patch_gen_install.ml" "md5=c3647dd91fa0bb3707bc3a33d312f3b7"]
+  [
+    "patch-oasis-async_kernel.113.33.00"
+    "md5=b5063f7417c62dfa701e5bf95a3ca769"
+  ]
+]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/113.33/files/async_kernel-113.33.00.tar.gz"

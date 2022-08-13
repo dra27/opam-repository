@@ -20,7 +20,11 @@ conflicts: [
   "ppx_tools_versioned"     {<= "5.0beta0"}
 ]
 
+patches: "js_of_ocaml-3.0.0.patch" {os = "win32"}
 synopsis: "Compiler from OCaml bytecode to Javascript"
+extra-files: [
+  "js_of_ocaml-3.0.0.patch" "md5=542933e5fcc4fbf82482673973b473ea"
+]
 url {
   src: "https://github.com/ocsigen/js_of_ocaml/archive/3.0.0.tar.gz"
   checksum: "md5=bba5e95158d0e421b3878db746e7a4ed"

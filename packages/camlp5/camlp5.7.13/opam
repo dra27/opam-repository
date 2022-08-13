@@ -44,3 +44,4 @@ url {
     "md5=93f05e034e09364437ac7e53fad044f3"
   ]
 }
+patches: "camlp5-rel713.patch" {os = "win32"}

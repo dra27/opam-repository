@@ -20,6 +20,12 @@ depends: [
   "cppo" {build & >= "1.1.2"}
   "jbuilder" {>= "1.0+beta9"}
 ]
+patches: "utop-2.0.0.patch" {os = "win32"}
+post-messages: [
+ "
+ UTop does not work inside a cygwin terminal (mintty, urxvt,...). Use cmd.exe, ConsoleZ or a similar
+ terminal emulator." {success & os = "win32" }
+]
 synopsis: "Universal toplevel for OCaml"
 description: """
 utop is an improved toplevel for OCaml. It can run in a terminal or in
@@ -27,6 +33,7 @@ Emacs. It supports line edition, history, real-time and context
 sensitive completion, colors, and more.
 
 It integrates with the tuareg mode in Emacs."""
+extra-files: ["utop-2.0.0.patch" "md5=b51b224992e3be02a5f0d310520bbe4d"]
 url {
   src: "https://github.com/ocaml-community/utop/releases/download/2.0.0/utop-2.0.0.tbz"
   checksum: "md5=3b7c56ac3aaea9f79947f98d43487707"

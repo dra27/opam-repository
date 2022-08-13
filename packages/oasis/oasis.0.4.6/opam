@@ -38,6 +38,7 @@ conflicts: [
   "oasis-mirage" {= "0.3.0a"}
   "oasis-mirage" {= "0.3.0"}
 ]
+patches: "oasis-0.4.6.patch" {os = "win32"}
 synopsis: "Architecture for building OCaml libraries and applications"
 description: """
 OASIS generates a full configure, build and install system for your
@@ -62,6 +63,7 @@ to integrates your libraries and software with third parties tools
 like GODI."""
 extra-files: [
   ["oasis.install" "md5=0d1b822c897681cf54b3e1aed52dda99"]
+  ["oasis-0.4.6.patch" "md5=311280542d8ecd6203e1517c93d61452"]
   ["_oasis_remove_.ml" "md5=6100ca146fa97d2196eb49a2631d0796"]
 ]
 url {

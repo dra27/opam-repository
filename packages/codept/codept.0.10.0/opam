@@ -15,6 +15,7 @@ depends: [
   "ocaml" {>= "4.03.0" & < "4.06.0"}
   "base-unix"
 ]
+patches: "codept-0.10.0.patch" {os = "win32"}
 synopsis: "alternative ocaml dependency analyzer"
 description: """
 Codept intends to be a dependency solver for OCaml project and an alternative to ocamldep. Compared to ocamldep, codept major features are:
@@ -28,6 +29,7 @@ Codept intends to be a dependency solver for OCaml project and an alternative to
 
 Both ocamldep and codept computes an over-approximation of the dependencies graph of OCaml project. However, codept uses whole project analysis to reduce the number of fictitious dependencies inferred at the project scale, whereas ocamldep is, by design, limited to local file analysis."""
 authors: "octachron <octa@polychoron.fr>"
+extra-files: ["codept-0.10.0.patch" "md5=19b4e041d0e15c6afe7e8f67ef105811"]
 url {
   src: "https://github.com/Octachron/codept/archive/0.10.0.tar.gz"
   checksum: "md5=788cab5970ddde3be2cc82d988ccc6ed"

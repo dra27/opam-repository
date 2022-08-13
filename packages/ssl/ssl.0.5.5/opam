@@ -17,6 +17,7 @@ depends: [
   "conf-libssl"
   "base-bytes"
 ]
+patches: "patch-ocamlmakefile-ssl.0.5.5" {os = "win32"}
 conflicts: [
   "base-nnp"
   "ocaml-option-nppchecker"
@@ -24,7 +25,10 @@ conflicts: [
 synopsis: "Bindings for OpenSSL"
 authors: "Samuel Mimram <samuel.mimram@ens-lyon.org>"
 flags: light-uninstall
-extra-files: ["osx-configure.sh" "md5=465e7c27f1881eae33212a9f9b0a8dff"]
+extra-files: [
+  ["patch-ocamlmakefile-ssl.0.5.5" "md5=c1c3efb1e1616a95b96cffcd92b530ea"]
+  ["osx-configure.sh" "md5=465e7c27f1881eae33212a9f9b0a8dff"]
+]
 url {
   src:
     "https://github.com/savonet/ocaml-ssl/releases/download/0.5.5/ocaml-ssl-0.5.5.tar.gz"

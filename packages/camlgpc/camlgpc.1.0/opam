@@ -5,9 +5,13 @@ build: make
 remove: [["ocamlfind" "remove" "camlgpc"]]
 depends: ["ocaml" "ocamlfind"]
 dev-repo: "git+https://github.com/johnwhitington/camlgpc"
+patches: "patch-ocamlmakefile-camlgpc.1.0" {os = "win32"}
 install: [make "install"]
 synopsis: "Interface to Alan Murta's General Polygon Clipper"
 flags: light-uninstall
+extra-files: [
+  "patch-ocamlmakefile-camlgpc.1.0" "md5=af2470e6813c5763ee0091b975575c8a"
+]
 url {
   src: "https://github.com/johnwhitington/camlgpc/archive/v1.0.tar.gz"
   checksum: "md5=d00bf0237fda31301f9cc8e1cd8db2af"

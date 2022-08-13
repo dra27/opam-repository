@@ -23,6 +23,7 @@ depends: [
   "camlp4"
   "extlib-compat" {< "1.7.0"}
 ]
+patches: "javalib-2.3.2.patch" {os = "win32"}
 synopsis:
   "Javalib is a library written in OCaml with the aim to provide a high level representation of Java .class files."
 description: """
@@ -30,6 +31,7 @@ Thus it stands for a good starting point for people who want to develop static a
 Java byte-code programs, benefiting from the strength of OCaml language."""
 authors: "Javalib development team"
 flags: light-uninstall
+extra-files: ["javalib-2.3.2.patch" "md5=91eee5d58205b60be63e11a9659e491c"]
 url {
   src:
     "https://gforge.inria.fr/frs/download.php/file/36092/javalib-2.3.2.tar.bz2"

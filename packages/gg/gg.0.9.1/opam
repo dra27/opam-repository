@@ -22,6 +22,7 @@ build: [
     "native-dynlink=%{ocaml:native-dynlink}%"
   ]
 ]
+patches: "patch-topkg-gg.0.9.1" {os = "win32"}
 synopsis: "Basic types for computer graphics in OCaml"
 description: """
 Gg is an OCaml module providing basic types for computer graphics.
@@ -32,6 +33,7 @@ raster data.
 
 Gg is made of a single module, depends on bigarrays, and is
 distributed under the BSD3 license."""
+extra-files: ["patch-topkg-gg.0.9.1" "md5=5692a0fe0705eb6a6650e58218a1e400"]
 url {
   src: "http://erratique.ch/software/gg/releases/gg-0.9.1.tbz"
   checksum: "md5=07911ce33ee68f871a08f98d1712df94"

@@ -43,10 +43,14 @@ depends: [
   "ezjsonm" {with-test}
   "nbd" {with-test & >= "2.0.1"}
 ]
+patches: "ocaml-qcow-0.4.1.patch" {os = "win32"}
 synopsis: "Read and write images in Qcow2 format"
 description: """
 If you want to `create`, `read`, `write` or analyse qcow2-formatted
 data in pure OCaml then this library is for you!"""
+extra-files: [
+  "ocaml-qcow-0.4.1.patch" "md5=edb8e6f4de041294dd0845b1b29d5e6c"
+]
 url {
   src: "https://github.com/mirage/ocaml-qcow/archive/v0.4.2.tar.gz"
   checksum: "md5=9e2319e179d5d920d8d29a5c92b69afb"

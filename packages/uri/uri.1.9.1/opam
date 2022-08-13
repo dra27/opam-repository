@@ -45,9 +45,13 @@ depends: [
   "ounit" {with-test & >= "1.0.2"}
   "ocamlbuild" {build}
 ]
+patches: [
+  "opamingw.patch" {os = "win32"}
+]
 synopsis: "RFC3986 URI/URL parsing library"
 description: "RFC3986 URI/URL parsing library"
 flags: light-uninstall
+extra-files: ["opamingw.patch" "md5=091c8893d470cb262d3bd677a452f6b3"]
 url {
   src: "https://github.com/mirage/ocaml-uri/archive/v1.9.1.tar.gz"
   checksum: "md5=44a36ed3da245f1fdd5623d17f3d16c5"

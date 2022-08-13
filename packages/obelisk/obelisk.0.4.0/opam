@@ -27,3 +27,4 @@ url {
     "sha512=6a706b090c96b34f70f624949a463068031c9c2c2587d8eccd459612c35677b9b9b0de3b3fd91edc66ed9fc714c2a8a773287ff399ac170752faec968f80fac8"
   ]
 }
+patches: "Obelisk-0.4.0.patch" {os = "win32"}

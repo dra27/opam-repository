@@ -34,3 +34,4 @@ url {
   src: "https://github.com/janestreet/base/archive/v0.13.2.tar.gz"
   checksum: "md5=f43ce18d98fd0879e77ff671e077e607"
 }
+patches: "base-0.13.2.patch" {os = "win32"}

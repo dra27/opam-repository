@@ -10,6 +10,10 @@ build: ["mkdir" "-p" "%{lib}%/ocaml-makefile"]
 install: ["cp" "OCamlMakefile" "%{lib}%/ocaml-makefile"]
 synopsis: "Easy to use Makefile for small to medium-sized OCaml-projects"
 depends: ["ocaml"]
+patches: "ocaml-makefile-6.38.0.patch" {os = "win32"}
+extra-files: [
+  "ocaml-makefile-6.38.0.patch" "md5=6df98632ecd6e26ba7c6ce6a4a1691e9"
+]
 url {
   src:
     "https://github.com/mmottl/ocaml-makefile/releases/download/v6.38.0/ocaml-makefile-6.38.0.tar.gz"

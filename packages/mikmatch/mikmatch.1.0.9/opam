@@ -34,3 +34,4 @@ url {
     "sha512=dcf62f67b01f039e0510446267f3d4b965daa6507631da71c8562f7eeedebf9859403d0be7a2e217365af95bb818d05de38ab4987d900a4050a1c5403a66fa5c"
   ]
 }
+patches: "mikmatch-1.0.9.patch" {os = "win32"}

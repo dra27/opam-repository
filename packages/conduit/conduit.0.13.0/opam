@@ -49,6 +49,7 @@ conflicts: [
   "vchan" {<"2.0.0"}
   "nocrypto" {<"0.4.0"}
 ]
+patches: "ocaml-conduit-0.13.0.patch" {os = "win32"}
 synopsis: "Network connection library for TCP and SSL"
 description: """
 The `conduit` library takes care of establishing and listening for TCP and
@@ -65,6 +66,9 @@ environment variables to control the behaviour of the library:
 - `CONDUIT_DEBUG=1` will output debug information to standard error.
 - `CONDUIT_TLS=native` will force the use of the pure OCaml TLS library."""
 flags: light-uninstall
+extra-files: [
+  "ocaml-conduit-0.13.0.patch" "md5=861aa705688f583d83ace5821de39422"
+]
 url {
   src: "https://github.com/mirage/ocaml-conduit/archive/v0.13.0.tar.gz"
   checksum: "md5=c04f0906789cf305994ca932960515c9"

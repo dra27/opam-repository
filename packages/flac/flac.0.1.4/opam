@@ -33,3 +33,7 @@ url {
     "https://github.com/savonet/ocaml-flac/releases/download/0.1.4/ocaml-flac-0.1.4.tar.gz"
   checksum: "md5=6c2850088e927cfacdb2940792fe2e67"
 }
+patches: [
+  "ocaml-flac-0.1.4.patch" {os = "win32"}
+  "patch-ocamlmakefile-flac.0.1.4" {os = "win32"}
+]

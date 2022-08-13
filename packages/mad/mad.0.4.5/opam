@@ -23,9 +23,17 @@ depexts: [
 ]
 bug-reports: "https://github.com/savonet/ocaml-mad/issues"
 dev-repo: "git+https://github.com/savonet/ocaml-mad.git"
+patches: [
+  "ocaml-mad-0.4.5.patch" {os = "win32"}
+  "patch-ocamlmakefile-mad.0.4.5" {os = "win32"}
+]
 synopsis:
   "Bindings for the mad library which provides functions for encoding wave audio files into mp3"
 flags: light-uninstall
+extra-files: [
+  ["patch-ocamlmakefile-mad.0.4.5" "md5=ebf6df9933ef907df3063ef0905bac00"]
+  ["ocaml-mad-0.4.5.patch" "md5=c93d46665ce0d58330599513175e7109"]
+]
 url {
   src:
     "https://github.com/savonet/ocaml-mad/releases/download/0.4.5/ocaml-mad-0.4.5.tar.gz"

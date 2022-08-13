@@ -31,7 +31,7 @@ depends: [
   "camlp-streams" { >= "5.0" }
   "conf-perl"
   "conf-perl-ipc-system-simple"
-  "conf-perl-string-shellquote"
+  "conf-perl-string-shellquote" {os != "win32"}
   "conf-diffutils" { with-test & os-distribution = "alpine" }
   "pcre" { with-test }
   "ounit" { with-test }
@@ -46,11 +46,13 @@ build: [
     with-test
   & ocaml:version >= "4.10.0"
   & os-distribution != "homebrew"
+  & os != "win32"
   }
   [make "-C" "test" "clean" "all"] {
     with-test
   & ocaml:version >= "4.10.0"
   & os-distribution != "homebrew"
+  & os != "win32"
   }
 ]
 install: [make "install"]
@@ -65,3 +67,4 @@ url {
     "sha512=a6259d2d491ed1f967dd383f03d3da65a3f383d28340111f57883c6d56cee2d267c0f752ba98bcdb72c24cf724a606718de26b6c55b84ad9b5f8f6d620f3cba1"
   ]
 }
+patches: "camlp5-rel8.00.03.patch" {os = "win32"}

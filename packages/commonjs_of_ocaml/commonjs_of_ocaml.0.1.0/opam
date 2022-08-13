@@ -26,11 +26,16 @@ depends: [
   "cppo_ocamlbuild" {build}
   "cppo" {build}
 ]
+patches: "patch-oasis-commonjs_of_ocaml.0.1.0" {os = "win32"}
 synopsis: "Import and export CommonJS modules in js_of_ocaml"
 description: """
 Helper PPX and functions for ease of interfacing with other CommonJS
 modules when building a project through js_of_ocaml"""
 extra-files: [
+  [
+    "patch-oasis-commonjs_of_ocaml.0.1.0"
+    "md5=82f23b6d2e55a02f1da774f6762bcbdf"
+  ]
   ["commonjs_of_ocaml.install" "md5=0d1b822c897681cf54b3e1aed52dda99"]
   ["_oasis_remove_.ml" "md5=6100ca146fa97d2196eb49a2631d0796"]
 ]

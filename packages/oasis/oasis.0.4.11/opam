@@ -30,6 +30,7 @@ conflicts: [
   "oasis-mirage" {= "0.3.0"}
   "oasis-mirage" {= "0.3.0a"}
 ]
+patches: "oasis-0.4.11.patch" {os = "win32"}
 synopsis: "Tooling for building OCaml libraries and applications"
 description: """
 OASIS generates a full configure, build and install system for your
@@ -53,7 +54,10 @@ findlib. It has been tested on GNU Linux and Windows.
 It also allows to have standard entry points and description. It helps
 to integrates your libraries and software with third parties tools
 like OPAM."""
-extra-files: ["oasis.install" "md5=ecc97c692bb2f70fe50124a88d705fde"]
+extra-files: [
+  ["oasis.install" "md5=ecc97c692bb2f70fe50124a88d705fde"]
+  ["oasis-0.4.11.patch" "md5=f365ce098568a66763e007ffe0b11b52"]
+]
 url {
   src:
     "https://download.ocamlcore.org/oasis/oasis/0.4.11/oasis-0.4.11.tar.gz"

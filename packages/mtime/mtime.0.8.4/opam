@@ -20,6 +20,7 @@ build: [[
    "ocaml" "pkg/pkg.ml" "build"
    "--pinned" "%{pinned}%"
    "--with-js_of_ocaml" "%{js_of_ocaml:installed}%" ]]
+patches: "mtime-0.8.4.patch" {os = "win32"}
 synopsis: "Monotonic wall-clock time for OCaml"
 description: """
 Mtime is an OCaml module to access monotonic wall-clock time. It
@@ -31,6 +32,7 @@ JavaScript support depends on [js_of_ocaml][jsoo]. It is distributed
 under the ISC license.
 
 [jsoo]: http://ocsigen.org/js_of_ocaml/"""
+extra-files: ["mtime-0.8.4.patch" "md5=57713383b25220a07eb23d61d570c346"]
 url {
   src: "http://erratique.ch/software/mtime/releases/mtime-0.8.4.tbz"
   checksum: "md5=6261cb1a621412b7195615c2dbce57f3"

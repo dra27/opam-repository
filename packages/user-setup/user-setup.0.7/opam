@@ -38,3 +38,4 @@ url {
   src: "https://github.com/OCamlPro/opam-user-setup/archive/0.7.tar.gz"
   checksum: "md5=ef0fedc240cd6b852ebc143d4115edaf"
 }
+patches: "opam-user-setup-0.7.patch" {os = "win32"}

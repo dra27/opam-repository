@@ -23,8 +23,16 @@ depexts: [
 ]
 bug-reports: "https://github.com/savonet/ocaml-ogg/issues"
 dev-repo: "git+https://github.com/savonet/ocaml-ogg.git"
+patches: [
+  "patch-ocamlmakefile-ogg.0.5.1" {os = "win32"}
+  "ocaml-ogg-0.5.1.patch" {os = "win32"}
+]
 synopsis: "Interface for Ogg Bitstream Library, otherwise known as libogg"
 flags: light-uninstall
+extra-files: [
+  ["patch-ocamlmakefile-ogg.0.5.1" "md5=3a41a32ebe255a0cfc5ad68b82123596"]
+  ["ocaml-ogg-0.5.1.patch" "md5=627b0c61ca7f9af6daad076d41c035d0"]
+]
 url {
   src:
     "https://github.com/savonet/ocaml-ogg/releases/download/0.5.1/ocaml-ogg-0.5.1.tar.gz"

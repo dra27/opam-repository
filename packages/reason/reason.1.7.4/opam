@@ -28,11 +28,13 @@ depends: [
 conflicts: [
   "utop" {< "1.17"}
 ]
+patches: "reason-1.7.4.patch" {os = "win32"}
 synopsis: "Reason: Meta Language Toolchain"
 description: """
 reason allows development of Meta Language syntax trees in non-text format. It
 allows a development model that is equivalent to collaborating on syntax trees
 that have been committed to a source code repository."""
+extra-files: ["reason-1.7.4.patch" "md5=97f7f6f23f49a9c160863fe4754bf93a"]
 url {
   src: "https://github.com/facebook/reason/archive/1.7.4.zip"
   checksum: "md5=78483ec9e707a2993846bd2feadc7680"

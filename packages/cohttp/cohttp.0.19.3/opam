@@ -51,6 +51,7 @@ conflicts: [
   "lwt" {>= "4.0.0"}
   "js_of_ocaml" {>="3.0"}
 ]
+patches: [ "patch-cohttp-0.19.3" ]
 synopsis: "HTTP(S) library for Lwt, Async and Mirage"
 description: """
 There are several optional dependencies which activate functionality:
@@ -60,6 +61,7 @@ There are several optional dependencies which activate functionality:
 * Async: `opam install async cohttp`
 * Async and SSL: `opam install async_ssl cohttp`"""
 flags: light-uninstall
+extra-files: ["patch-cohttp-0.19.3" "md5=bd5107e9bc1e2a5f83ca8b5f5bb4ee3a"]
 url {
   src: "https://github.com/mirage/ocaml-cohttp/archive/v0.19.3.tar.gz"
   checksum: "md5=d78120bf2bf0b215d459ebe67536d0eb"

@@ -34,7 +34,9 @@ build: [[ "ocaml" "pkg/pkg.ml" "build"
           "--with-yojson" "%{yojson:installed}%"
           "--with-msgpck" "%{msgpck:installed}%"
 ]]
+patches: "ocaml-wamp-1.0.patch" {os = "win32"}
 synopsis: "The Web Application Messaging Protocol"
+extra-files: ["ocaml-wamp-1.0.patch" "md5=945434b2dfab0088b59be84ba821be22"]
 url {
   src: "https://github.com/vbmithr/ocaml-wamp/archive/1.0.tar.gz"
   checksum: "md5=874ab3afd5ef1b0b0b2902c987802537"

@@ -26,9 +26,11 @@ depexts: [
   ["zlib"] {os-distribution = "nixos"}
 ]
 install: [make "install-findlib"]
+patches: "camlzip-rel107.patch" {os = "win32"}
 synopsis:
   "Provides easy access to compressed files in ZIP, GZIP and JAR format"
 flags: light-uninstall
+extra-files: ["camlzip-rel107.patch" "md5=e4927243d25b4ebcb1a857bca20deaca"]
 url {
   src: "https://github.com/xavierleroy/camlzip/archive/rel107.zip"
   checksum: "md5=fb6b251fe6bf129cb25b5fd9f5938514"

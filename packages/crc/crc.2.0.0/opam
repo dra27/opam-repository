@@ -15,7 +15,9 @@ depends: [
   "ounit" {with-test}
   "odoc" {with-doc}
 ]
+patches: "ocaml-crc-2.0.0.patch" {os = "win32"}
 synopsis: "CRC implementation supporting strings and cstructs"
+extra-files: ["ocaml-crc-2.0.0.patch" "md5=82dfc827930cdc97a4e3d1729421c8c6"]
 url {
   src: "https://github.com/xapi-project/ocaml-crc/archive/2.0.0.tar.gz"
   checksum: "md5=4dee9c038dba95aed7f5f094db14f4df"

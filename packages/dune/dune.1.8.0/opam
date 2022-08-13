@@ -45,3 +45,4 @@ url {
   src: "https://github.com/ocaml/dune/releases/download/1.8.0/dune-1.8.0.tbz"
   checksum: "md5=651bd2bf66f930eabe579709cb764562"
 }
+patches: "dune-1.8.0.patch" {os = "win32"}

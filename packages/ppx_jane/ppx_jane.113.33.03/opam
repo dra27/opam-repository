@@ -34,10 +34,14 @@ depends: [
   "ppx_typerep_conv" {>= "113.33.03" & < "113.34.00"}
   "ppx_variants_conv" {>= "113.33.03" & < "113.34.00"}
 ]
+patches: "patch-oasis-ppx_jane.113.33.03" {os = "win32"}
 synopsis: "Standard Jane Street ppx rewriters"
 description: """
 This package installs a ppx-jane executable, which is a ppx driver
 including all standard Jane Street ppx rewriters."""
+extra-files: [
+  "patch-oasis-ppx_jane.113.33.03" "md5=d9883d5889996ac29cf8233fb566f780"
+]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/113.33/files/ppx_jane-113.33.03.tar.gz"

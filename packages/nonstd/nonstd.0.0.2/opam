@@ -13,10 +13,14 @@ depends: [
   "ocaml" {>= "4.00.0"}
   "ocamlfind"
 ]
+patches: "smondet-nonstd-d23af602e909.patch" {os = "win32"}
 synopsis: "Non-standard mini-library"
 description: """
 Core-style (labels, exceptionless) pure-OCaml super-light library
 providing basic modules: List, Option, Int. and Float."""
+extra-files: [
+  "smondet-nonstd-d23af602e909.patch" "md5=10556963cd91d9510b3ae9fb13baf959"
+]
 url {
   src: "https://bitbucket.org/smondet/nonstd/get/nonstd.0.0.2.tar.gz"
   checksum: "md5=e954fc45d9e2522fd3db81351ba44da8"

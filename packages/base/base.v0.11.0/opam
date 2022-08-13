@@ -16,6 +16,7 @@ depends: [
 depopts: [
   "base-native-int63"
 ]
+patches: "base-v0.11.0.patch" {os = "win32"}
 synopsis: "Full standard library replacement for OCaml"
 description: """
 Full standard library replacement for OCaml
@@ -30,6 +31,7 @@ features such as I/O are not offered by Base. They are instead
 provided by companion libraries such as stdio:
 
   https://github.com/janestreet/stdio"""
+extra-files: ["base-v0.11.0.patch" "md5=bcf8a5e5d5dce3949309421d9b38879d"]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/v0.11/files/base-v0.11.0.tar.gz"

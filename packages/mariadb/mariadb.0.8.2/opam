@@ -19,11 +19,15 @@ depends: [
   "conf-mariadb"
   "conf-gcc"
 ]
+patches: "ocaml-mariadb-0.8.2.patch" {os = "win32"}
 available: arch != "arm32" & arch != "x86_32" # https://github.com/andrenth/ocaml-mariadb/pull/37
 synopsis: "OCaml bindings to MariaDB"
 description: """
 OCaml-MariaDB provides Ctypes-based bindings for MariaDB, including its
 nonblocking API."""
+extra-files: [
+  "ocaml-mariadb-0.8.2.patch" "md5=94aedb3d7d46de129e7ba2cc5015b06b"
+]
 url {
   src: "https://github.com/andrenth/ocaml-mariadb/archive/0.8.2.tar.gz"
   checksum: "md5=629ad60f2c1adf29de37e5c4380f4ad5"

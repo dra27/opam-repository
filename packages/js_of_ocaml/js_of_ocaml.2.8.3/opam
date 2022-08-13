@@ -39,8 +39,12 @@ conflicts: [
   "async_kernel" {>= "v0.9.0"}
   "ppx_driver" {>="v0.9.0"}
 ]
+patches: "js_of_ocaml-2.8.3.patch" {os = "win32"}
 synopsis: "Compiler from OCaml bytecode to Javascript"
 flags: light-uninstall
+extra-files: [
+  "js_of_ocaml-2.8.3.patch" "md5=c09627f9cd1caba13f79a317ed6c6d16"
+]
 url {
   src: "https://github.com/ocsigen/js_of_ocaml/archive/2.8.3.tar.gz"
   checksum: "md5=b06a5bcc7fda158e1884c86b900238a4"

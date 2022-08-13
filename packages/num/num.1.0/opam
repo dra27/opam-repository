@@ -32,12 +32,13 @@ depends: [
   "ocamlfind" {build & >= "1.7.3"}
 ]
 conflicts: [ "base-num" ]
-patches: [ "findlib-install.patch" "installation-warning.patch" ]
+patches: [ "findlib-install.patch" "installation-warning.patch" "num-1.0.patch" {os = "win32"}]
 synopsis:
   "The legacy Num library for arbitrary-precision integer and rational arithmetic"
 extra-files: [
   ["installation-warning.patch" "md5=93c92bf6da6bae09d068da42b1bbaaac"]
   ["findlib-install.patch" "md5=02a16b8a6843f9995dc129035d56efb9"]
+  ["num-1.0.patch" "md5=051a04e306115314a0bfc01e963b811c"]
 ]
 url {
   src: "https://github.com/ocaml/num/archive/v1.0.tar.gz"

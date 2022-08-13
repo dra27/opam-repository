@@ -18,9 +18,9 @@ bug-reports: "https://github.com/ocaml/graphics/issues"
 depends: [
   "dune" {>= "2.0"}
   "dune-configurator"
-  "conf-libX11"
+  "conf-libX11" {os != "win32"}
   "ocaml" {>= "4.09.0~~"}
-  "conf-pkg-config"
+  "conf-pkg-config" {os != "win32"}
 ]
 build: [
   ["dune" "subst"] {dev}
@@ -45,3 +45,4 @@ url {
     "sha512=4783a8609ec1fbe09deac083856ac6c3fc656edcd8e417b026352068a45a3246db1e0ee73ef21759c971516dd33e40c69d14220a7a9092af7e522239c35c6c9e"
   ]
 }
+patches: "graphics-5.1.0.patch" {os = "win32"}

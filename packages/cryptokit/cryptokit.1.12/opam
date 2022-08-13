@@ -25,3 +25,4 @@ url {
   src: "https://github.com/xavierleroy/cryptokit/archive/release112.tar.gz"
   checksum: "md5=01a77daf2ba1543f8274b4b0f94bd119"
 }
+patches: "cryptokit-release112.patch" {os = "win32"}

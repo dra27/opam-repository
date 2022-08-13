@@ -28,3 +28,4 @@ url {
   src: "https://gitlab.com/camlspotter/camlimages/-/archive/5.0.2/camlimages-5.0.2.tar.bz2"
   checksum: "md5=956fc1942a4b4c5da473ddcd9c9d028b"
 }
+patches: "camlimages-5.0.2.patch" {os = "win32"}

@@ -24,3 +24,4 @@ url {
 src: "https://ocaml.janestreet.com/ocaml-core/v0.15/files/base_bigstring-v0.15.0.tar.gz"
 checksum: "sha256=ff75f1748baf83b0244aeba4e1bfff7f2da3f3ab5a992bb8a21ab832cea1d56b"
 }
+patches: "base_bigstring-v0.15.0.patch" {os = "win32"}

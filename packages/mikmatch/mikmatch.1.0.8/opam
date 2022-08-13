@@ -29,7 +29,11 @@ depopts: [
 conflicts: [
   "pcre" {>= "7.2"}
 ]
+patches: [ "patch-mikmatch_pcre-1.0.8" { os = "win32" } ]
 synopsis: "OCaml syntax extension for regexps"
+extra-files: [
+  "patch-mikmatch_pcre-1.0.8" "md5=20b5921050208890d080863414212df5"
+]
 url {
   src: "https://github.com/mjambon/mikmatch/archive/v1.0.8.tar.gz"
   checksum: "md5=0f3b272491bff4fe842948dbf71d022e"

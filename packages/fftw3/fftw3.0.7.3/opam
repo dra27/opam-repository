@@ -58,8 +58,12 @@ depexts: [
   ["math/fftw3"] {os = "openbsd"}
   ["fftw"] {os = "macos" & os-distribution = "homebrew"}
 ]
+patches: "patch-ocamlmakefile-fftw3.0.7.3" {os = "win32"}
 synopsis: "Binding to the famous Fast Fourier Transform library FFTW"
 flags: light-uninstall
+extra-files: [
+  "patch-ocamlmakefile-fftw3.0.7.3" "md5=9c9c3030a3a4095f8bad944347a0d442"
+]
 url {
   src:
     "https://github.com/Chris00/fftw-ocaml/releases/download/0.7.3/ocaml-fftw3-0.7.3.tar.gz"

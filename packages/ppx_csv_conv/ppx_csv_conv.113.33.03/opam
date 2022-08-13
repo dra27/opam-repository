@@ -19,8 +19,12 @@ depends: [
   "ppx_tools" {>= "0.99.3"}
   "ppx_type_conv" {>= "113.33.03" & < "113.34.00"}
 ]
+patches: "patch-oasis-ppx_csv_conv.113.33.03" {os = "win32"}
 synopsis: "Generate functions to read/write records in csv format"
 description: "Part of the Jane Street's PPX rewriters collection."
+extra-files: [
+  "patch-oasis-ppx_csv_conv.113.33.03" "md5=277852b9c5eab947af78a2eaaec621ff"
+]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/113.33/files/ppx_csv_conv-113.33.03.tar.gz"

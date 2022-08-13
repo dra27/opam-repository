@@ -7,7 +7,10 @@ doc: "http://reasonml.github.io/"
 bug-reports: "https://github.com/facebook/reason/issues"
 dev-repo: "git+https://github.com/facebook/reason.git"
 tags: [ "syntax" ]
-patches: [ "reason-1.13.7-topkg-compat.patch" ]
+patches: [
+  "reason-1.13.7-topkg-compat.patch"
+  "patch-spacetag-reason.1.13.7" {os = "win32"}
+]
 substs: [ "pkg/META" ]
 build: [
   [make "compile_error"]
@@ -43,7 +46,8 @@ reason allows development of Meta Language syntax trees in non-text format. It
 allows a development model that is equivalent to collaborating on syntax trees
 that have been committed to a source code repository."""
 extra-files: [
-  "reason-1.13.7-topkg-compat.patch" "md5=4816b7c740ae73ff949d3f03e27300e6"
+  ["reason-1.13.7-topkg-compat.patch" "md5=4816b7c740ae73ff949d3f03e27300e6"]
+  ["patch-spacetag-reason.1.13.7" "md5=156732ee28e0957fafd1b7a8097872a9"]
 ]
 url {
   src: "https://github.com/facebook/reason/archive/1.13.7.tar.gz"

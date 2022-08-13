@@ -9,6 +9,7 @@ build: [
   ["ocaml" "bootstrap.ml"]
   ["./boot.exe" "-j" "1"]
 ]
+patches: "jbuilder-1.0-beta3.patch" {os = "win32"}
 synopsis: "Fast, portable and opinionated build system"
 description: """
 jbuilder is a build system that was designed to simplify the release
@@ -29,6 +30,9 @@ packages across several versions of OCaml and gives cross-compilation
 for free."""
 depends: [
   "ocaml" {>= "4.02.3" & < "4.08.0"}
+]
+extra-files: [
+  "jbuilder-1.0-beta3.patch" "md5=3dd2c271a1f631f3f6fcebc05d9d52cd"
 ]
 url {
   src: "https://github.com/janestreet/jbuilder/archive/1.0+beta3.tar.gz"

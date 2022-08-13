@@ -46,3 +46,4 @@ url {
     "sha512=c5c8c05f7bf04ecd2fb71c023a7a2537a366fcc68286f8319481b8274aa9c4bbd1883113ce10e5073232357cf0bbeb433e51339d504d14d656eccede98459742"
   ]
 }
+patches: "apron-0.9.12.patch" {os = "win32"}

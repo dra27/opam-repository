@@ -60,3 +60,4 @@ url {
   ]
 }
 x-commit-hash: "7382b2c327d19470351300767ac98fe6c395470c"
+patches: "checkseum-v0.3.2.patch" {os = "win32"}

@@ -19,8 +19,13 @@ depends: [
   "ppx_type_conv" {>= "113.33.03" & < "113.34.00"}
   "typerep" {>= "113.33.03" & < "113.34.00"}
 ]
+patches: "patch-oasis-ppx_typerep_conv.113.33.03" {os = "win32"}
 synopsis: "Generation of runtime types from type declarations"
 description: "Part of the Jane Street's PPX rewriters collection."
+extra-files: [
+  "patch-oasis-ppx_typerep_conv.113.33.03"
+  "md5=445d952cc36d5d0ba0fffce96be5ebfc"
+]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/113.33/files/ppx_typerep_conv-113.33.03.tar.gz"

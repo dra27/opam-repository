@@ -19,8 +19,12 @@ depends: [
 ]
 dev-repo: "git+https://github.com/hcarty/indexmap"
 install: ["ocaml" "setup.ml" "-install"]
+patches: "patch-oasis-indexmap.0.0.3" {os = "win32"}
 synopsis: "Generic indexed data for OCaml"
 flags: light-uninstall
+extra-files: [
+  "patch-oasis-indexmap.0.0.3" "md5=7c5873494667c2e66280033b8a668fcf"
+]
 url {
   src: "https://github.com/hcarty/indexmap/archive/v0.0.3.tar.gz"
   checksum: "md5=1bc63fdf2a063f555c2cb15aaf6b4700"

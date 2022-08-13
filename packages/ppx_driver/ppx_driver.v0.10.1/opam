@@ -13,8 +13,12 @@ depends: [
   "jbuilder" {>= "1.0+beta12"}
   "ocaml-migrate-parsetree" {>= "1.0" & < "2.0.0"}
 ]
+patches: "ppx_driver-0.10.1.patch" {os = "win32"}
 synopsis: "Feature-full driver for OCaml AST transformers"
 description: "Part of the Jane Street's PPX rewriters collection."
+extra-files: [
+  "ppx_driver-0.10.1.patch" "md5=d00c763fd5557e6f75954996e33f7fde"
+]
 url {
   src: "https://github.com/janestreet/ppx_driver/archive/v0.10.1.tar.gz"
   checksum: "md5=529a5d297c1e7d063cabe0ef732fc308"

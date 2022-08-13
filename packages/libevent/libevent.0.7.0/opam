@@ -21,12 +21,18 @@ depends: [
   "ocamlfind" {build}
   "conf-libevent" {build}
 ]
+patches: [
+  "ocaml-libevent-0.7.0.patch" {os = "win32"}
+]
 synopsis: "OCaml wrapper for the libevent API"
 description: """
 libevent provides a mechanism to execute a callback function
 when a specific event occurs on a file descriptor or
 after a timeout has been reached. Furthermore, libevent also
 supports callbacks due to signals or regular timeouts."""
+extra-files: [
+  "ocaml-libevent-0.7.0.patch" "md5=bf595251d57582d25e5481328c9bbe26"
+]
 url {
   src:
     "https://ygrek.org/p/release/ocaml-libevent/ocaml-libevent-0.7.0.tar.gz"

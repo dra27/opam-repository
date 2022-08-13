@@ -27,3 +27,4 @@ url {
   src: "https://gitlab.com/irill/camlbz2/-/archive/0.7.0/camlbz2-0.7.0.tar.gz"
   checksum: "md5=45b4f122c103e472aa533870470559dc"
 }
+patches: "camlbz2-0.7.0.patch" {os = "win32"}

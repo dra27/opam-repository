@@ -42,6 +42,9 @@ modules, to modify some functions in order to get better performances or
 safety (tail-recursive) and also to provide new modules which should be useful
 for day to day programming."""
 flags: light-uninstall
+extra-files: [
+  "ocaml-extlib-1.7.0.patch" "md5=61eef28ecf1c4777279b446caa5ee33c"
+]
 url {
   src: "https://github.com/ygrek/ocaml-extlib/archive/1.7.0.tar.gz"
   checksum: "md5=b50b02d9e40d35cc20c82d9c881a1bf6"

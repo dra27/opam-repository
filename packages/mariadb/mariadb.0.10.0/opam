@@ -18,11 +18,15 @@ depends: [
   "ctypes-foreign" {>= "0.4.0"}
   "conf-mariadb"
 ]
+patches: "ocaml-mariadb-0.10.0.patch" {os = "win32"}
 available: arch != "arm32" & arch != "x86_32" # https://github.com/andrenth/ocaml-mariadb/pull/37
 synopsis: "OCaml bindings to MariaDB"
 description: """
 OCaml-MariaDB provides Ctypes-based bindings for MariaDB, including its
 nonblocking API."""
+extra-files: [
+  "ocaml-mariadb-0.10.0.patch" "md5=a0ddb5309c183d8a44c373432395fc0a"
+]
 url {
   src: "https://github.com/andrenth/ocaml-mariadb/archive/0.10.0.tar.gz"
   checksum: "md5=def1b3813b0b9f1174dfc01ea07ccde9"

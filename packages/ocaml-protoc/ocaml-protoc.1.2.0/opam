@@ -23,9 +23,13 @@ depends: [
   "ppx_deriving_protobuf"
 ]
 available: opam-version >= "1.2"
+patches: "ocaml-protoc-1.2.0.patch" {os = "win32"}
 synopsis: "A Protobuf Compiler for OCaml"
 description:
   "'ocaml-protoc' is a compiler of Protobuf file (.proto) to OCaml code. The compiler generate OCaml types with associated decoding/encoding functions following the Protobuf format."
+extra-files: [
+  "ocaml-protoc-1.2.0.patch" "md5=32967dc4c5d2353fbb22c1dc18f5faf6"
+]
 url {
   src: "https://github.com/mransan/ocaml-protoc/archive/1.2.0.tar.gz"
   checksum: "md5=73448a71aba6682536a2581ab0430b90"

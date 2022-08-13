@@ -22,6 +22,10 @@ tags: [
   "interactive theorem prover"
 ]
 
+patches: [
+  "execv_quote_arguments.patch"
+  "prove_client_socket_basename.patch"
+]
 build: [
   ["./autogen.sh"] {dev} # when pinning, there might be no configure file
   ["./configure"

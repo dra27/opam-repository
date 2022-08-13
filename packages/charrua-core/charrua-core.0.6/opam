@@ -30,6 +30,7 @@ depends: [
   "rresult"
   "io-page" {with-test}
 ]
+patches: "patch-spacetag-charrua-core.0.6" {os = "win32"}
 synopsis:
   "DHCP core library - a DHCP server and wire frame encoder and decoder"
 description: """
@@ -51,6 +52,9 @@ is a Mirage DHCP unikernel server based on charrua-core.
 
 You can browse the API for [charrua-core](http://www.github.com/mirage/charrua-core) at
 http://mirage.github.io/charrua-core/api"""
+extra-files: [
+  "patch-spacetag-charrua-core.0.6" "md5=2599a991fc9c2d31e0b8028a06cacb13"
+]
 url {
   src:
     "https://github.com/mirage/charrua-core/releases/download/v0.6/charrua-core-0.6.tbz"

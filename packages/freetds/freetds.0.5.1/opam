@@ -36,11 +36,13 @@ depexts: [
     {os = "macos" & os-distribution = "homebrew"}
 ]
 install: [make "install"]
+patches: "freetds-0.5.1.patch" {os = "win32"}
 synopsis: "Binding to the ct-lib component of the FreeTDS library."
 description: """
 It allows to access Sybase and Microsoft (or other TDS) database
 servers."""
 flags: light-uninstall
+extra-files: ["freetds-0.5.1.patch" "md5=0ac17e444aa93561b3e673540bb2c6bc"]
 url {
   src:
     "https://download.ocamlcore.org/ocaml-freetds/ocaml-freetds/0.5.1/freetds-0.5.1.tar.gz"

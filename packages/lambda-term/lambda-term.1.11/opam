@@ -15,6 +15,7 @@ depends: [
   "lwt_react"
   "jbuilder" {>= "1.0+beta7"}
 ]
+patches: "lambda-term-1.11.patch" {os = "win32"}
 synopsis: "Terminal manipulation library for OCaml"
 description: """
 Lambda-term is a cross-platform library for manipulating the terminal.
@@ -28,6 +29,9 @@ a C library.
 
 Lambda-term integrates with zed to provide text edition facilities in
 console applications."""
+extra-files: [
+  "lambda-term-1.11.patch" "md5=063484eaf9aaee614015878ab8a94d5e"
+]
 url {
   src: "https://github.com/ocaml-community/lambda-term/archive/1.11.tar.gz"
   checksum: "md5=51ae50136ad0989c941ad35ae4d89c72"

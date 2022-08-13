@@ -18,8 +18,10 @@ depends: [
   "ppx_tools"
   "ppx_type_conv" {>= "113.24.00" & < "113.25.00"}
 ]
+patches: [ "patch-gen_install_ml" { os = "win32" } ]
 synopsis: "Generation of bin_prot readers and writers from types"
 description: "Part of the Jane Street's PPX rewriters collection."
+extra-files: ["patch-gen_install_ml" "md5=2b7f356e3c0087a01caef712458f6bf4"]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/113.24/files/ppx_bin_prot-113.24.00.tar.gz"

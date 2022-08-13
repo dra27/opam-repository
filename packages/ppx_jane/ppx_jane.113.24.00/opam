@@ -34,10 +34,12 @@ depends: [
   "ppx_typerep_conv" {>= "113.24.00" & < "113.25.00"}
   "ppx_variants_conv" {>= "113.24.00" & < "113.25.00"}
 ]
+patches: [ "patch-gen_install_ml" { os = "win32" } ]
 synopsis: "Standard Jane Street ppx rewriters"
 description: """
 This package installs a ppx-jane executable, which is a ppx driver
 including all standard Jane Street ppx rewriters."""
+extra-files: ["patch-gen_install_ml" "md5=2b7f356e3c0087a01caef712458f6bf4"]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/113.24/files/ppx_jane-113.24.00.tar.gz"

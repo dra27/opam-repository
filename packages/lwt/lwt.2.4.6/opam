@@ -38,7 +38,10 @@ conflicts: [
   "react" {< "1.0.0"}
   "ssl" {>= "0.5.0"}
 ]
-patches: "patch-ocsigen-lwt-101.diff" {os = "macos"}
+patches: [
+  "patch-ocsigen-lwt-101.diff" {os = "macos"}
+  "lwt-2.4.6.patch" {os = "win32"}
+]
 dev-repo: "git+https://github.com/ocsigen/lwt"
 install: [make "install"]
 synopsis: "A cooperative threads library for OCaml"
@@ -48,7 +51,8 @@ This library is part of the Ocsigen project. See:
 http://ocsigen.org/lwt"""
 flags: light-uninstall
 extra-files: [
-  "patch-ocsigen-lwt-101.diff" "md5=cd2fcb708c9c91cc8ad80c9440fdbe43"
+  ["patch-ocsigen-lwt-101.diff" "md5=cd2fcb708c9c91cc8ad80c9440fdbe43"]
+  ["lwt-2.4.6.patch" "md5=6c8985347276175b357100cc56393f84"]
 ]
 url {
   src: "https://github.com/ocsigen/lwt/archive/2.4.6.tar.gz"

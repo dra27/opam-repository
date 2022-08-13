@@ -17,6 +17,7 @@ bug-reports: "https://github.com/janestreet/bin_prot/issues"
 dev-repo: "git+https://github.com/janestreet/bin_prot.git"
 install: [[make "install"]]
 authors: ["Jane Street Group, LLC"]
+patches: "bin_prot-111.03.00.patch" {os = "win32"}
 synopsis: "A binary protocol generator"
 description: """
 Part of Jane Street’s Core library
@@ -24,6 +25,9 @@ The Core suite of libraries is an industrial strength alternative to
 OCaml's standard library that was developed by Jane Street, the
 largest industrial user of OCaml."""
 flags: light-uninstall
+extra-files: [
+  "bin_prot-111.03.00.patch" "md5=dfbd2633f219310d0f1e17a1f688a2a7"
+]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/111.03.00/individual/bin_prot-111.03.00.tar.gz"

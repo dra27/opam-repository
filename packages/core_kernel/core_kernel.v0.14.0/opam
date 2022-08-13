@@ -45,3 +45,4 @@ url {
   src: "https://ocaml.janestreet.com/ocaml-core/v0.14/files/core_kernel-v0.14.0.tar.gz"
   checksum: "md5=61420bfc94dbed1667be5e2ebd7c8240"
 }
+patches: "core_kernel-v0.14.0.patch" {os = "win32"}

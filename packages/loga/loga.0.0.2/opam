@@ -15,7 +15,9 @@ depends: [
   "ocamlfind" {build}
   "ounit" {build}
 ]
+patches: "loga-0.0.2.patch" {os = "win32"}
 synopsis: "A logging library for OCaml"
+extra-files: ["loga-0.0.2.patch" "md5=795e0af902c5d9bd4749c65dcbd10999"]
 url {
   src: "https://github.com/yutopp/loga/archive/0.0.2.tar.gz"
   checksum: "md5=e060ceb7f0b7b9293fb4532cf39594ab"

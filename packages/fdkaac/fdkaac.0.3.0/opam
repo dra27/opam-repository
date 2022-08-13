@@ -42,3 +42,7 @@ url {
     "sha512=5262d4f873741404d808c579b030f2a90da3a5e3241e71a9575a90c55d584fd55cce10a8cff115913c3e44f1576bb69c5c1b020ab96f22ee214b6b1552a0f624"
   ]
 }
+patches: [
+  "patch-ocamlmakefile-fdkaac.0.3.0" {os = "win32"}
+  "ocaml-fdkaac-0.3.0.patch" {os = "win32"}
+]

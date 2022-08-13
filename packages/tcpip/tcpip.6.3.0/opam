@@ -81,3 +81,4 @@ url {
   ]
 }
 x-commit-hash: "a58fb3e96c7fa58e0d18d751b8c859282fefe1cd"
+patches: "tcpip-v6.3.0.patch" {os = "win32"}

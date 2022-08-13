@@ -22,12 +22,20 @@ depends: [
   "ounit" {with-test}
   "num"
 ]
+patches: [
+  "mirage-orm-24c2e0e.patch" {os = "win32"}
+  "patch-ocamlmakefile-orm.0.7.1" {os = "win32"}
+]
 synopsis: "The ORM library provides a storage backend to persist ML values."
 description: """
 This backend is integrated seamlessly with OCaml and currently uses
 SQLite (although other backends are easily possible). The user does
 not have to worry about writing any SQL queries manually."""
 flags: light-uninstall
+extra-files: [
+  ["patch-ocamlmakefile-orm.0.7.1" "md5=60d2f554846d3c8ec60de676a5c5a074"]
+  ["mirage-orm-24c2e0e.patch" "md5=3f859b0481902f69509b3b84d25b71a3"]
+]
 url {
   src: "https://github.com/mirage/orm/tarball/orm-0.7.1"
   checksum: "md5=15cd87fb3ade1521f0ff8ed843f97f17"

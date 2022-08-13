@@ -22,7 +22,11 @@ depopts: [
   "conf-glade"
   "lablgl"
 ]
-patches: ["lablgldir.patch"]
+patches: [
+  "coq-patch" {os = "win32"}
+  "lablgldir.patch"
+  "patch-bd" {os = "win32"}
+]
 post-messages: [
   "This package requires gtk+ 2.0 development packages installed on your system"
     {failure}
@@ -43,8 +47,10 @@ $ export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig
 $ opam install lablgtk"""
 flags: light-uninstall
 extra-files: [
+  ["patch-bd" "md5=dc2db08edf4ad36d323d830c7d43a90d"]
   ["lablgtk.install" "md5=1a3468258dd50aab33b9844db158b11a"]
   ["lablgldir.patch" "md5=8cf5f3efbcb7bb8294424c30f77ea81f"]
+  ["coq-patch" "md5=5e04eb9b566e5c3ae8c518242e6ae906"]
 ]
 url {
   src:

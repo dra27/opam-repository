@@ -46,12 +46,16 @@ depexts: [
   ["mingw64-x86_64-gcc-fortran"] {os = "cygwin"}
   ["gcc"] {os = "macos" & os-distribution = "homebrew"}
 ]
+patches: "patch-oasis-lbfgs.0.8.8" {os = "win32"}
 synopsis:
   "Minimization of multidimensional functions on bounded or unbounded domains."
 description: """
 This is a binding to L-BFGS-B, a library for Large-scale
 Bound-constrained Optimization."""
 flags: light-uninstall
+extra-files: [
+  "patch-oasis-lbfgs.0.8.8" "md5=a530115c19acbc8c888a896d7e14dbd3"
+]
 url {
   src:
     "https://github.com/Chris00/L-BFGS-ocaml/releases/download/0.8.8/lbfgs-0.8.8.tar.gz"

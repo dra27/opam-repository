@@ -21,12 +21,16 @@ depends: [
   "ocamlbuild" {build}
 ]
 install: ["ocaml" "setup.ml" "-install"]
+patches: "ANSITerminal-0.6.5.patch" {os = "win32"}
 synopsis: "Basic control of ANSI compliant terminals and the windows shell."
 description: """
 ANSITerminal is a module allowing to use the colors and cursor
 movements on ANSI terminals. It also works on the windows shell (but
 this part is currently work in progress)."""
 flags: light-uninstall
+extra-files: [
+  "ANSITerminal-0.6.5.patch" "md5=7293fa7d9e5a93d89852b43930380e4f"
+]
 url {
   src:
     "https://download.ocamlcore.org/ansiterminal/ansiterminal/0.6.5/ANSITerminal-0.6.5.tar.gz"

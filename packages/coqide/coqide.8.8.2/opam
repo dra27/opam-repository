@@ -37,8 +37,12 @@ install: [
 remove: ["rm" "-rf" "%{lib}%/coq/ide" "%{doc}%/FAQ-CoqIde"]
 synopsis: "IDE of the Coq formal proof management system."
 flags: light-uninstall
-extra-files: ["coqide.install" "md5=d005cda8cb7888fbea94c5416dcb31bc"]
+extra-files: [
+  ["coqide.install" "md5=d005cda8cb7888fbea94c5416dcb31bc"]
+  ["coq-8.8.2.patch" "md5=e1fc8fb3eaab48607742b9e2c75c5042"]
+]
 url {
   src: "https://github.com/coq/coq/archive/V8.8.2.tar.gz"
   checksum: "md5=5d693cd1953a0dd74920b43d183bc26c"
 }
+patches: "coq-8.8.2.patch" {os = "win32"}

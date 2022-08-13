@@ -38,3 +38,7 @@ url {
     "sha512=b49dd9b9c3851d4720e6832773564a53802814b71106a41647a06bcad8414382a9d739b0440fb9e7d8caf24ffaccfacfe727d1a8bf4be22d8532b40264fe05e6"
   ]
 }
+patches: [
+  "ocaml-flac-0.1.7.patch" {os = "win32"}
+  "patch-ocamlmakefile-flac.0.1.7" {os = "win32"}
+]

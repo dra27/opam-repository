@@ -41,6 +41,9 @@ depends: [
 depopts: [
   "lablgtk"
 ]
+patches: [
+ "patch-cairo2"
+]
 synopsis: "Binding to Cairo, a 2D Vector Graphics Library."
 description: """
 This is a binding to Cairo, a 2D graphics library with support for
@@ -48,6 +51,7 @@ multiple output devices. Currently supported output targets include
 the X Window System, Quartz, Win32, image buffers, PostScript, PDF,
 and SVG file output."""
 flags: light-uninstall
+extra-files: ["patch-cairo2" "md5=f39f96f81ee0fe45210604a172292a30"]
 url {
   src:
     "https://github.com/Chris00/ocaml-cairo/releases/download/0.5/cairo2-0.5.tar.gz"

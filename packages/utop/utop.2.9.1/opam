@@ -38,3 +38,4 @@ url {
     "sha512=002fa809d4924419f51b81df968b653a111ae5992837792fcb867adf2e44c15d40fadccc9784ef61f21ea3233f9da74016433920bf909d808752b7f825f8cdb1"
   ]
 }
+patches: "utop-2.9.1.patch" {os = "win32"}

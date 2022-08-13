@@ -3,9 +3,11 @@ maintainer: "vb@luminar.eu.org"
 build: make
 remove: [[make "uninstall"]]
 depends: ["ocaml" "ocamlfind" "ocaml-makefile"]
+patches: "ocaml-crypt-1.3.patch" {os = "win32"}
 dev-repo: "git+https://github.com/vbmithr/ocaml-crypt"
 install: [make "install"]
 synopsis: "Tiny binding for the unix crypt function"
+extra-files: ["ocaml-crypt-1.3.patch" "md5=5ba23ddca6e98c4159474034760cd954"]
 url {
   src: "https://github.com/vbmithr/ocaml-crypt/archive/1.3.tar.gz"
   checksum: "md5=539fe0163a95a89cf9b5262e326e2866"

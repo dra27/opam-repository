@@ -16,8 +16,10 @@ depends: [
   "camlp4"
 ]
 install: [make "install"]
+patches: [ "patch-aa" ]
 synopsis: "Small library to define, load and save options files."
 flags: light-uninstall
+extra-files: ["patch-aa" "md5=3f359cff269d6e7ea401c683618a40f2"]
 url {
   src: "https://github.com/ocaml/opam-source-archives/raw/main/config-file-1.2.tar.gz"
   checksum: "md5=fece1f143285fb5fddf17d5d36a577c5"

@@ -15,6 +15,7 @@ depends: [
   "ocaml" {>= "4.02" & < "4.06.0"}
   "ocamlfind" {build}
 ]
+patches: "patch-ocamlmakefile-grenier.0.5" {os = "win32"}
 synopsis: "Collection of algorithms (HyperLogLog, order maintenance, ...)"
 description: """
 Included:
@@ -27,6 +28,9 @@ Included:
 - jmphash : Jump consistent hashing
 - physh : Physical hashtable"""
 flags: light-uninstall
+extra-files: [
+  "patch-ocamlmakefile-grenier.0.5" "md5=d45b632b47350fb691aa8bcdea7cb769"
+]
 url {
   src: "https://github.com/let-def/grenier/archive/v0.5.tar.gz"
   checksum: "md5=1eeffa93453f549b6f89b8c016c90c77"

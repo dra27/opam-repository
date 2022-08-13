@@ -19,9 +19,13 @@ depends: [
   "tiny_json" {>= "1.1.0"}
   "meta_conv" {>= "1.1.1"}
 ]
+patches: [ "patch-oasis-tiny_json_conv.1.4.1" { os = "win32" } ]
 synopsis: "Meta conv for Tiny Json"
 description: "Converters for meta_conv + tiny_json"
 flags: light-uninstall
+extra-files: [
+  "patch-oasis-tiny_json_conv.1.4.1" "md5=cfc6be6d997e72f43492430fd83093f1"
+]
 url {
   src: "https://github.com/ocaml/opam-source-archives/raw/main/tiny_json_conv-1.4.1.tar.gz"
   checksum: "md5=3b9eb319c57f0678e0c4e93ead1f1e94"

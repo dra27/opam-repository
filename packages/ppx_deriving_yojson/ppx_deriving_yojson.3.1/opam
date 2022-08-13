@@ -38,10 +38,21 @@ depends: [
 conflicts: [
   "ppx_deriving" {= "4.2"}
 ]
+patches: [
+  "ppx_deriving_yojson-3.1.patch" {os = "win32"}
+  "patch-topkg-ppx_deriving_yojson.3.1" {os = "win32"}
+]
 synopsis: "JSON codec generator for OCaml >=4.02"
 description: """
 ppx_deriving_yojson is a ppx_deriving plugin that provides
 a JSON codec generator."""
+extra-files: [
+  ["ppx_deriving_yojson-3.1.patch" "md5=cfccc2c422991cee6cc638d91ef54d00"]
+  [
+    "patch-topkg-ppx_deriving_yojson.3.1"
+    "md5=bce286bf61174413945dfb11c59e4912"
+  ]
+]
 url {
   src: "https://github.com/ocaml-ppx/ppx_deriving_yojson/archive/v3.1.tar.gz"
   checksum: "md5=83128c06b0569309351886d9fd0dbb74"

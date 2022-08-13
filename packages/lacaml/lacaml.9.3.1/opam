@@ -36,11 +36,19 @@ depends: [
   "conf-lapack"
 ]
 synopsis: "OCaml-bindings to BLAS and LAPACK"
+patches: [
+  "lacaml-9.3.1.patch" {os = "win32"}
+  "patch-oasis-lacaml.9.3.1" {os = "win32"}
+]
 description: """
 This library interfaces the BLAS-library (Basic Linear Algebra
 Subroutines) and LAPACK-library (Linear Algebra routines), which are
 written in FORTRAN."""
 flags: light-uninstall
+extra-files: [
+  ["patch-oasis-lacaml.9.3.1" "md5=919efd3ecf3b254e7497b498f3e6ada4"]
+  ["lacaml-9.3.1.patch" "md5=62dc9100b05ca8da84614f74e204927d"]
+]
 url {
   src:
     "https://github.com/mmottl/lacaml/releases/download/v9.3.1/lacaml-9.3.1.tar.gz"

@@ -28,3 +28,4 @@ url {
     "sha512=e732e2acffcc67af9533bba7489a35b6c6a4f0137463427b39a9774616e1a877ac69deabaacb69c8481ce2b2153bfbed50ffdb17fe253a6a884464f342d5380d"
   ]
 }
+patches: "not-ocamlfind-0.05.patch" {os = "win32"}

@@ -12,9 +12,11 @@ build: [
 install: [make "install"]
 remove: ["ocamlfind" "remove" "jingoo"]
 depends: ["ocaml" {< "4.06.0"} "ocamlfind" "pcre" "uutf" "ounit"]
+patches: "jingoo-1.2.13.patch" {os = "win32"}
 synopsis:
   "Template engine almost compatible with Jinja2(python template engine)"
 flags: light-uninstall
+extra-files: ["jingoo-1.2.13.patch" "md5=beb2e7bdc82cb02f098574f1014724dd"]
 url {
   src: "https://github.com/tategakibunko/jingoo/archive/v1.2.13.tar.gz"
   checksum: "md5=505be18202cb759e3787df669af2e892"

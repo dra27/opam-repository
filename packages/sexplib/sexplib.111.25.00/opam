@@ -25,6 +25,7 @@ conflicts: [
 bug-reports: "https://github.com/janestreet/sexplib/issues"
 dev-repo: "git+https://github.com/janestreet/sexplib.git"
 install: [[make "install"]]
+patches: "sexplib-111.25.00.patch" {os = "win32"}
 synopsis: "Library for serializing OCaml values to and from S-expressions"
 description: """
 Part of Jane Street’s Core library
@@ -32,6 +33,9 @@ The Core suite of libraries is an industrial strength alternative to
 OCaml's standard library that was developed by Jane Street, the
 largest industrial user of OCaml."""
 flags: light-uninstall
+extra-files: [
+  "sexplib-111.25.00.patch" "md5=87bf32d93351366386acb02a7e088517"
+]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/111.25.00/individual/sexplib-111.25.00.tar.gz"

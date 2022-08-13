@@ -29,9 +29,14 @@ depends: [
   "ounit" {with-test}
 ]
 available: opam-version >= "1.2"
+patches: "patch-topkg-wquote-ppx_deriving_argparse.0.0.5" {os = "win32"}
 synopsis: "Very simple ppx deriver of command line parser for Ocaml >=4.02"
 description:
   "Very simple ppx deriver of command line parser for Ocaml >=4.02"
+extra-files: [
+  "patch-topkg-wquote-ppx_deriving_argparse.0.0.5"
+  "md5=d67726241d2639ff7e180c5040c76bf7"
+]
 url {
   src:
     "https://github.com/masashi-y/ppx_deriving_argparse/archive/0.0.5.tar.gz"

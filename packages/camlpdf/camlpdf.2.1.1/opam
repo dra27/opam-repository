@@ -6,7 +6,10 @@ bug-reports: "http://github.com/johnwhitington/camlpdf/issues"
 dev-repo: "git+https://github.com/johnwhitington/camlpdf"
 build: [[make]]
 install: [[make "install"]]
-patches: ["int.patch"]
+patches: [
+  "patch-ocamlmakefile-camlpdf.2.1.1" {os = "win32"}
+  "int.patch"
+]
 remove: [["ocamlfind" "remove" "camlpdf"]]
 depends: [
   "ocaml" {< "4.06.0"}
@@ -14,7 +17,12 @@ depends: [
 ]
 synopsis: "Read, write and modify PDF files"
 flags: light-uninstall
-extra-files: ["int.patch" "md5=08d366d3219853c8ffcd102db813a5f8"]
+extra-files: [
+  [
+    "patch-ocamlmakefile-camlpdf.2.1.1" "md5=ca0febf36878791c7aa7ece051f7fef5"
+  ]
+  ["int.patch" "md5=08d366d3219853c8ffcd102db813a5f8"]
+]
 url {
   src: "https://github.com/johnwhitington/camlpdf/archive/v2.1.1.zip"
   checksum: "md5=1793d6ff77dc5d51034277b2b46225a4"

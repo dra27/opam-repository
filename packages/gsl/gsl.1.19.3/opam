@@ -42,11 +42,19 @@ depends: [
 depopts: [
   "camlp4"
 ]
+patches: [
+  "gsl-ocaml-1.19.3.patch" {os = "win32"}
+  "patch-oasis-gsl.1.19.3" {os = "win32"}
+]
 synopsis: "GSL - Bindings to the GNU Scientific Library"
 description: """
 gsl-ocaml branched off from Olivier Andrieu's distribution (ocamlgsl)
 and includes bug fixes as well as numerous API improvements."""
 flags: light-uninstall
+extra-files: [
+  ["patch-oasis-gsl.1.19.3" "md5=e345a1e5a5ace4d36f65dc0ae1841652"]
+  ["gsl-ocaml-1.19.3.patch" "md5=ff75c5a352a952c9dce5e6533b0aa049"]
+]
 url {
   src:
     "https://github.com/mmottl/gsl-ocaml/releases/download/v1.19.3/gsl-ocaml-1.19.3.tar.gz"

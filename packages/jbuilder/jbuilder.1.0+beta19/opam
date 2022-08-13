@@ -11,6 +11,7 @@ build: [
   ["./boot.exe" "--subst"] {pinned}
   ["./boot.exe" "-j" jobs]
 ]
+patches: "jbuilder-1.0+beta19.patch" {os = "win32"}
 synopsis: "Fast, portable and opinionated build system"
 description: """
 jbuilder is a build system that was designed to simplify the release
@@ -31,6 +32,9 @@ packages across several versions of OCaml and gives cross-compilation
 for free."""
 depends: [
   "ocaml" {>= "4.02.3" & < "4.08.0"}
+]
+extra-files: [
+  "jbuilder-1.0+beta19.patch" "md5=627c4a32b516ac9e37833ba258b29b4a"
 ]
 url {
   src:

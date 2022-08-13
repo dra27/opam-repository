@@ -42,8 +42,12 @@ conflicts: [
   "js_of_ocaml" {>= "3.0"}
 ]
 install: ["ocaml" "setup.ml" "-install"]
+patches: "patch-oasis-github.0.9.4" {os = "win32"}
 synopsis: "GitHub APIv3 client bindings"
 flags: light-uninstall
+extra-files: [
+  "patch-oasis-github.0.9.4" "md5=0f3bc593e664722f98b45291d9e7d470"
+]
 url {
   src: "https://github.com/avsm/ocaml-github/archive/v0.9.4.tar.gz"
   checksum: "md5=bfdd83f8d2a2c1e57f4ffd41ea755bc0"

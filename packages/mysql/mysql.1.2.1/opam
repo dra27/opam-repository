@@ -23,8 +23,16 @@ depends: [
   "ocamlfind" {build}
   "conf-mysql"
 ]
+patches: [
+  "ocaml-mysql-1.2.1.patch" {os = "win32"}
+  "patch-ocamlmakefile-mysql.1.2.1" {os = "win32"}
+]
 synopsis: "Bindings to libmysqlclient for interacting with mysql databases"
 flags: light-uninstall
+extra-files: [
+  ["patch-ocamlmakefile-mysql.1.2.1" "md5=9cba4a9308c61807553421f89530d615"]
+  ["ocaml-mysql-1.2.1.patch" "md5=88abf58b4f8c2b6e1bdb0bf731401282"]
+]
 url {
   src: "https://ygrek.org/p/release/ocaml-mysql/ocaml-mysql-1.2.1.tar.gz"
   checksum: "md5=776d07219ac3a6ffa000811defd91eb3"

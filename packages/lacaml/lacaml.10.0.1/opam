@@ -37,12 +37,14 @@ depends: [
   "base-bytes"
   "base-bigarray"
 ]
+patches: "lacaml-10.0.1.patch" {os = "win32"}
 available: arch = "x86_32" | arch = "x86_64"
 synopsis: "Lacaml - OCaml-bindings to BLAS and LAPACK"
 description: """
 Lacaml interfaces the BLAS-library (Basic Linear Algebra Subroutines) and
 LAPACK-library (Linear Algebra routines).  It also contains many additional
 convenience functions for vectors and matrices."""
+extra-files: ["lacaml-10.0.1.patch" "md5=df996245f66dddb4d93128635a151630"]
 url {
   src:
     "https://github.com/mmottl/lacaml/releases/download/10.0.1/lacaml-10.0.1.tbz"

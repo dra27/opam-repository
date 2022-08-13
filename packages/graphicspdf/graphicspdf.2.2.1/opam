@@ -12,8 +12,13 @@ homepage: "http://github.com/johnwhitington/graphicspdf"
 bug-reports: "http://github.com/johnwhitington/graphicspdf/issues"
 dev-repo: "git+https://github.com/johnwhitington/graphicspdf"
 install: [[make "install"]]
+patches: "patch-ocamlmakefile-graphicspdf.2.2.1" {os = "win32"}
 synopsis: "Version of OCaml's Graphics library which outputs PDFs."
 flags: light-uninstall
+extra-files: [
+  "patch-ocamlmakefile-graphicspdf.2.2.1"
+  "md5=ff7c12ae60cdef420152ac0fa79b16b9"
+]
 url {
   src: "https://github.com/johnwhitington/graphicspdf/archive/v2.2.1.zip"
   checksum: "md5=97299c417316693bbf9413a5345bf3f8"

@@ -15,3 +15,4 @@ url {
   src: "https://github.com/johnwhitington/camlpdf/archive/v2.3.zip"
   checksum: "md5=61631634e5e91017281676253ff690e5"
 }
+patches: "patch-ocamlmakefile-camlpdf.2.3" {os = "win32"}

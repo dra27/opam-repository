@@ -65,3 +65,4 @@ url {
 archive: "https://erratique.ch/software/vg/releases/vg-0.9.4.tbz"
 checksum: "87e3624672af90b9b7960d2102f9bd71"
 }
+patches: "vg-0.9.4.patch" {os = "win32"}

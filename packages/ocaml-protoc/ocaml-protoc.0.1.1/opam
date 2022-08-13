@@ -25,10 +25,14 @@ depends: [
   "ocamlbuild" {build}
   "ppx_deriving_protobuf"
 ]
+patches: "ocaml-protoc-0.1.1.2.patch" {os = "win32"}
 synopsis: "A Protobuf Compiler for OCaml"
 description: """
 'ocaml-protoc' is a compiler of Protobuf file (.proto) to OCaml code. 
 The compiler generate OCaml types with associated decoding/encoding functions following the Protobuf format."""
+extra-files: [
+  "ocaml-protoc-0.1.1.2.patch" "md5=611c912386a233c36acc849a3b59aa45"
+]
 url {
   src: "https://github.com/mransan/ocaml-protoc/archive/0.1.1.2.tar.gz"
   checksum: "md5=e86800b09eeb978a3234fc91385cc690"

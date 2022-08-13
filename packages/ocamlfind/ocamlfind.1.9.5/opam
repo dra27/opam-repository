@@ -43,3 +43,4 @@ url {
   ]
 }
 
+patches: "findlib-1.9.5.patch" {os = "win32"}

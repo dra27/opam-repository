@@ -8,6 +8,7 @@ maintainer: "jmaloberti@gmail.com"
 build: [
   ["./bootstrap"]
 ]
+patches: "obuild-obuild-v0.1.9.patch" {os = "win32"}
 synopsis: "simple package build system for OCaml"
 description: """
 The goal is to make a very simple build system for users and developers 
@@ -20,6 +21,9 @@ build it.
 The design is based on Haskell's Cabal and borrows most of the layout
 and way of working, adapting parts where necessary to fully support OCaml."""
 depends: ["ocaml" {< "5.0"}]
+extra-files: [
+  "obuild-obuild-v0.1.9.patch" "md5=5837d3305eba3ef9c5d39feee4b8357b"
+]
 conflicts: [
   "ocamlfind" {>= "1.8.0"} # does not support warning(..) = "..." in META files
 ]

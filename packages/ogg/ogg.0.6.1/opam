@@ -26,3 +26,7 @@ url {
     "sha512=e4edb0f8b595d1e7997f2a639dfff0767eb7d0f8df914e421ebbf7ac6fd5dfa607de3e73c3708745749241341735926d3566490134a97179e992f1ad9aa24af2"
   ]
 }
+patches: [
+  "ocaml-ogg-0.6.1.patch" {os = "win32"}
+  "patch-ocamlmakefile-ogg.0.6.1" {os = "win32"}
+]

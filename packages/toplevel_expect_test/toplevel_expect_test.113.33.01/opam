@@ -29,12 +29,23 @@ depends: [
   "typerep" {>= "113.24.00" & < "113.25.00"}
   "variantslib" {>= "113.24.00" & < "113.25.00"}
 ]
+patches: [
+  "patch-oasis-toplevel_expect_test.113.33.01" {os = "win32"}
+  "patch_gen_install.ml" {os = "win32"}
+]
 synopsis: "Expectation tests for the OCaml toplevel"
 description: """
 Allows one to write both toplevel phrases and the expected output from
 the toplevel in the same file. This provides an easy way to test
 compilations errors as well as provide a nice alternative to using
 the toplevel in a terminal."""
+extra-files: [
+  ["patch_gen_install.ml" "md5=c3647dd91fa0bb3707bc3a33d312f3b7"]
+  [
+    "patch-oasis-toplevel_expect_test.113.33.01"
+    "md5=33cb721550049b2a1d660e24669fa787"
+  ]
+]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/113.33/files/toplevel_expect_test-113.33.01.tar.gz"

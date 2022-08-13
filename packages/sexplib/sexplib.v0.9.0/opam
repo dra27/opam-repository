@@ -6,6 +6,7 @@ bug-reports: "https://github.com/janestreet/sexplib/issues"
 dev-repo: "git+https://github.com/janestreet/sexplib.git"
 license: "Apache-2.0"
 build: [
+  ["sh" "winconfigure"] {os = "win32"}
   ["jbuilder" "build" "--only-packages" "sexplib" "--root" "." "-j" jobs "@install"]
 ]
 depends: [
@@ -23,6 +24,7 @@ Part of Jane Street's Core library
 The Core suite of libraries is an industrial strength alternative to
 OCaml's standard library that was developed by Jane Street, the
 largest industrial user of OCaml."""
+extra-files: ["winconfigure" "md5=2cc2e6b49ff6731acc85f30f0f65878a"]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/v0.9/files/sexplib-v0.9.0.tar.gz"

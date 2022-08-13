@@ -39,7 +39,11 @@ depopts: [
 ]
 
 tags: [ "org:mirage" ]
-patches: [ "postconf.patch" "werror.patch" ]
+patches: [
+  "postconf.patch"
+  "werror.patch"
+  "win.diff" {os = "win32"}
+]
 synopsis: "Small functional-style crypto library"
 description: """
 Ciphers: AES, 3DES, RC4.
@@ -49,6 +53,7 @@ Rng: Fortuna."""
 authors: "David Kaloper <david@numm.org>"
 flags: light-uninstall
 extra-files: [
+  ["win.diff" "md5=05df96865fc0654a8471696fbb314269"]
   ["postconf.patch" "md5=9b42fe7a62539973dc84dcb4665928ec"]
   ["werror.patch" "md5=9d31eed80a35ea4f477b21bc09453f22"]
 ]

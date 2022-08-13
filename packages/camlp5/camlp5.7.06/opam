@@ -16,11 +16,15 @@ remove: [
   [ "rm" "-rf" "%{lib}%/camlp5" ]
   [ "rm" "-f" "%{man}%/man1/camlp5.1" "%{man}%/man1/camlp5o.1" "%{man}%/man1/camlp5o.opt.1" "%{man}%/man1/camlp5r.1" "%{man}%/man1/camlp5r.opt.1" "%{man}%/man1/camlp5sch.1" "%{man}%/man1/mkcamlp5.1" "%{man}%/man1/mkcamlp5.opt.1" "%{man}%/man1/ocpp5.1" ]
 ]
+patches: "camlp5-rel706.patch" {os = "win32"}
 synopsis: "Preprocessor-pretty-printer of OCaml"
 depends: [
   "ocaml" {>= "4.02" & <= "4.07.0"}
 ]
-extra-files: ["camlp5.install" "md5=b16bcaf28bfb364236b2181fb50a6564"]
+extra-files: [
+  ["camlp5.install" "md5=b16bcaf28bfb364236b2181fb50a6564"]
+  ["camlp5-rel706.patch" "md5=284aeb859d42ab94503d663fccfe15c0"]
+]
 url {
   src: "https://github.com/camlp5/camlp5/archive/rel706.tar.gz"
   checksum: "md5=7e5bc8a04fd701f1942d5b7aac170667"

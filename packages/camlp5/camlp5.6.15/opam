@@ -10,12 +10,17 @@ build: [
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 dev-repo: "git+https://github.com/camlp5/camlp5.git"
 doc: "https://camlp5.github.io/doc/html"
+
+patches: "camlp5-6.15.patch" {os = "win32"}
 install: [make "install"]
 synopsis: "Preprocessor-pretty-printer of OCaml"
 depends: [
   "ocaml" {>= "4.02.0" & <= "4.03.0"}
 ]
-extra-files: ["camlp5.install" "md5=b16bcaf28bfb364236b2181fb50a6564"]
+extra-files: [
+  ["camlp5.install" "md5=b16bcaf28bfb364236b2181fb50a6564"]
+  ["camlp5-6.15.patch" "md5=550be1ff762b43c3ea6881a411cbbb71"]
+]
 url {
   src: "https://github.com/ocaml/opam-source-archives/raw/main/camlp5-6.15.tgz"
   checksum: "md5=ad79f4b4384109fbb92b1b3bcb105224"

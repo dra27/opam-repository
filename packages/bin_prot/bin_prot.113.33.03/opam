@@ -18,12 +18,16 @@ depends: [
 depopts: [
   "mirage-xen-ocaml"
 ]
+patches: "patch-oasis-bin_prot.113.33.03" {os = "win32"}
 synopsis: "A binary protocol generator"
 description: """
 Part of Jane Street’s Core library
 The Core suite of libraries is an industrial strength alternative to
 OCaml's standard library that was developed by Jane Street, the
 largest industrial user of OCaml."""
+extra-files: [
+  "patch-oasis-bin_prot.113.33.03" "md5=4ca42f0a2e73c6197423d61e7580c37e"
+]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/113.33/files/bin_prot-113.33.03.tar.gz"

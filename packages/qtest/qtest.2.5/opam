@@ -29,6 +29,7 @@ post-messages:
   To use it, still call `qtest` on your .ml/.mli files to extract tests,
   then compile the resulting suite using oUnit and qcheck.
   "
+patches: "iTeML-2.5.patch" {os = "win32"}
 synopsis: "iTeML / qtest : Inline (Unit) Tests for OCaml."
 description: """
 qtest extracts inline unit tests written using a special
@@ -36,7 +37,10 @@ syntax in comments. Those tests are then run using the oUnit framework
 and the qcheck library.  The possibilities range from trivial tests --
 extremely simple to use -- to sophisticated random generation of test cases."""
 flags: light-uninstall
-extra-files: ["qtest.install" "md5=36d87746d47b206cbf45ab88dc199b8c"]
+extra-files: [
+  ["qtest.install" "md5=36d87746d47b206cbf45ab88dc199b8c"]
+  ["iTeML-2.5.patch" "md5=d2da34c454368a83d35b38d309df2367"]
+]
 url {
   src: "https://github.com/vincent-hugot/iTeML/archive/v2.5.tar.gz"
   checksum: "md5=5b29036ab1bd180d72a2c609f4186c67"

@@ -33,9 +33,17 @@ depexts: [
 ]
 bug-reports: "https://github.com/savonet/ocaml-speex/issues"
 dev-repo: "git+https://github.com/savonet/ocaml-speex.git"
+patches: [
+  "ocaml-speex-0.2.1.patch" {os = "win32"}
+  "patch-ocamlmakefile-speex.0.2.1" {os = "win32"}
+]
 synopsis:
   "Bindings for the speex library to decode audio files in speex format"
 flags: light-uninstall
+extra-files: [
+  ["patch-ocamlmakefile-speex.0.2.1" "md5=cda762478575859c99ba9829d29719ce"]
+  ["ocaml-speex-0.2.1.patch" "md5=8d0d7c4200f0613a06fecf24beb44132"]
+]
 url {
   src:
     "https://github.com/savonet/ocaml-speex/releases/download/0.2.1/ocaml-speex-0.2.1.tar.gz"

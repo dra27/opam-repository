@@ -30,3 +30,4 @@ url {
   src: "https://github.com/nberth/mlgmpidl/archive/1.2.13.tar.gz"
   checksum: "md5=d2c97b13d7f2ebee1c53d48f3715cc80"
 }
+patches: "mlgmpidl-1.2.13.patch" {os = "win32"}

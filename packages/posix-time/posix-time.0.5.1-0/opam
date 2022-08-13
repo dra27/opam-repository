@@ -20,11 +20,15 @@ depends: [
   "ocamlfind" {>= "1.5"}
   "ocamlbuild" {build}
 ]
+patches: "patch-oasis-posix-time.0.5.1-0" {os = "win32"}
 synopsis: "POSIX time"
 description: """
 The POSIX time library provides POSIX time data structures and basic functions
 to manipulate them."""
 flags: light-uninstall
+extra-files: [
+  "patch-oasis-posix-time.0.5.1-0" "md5=b92aea21c6cc5b59307315e3dda38ad0"
+]
 url {
   src: "https://github.com/mwweissmann/ocaml-posix-time/archive/0.5.1.tar.gz"
   checksum: "md5=ad59443f2ddb3a3c674f67fac28ed303"

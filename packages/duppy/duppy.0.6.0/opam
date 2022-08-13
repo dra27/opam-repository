@@ -20,8 +20,16 @@ depopts: ["ssl"]
 conflicts: ["liquidsoap" {<= "1.2.1"}]
 bug-reports: "https://github.com/savonet/ocaml-duppy/issues"
 dev-repo: "git+https://github.com/savonet/ocaml-duppy.git"
+patches: [
+  "patch-ocamlmakefile-duppy.0.6.0" {os = "win32"}
+  "ocaml-duppy-0.6.0.patch" {os = "win32"}
+]
 synopsis: "Library providing monadic threads"
 flags: light-uninstall
+extra-files: [
+  ["patch-ocamlmakefile-duppy.0.6.0" "md5=da8cb842b0310baf51bc51bdc02134c7"]
+  ["ocaml-duppy-0.6.0.patch" "md5=c1f4534848cdc77ac7db49fc64bf8752"]
+]
 url {
   src:
     "https://github.com/savonet/ocaml-duppy/releases/download/0.6.0/ocaml-duppy-0.6.0.tar.gz"

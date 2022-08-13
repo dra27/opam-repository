@@ -28,12 +28,17 @@ depends: [
   "typerep" {>= "113.33.03" & < "113.34.00"}
   "variantslib" {>= "113.33.03" & < "113.34.00"}
 ]
+patches: "patch-oasis-async_rpc_kernel.113.33.03" {os = "win32"}
 synopsis: "Platform-independent core of Async RPC library"
 description: """
 Part of Jane Street’s Core library
 The Core suite of libraries is an industrial strength alternative to
 OCaml's standard library that was developed by Jane Street, the
 largest industrial user of OCaml."""
+extra-files: [
+  "patch-oasis-async_rpc_kernel.113.33.03"
+  "md5=bedbdc9378eefad3bee99361bac2eb88"
+]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/113.33/files/async_rpc_kernel-113.33.03.tar.gz"

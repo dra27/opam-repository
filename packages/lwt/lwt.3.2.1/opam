@@ -51,6 +51,7 @@ messages: [
   "For Lwt_log and Lwt_daemon, please install package lwt_log"
     {!lwt_log:installed}
 ]
+patches: "lwt-3.2.1.patch" {os = "win32"}
 synopsis: "Promises, concurrency, and parallelized I/O"
 description: """
 A promise is a value that may become determined in the future.
@@ -65,6 +66,7 @@ conflicts: [
   "ocaml-variants" {= "4.02.1+BER"}
   "dune" {>= "1.7.0"}
 ]
+extra-files: ["lwt-3.2.1.patch" "md5=94f4f98b0512e3c245f287f23990e7de"]
 url {
   src: "https://github.com/ocsigen/lwt/archive/3.2.1.tar.gz"
   checksum: "md5=13613bbf6b27d198bafcbd9b253a0076"

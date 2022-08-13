@@ -16,12 +16,14 @@ depends: [
   "ocp-indent" {>= "1.4.0"}
   "ocp-index" {>= "1.0.0"}
 ]
+patches: "ocaml-top-1.1.5.patch" {os = "win32"}
 synopsis: "The OCaml interactive editor for education"
 description: """
 OCaml-top is a GTK-based editor coupled with an OCaml top-level, providing
 straight forward evaluation controls, built-in syntax coloring and forced visual
 indentation. It's cross-platform and specially tailored for students and
 practicals."""
+extra-files: ["ocaml-top-1.1.5.patch" "md5=421e733552c31f0ac3f96371a92339d1"]
 url {
   src: "https://github.com/OCamlPro/ocaml-top/archive/1.1.5.tar.gz"
   checksum: "md5=7a67d3e9b649025b436d9e95ebc55b9b"

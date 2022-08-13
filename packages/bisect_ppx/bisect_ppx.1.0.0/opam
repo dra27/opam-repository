@@ -25,6 +25,7 @@ depends: [
 conflicts: [
   "ocveralls" {<= "0.3.2"}
 ]
+patches: [ "patch-build" ]
 synopsis: "Code coverage for OCaml"
 description: """
 Bisect_ppx helps you test thoroughly. It is a small preprocessor that inserts
@@ -45,7 +46,10 @@ improvements and updates.
 - Various bugfixes.
 - No camlp4 dependency."""
 flags: light-uninstall
-extra-files: ["bisect_ppx.install" "md5=887f32c5449bb9014b750064e39670b3"]
+extra-files: [
+  ["patch-build" "md5=d9cca4a619eb9015be8a0db7d1cb25d5"]
+  ["bisect_ppx.install" "md5=887f32c5449bb9014b750064e39670b3"]
+]
 url {
   src: "https://github.com/rleonid/bisect_ppx/archive/1.0.0.tar.gz"
   checksum: "md5=7b965d605e000812b33ae7dfe8ec0dcc"

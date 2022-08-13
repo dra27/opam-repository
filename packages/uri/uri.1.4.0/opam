@@ -31,8 +31,10 @@ conflicts: [
 ]
 dev-repo: "git+https://github.com/mirage/ocaml-uri"
 install: ["ocaml" "setup.ml" "-install"]
+patches: "patch-oasis-uri.1.4.0" {os = "win32"}
 synopsis: "RFC3986 URI/URL parsing library"
 flags: light-uninstall
+extra-files: ["patch-oasis-uri.1.4.0" "md5=f45239ae644868a52f9f67753176f1fc"]
 url {
   src: "https://github.com/mirage/ocaml-uri/archive/v1.4.0.tar.gz"
   checksum: "md5=f8d9acfae8c86dde20fcd1a911a362af"

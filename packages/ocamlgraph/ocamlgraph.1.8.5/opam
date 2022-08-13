@@ -36,9 +36,12 @@ depopts: [
   "lablgtk"
   "conf-gnomecanvas"
 ]
+patches: "ocamlgraph-1.8.5.patch" {os = "win32"}
 synopsis: "A generic graph library for OCaml"
 flags: light-uninstall
-extra-files: ["ocamlgraph.install" "md5=e0b715868e84ec4df4d6cdda25843466"]
+extra-files: [
+  "ocamlgraph-1.8.5.patch" "md5=8902249fda73d91b11b882f8a6877fe0"
+]
 url {
   src: "http://ocamlgraph.lri.fr/download/ocamlgraph-1.8.5.tar.gz"
   checksum: "md5=75dde65bfc3f9b07e795343d369aa84d"

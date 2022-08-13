@@ -41,3 +41,7 @@ url {
     "sha512=2e411ec3edb9004ac839afc717c49eb1ebcf07b6146a761e778e9b457da0c34b58850f0b5d65f5a77e47ba0e6d3d4420b2499662e08e4899a740223f4c02e64f"
   ]
 }
+patches: [
+  "ocaml-mm-0.5.1.patch" {os = "win32"}
+  "patch-ocamlmakefile-mm.0.5.1" {os = "win32"}
+]

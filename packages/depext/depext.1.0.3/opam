@@ -13,6 +13,7 @@ license: "LGPL-3.0-only WITH OCaml-LGPL-linking-exception"
 dev-repo: "git+https://github.com/ocaml/opam-depext.git"
 build: [make]
 available: [opam-version >= "1.1.0" & os != "freebsd" & opam-version < "2.0.0~beta5"]
+patches: "opam-depext-1.0.3.patch" {os = "win32"}
 synopsis: "Query and install external dependencies of OPAM packages"
 description: """
 opam-depext is a simple program intended to facilitate the interaction between
@@ -22,6 +23,9 @@ of packages, and call the OS's package manager in the appropriate way to install
 them."""
 depends: ["ocaml"]
 flags: plugin
+extra-files: [
+  "opam-depext-1.0.3.patch" "md5=6721a198ad9e287272929a86bc52f8c1"
+]
 url {
   src:
     "https://github.com/ocaml/opam-depext/releases/download/v1.0.3/opam-depext-full-1.0.3.tbz"

@@ -17,6 +17,7 @@ depends: [
   "camlp4"
   "ocamlbuild" {build}
 ]
+patches: "bisect-1.3.1.patch" {os = "win32"}
 synopsis: "Code coverage tool for the OCaml language (deprecated)"
 description: """
 Bisect is deprecated in favor of package bisect_ppx.
@@ -27,7 +28,10 @@ running tests. After application execution, it is possible to generate
 a report in HTML format that is the replica of the application source
 code annotated with code coverage information."""
 flags: light-uninstall
-extra-files: ["bisect.install" "md5=2106aa627796b3e457d35f1100295f27"]
+extra-files: [
+  ["bisect.install" "md5=2106aa627796b3e457d35f1100295f27"]
+  ["bisect-1.3.1.patch" "md5=6728dee2a19dd72c2e9e0768b9f3c207"]
+]
 url {
   src: "https://github.com/gasche/bisect/archive/1.3.1.tar.gz"
   checksum: "md5=fd0c2d163e4847df075d87fa9bb42b00"

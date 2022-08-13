@@ -33,3 +33,4 @@ url {
     "sha512=1adb172b4b3340f233e4b3e7fef0ccd075d3a35bf54abe652aa174bd195fc89f5f74065a12b1587a0c0d0b493249d7ecc9330b69d59b5f8d27d86ee793bf4e0d"
   ]
 }
+patches: "not-ocamlfind-0.07.01.patch" {os = "win32"}

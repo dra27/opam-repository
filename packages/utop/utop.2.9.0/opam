@@ -40,3 +40,4 @@ url {
   ]
 }
 x-commit-hash: "676e2cd6545fd327e02330d1ccb20c02d6b26eab"
+patches: "utop-2.9.0.patch" {os = "win32"}

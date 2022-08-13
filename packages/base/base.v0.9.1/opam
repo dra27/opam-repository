@@ -13,6 +13,7 @@ depends: [
   "jbuilder" {>= "1.0+beta2" & < "1.0+beta8"}
   "sexplib" {>= "v0.9.1" & < "v0.10"}
 ]
+patches: "base-0.9.1.patch" {os = "win32"}
 synopsis: "Full standard library replacement for OCaml"
 description: """
 Base is a complete and portable alternative to the OCaml standard
@@ -25,6 +26,7 @@ features such as I/O are not offered by Base. They are instead
 provided by companion libraries such as stdio:
 
   https://github.com/janestreet/stdio"""
+extra-files: ["base-0.9.1.patch" "md5=08be97a274f3dca5daa8a1bd7d27bc56"]
 url {
   src: "https://github.com/janestreet/base/archive/v0.9.1.tar.gz"
   checksum: "md5=a0ce2861bcbb756614f0de375576caa6"

@@ -38,3 +38,4 @@ url {
   ]
 }
 x-commit-hash: "a23a03d06206d85f53938c196b2a258ed1e4ef2e"
+patches: "curses-1.0.10.patch" {os = "win32"}

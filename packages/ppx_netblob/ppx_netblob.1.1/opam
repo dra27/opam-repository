@@ -17,11 +17,15 @@ depends: [
   "cohttp" {build & >= "0.13.0" & < "0.99"}
   "lwt" {build}
 ]
+patches: "patch-topkg-ppx_netblob.1.1" {os = "win32"}
 synopsis: "fill strings with data collected from the internet"
 description: """
 this package is based on ppx_blob, except it uses cohttp to fetch blobs from
 the internet rather than from the local file system"""
 flags: light-uninstall
+extra-files: [
+  "patch-topkg-ppx_netblob.1.1" "md5=bce286bf61174413945dfb11c59e4912"
+]
 url {
   src: "https://github.com/chrismamo1/ppx_netblob/archive/v1.1.tar.gz"
   checksum: "md5=f721ec08b3adb22e4058aaa353c86164"

@@ -8,6 +8,7 @@ maintainer: "jmaloberti@gmail.com"
 build: [
   ["./bootstrap"]
 ]
+patches: "obuild-obuild-v0.1.10.patch" {os = "win32"}
 synopsis: "simple package build system for OCaml"
 description: """
 The goal is to make a very simple build system for users and developers 
@@ -20,6 +21,9 @@ build it.
 The design is based on Haskell's Cabal and borrows most of the layout
 and way of working, adapting parts where necessary to fully support OCaml."""
 depends: ["ocaml" {< "5.0"}]
+extra-files: [
+  "obuild-obuild-v0.1.10.patch" "md5=02c292c9410c8755760027f0d0fb152c"
+]
 url {
   src: "https://github.com/ocaml-obuild/obuild/archive/obuild-v0.1.10.tar.gz"
   checksum: "md5=4bd50db236a0ecdaf5f4d9495565f5cc"

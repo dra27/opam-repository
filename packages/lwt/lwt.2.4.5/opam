@@ -37,6 +37,7 @@ conflicts: [
   "ssl" {>= "0.5.0"}
   "ocamlbuild" {= "0.9.0"}
 ]
+patches: "patch-oasis-lwt.2.4.5" {os = "win32"}
 authors: [
   "Jérôme Vouillon"
   "Jérémie Dimino"
@@ -50,6 +51,7 @@ This library is part of the Ocsigen project. See:
 
 http://ocsigen.org/lwt"""
 flags: light-uninstall
+extra-files: ["patch-oasis-lwt.2.4.5" "md5=251d51d51502dc3b7b20d9942dce934e"]
 url {
   src: "https://github.com/ocsigen/lwt/archive/2.4.5.tar.gz"
   checksum: "md5=9a9b4c92bd4bf321a4fb9804be75d168"

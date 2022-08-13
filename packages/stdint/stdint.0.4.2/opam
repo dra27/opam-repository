@@ -26,6 +26,7 @@ depends: [
   "ocamlfind" {>= "1.5"}
   "ocamlbuild" {build}
 ]
+patches: "patch-oasis-stdint.0.4.2" {os = "win32"}
 synopsis: "signed and unsigned integer types having specified widths"
 description: """
 The stdint library provides signed and unsigned integer types of various
@@ -37,6 +38,9 @@ other integer type (including int, float and nativeint), parsing from and
 conversion to readable strings (binary, octal, decimal, hexademical),
 conversion to and from buffers in both big endian and little endian byte order."""
 flags: light-uninstall
+extra-files: [
+  "patch-oasis-stdint.0.4.2" "md5=5baab91c8c384bb11064b2f9470d96b1"
+]
 url {
   src: "https://github.com/andrenth/ocaml-stdint/archive/0.4.2.tar.gz"
   checksum: "md5=dde8a4e4429bffa4bd7c6a2b4bae1f4e"

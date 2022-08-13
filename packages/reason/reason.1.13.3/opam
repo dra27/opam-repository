@@ -34,11 +34,15 @@ depends: [
 conflicts: [
   "utop" {< "1.17"}
 ]
+patches: "patch-spacetag-reason.1.13.3" {os = "win32"}
 synopsis: "Reason: Meta Language Toolchain"
 description: """
 reason allows development of Meta Language syntax trees in non-text format. It
 allows a development model that is equivalent to collaborating on syntax trees
 that have been committed to a source code repository."""
+extra-files: [
+  "patch-spacetag-reason.1.13.3" "md5=e7c4d0d8c51727ac066b6735a4dd1ddd"
+]
 url {
   src: "https://github.com/facebook/reason/archive/1.13.3.tar.gz"
   checksum: "md5=7f5c3b8ca5664d162effb3b3108bc440"

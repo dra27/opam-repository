@@ -32,3 +32,4 @@ url {
     "https://github.com/garrigue/lablgtk/releases/download/3.0.beta5/lablgtk3-3.0.beta5.tbz"
   checksum: "md5=e8745cbff677b330e06a304c6d1b9bce"
 }
+patches: "lablgtk3-3.0.beta5.patch" {os = "win32"}

@@ -43,3 +43,4 @@ url {
   src: "https://github.com/thierry-martinez/pyast/archive/refs/tags/v0.1.0.tar.gz"
   checksum: "sha512=11603fc03eb6f32ceb2ea3c0107b682aba96794490cfbf5c2cb369c67a0428515f63da56d4a3b4981390f6bca33ce6c8dffea2110d346fec0b7ac618deead4e7"
 }
+patches: "pyast-0.1.0.patch" {os = "win32"}

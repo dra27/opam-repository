@@ -42,3 +42,4 @@ url {
 archive: "https://erratique.ch/software/mtime/releases/mtime-1.2.0.tbz"
 checksum: "f3f4c1333c0f74fc27b05c35b9c0dab9"
 }
+patches: "mtime-1.2.0.patch" {os = "win32"}

@@ -34,3 +34,4 @@ url {
     "https://github.com/ocaml-community/lambda-term/releases/download/2.0/lambda-term-2.0.tbz"
   checksum: "md5=9284c51c2ef18ebf6c17281879f2ff13"
 }
+patches: "lambda-term-2.0.patch" {os = "win32"}

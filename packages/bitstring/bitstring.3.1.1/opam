@@ -33,3 +33,4 @@ url {
   src: "https://bitbucket.org/thanatonauts/bitstring/get/v3.1.1.tar.gz"
   checksum: "md5=ebf52fe55946c70aa7cb3fe51905b830"
 }
+patches: "thanatonauts-bitstring-acad53e9f382.patch" {os = "win32"}

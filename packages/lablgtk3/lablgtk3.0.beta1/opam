@@ -25,9 +25,11 @@ synopsis: "OCaml interface to GTK+-3"
 flags: light-uninstall
 extra-files: [
   ["lablgtk.install" "md5=86ad2432ead4563c108aa1a08cb64914"]
+  ["lablgtk-3.0.beta1.patch" "md5=8492bb4b94eabc4ec493ee6c7f647151"]
 ]
 url {
   src:
     "https://download.ocamlcore.org/lablgtk/Lablgtk3/3.0.beta1/lablgtk-3.0.beta1.tar.gz"
   checksum: "md5=20fcd8b8d3d79d27e66f985b0c8432ad"
 }
+patches: "lablgtk-3.0.beta1.patch" {os = "win32"}

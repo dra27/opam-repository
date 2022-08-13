@@ -24,6 +24,7 @@ build: [
   ]
   ["ocamlbuild" "-use-ocamlfind" "src/api.docdir/index.html"] {with-doc}
 ]
+patches: "reactiveData-0.2.1.patch" {os = "win32"}
 synopsis:
   "Functional reactive programming with incremental changes in data structures"
 description: """
@@ -31,6 +32,9 @@ ReactiveData is an OCaml module for functional reactive
 programming (FRP) based on React. It adds support to incremental
 changes in data structures by reasoning on patches instead of absolute
 values."""
+extra-files: [
+  "reactiveData-0.2.1.patch" "md5=77a7737faba10125076bb943c40afef9"
+]
 url {
   src: "https://github.com/ocsigen/reactiveData/archive/0.2.1.tar.gz"
   checksum: "md5=f4b175db6d8108a6276895af7ad58128"

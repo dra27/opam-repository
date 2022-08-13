@@ -23,12 +23,20 @@ depopts: [
 ]
 bug-reports: "https://github.com/savonet/ocaml-mm/issues"
 dev-repo: "git+https://github.com/savonet/ocaml-mm.git"
+patches: [
+  "ocaml-mm-0.3.1.patch" {os = "win32"}
+  "patch-ocamlmakefile-mm.0.3.1" {os = "win32"}
+]
 synopsis:
   "The mm library contains high-level to create and manipulate multimedia streams (audio, video, MIDI)"
 conflicts: [
   "ocaml-variants" {= "4.04.2+flambda"}
 ]
 flags: light-uninstall
+extra-files: [
+  ["patch-ocamlmakefile-mm.0.3.1" "md5=e99b58f1ec3ee908ece5fc161b2c34db"]
+  ["ocaml-mm-0.3.1.patch" "md5=aa0e5b032d95a9e00de9602c9e2749a8"]
+]
 url {
   src:
     "https://github.com/savonet/ocaml-mm/releases/download/0.3.1/ocaml-mm-0.3.1.tar.gz"

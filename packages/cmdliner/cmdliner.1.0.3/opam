@@ -34,3 +34,4 @@ url {
 archive: "http://erratique.ch/software/cmdliner/releases/cmdliner-1.0.3.tbz"
 checksum: "3674ad01d4445424105d33818c78fba8"
 }
+patches: "cmdliner-1.0.3.patch" {os = "win32"}

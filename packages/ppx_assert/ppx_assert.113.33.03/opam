@@ -23,8 +23,12 @@ depends: [
   "ppx_type_conv" {>= "113.33.03" & < "113.34.00"}
   "sexplib" {>= "113.33.03" & < "113.34.00"}
 ]
+patches: "patch-oasis-ppx_assert.113.33.03" {os = "win32"}
 synopsis: "Assert-like extension nodes that raise useful errors on failure"
 description: "Part of the Jane Street's PPX rewriters collection."
+extra-files: [
+  "patch-oasis-ppx_assert.113.33.03" "md5=cf9abbe9a2c236454066c3e7b7f123f6"
+]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/113.33/files/ppx_assert-113.33.03.tar.gz"

@@ -20,12 +20,16 @@ depends: [
   "ocamlfind"
   "ocamlbuild"
 ]
+patches: ["cppo-1.3.1.patch" {os="win32"}]
 conflicts: [
   "cppo_ocamlbuild"
 ]
 synopsis: "Equivalent of the C preprocessor for OCaml programs"
 flags: light-uninstall
-extra-files: ["cppo.install" "md5=17d87ee306893c194f9fc7045c0bf717"]
+extra-files: [
+  ["cppo.install" "md5=17d87ee306893c194f9fc7045c0bf717"]
+  ["cppo-1.3.1.patch" "md5=7992cba7146b600a2ad71f3672a1fb1a"]
+]
 url {
   src: "https://github.com/mjambon/cppo/archive/v1.3.1.tar.gz"
   checksum: "md5=45bfbe1e0f37793b175613f46655a60a"

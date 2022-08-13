@@ -26,8 +26,12 @@ depends: [
 depopts: [
   "ounit"
 ]
+patches: "patch-oasis-ppx_bigarray.2.0.0" {os = "win32"}
 synopsis: "A PPX extension for big array literals"
 flags: light-uninstall
+extra-files: [
+  "patch-oasis-ppx_bigarray.2.0.0" "md5=8c1a9c55355730dd9f9a843c94fc57c7"
+]
 url {
   src: "https://github.com/akabe/ppx_bigarray/archive/v2.0.0.tar.gz"
   checksum: "md5=8ab7ce371d8888660c2160fc62890580"

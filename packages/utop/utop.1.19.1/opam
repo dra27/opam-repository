@@ -32,6 +32,12 @@ depends: [
 depopts: [
   "camlp4"
 ]
+post-messages: [
+ "
+ UTop does not work inside a cygwin terminal (mintty, urxvt,...). Use cmd.exe, ConsoleZ or a similar
+ terminal emulator." {success & os = "win32" }
+]
+patches: "patch-oasis-utop.1.19.1" {os = "win32"}
 synopsis: "Universal toplevel for OCaml"
 description: """
 utop is an improved toplevel for OCaml. It can run in a terminal or in
@@ -40,7 +46,10 @@ sensitive completion, colors, and more.
 
 It integrates with the tuareg mode in Emacs."""
 flags: light-uninstall
-extra-files: ["utop.install" "md5=f8911fcea9ad6a7bb58b0808446c9fa2"]
+extra-files: [
+  ["utop.install" "md5=f8911fcea9ad6a7bb58b0808446c9fa2"]
+  ["patch-oasis-utop.1.19.1" "md5=4374eb97becae2d026f9ba2dd222225b"]
+]
 url {
   src: "https://github.com/ocaml-community/utop/archive/1.19.1.tar.gz"
   checksum: "md5=96b405d8af57cea8d9bc7bb4d1eefbf9"

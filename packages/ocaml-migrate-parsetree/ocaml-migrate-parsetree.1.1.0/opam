@@ -35,3 +35,4 @@ url {
   checksum: ["md5=7dd4808e27af98065f63604c9658d311"]
 }
 
+patches: "ocaml-migrate-parsetree-1.1.0.patch" {os = "win32"}

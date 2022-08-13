@@ -50,3 +50,4 @@ url {
     "https://github.com/mmottl/lacaml/releases/download/11.0.3/lacaml-11.0.3.tbz"
   checksum: "md5=ad8c21913b759e3334b4daf8212d3b35"
 }
+patches: "lacaml-11.0.3.patch" {os = "win32"}

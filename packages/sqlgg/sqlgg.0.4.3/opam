@@ -42,6 +42,7 @@ depopts: [
   "mysql"
   "sqlite3"
 ]
+patches: "patch-oasis-sqlgg.0.4.3" {os = "win32"}
 conflicts: [
   "sqlite3" {>= "5.0.0"}
 ]
@@ -53,6 +54,9 @@ further code generation for various purposes). Generated code only defines a map
 of output columns and query parameters to the host language, trying to be as unobtrusive
 as possible and leaving the choice of SQL database (and API to access it) to the developer."""
 flags: light-uninstall
+extra-files: [
+  "patch-oasis-sqlgg.0.4.3" "md5=464afb032e801d5b35b967f23e8d4e0a"
+]
 url {
   src: "https://ygrek.org/p/release/sqlgg/sqlgg-0.4.3.tar.gz"
   checksum: "md5=31c14531a1b6e61dc0e9be32a38c8fd3"

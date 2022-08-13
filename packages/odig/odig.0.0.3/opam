@@ -29,6 +29,7 @@ build: [
            "--pinned" "%{pinned}%"
            "--etc-dir" "%{odig:etc}%"
            "--lib-dir" "%{lib}%" ]
+patches: "odig-0.0.3.patch" {os = "win32"}
 synopsis: "Mine installed OCaml packages"
 description: """
 odig is a library and command line tool to mine installed OCaml
@@ -36,6 +37,7 @@ packages. It supports package distribution documentation and metadata
 lookups and generates cross-referenced API documentation.
 
 odig is distributed under the ISC license."""
+extra-files: ["odig-0.0.3.patch" "md5=41ef8ce41951b1693aeddaf2a695bfa1"]
 url {
   src: "http://erratique.ch/software/odig/releases/odig-0.0.3.tbz"
   checksum: "md5=74232d175582fa504215b77190b7f921"

@@ -16,6 +16,7 @@ depends: [
   "ocamlfind" {build}
 ]
 depopts: ["gen_js_api" "js_of_ocaml"]
+patches: "landmarks-1.1.patch" {os = "win32"}
 synopsis: "A simple profiling library"
 description: """
 Landmarks is a simple profiling library for OCaml. It provides primitives to
@@ -23,6 +24,7 @@ measure time spent in portion of instrumented code. The instrumentation of the
 code may either done by hand, automatically or semi-automatically using a PPX
 extension."""
 flags: light-uninstall
+extra-files: ["landmarks-1.1.patch" "md5=c8b40d86796b3607089c0a96f549d15a"]
 url {
   src: "https://github.com/LexiFi/landmarks/archive/v1.1.zip"
   checksum: "md5=58304a56716a943d5b6e91de5778f516"

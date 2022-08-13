@@ -134,3 +134,4 @@ url {
   src: "https://frama-c.com/download/frama-c-20.0-Calcium.tar.gz"
   checksum: "md5=47b9a0a246ae172384dd927516ab184c"
 }
+patches: "frama-c-20.0-Calcium.patch" {os = "win32"}

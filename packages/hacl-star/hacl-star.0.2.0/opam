@@ -23,3 +23,4 @@ url {
     "sha512=a50560d0aa975ec41713d03cc5dd4668953d6de21d7e3cbcd6212b75ea18c92f0d7c0f564391b5be705867d93ff14c594a87e429bb0ed24e338f77c0ee623491"
   ]
 }
+patches: "hacl-star.0.2.0.patch" {os = "win32"}

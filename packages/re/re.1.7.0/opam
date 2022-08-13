@@ -18,6 +18,7 @@ depends: [
   "ocamlbuild" {build}
   "base-bytes"
 ]
+patches: "patch-oasis-re.1.7.0" {os = "win32"}
 synopsis: "RE is a regular expression library for OCaml"
 description: """
 Pure OCaml regular expressions with:
@@ -27,6 +28,7 @@ Pure OCaml regular expressions with:
 * Shell-style file globbing (module Re_glob)
 * Compatibility layer for OCaml's built-in Str module (module Re_str)"""
 flags: light-uninstall
+extra-files: ["patch-oasis-re.1.7.0" "md5=ef0f71be1433cee6f5fcc88ad8e0cb5c"]
 url {
   src: "https://github.com/ocaml/ocaml-re/archive/1.7.0.tar.gz"
   checksum: "md5=2deab687224c90c024355f7b5adcec19"

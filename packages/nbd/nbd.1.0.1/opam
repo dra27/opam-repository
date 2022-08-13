@@ -27,9 +27,11 @@ depends: [
   "camlp4" {build}
   "ocamlbuild" {build}
 ]
+patches: "patch-oasis-nbd.1.0.1" {os = "win32"}
 install: [make "install"]
 synopsis: "Network Block Device (NBD) protocol native OCaml library"
 flags: light-uninstall
+extra-files: ["patch-oasis-nbd.1.0.1" "md5=a4dda6cb884b74f3e17a3cb2d383843b"]
 url {
   src: "https://github.com/xapi-project/nbd/archive/v1.0.1.tar.gz"
   checksum: "md5=0dd457458d5f546a4de5035fafd58953"

@@ -29,8 +29,10 @@ depends: [
   "conf-glib-2" {build}
   "ocamlbuild" {build}
 ]
+patches: "lwt_glib-1.0.1.patch" {os = "win32"}
 synopsis: "GLib integration for Lwt"
 flags: light-uninstall
+extra-files: ["lwt_glib-1.0.1.patch" "md5=9f1631bc463db16aed640fafc0da4b5e"]
 url {
   src:
     "https://github.com/ocsigen/lwt/releases/download/3.0.0/lwt_glib-1.0.1.tar.gz"

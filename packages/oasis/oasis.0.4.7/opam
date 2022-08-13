@@ -50,6 +50,7 @@ conflicts: [
   "ctypes" {<= "0.1.1"}
   "macaque" {<= "0.6.1"}
 ]
+patches: "oasis-0.4.7.patch" {os = "win32"}
 synopsis: "Tooling for building OCaml libraries and applications"
 description: """
 OASIS generates a full configure, build and install system for your
@@ -75,6 +76,7 @@ to integrates your libraries and software with third parties tools
 like GODI."""
 extra-files: [
   ["oasis.install" "md5=0d1b822c897681cf54b3e1aed52dda99"]
+  ["oasis-0.4.7.patch" "md5=76c7fa767cb7e2486c30bda883b6d655"]
   ["_oasis_remove_.ml" "md5=6100ca146fa97d2196eb49a2631d0796"]
 ]
 url {

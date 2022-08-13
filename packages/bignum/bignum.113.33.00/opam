@@ -27,8 +27,16 @@ depends: [
   "variantslib" {>= "113.24.00" & < "113.25.00"}
   "zarith" {>= "1.4" & < "1.9"}
 ]
+patches: [
+  "patch-oasis-bignum.113.33.00" {os = "win32"}
+  "patch_gen_install.ml" {os = "win32"}
+]
 synopsis:
   "Core-flavoured wrapper around zarith's arbitrary-precision rationals."
+extra-files: [
+  ["patch_gen_install.ml" "md5=c3647dd91fa0bb3707bc3a33d312f3b7"]
+  ["patch-oasis-bignum.113.33.00" "md5=b95b186856ee349bd2db09a973437590"]
+]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/113.33/files/bignum-113.33.00.tar.gz"

@@ -5,6 +5,7 @@ authors: "The Savonet Team <savonet-users@lists.sourceforge.net>"
 license: "GPL-2.0-or-later"
 patches: [
   "ignore-bash-completion-install-errors.patch"
+  "liquidsoap-1.4.1.patch" {os = "win32"}
 ]
 build: [
   ["./bootstrap"] {dev}
@@ -149,7 +150,10 @@ conflicts: [
   "vorbis" {< "0.7.0"}
   "xmlplaylist" {< "0.1.3"}
 ]
-extra-files: ["ignore-bash-completion-install-errors.patch" "md5=b43419de6e3225f59a42f330f557e877"]
+extra-files: [
+  ["ignore-bash-completion-install-errors.patch" "md5=b43419de6e3225f59a42f330f557e877"]
+  ["liquidsoap-1.4.1.patch" "md5=f939af417387026591253c83f4234219"]
+]
 bug-reports: "https://github.com/savonet/liquidsoap/issues"
 dev-repo: "git+https://github.com/savonet/liquidsoap.git"
 synopsis: "Swiss-army knife for multimedia streaming"

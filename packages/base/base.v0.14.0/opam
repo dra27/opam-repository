@@ -34,3 +34,4 @@ url {
   src: "https://ocaml.janestreet.com/ocaml-core/v0.14/files/base-v0.14.0.tar.gz"
   checksum: "md5=5a00382c724e97b6768aaa27481dd3cc"
 }
+patches: "base-v0.14.0.patch" {os = "win32"}

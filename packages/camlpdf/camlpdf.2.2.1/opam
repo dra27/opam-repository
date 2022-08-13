@@ -11,10 +11,18 @@ depends: [
   "ocaml" {< "4.10"}
   "ocamlfind"
 ]
-patches: "unsafe_string.patch" {ocaml:version >= "4.06"}
+patches: [
+  "patch-ocamlmakefile-camlpdf.2.2.1" {os = "win32"}
+  "unsafe_string.patch" {ocaml:version >= "4.06"}
+]
 synopsis: "Read, write and modify PDF files"
 flags: light-uninstall
-extra-files: ["unsafe_string.patch" "md5=8db2be9fbd23c06a96cffca03af741b0"]
+extra-files: [
+  ["unsafe_string.patch" "md5=8db2be9fbd23c06a96cffca03af741b0"]
+  [
+    "patch-ocamlmakefile-camlpdf.2.2.1" "md5=67fe5e79146c02fe843a8abcf0d6c51b"
+  ]
+]
 url {
   src: "https://github.com/johnwhitington/camlpdf/archive/v2.2.1.zip"
   checksum: "md5=79d84ee6ae54357d187eff6e801e1549"

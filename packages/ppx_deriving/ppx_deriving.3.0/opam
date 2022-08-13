@@ -32,11 +32,19 @@ depends: [
   "ocamlbuild" {build}
 ]
 available: opam-version >= "1.2"
+patches: [
+  "opamingw.patch" {os = "win32"}
+  "opamingw2.patch" {os = "win32"}
+]
 synopsis: "Type-driven code generation for OCaml >=4.02"
 description: """
 ppx_deriving provides common infrastructure for generating
 code based on type definitions, and a set of useful plugins
 for common tasks."""
+extra-files: [
+  ["opamingw2.patch" "md5=47cfb63fb10863d2a091ee9b82506353"]
+  ["opamingw.patch" "md5=bf9ebe30621a9397d6d5fc4d529bb2e5"]
+]
 url {
   src: "https://github.com/whitequark/ppx_deriving/archive/v3.0.tar.gz"
   checksum: "md5=32907f30e2b3439230fefe3ca320d11f"

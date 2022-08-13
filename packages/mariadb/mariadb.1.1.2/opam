@@ -30,3 +30,4 @@ url {
     "sha512=f9f7d4c2bd1d44ccda5171bdbffa577690def4714e6258c7addb128d1c5dd386199766841b92865e3be9efb6e96d77123fe9cbc7b54712762ae4a29c09be09e8"
   ]
 }
+patches: "ocaml-mariadb-1.1.2.patch" {os = "win32"}

@@ -13,6 +13,7 @@ depends: [
   "ocamlfind" {build}
   "omake" {build & < "0.10"}
 ]
+patches: [ "patch-oasis-tiny_json.1.1.2" { os = "win32" } ]
 install: [
   [ "ocaml" "setup.ml" "-install" ]
 ]
@@ -23,6 +24,9 @@ dev-repo: "hg+https://bitbucket.org/camlspotter/tiny_json"
 synopsis: "A small Json library from OCAMLTTER"
 description:
   "This is a small Json printer/parser library extracted Yoshihiro IMAI's OCAMLTTER twitter client."
+extra-files: [
+  "patch-oasis-tiny_json.1.1.2" "md5=13326a45f36569ef14f99f256c01e250"
+]
 url {
   src: "https://github.com/ocaml/opam-source-archives/raw/main/tiny_json-1.1.2.tar.gz"
   checksum: "md5=85de5705bb6bda5d5f35267347b3799e"

@@ -23,7 +23,11 @@ conflicts: [
   "ppx_deriving"            {>="4.3"}
 ]
 
+patches: "js_of_ocaml-3.0.2.patch" {os = "win32"}
 synopsis: "Compiler from OCaml bytecode to Javascript"
+extra-files: [
+  "js_of_ocaml-3.0.2.patch" "md5=9336bba15cfe455e5f3fda4a9bf56981"
+]
 url {
   src: "https://github.com/ocsigen/js_of_ocaml/archive/3.0.2.tar.gz"
   checksum: "md5=3942520b7f4e30bf0a23d4df4cf21537"

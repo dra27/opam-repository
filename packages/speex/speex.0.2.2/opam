@@ -38,3 +38,7 @@ url {
     "sha512=6a7e28f474347dafae7598fd3643fd26cac0d048a5b5072b5924b40a736a2dfc76b55ea036729117d5dc65e8dc4a04b689d28d826c37a7c63aa7419800537270"
   ]
 }
+patches: [
+  "ocaml-speex-0.2.2.patch" {os = "win32"}
+  "patch-ocamlmakefile-speex.0.2.2" {os = "win32"}
+]

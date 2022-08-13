@@ -20,9 +20,17 @@ depexts: [
   ["libao"] {os = "freebsd"}
   ["libao-dev"] {os-distribution = "alpine"}
 ]
+patches: [
+  "ocaml-ao-0.2.1.patch" {os = "win32"}
+  "patch-ocamlmakefile-ao.0.2.1" {os = "win32"}
+]
 synopsis:
   "Bindings for the AO library which provides high-level functions for using soundcards"
 flags: light-uninstall
+extra-files: [
+  ["patch-ocamlmakefile-ao.0.2.1" "md5=262319e5ef019ff30504a2450fc2cdf2"]
+  ["ocaml-ao-0.2.1.patch" "md5=f1e8d2b6744e74baf10838f9040eb742"]
+]
 url {
   src:
     "https://github.com/savonet/ocaml-ao/releases/download/0.2.1/ocaml-ao-0.2.1.tar.gz"

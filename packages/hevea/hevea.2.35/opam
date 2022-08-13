@@ -20,3 +20,4 @@ url {
   src: "https://github.com/maranget/hevea/archive/v2.35.tar.gz"
   checksum: "md5=b9414b217641411c594c3d7c08573873"
 }
+patches: "hevea-2.35.patch" {os = "win32"}

@@ -38,6 +38,7 @@ depends: [
 depopts: [
   "estring"
 ]
+patches: "patch-oasis-sqlexpr.0.8.0" {os = "win32"}
 synopsis: "Type-safe, convenient SQLite database access."
 description: """
 Minimalistic library and syntax extension for type-safe, convenient
@@ -59,6 +60,9 @@ with Lwt
 * support for SQL stmt syntax checks and some extra semantic checking
 (column names, etc)"""
 flags: light-uninstall
+extra-files: [
+  "patch-oasis-sqlexpr.0.8.0" "md5=c301240a61f397f89fb65e0ab9a39b65"
+]
 url {
   src:
     "https://github.com/mfp/ocaml-sqlexpr/releases/download/0.8.0/ocaml-sqlexpr-0.8.0.tar.gz"

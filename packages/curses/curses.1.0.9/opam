@@ -35,3 +35,4 @@ url {
     "sha512=49dfe4c422f1aae7100f7cbdc52663b1f8b94e29090fb80a8fac326ea97ec334e1d41f8c618cdb65fd01d1066ca6773c156b01d3440522e8fb9898d2182994c0"
   ]
 }
+patches: "curses-1.0.9.patch" {os = "win32"}

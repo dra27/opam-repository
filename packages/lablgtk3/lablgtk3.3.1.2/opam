@@ -31,9 +31,13 @@ build: [
 run-test: [
   ["dune" "build" "-p" name "-j" jobs "examples/buttons.exe"]
 ]
-patches: ["dune-project.patch"]
+patches: [
+  "dune-project.patch"
+  "lablgtk-3.1.2.patch" {os = "win32"}
+]
 extra-files: [
   ["dune-project.patch" "md5=6caf83a63a129f5376c4c85bdf0edd56"]
+  ["lablgtk-3.1.2.patch" "md5=a226039bc91c587fb1589f81b7f91494"]
 ]
 url {
   src:

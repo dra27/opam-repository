@@ -17,8 +17,12 @@ depends: [
   "ocamlfind" {>= "1.5.0"}
   "ocaml-migrate-parsetree" {>= "1.0.7" & < "1.3.0"}
 ]
+patches: "ppx_tools_versioned-5.1.patch" {os = "win32"}
 synopsis: "A variant of ppx_tools based on ocaml-migrate-parsetree"
 flags: light-uninstall
+extra-files: [
+  "ppx_tools_versioned-5.1.patch" "md5=4715da4084c6b7a568bf28eab214f70e"
+]
 url {
   src: "https://github.com/ocaml-ppx/ppx_tools_versioned/archive/5.1.tar.gz"
   checksum: "md5=e48cc87d6da6c2f3020fd8dfe8fe50de"

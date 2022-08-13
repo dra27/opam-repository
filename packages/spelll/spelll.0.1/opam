@@ -17,9 +17,13 @@ homepage: "https://github.com/c-cube/spelll"
 doc: "http://cedeela.fr/~simon/software/spelll/"
 dev-repo: "git+https://github.com/c-cube/spelll"
 install: [make "install"]
+patches: "patch-oasis-spelll.0.1" {os = "win32"}
 synopsis:
   "Fuzzy string searching, using Levenshtein automaton. Can be used for spell-checking."
 flags: light-uninstall
+extra-files: [
+  "patch-oasis-spelll.0.1" "md5=3086ed88609787746cdfe77f3ec3f694"
+]
 url {
   src: "https://github.com/c-cube/spelll/archive/0.1.tar.gz"
   checksum: "md5=e4574039054e3850357ea434dfcac039"

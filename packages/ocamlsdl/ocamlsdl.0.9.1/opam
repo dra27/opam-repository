@@ -9,7 +9,10 @@ build: [
   [make]
 ]
 remove: [["ocamlfind" "remove" "sdl"]]
-depends: ["ocaml" "ocamlfind"]
+depends: [
+  "ocaml" {< "4.06" | os != "win32"}
+  "ocamlfind"
+]
 depopts: [
   "lablgl"
   "conf-sdl-gfx"
@@ -22,7 +25,10 @@ depexts: [
   ["sdl"] {os = "macos" & os-distribution = "homebrew"}
 ]
 install: [make "install"]
-patches: "safe-string.diff" {ocaml:version >= "4.06.0"}
+patches: [
+  "ocamlsdl-0.9.1.patch" {os = "win32"}
+  "safe-string.diff" {ocaml:version >= "4.06.0"}
+]
 authors: [
   "Frederic Brunel <brunel@mail.dotcom.fr>"
   "Luc Mazardo <luc@mazardo.com>"
@@ -33,7 +39,10 @@ authors: [
 homepage: "http://ocamlsdl.sourceforge.net/"
 synopsis: "Interface between OCaml and SDL"
 flags: light-uninstall
-extra-files: ["safe-string.diff" "md5=7e25d6d167e6aec7668bf40eec1889c8"]
+extra-files: [
+  ["safe-string.diff" "md5=7e25d6d167e6aec7668bf40eec1889c8"]
+  ["ocamlsdl-0.9.1.patch" "md5=af761d269ac78baee78579308b66c78a"]
+]
 url {
   src:
     "http://downloads.sourceforge.net/project/ocamlsdl/OCamlSDL/ocamlsdl-0.9.1/ocamlsdl-0.9.1.tar.gz"

@@ -19,8 +19,13 @@ depends: [
   "ppx_sexp_conv" {>= "113.33.03" & < "113.34.00"}
   "ppx_tools" {>= "0.99.3"}
 ]
+patches: "patch-oasis-ppx_custom_printf.113.33.03" {os = "win32"}
 synopsis: "Printf-style format-strings for user-defined string conversion"
 description: "Part of the Jane Street's PPX rewriters collection."
+extra-files: [
+  "patch-oasis-ppx_custom_printf.113.33.03"
+  "md5=9973caf7449ed1241a258f01142cc5ec"
+]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/113.33/files/ppx_custom_printf-113.33.03.tar.gz"

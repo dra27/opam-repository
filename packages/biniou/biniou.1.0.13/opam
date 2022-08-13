@@ -18,10 +18,14 @@ depends: [
 install: [make "install" "BINDIR=%{bin}%"]
 
 # -compat-32 flag is used unconditionally, requiring ocaml >= 4.01
+patches: "biniou-1.0.13.patch" {os = "win32"}
 synopsis:
   "Binary data format designed for speed, safety, ease of use and backward compatibility as protocols evolve"
 flags: light-uninstall
-extra-files: ["biniou.install" "md5=c34aebd8172d5fc4cd99202e2f5a2063"]
+extra-files: [
+  ["biniou.install" "md5=c34aebd8172d5fc4cd99202e2f5a2063"]
+  ["biniou-1.0.13.patch" "md5=53eb47bae74ff45f57636d199a9809a7"]
+]
 url {
   src: "https://github.com/mjambon/biniou/archive/v1.0.13.tar.gz"
   checksum: "md5=6859d971145c53e06a77510c3a301d70"

@@ -23,6 +23,11 @@ build: [
   ["dune" "build" "-p" name "-j" jobs]
   ["dune" "runtest" "-p" name "-j" jobs] {with-test}
 ]
+post-messages: [
+ "
+ UTop does not work inside a cygwin terminal (mintty, urxvt,...). Use cmd.exe, ConsoleZ or a similar
+ terminal emulator." {success & os = "win32" }
+]
 dev-repo: "git+https://github.com/ocaml-community/utop.git"
 synopsis: "Universal toplevel for OCaml"
 description: """
@@ -36,3 +41,4 @@ url {
     "https://github.com/ocaml-community/utop/releases/download/2.3.0/utop-2.3.0.tbz"
   checksum: "md5=5c9e6d4ca1bea263efb9967b7ad51393"
 }
+patches: "utop-2.3.0.patch" {os = "win32"}

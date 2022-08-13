@@ -40,3 +40,4 @@ url {
     "sha512=8666e4081c96b7e0820c621197cb02de2238ddc911e4e95f439c69a685a5791dd4f874ba1084f56c9b44d3d579b877b1ed1f7b0421cd56d3f36ad39c669ee4eb"
   ]
 }
+patches: "crunch-v3.2.0.patch" {os = "win32"}

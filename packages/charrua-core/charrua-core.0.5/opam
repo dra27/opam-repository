@@ -31,6 +31,7 @@ depends: [
   "rresult"
   "io-page" {with-test}
 ]
+patches: "patch-spacetag-charrua-core.0.5" {os = "win32"}
 synopsis: "Charrua DHCP core library."
 description: """
 [charrua-core](http://www.github.com/haesbaert/charrua-core) is an
@@ -67,6 +68,9 @@ southern South America.
 
 This project became one of the [Mirage Pioneer]
 (https://github.com/mirage/mirage-www/wiki/Pioneer-Projects) projects."""
+extra-files: [
+  "patch-spacetag-charrua-core.0.5" "md5=2599a991fc9c2d31e0b8028a06cacb13"
+]
 url {
   src:
     "https://github.com/mirage/charrua-core/releases/download/v0.5/charrua-core-0.5.tbz"

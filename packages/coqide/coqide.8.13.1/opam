@@ -43,9 +43,11 @@ install: [
 
 extra-files: [
   ["coqide.install" "sha512=3eba9f94c7cc2a4b9b4fc8be549d7e5b3125315360cc85fb1001ba25d2eb5fb174c358ba3295036dda44197ec068e18c0b2f3b341aaa77b73fdb75d1e7d5c27f"]
+  ["coq-8.13.1.patch" "sha512=1ec4267d7c7443f6519ad4e59f2a125af693af5378aa1220c1e379bea10a06adb90848ac6dd81b5171f2d3e3fab1351deaef154ba92530fc8d74d3a20a24a09f"]
 ]
 
 url {
   src: "https://github.com/coq/coq/archive/V8.13.1.tar.gz"
   checksum: "sha256=95e71b16e6f3592e53d8bb679f051b062afbd12069a4105ffc9ee50e421d4685"
 }
+patches: "coq-8.13.1.patch" {os = "win32"}

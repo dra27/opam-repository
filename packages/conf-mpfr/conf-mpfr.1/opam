@@ -5,7 +5,8 @@ authors: "http://www.mpfr.org/credit.html"
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 license: "LGPL-2.0-or-later"
 build: [
-  ["cc" "test.c" "-I/usr/local/include" "-L/usr/local/lib" "-lgmp" "-lmpfr"]
+  ["cc" "test.c" "-I/usr/local/include" "-L/usr/local/lib" "-lgmp" "-lmpfr"] { os != "win32" }
+  ["./test-win.sh"] { os = "win32" }
 ]
 depexts: [
   ["libmpfr-dev"] {os-family = "debian"}
@@ -22,5 +23,8 @@ depends: ["conf-gmp"]
 synopsis: "Virtual package relying on library MPFR installation"
 description:
   "This package can only install if the MPFR library is installed on the system."
-extra-files: ["test.c" "md5=ac7e04b5e22a41cb3c028180d1b811d6"]
+extra-files: [
+  ["test.c" "md5=ac7e04b5e22a41cb3c028180d1b811d6"]
+  ["test-win.sh" "md5=8996b7deb1b5672264212c0f7218a4ce"]
+]
 flags: conf

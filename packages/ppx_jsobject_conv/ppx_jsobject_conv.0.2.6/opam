@@ -24,6 +24,7 @@ depends: [
   "ocamlfind" {build}
   "ocamlbuild" {build}
 ]
+patches: "patch-topkg-ppx_jsobject_conv.0.2.6" {os = "win32"}
 synopsis:
   "Ppx plugin for Typeconv to derive conversion from ocaml types to js objects to use with js_of_ocaml."
 description: """
@@ -33,6 +34,10 @@ to easy go down to js types. Easy conversion from js objects to OCaml types mean
 convert JSON to OCaml types.
 
 Plugin supports number of customizations."""
+extra-files: [
+  "patch-topkg-ppx_jsobject_conv.0.2.6"
+  "md5=c7e8483e9a51a4f772ba12c30a86787a"
+]
 url {
   src:
     "https://github.com/little-arhat/ppx_jsobject_conv/archive/v0.2.6.tar.gz"

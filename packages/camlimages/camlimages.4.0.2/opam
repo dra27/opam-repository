@@ -30,6 +30,7 @@ conflicts: [
 install: [
   [ "omake" "install" ]
 ]
+patches: "camlspotter-camlimages-b13d6457ea31.patch" {os = "win32"}
 synopsis: "Image processing library"
 description: """
 An image processing library, which provides loading and saving various
@@ -37,6 +38,10 @@ image formats with an interface for the Caml graphics library. It has
 also an interface with the freetype library to draw texts using
 truetype fonts."""
 flags: light-uninstall
+extra-files: [
+  "camlspotter-camlimages-b13d6457ea31.patch"
+  "md5=11c15977bb19c5707df88934b4085c5e"
+]
 url {
   src: "https://github.com/ocaml/opam-source-archives/raw/main/camlimages-4.0.2.tar.gz"
   checksum: "md5=5cfd732034ac7845d0b9e783254f0796"

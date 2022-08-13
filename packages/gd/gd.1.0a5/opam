@@ -25,3 +25,4 @@ url {
     "https://github.com/savonet/gd4o/releases/download/1.0-alpha5/gd4o-1.0a5.tar.gz"
   checksum: "md5=b5aeb9c246b5e072803eb9b3112350a0"
 }
+patches: "gd4o-1.0a5.patch" {os = "win32"}

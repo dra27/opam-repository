@@ -27,9 +27,17 @@ depexts: [
 ]
 bug-reports: "https://github.com/savonet/ocaml-opus/issues"
 dev-repo: "git+https://github.com/savonet/ocaml-opus.git"
+patches: [
+  "patch-ocamlmakefile-opus.0.1.2" {os = "win32"}
+  "ocaml-opus-0.1.2.patch" {os = "win32"}
+]
 synopsis:
   "Bindings for the opus library to decode audio files in opus format"
 flags: light-uninstall
+extra-files: [
+  ["patch-ocamlmakefile-opus.0.1.2" "md5=3fc94b72afb5f96ea120fb5b76458baf"]
+  ["ocaml-opus-0.1.2.patch" "md5=048c2e84707e63c7286c0a328fc57d48"]
+]
 url {
   src:
     "https://github.com/savonet/ocaml-opus/releases/download/0.1.2/ocaml-opus-0.1.2.tar.gz"

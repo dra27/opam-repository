@@ -27,6 +27,7 @@ depends: [
   "typerep" {>= "113.33.03" & < "113.34.00"}
   "variantslib" {>= "113.33.03" & < "113.34.00"}
 ]
+patches: "patch-oasis-incremental_kernel.113.33.03" {os = "win32"}
 synopsis:
   "Library for incremental computations depending only on Core_kernel"
 description: """
@@ -34,6 +35,10 @@ Part of Jane Street’s Core library
 The Core suite of libraries is an industrial strength alternative to
 OCaml's standard library that was developed by Jane Street, the
 largest industrial user of OCaml."""
+extra-files: [
+  "patch-oasis-incremental_kernel.113.33.03"
+  "md5=10abab53e0523a099f61df7fe9de325d"
+]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/113.33/files/incremental_kernel-113.33.03.tar.gz"

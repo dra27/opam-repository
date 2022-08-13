@@ -23,8 +23,10 @@ depends: [
   "ocamlfind" {build}
   "ocamlbuild" {build}
 ]
+patches: [ "patch-aa" { os = "win32" } ]
 synopsis: "OCaml bindings for D3.js"
 flags: light-uninstall
+extra-files: ["patch-aa" "md5=23170a913511d99d2438ac6a166f90df"]
 url {
   src: "https://github.com/seliopou/ocaml-d3/archive/0.2.0.tar.gz"
   checksum: "md5=f2e7218fd98aca7ca815f54071a01c19"

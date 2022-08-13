@@ -33,8 +33,10 @@ depends: [
   "ppx_deriving" {with-test & >= "2.0"}
 ]
 available: opam-version >= "1.2.2"
+patches: "ppx_import-1.1.patch" {os = "win32"}
 synopsis:
   "A syntax extension for importing declarations from interface files"
+extra-files: ["ppx_import-1.1.patch" "md5=09592e127d7c2bc21fd020bdab714d8d"]
 url {
   src: "https://github.com/ocaml-ppx/ppx_import/archive/v1.1.tar.gz"
   checksum: "md5=9cb4f59dd6ef023141232265892cd53a"

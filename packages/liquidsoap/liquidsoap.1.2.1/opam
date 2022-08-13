@@ -61,6 +61,7 @@ conflicts: [
 ]
 bug-reports: "https://github.com/savonet/liquidsoap/issues"
 dev-repo: "git+https://github.com/savonet/liquidsoap.git"
+patches: "liquidsoap-1.2.1.patch" {os = "win32"}
 synopsis: "Swiss-army knife for multimedia streaming"
 description: """
 Liquidsoap is a powerful and flexible language for describing your
@@ -70,6 +71,9 @@ transforming streams. But liquidsoap is still very light and easy to
 use, in the Unix tradition of simple strong components working
 together."""
 flags: light-uninstall
+extra-files: [
+  "liquidsoap-1.2.1.patch" "md5=78b76073e007c0e0625f65136ae08d66"
+]
 url {
   src:
     "https://github.com/savonet/liquidsoap/releases/download/1.2.1/liquidsoap-1.2.1.tar.bz2"

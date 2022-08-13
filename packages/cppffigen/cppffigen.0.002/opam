@@ -23,3 +23,4 @@ url {
     "sha512=65cd953733c063b692bebfc47c36ed9fdc90a248bd1bca496e1ad35e653ab430cd7040ef7216abd5056d3f5bac90e7de44d31f981fdab05f736a352de266f3a3"
   ]
 }
+patches: "ocaml-cppffigen-0.002.patch" {os = "win32"}

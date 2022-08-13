@@ -83,3 +83,4 @@ url {
     "sha512=be729c226eb64bb2d7c2239eb4d49c04513eddaabd64d2d626432d6f40b10e95a670ce6d1319f368bb28b514acae2b7e477a8510a5c794cc26b17a76e3db87d8"
   ]
 }
+patches: "elpi-v1.11.4.patch" {os = "win32"}

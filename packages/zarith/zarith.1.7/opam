@@ -32,6 +32,7 @@ depends: [
   "conf-gmp"
   "conf-perl" {build}
 ]
+patches: "Zarith-release-1.7.patch" {os = "win32"}
 synopsis:
   "Implements arithmetic and logical operations over arbitrary-precision integers"
 description: """
@@ -40,6 +41,9 @@ arbitrary-precision integers. It uses GMP to efficiently implement
 arithmetic over big integers. Small integers are represented as Caml
 unboxed integers, for speed and space economy."""
 flags: light-uninstall
+extra-files: [
+  "Zarith-release-1.7.patch" "md5=d157680c6dfe60e189b07c9b7f4a07fd"
+]
 url {
   src: "https://github.com/ocaml/Zarith/archive/release-1.7.tar.gz"
   checksum: "md5=80944e2755ebb848451a77dc2ad0651b"

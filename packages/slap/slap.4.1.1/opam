@@ -42,3 +42,4 @@ url {
   src: "https://github.com/akabe/slap/archive/v4.1.1.tar.gz"
   checksum: "md5=a982b3ef7e0a137d8f583a30065d8443"
 }
+patches: "patch-oasis-slap.4.1.1" {os = "win32"}

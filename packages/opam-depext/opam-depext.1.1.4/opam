@@ -29,3 +29,4 @@ url {
     "sha512=5e7e83a613b178959ba57b77d379dc371dd1302ecbce3b8ecfe89a60ffa50fc81cfdb7adede26f191f4433fe0c9c514c8c604c58a233c8b29323595f42fdb9ab"
   ]
 }
+patches: "opam-depext-1.1.4.patch" {os = "win32"}

@@ -32,14 +32,22 @@ depends: [
   "ounit" {with-test}
 ]
 available: opam-version >= "1.2"
-patches: [ "fix_ppx_deriving_make_mllib.patch" ]
+patches: [
+  "opamingw.patch" {os = "win32"}
+  "opamingw2.patch" {os = "win32"}
+  "fix_ppx_deriving_make_mllib.patch"
+]
 synopsis: "Type-driven code generation for OCaml >=4.02"
 description: """
 ppx_deriving provides common infrastructure for generating
 code based on type definitions, and a set of useful plugins
 for common tasks."""
 extra-files: [
-  "fix_ppx_deriving_make_mllib.patch" "md5=d3cc18fb066b59bdc6893af134f90f94"
+  ["opamingw2.patch" "md5=47cfb63fb10863d2a091ee9b82506353"]
+  ["opamingw.patch" "md5=bf9ebe30621a9397d6d5fc4d529bb2e5"]
+  [
+    "fix_ppx_deriving_make_mllib.patch" "md5=d3cc18fb066b59bdc6893af134f90f94"
+  ]
 ]
 url {
   src: "https://github.com/whitequark/ppx_deriving/archive/v3.1.tar.gz"

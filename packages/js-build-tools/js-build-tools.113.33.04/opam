@@ -16,6 +16,10 @@ depends: [
   "ocamlbuild"
 ]
 flags: deprecated
+patches: [
+  "patch-oasis-js-build-tools.113.33.04" {os = "win32"}
+  "js-build-tools-113.33.03.patch" {os = "win32"}
+]
 synopsis: "Collection of tools to help building Jane Street Packages"
 description: """
 This packages contains tools to help building Jane Street
@@ -24,6 +28,13 @@ It contains::
 - an oasis2opam-install tool to produce a .install file from the oasis
   build log
 - an js_build_tools ocamlbuild plugin with various goodies"""
+extra-files: [
+  [
+    "patch-oasis-js-build-tools.113.33.04"
+    "md5=cbfde42857b42a0969501d1b57524c10"
+  ]
+  ["js-build-tools-113.33.03.patch" "md5=06ab21a3300879eccccfc3970c5bef33"]
+]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/113.33/files/js-build-tools-113.33.04.tar.gz"

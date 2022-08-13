@@ -37,3 +37,4 @@ url {
   src: "https://github.com/thierry-martinez/metapp/archive/v0.2.0.tar.gz"
   checksum: "sha512=1563dac72f8c968cdf8daf5766dc16e4b9c3ede09552dd2018d0a3407c742159a3aa0845b3d2db937cd8f0d534581b4d9f0349fff82c21b9be63160bdda891a7"
 }
+patches: "metapp-0.2.0.patch" {os = "win32"}

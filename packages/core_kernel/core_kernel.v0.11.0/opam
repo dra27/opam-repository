@@ -34,6 +34,7 @@ depends: [
 depopts: [
   "base-native-int63"
 ]
+patches: "core_kernel-v0.11.0.patch" {os = "win32"}
 synopsis: "Industrial strength alternative to OCaml's standard library"
 description: """
 The Core suite of libraries is an industrial strength alternative to
@@ -41,6 +42,9 @@ OCaml's standard library that was developed by Jane Street, the
 largest industrial user of OCaml.
 
 Core_kernel is the system-independent part of Core."""
+extra-files: [
+  "core_kernel-v0.11.0.patch" "md5=d498d93072100c4be88a1304f9e64e99"
+]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/v0.11/files/core_kernel-v0.11.0.tar.gz"

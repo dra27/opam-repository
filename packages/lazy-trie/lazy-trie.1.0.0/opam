@@ -18,9 +18,13 @@ depends: [
   "ocamlbuild" {build}
 ]
 dev-repo: "git+https://github.com/mirage/ocaml-lazy-trie"
+patches: [ "patch-oasis-lazy-trie.1.0.0" { os = "win32" } ]
 install: ["ocaml" "setup.ml" "-install"]
 synopsis: "Implementation of lazy prefix trees"
 flags: light-uninstall
+extra-files: [
+  "patch-oasis-lazy-trie.1.0.0" "md5=6122128ce89f002c489ac7780eb71795"
+]
 url {
   src: "https://github.com/mirage/ocaml-lazy-trie/archive/1.0.0.tar.gz"
   checksum: "md5=25bb0e167973875bbade83755ee8e90f"

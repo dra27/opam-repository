@@ -34,3 +34,7 @@ url {
   mirrors:
     "https://github.com/ygrek/ocaml-mysql/releases/download/v1.2.4/ocaml-mysql-1.2.4.tar.gz"
 }
+patches: [
+  "ocaml-mysql-1.2.4.patch" {os = "win32"}
+  "patch-ocamlmakefile-mysql.1.2.4" {os = "win32"}
+]

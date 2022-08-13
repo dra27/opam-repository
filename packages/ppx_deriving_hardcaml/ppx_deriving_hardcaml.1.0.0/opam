@@ -29,7 +29,12 @@ depends: [
   "ounit" {with-test}
   "ppx_deriving" {>= "4.0" & < "4.3"}
 ]
+patches: "patch-topkg-ppx_deriving_hardcaml.1.0.0" {os = "win32"}
 synopsis: "PPX deriving plugin for HardCaml"
+extra-files: [
+  "patch-topkg-ppx_deriving_hardcaml.1.0.0"
+  "md5=bce286bf61174413945dfb11c59e4912"
+]
 url {
   src:
     "https://github.com/xguerin/ppx_deriving_hardcaml/archive/v1.0.0.tar.gz"

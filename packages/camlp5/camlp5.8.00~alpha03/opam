@@ -48,3 +48,4 @@ url {
     "md5=61026c5b8e67bbc758103b6e6898e498"
   ]
 }
+patches: "camlp5-rel8.00-alpha03.patch" {os = "win32"}

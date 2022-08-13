@@ -31,7 +31,15 @@ depends: [
   "ocamlfind"
 ]
 conflicts: [ "typerex"  {< "1.99.7"} ]
+patches: [
+  "patch-ocp-build" {os = "win32" & ocaml:version < "4.03.0"}
+  "patch-ocp-build-403" {os = "win32" & ocaml:version >= "4.03.0"}
+]
 synopsis: "Project manager for OCaml"
+extra-files: [
+  ["patch-ocp-build-403" "md5=7c011895de2ea79936ba7282c9648868"]
+  ["patch-ocp-build" "md5=509dfc29240e0a6361e546185da4fe5d"]
+]
 url {
   src: "http://github.com/OCamlPro/typerex-build/archive/1.99.15-beta.tar.gz"
   checksum: "md5=863547bca8f1528b36034d736100b23e"

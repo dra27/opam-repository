@@ -22,7 +22,11 @@ depends: [
   "ounit" {build}
 ]
 conflicts: [ "oasis" {= "0.4.7"} ]
+patches: "patch-oasis-ppx_bitstring.1.3.1" {os = "win32"}
 synopsis: "PPX extension for the bitstring library."
+extra-files: [
+  "patch-oasis-ppx_bitstring.1.3.1" "md5=8bd70cd62d36d41bf5021c37bd59c27f"
+]
 url {
   src: "https://github.com/xguerin/ppx_bitstring/archive/v1.3.1.tar.gz"
   checksum: "md5=57292e2a4d56f2609aae7f139c254f72"

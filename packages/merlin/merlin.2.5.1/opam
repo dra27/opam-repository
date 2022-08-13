@@ -45,10 +45,12 @@ Take a look at https://github.com/the-lambda-church/merlin for more information
   "
     {success}
 ]
+patches: "merlin-2.5.1.patch" {os = "win32"}
 synopsis:
   "Editor helper, provides completion, typing and source browsing in Vim and Emacs"
 description:
   "Merlin is an assistant for editing OCaml code. It aims to provide the features available in modern IDEs: error reporting, auto completion, source browsing and much more."
+extra-files: ["merlin-2.5.1.patch" "md5=062e6a15dd15056c08a044256a9eacfc"]
 url {
   src: "https://github.com/the-lambda-church/merlin/archive/v2.5.1.tar.gz"
   checksum: "md5=be3e8ec2b3e52293de6accb3b7d94c89"

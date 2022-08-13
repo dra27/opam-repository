@@ -14,7 +14,7 @@ depends: [
   "ocaml" {>= "4.00.0" & < "5.0"}
 ]
 depopts: ["graphics"]
-patches: ["fix-bsd.patch"]
+patches: ["fix-bsd.patch" "findlib-1.9.patch" {os = "win32"}]
 build: [
   [
     "./configure"

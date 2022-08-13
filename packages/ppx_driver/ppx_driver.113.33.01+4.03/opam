@@ -17,8 +17,23 @@ depends: [
   "ppx_core" {>= "113.33.00+4.03" & < "113.34.00+4.03"}
   "ppx_optcomp" {>= "113.33.00+4.03" & < "113.34.00+4.03"}
 ]
+patches: [
+  "patch-oasis-ppx_driver.113.33.01+4.03" {os = "win32"}
+  "patch-ppx_driver" {os = "win32"}
+  "patch-ocamlbuild" {os = "win32"}
+  "patch_gen_install.ml" {os = "win32"}
+]
 synopsis: "Feature-full driver for OCaml AST transformers"
 description: "Part of the Jane Street's PPX rewriters collection."
+extra-files: [
+  ["patch_gen_install.ml" "md5=d8214cdae1c58dfc4ee233dc02d5cb69"]
+  ["patch-ppx_driver" "md5=7cfeca792388c56b6eb5b45d176bdbd8"]
+  ["patch-ocamlbuild" "md5=93fd887d7dbc30fef65d13e7a06419df"]
+  [
+    "patch-oasis-ppx_driver.113.33.01+4.03"
+    "md5=908e2d8e6e63659e54e07fc0d48a1ab2"
+  ]
+]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/113.33/files/ppx_driver-113.33.01+4.03.tar.gz"

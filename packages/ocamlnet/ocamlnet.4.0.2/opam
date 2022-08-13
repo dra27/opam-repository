@@ -37,6 +37,7 @@ conflicts: [
   "shell"
 ]
 install: [make "install"]
+patches: "ocamlnet-4.0.2.patch" {os = "win32"}
 synopsis:
   "Internet protocols (http, cgi, email etc.) and helper data structures (mail messages, character sets, etc.)"
 description: """
@@ -47,7 +48,10 @@ management of multiple worker processes, and the interaction with
 other programs running on the same machine. You can also view Ocamlnet
 as an extension of the system interface as provided by the Unix module
 of the standard library."""
-extra-files: ["ocamlnet.install" "md5=ed54a9f3d6382ccc01ea1cf1af8f2c38"]
+extra-files: [
+  ["ocamlnet.install" "md5=ed54a9f3d6382ccc01ea1cf1af8f2c38"]
+  ["ocamlnet-4.0.2.patch" "md5=d40b8d83542a6f8d449b1544971e0cc3"]
+]
 url {
   src: "http://download.camlcity.org/download/ocamlnet-4.0.2.tar.gz"
   checksum: "md5=44dbf979e2786bdda8b902e471ffc905"

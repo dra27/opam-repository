@@ -12,9 +12,13 @@ authors: ["John Whitington"]
 bug-reports: "http://github.com/johnwhitington/cpdf-source/issues"
 dev-repo: "git+https://github.com/johnwhitington/cpdf-source"
 install: [make "install"]
+patches: "patch-ocamlmakefile-cpdf.2.2.1" {os = "win32"}
 synopsis: "High-level pdf tools based on CamlPDF"
 flags: light-uninstall
-extra-files: ["cpdf.install" "md5=aca30b2d4fec0e5a38374cfefee70a33"]
+extra-files: [
+  ["patch-ocamlmakefile-cpdf.2.2.1" "md5=618e1abe126b61f8897b2941ab9878ad"]
+  ["cpdf.install" "md5=aca30b2d4fec0e5a38374cfefee70a33"]
+]
 url {
   src: "https://github.com/johnwhitington/cpdf-source/archive/v2.2.1.zip"
   checksum: "md5=5c0caa7bed9452cf7d1ed0492929824d"

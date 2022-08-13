@@ -37,6 +37,7 @@ depends: [
   "alcotest" {with-test}
   "cow" {with-test & >= "0.10.0"}
 ]
+patches: "opium-0.15.1.patch" {os = "win32"}
 synopsis: "Sinatra like web toolkit based on Lwt + Cohttp"
 description: """
 Opium is a minimalistic library for quickly binding functions
@@ -49,6 +50,7 @@ to http routes. Its features include (but not limited to):
 Note: This library is still at an early stage so expect breakages
 until 1.0"""
 flags: light-uninstall
+extra-files: ["opium-0.15.1.patch" "md5=f1f28294d6bcad48b52ca3aaca558d4b"]
 url {
   src: "https://github.com/rgrinberg/opium/archive/v0.15.1.tar.gz"
   checksum: "md5=310e17f2a35bfbb7dca64c61aab99084"

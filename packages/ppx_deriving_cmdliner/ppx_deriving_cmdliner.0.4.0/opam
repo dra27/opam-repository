@@ -25,10 +25,15 @@ depends: [
   "alcotest" {with-test}
   "ppx_import" {with-test & >= "1.1"}
 ]
+patches: "patch-topkg-quote-ppx_deriving_cmdliner.0.4.0" {os = "win32"}
 synopsis: "Cmdliner.Term.t generator"
 description: """
 ppx_deriving_cmdliner is a ppx_deriving plugin that generates
 a Cmdliner Term.t for a record type."""
+extra-files: [
+  "patch-topkg-quote-ppx_deriving_cmdliner.0.4.0"
+  "md5=af55500d6c1dd47a3e16a11c40d601e9"
+]
 url {
   src:
     "https://github.com/hammerlab/ppx_deriving_cmdliner/archive/v0.4.0.tar.gz"

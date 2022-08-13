@@ -26,7 +26,18 @@ depends: [
   "typerep" {>= "113.24.00" & < "113.25.00"}
   "variantslib" {>= "113.24.00" & < "113.25.00"}
 ]
+patches: [
+  "patch-oasis-patience_diff.113.33.00" {os = "win32"}
+  "patch_gen_install.ml" {os = "win32"}
+]
 synopsis: "Diff library using Bram Cohen's patience diff algorithm."
+extra-files: [
+  ["patch_gen_install.ml" "md5=c3647dd91fa0bb3707bc3a33d312f3b7"]
+  [
+    "patch-oasis-patience_diff.113.33.00"
+    "md5=f49fdf5891334d6d895c48a0c4a4f560"
+  ]
+]
 url {
   src:
     "https://ocaml.janestreet.com/ocaml-core/113.33/files/patience_diff-113.33.00.tar.gz"

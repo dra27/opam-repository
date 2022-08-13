@@ -39,3 +39,4 @@ url {
     "sha512=28913a7c35ae951a4c464287acc511ee1bdc9d03b5928e2243c5ae5cbb8b10afe8e84d7a73ba6478ed62657d01fdb6f02472739255c33de3671c4130b659da52"
   ]
 }
+patches: "cryptokit-release1161.patch" {os = "win32"}

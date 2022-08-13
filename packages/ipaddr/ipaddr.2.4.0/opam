@@ -23,9 +23,13 @@ depends: [
 ]
 dev-repo: "git+https://github.com/mirage/ocaml-ipaddr"
 install: [make "install"]
+patches: "patch-oasis-ipaddr.2.4.0" {os = "win32"}
 conflicts: [ "ppx_sexp_conv" {="113.33.00+4.03"} ]
 synopsis: "IP (and MAC) address representation library"
 flags: light-uninstall
+extra-files: [
+  "patch-oasis-ipaddr.2.4.0" "md5=0a094a5aca5bf4672bc11740a02f2d32"
+]
 url {
   src: "https://github.com/mirage/ocaml-ipaddr/archive/2.4.0.tar.gz"
   checksum: "md5=dfefb5462c8347d70a29ebb98fc820de"

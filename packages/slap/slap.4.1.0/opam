@@ -33,6 +33,7 @@ depends: [
 depopts: [
   "ounit" {with-test}
 ]
+patches: "patch-oasis-slap.4.1.0" {os = "win32"}
 synopsis:
   "A linear algebra library with static size checking for matrix operations"
 description: """
@@ -43,6 +44,9 @@ dimensions) of most high-level matrix (and vector) operations. For example,
 addition of two- and three-dimensional vectors causes type error at compile
 time, and dynamic errors like exceptions do not happen."""
 flags: light-uninstall
+extra-files: [
+  "patch-oasis-slap.4.1.0" "md5=cfa2892d39caa7e057b2b0d021b82670"
+]
 url {
   src: "https://github.com/akabe/slap/archive/v4.1.0.tar.gz"
   checksum: "md5=e06c98c671bee929dcda3231516d8d87"

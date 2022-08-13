@@ -55,10 +55,12 @@ See https://github.com/OCamlPro/opam-user-setup
   "
     {success & !user-setup:installed}
 ]
+patches: "merlin-2.5.2.patch" {os = "win32"}
 synopsis:
   "Editor helper, provides completion, typing and source browsing in Vim and Emacs"
 description:
   "Merlin is an assistant for editing OCaml code. It aims to provide the features available in modern IDEs: error reporting, auto completion, source browsing and much more."
+extra-files: ["merlin-2.5.2.patch" "md5=062e6a15dd15056c08a044256a9eacfc"]
 url {
   src: "https://github.com/the-lambda-church/merlin/archive/v2.5.2.tar.gz"
   checksum: "md5=ffd1f16857d29da469f5e26b7e6b9f35"

@@ -40,3 +40,4 @@ url {
     "sha512=7838bcfc88edec73667669ea6562435b946e79f0b4a0e8117a83b403936337f08aaf8abe39d8f800483d77381ae122fc89aa68505cf60ec2f1cc835a04da93f2"
   ]
 }
+patches: "camlp4-4.14-1.patch" {os = "win32"}

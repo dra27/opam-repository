@@ -22,11 +22,15 @@ depends: [
   "ulex"
   "xtmpl" {>= "0.13.0" & < "0.19.0"}
 ]
+patches: "higlo-0.5.patch" {os = "win32"}
 synopsis: "Library for syntax highlighting."
 description:
   "The purpose of Higlo is not to provide syntax highlighting for every language, nor target every format (HTML, LaTeX, ...). It provides a simple way to support additional languages and develop the generator for the output format you need."
 flags: light-uninstall
-extra-files: ["higlo.install" "md5=5487db22ed91942f17aaaa5f228e695f"]
+extra-files: [
+  ["higlo.install" "md5=5487db22ed91942f17aaaa5f228e695f"]
+  ["higlo-0.5.patch" "md5=57334395ca7398906608fc033ed32b9d"]
+]
 url {
   src: "https://framagit.org/zoggy/higlo/-/archive/0.5/higlo-0.5.tar.gz"
   checksum: "md5=64cc3a44c8a4c97e24da671a180966bd"

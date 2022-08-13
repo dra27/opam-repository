@@ -21,8 +21,10 @@ depends: [
 ]
 install: [make "install"]
 
+patches: "patch-oasis-cfg.2.0.3" {os = "win32"}
 synopsis: "Manipulate context-free grammars"
 flags: light-uninstall
+extra-files: ["patch-oasis-cfg.2.0.3" "md5=0f18052555d8f5f38fc2650508ae1b71"]
 url {
   src: "https://github.com/mmottl/cfg/archive/v2.0.3.tar.gz"
   checksum: "md5=5fb9eae04946a3262f151f5db21bf268"

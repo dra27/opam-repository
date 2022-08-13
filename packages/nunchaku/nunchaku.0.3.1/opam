@@ -34,6 +34,7 @@ depends: [
 depopts: [
   "qtest" {with-test}
 ]
+patches: "patch-oasis-nunchaku.0.3.1" {os = "win32"}
 synopsis: "A counter-example finder for higher-order logic."
 description: """
 Nunchaku is a counter-example finder for higher-order logic, designed to be
@@ -41,6 +42,9 @@ used from various proof assistants, and a spiritual successor to Nitpick. It
 relies encodings and external solvers (CVC4, kodkod, paradox) to find
 models, thanks to its modular architecture."""
 flags: light-uninstall
+extra-files: [
+  "patch-oasis-nunchaku.0.3.1" "md5=1306f9c92adb353d3bbc6b6ff383468d"
+]
 url {
   src: "https://github.com/nunchaku-inria/nunchaku/archive/0.3.1.tar.gz"
   checksum: "md5=518a0814a70b0e2578de0d5b2d66af57"

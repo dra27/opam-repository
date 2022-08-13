@@ -20,6 +20,7 @@ depends: [
   "ocaml" {>= "3.12.0" & < "4.06.0"}
   "ocamlbuild" {build}
 ]
+patches: "cmdliner-0.9.8.patch" {os = "win32"}
 synopsis: "Declarative definition of command line interfaces for OCaml"
 description: """
 Cmdliner is a module for the declarative definition of command line
@@ -36,6 +37,7 @@ the BSD3 license.
 
 [1]: http://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap12.html
 [2]: http://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html"""
+extra-files: ["cmdliner-0.9.8.patch" "md5=b53d329f4f813037d4b54e35245dc9bd"]
 url {
   src: "http://erratique.ch/software/cmdliner/releases/cmdliner-0.9.8.tbz"
   checksum: "md5=fc67c937447cc223722f1419fa2189da"

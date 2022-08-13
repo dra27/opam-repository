@@ -23,3 +23,4 @@ url {
   src: "https://ocaml.janestreet.com/ocaml-core/v0.14/files/base_bigstring-v0.14.0.tar.gz"
   checksum: "md5=b6c68507bef58c3e1b4df483ed516144"
 }
+patches: "base_bigstring-v0.14.0.patch" {os = "win32"}
