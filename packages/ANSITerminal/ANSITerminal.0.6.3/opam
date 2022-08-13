@@ -19,7 +19,6 @@ install: ["ocaml" "setup.ml" "-install"]
 remove: [["ocamlfind" "remove" "ANSITerminal"]]
 depends: [
   "ocaml" {< "4.05.0"}
-  "ocamlfind"
   "ocamlbuild" {build}
   "ocamlfind" {build}
 ]
