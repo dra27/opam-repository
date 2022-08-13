@@ -55,7 +55,9 @@ depends: [
   "conf-gtksourceview"
   "conf-gnomecanvas"
   "alt-ergo"
-  "altgr-ergo"
+]
+depopts: [
+  "altgr-ergo" { build }
 ]
 messages: [
    "Alt-Ergo Graphical Interface can be used by the WP plug-in" { !altgr-ergo:installed }
