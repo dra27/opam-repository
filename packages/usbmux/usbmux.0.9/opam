@@ -28,6 +28,7 @@ depends: [
 depexts: [
   ["usbmuxd"] {os-family = "debian"}
 ]
+available: os != "win32"
 post-messages: [
   "Now you can ssh into your jailbroken iDevice using the CLI, gandalf."
   "Simple invocation:"

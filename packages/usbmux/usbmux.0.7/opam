@@ -25,6 +25,7 @@ depends: [
   "stringext"
   "yojson"
 ]
+available: os != "win32"
 synopsis: "Control port remapping for iOS devices"
 description: """
 Talk to jailbroken iDevices over USB with the CLI, gandalf.
