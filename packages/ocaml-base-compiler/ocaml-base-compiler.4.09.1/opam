@@ -11,29 +11,24 @@ depends: [
   "base-unix" {post}
   "base-bigarray" {post}
   "base-threads" {post}
+  "msvs-detect" {os = "win32"}
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler
 setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
-build: [
-  [
-    "./configure"
-    "--prefix=%{prefix}%"
-    "-C"
-    "CC=cc" {os = "openbsd" | os = "freebsd" | os = "macos"}
-    "ASPP=cc -c" {os = "openbsd" | os = "freebsd" | os = "macos"}
-  ]
-  [make "-j%{jobs}%" "world"]
-  [make "-j%{jobs}%" "world.opt"]
-]
-install: [make "install"]
+build: ["sh" "./build.sh" prefix os jobs "000l"]
+install: ["sh" "./build.sh" prefix]
 url {
-  src: "https://github.com/ocaml/ocaml/archive/4.09.1.tar.gz"
-  checksum: "sha256=3e3146e0c876d14bdd574cb543e782feb2b07a7cabd054a8f322ef40de61943a"
+  src: "https://github.com/dra27/ocaml/archive/backport-4.09.tar.gz"
+  checksum: "md5=6756787f7eb5c88bd50ace535ad48359"
+}
+extra-source "flexdll.tar.gz" {
+  src: "https://github.com/alainfrisch/flexdll/archive/refs/tags/0.41.tar.gz"
+  checksum: "md5=523cb1ea004057f037f3b5d9f6a0d173"
 }
 extra-files: [
+  ["build.sh" "md5=175066b31c1fb04ead7b3266ca0a91b6"]
   ["ocaml-base-compiler.install" "md5=3e969b841df1f51ca448e6e6295cb451"]
-  ["0001-Re-generate-configure.patch" "md5=3e01b702dcdce9e5fc41f7eb66290501"]
 ]
 post-messages: [
   "A failure in the middle of the build may be caused by build parallelism
@@ -45,8 +40,3 @@ post-messages: [
   {failure & jobs > 1 & opam-version >= "2.0.5"}
 ]
 available: !(os = "macos" & arch = "arm64")
-patches: ["alt-signal-stack.patch" "0001-Re-generate-configure.patch"]
-extra-source "alt-signal-stack.patch" {
-  src: "https://github.com/ocaml/ocaml/commit/8eed2e441222588dc385a98ae8bd6f5820eb0223.patch"
-  checksum: "sha256=a76506f98450971c954d9322344da592dbf1c38e5bca91ec75c4f9c2889ba637"
-}

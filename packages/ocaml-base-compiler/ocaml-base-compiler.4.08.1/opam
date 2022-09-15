@@ -11,25 +11,16 @@ depends: [
   "base-unix" {post}
   "base-bigarray" {post}
   "base-threads" {post}
+  "msvs-detect" {os = "win32"}
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler
 setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
-build: [
-  [
-    "./configure"
-    "--prefix=%{prefix}%"
-    "-C"
-    "CC=cc" {os = "openbsd" | os = "freebsd" | os = "macos"}
-    "ASPP=cc -c" {os = "openbsd" | os = "freebsd" | os = "macos"}
-  ]
-  [make "-j%{jobs}%" {os != "cygwin"} "world"]
-  [make "-j%{jobs}%" {os != "cygwin"} "world.opt"]
-]
-install: [make "install"]
+build: ["sh" "./build.sh" prefix os jobs "000j"]
+install: ["sh" "./build.sh" prefix]
 url {
-  src: "https://github.com/ocaml/ocaml/archive/4.08.1.tar.gz"
-  checksum: "md5=723b6bfe8cf5abcbccc6911143f71055"
+  src: "https://github.com/dra27/ocaml/archive/backport-4.08.tar.gz"
+  checksum: "md5=c9806a0db19e71b9228939d435cd4c6f"
 }
 post-messages: [
   "A failure in the middle of the build may be caused by build parallelism
@@ -40,13 +31,14 @@ post-messages: [
    to force a sequential build instead."
   {failure & jobs > 1 & os != "cygwin" & opam-version >= "2.0.5"}
 ]
-patches: ["fix-gcc10.patch" "alt-signal-stack.patch"]
+patches: ["fix-gcc10.patch"]
+extra-source "flexdll.tar.gz" {
+  src: "https://github.com/alainfrisch/flexdll/archive/refs/tags/0.41.tar.gz"
+  checksum: "md5=523cb1ea004057f037f3b5d9f6a0d173"
+}
 extra-files: [
+  ["build.sh" "md5=175066b31c1fb04ead7b3266ca0a91b6"]
   ["fix-gcc10.patch" "md5=17ecd696a8f5647a4c543280599f6974"]
   ["ocaml-base-compiler.install" "md5=3e969b841df1f51ca448e6e6295cb451"]
 ]
 available: !(os = "macos" & arch = "arm64")
-extra-source "alt-signal-stack.patch" {
-  src: "https://github.com/ocaml/ocaml/commit/17df117b4939486d3285031900587afce5262c8c.patch"
-  checksum: "sha256=16ad0b9a6f901dd26aa64ff8708a3f24d36237cbf4b34d9eb68a88ed00b96cf3"
-}
