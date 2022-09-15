@@ -32,6 +32,8 @@ else
     exit 0
   fi
 
+  tar --strip-components=1 -xf ocaml.tar.gz
+
   if [ "$2" = "openbsd" ] || [ "$2" = "macos" ] ; then
     # Does this work - configure should pick it up?
     export CC=cc
