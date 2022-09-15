@@ -1,0 +1,23 @@
+opam-version: "2.0"
+maintainer: "david.allsopp@metastack.com"
+authors: [ "David Allsopp" ]
+license: "BSD-3-clause"
+homepage: "https://metastack.github.io/msvs-tools"
+dev-repo: "git+https://github.com/metastack/msvs-tools.git"
+bug-reports: "https://github.com/metastack/msvs-tools/issues"
+build: [
+  [ "bash" "./msvs-opam" arch _:share name ]
+]
+available: os = "win32"
+synopsis: "Microsoft Visual Studio"
+setenv: [
+  [PATH += "%{_:msvs-bin}%"]
+  [INCLUDE += "%{_:msvs-inc}%"]
+  [LIB += "%{_:msvs-lib}%"]
+]
+description: """
+Uses msvs-tools to detect Visual Studio and set-up the environment."""
+url {
+  src: "https://github.com/dra27/msvs-tools/archive/opam.tar.gz"
+  checksum: "md5=f648362e5afd569d3f3b8a2b2da4a253"
+}
