@@ -50,8 +50,8 @@ build: [
     "ASPP=gcc -arch i386 -m32 -c" {ocaml-option-32bit:installed & os="macos"}
     "AS=as --32" {ocaml-option-32bit:installed & os="linux"}
     "AS=as -arch i386" {ocaml-option-32bit:installed & os="macos"}
-    "--host=i386-linux" {ocaml-option-32bit:installed & os="linux"}
-    "--host=i386-apple-darwin13.2.0" {ocaml-option-32bit:installed & os="macos"}
+    "--host=i386-pc-linux-gnu" {ocaml-option-32bit:installed & os="linux"}
+    "--host=i386-apple-darwin" {ocaml-option-32bit:installed & os="macos"}
     "PARTIALLD=ld -r -melf_i386" {ocaml-option-32bit:installed & os="linux"}
     "LIBS=-static" {ocaml-option-static:installed}
     "--disable-warn-error"
