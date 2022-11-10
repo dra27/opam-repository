@@ -1,0 +1,9 @@
+opam-version: "2.0"
+synopsis: "Select the Microsoft Visual Studio Windows port of OCaml"
+depends: [
+  "ocaml-variants" {post & >= "4.12.0~"}
+]
+conflicts: [ "ocaml-option-mingw" ]
+available: os = "win32" | os = "cygwin"
+maintainer: "David Allsopp <david@tarides.com>"
+flags: compiler

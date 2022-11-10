@@ -1,0 +1,16 @@
+opam-version: "2.0"
+synopsis: "Select the mingw-w64 Windows port of OCaml"
+depends: [
+  "ocaml-variants" {post & >= "4.12.0~"}
+]
+depopts: [
+  "ocaml-option-32bit"
+]
+depexts: [
+  ["mingw64-i686-gcc-core"] {(os = "win32" | os = "cygwin") & ocaml-option-32bit:installed}
+  ["mingw64-x86_64-gcc-core"] {(os = "win32" | os = "cygwin") & !ocaml-option-32bit:installed}
+]
+conflicts: [ "ocaml-option-msvc" ]
+available: os = "win32" | os = "cygwin"
+maintainer: "David Allsopp <david@tarides.com>"
+flags: compiler
