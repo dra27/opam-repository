@@ -25,36 +25,49 @@ build-env: [
 ]
 build: [
   [
-    "./configure"
-    "--prefix=%{prefix}%"
-    "--docdir=%{doc}%/ocaml"
-    "-C"
-    "--with-afl" {ocaml-option-afl:installed}
+    # General configuration
+    "./configure" "-C" "--prefix=%{prefix}%" "--docdir=%{doc}%/ocaml"
+
+    # Options
+    "--disable-warn-error"
+
     "--enable-native-compiler" {!ocaml-option-bytecode-only:installed}
     "--disable-native-compiler" {ocaml-option-bytecode-only:installed}
+
+    "--with-afl" {ocaml-option-afl:installed}
     "--disable-flat-float-array" {ocaml-option-no-flat-float-array:installed}
     "--enable-flambda" {ocaml-option-flambda:installed}
     "--enable-frame-pointers" {ocaml-option-fp:installed}
+
+    "LIBS=-static" {ocaml-option-static:installed}
+
+    # Force use of cc for macOS and OpenBSD
     "CC=cc" {!ocaml-option-32bit:installed & !ocaml-option-musl:installed & (os="openbsd"|os="macos")}
+    "ASPP=cc -c" {!ocaml-option-32bit:installed & !ocaml-option-musl:installed & (os="openbsd"|os="macos")}
+
+    # Compilation with musl
     "CC=musl-gcc" {ocaml-option-musl:installed & os-distribution!="alpine"}
     "CFLAGS=-Os" {ocaml-option-musl:installed}
+    "ASPP=musl-gcc -c" {ocaml-option-musl:installed & os-distribution!="alpine"}
+
+    # Compilation with sanitisers
     "LDFLAGS=-Wl,--no-as-needed,-ldl" {ocaml-option-leak-sanitizer:installed | (ocaml-option-address-sanitizer:installed & os!="macos")}
     "CC=gcc -ldl -fsanitize=leak -fno-omit-frame-pointer -O1 -g" {ocaml-option-leak-sanitizer:installed}
     "CC=gcc -ldl -fsanitize=address -fno-omit-frame-pointer -O1 -g" {ocaml-option-address-sanitizer:installed & os!="macos"}
     "CC=clang -fsanitize=address -fno-omit-frame-pointer -O1 -g" {ocaml-option-address-sanitizer:installed & os="macos"}
-    "CC=gcc -m32" {ocaml-option-32bit:installed & os="linux"}
-    "CC=gcc -Wl,-read_only_relocs,suppress -arch i386 -m32" {ocaml-option-32bit:installed & os="macos"}
-    "ASPP=cc -c" {!ocaml-option-32bit:installed & !ocaml-option-musl:installed & (os="openbsd"|os="macos")}
-    "ASPP=musl-gcc -c" {ocaml-option-musl:installed & os-distribution!="alpine"}
-    "ASPP=gcc -m32 -c" {ocaml-option-32bit:installed & os="linux"}
-    "ASPP=gcc -arch i386 -m32 -c" {ocaml-option-32bit:installed & os="macos"}
-    "AS=as --32" {ocaml-option-32bit:installed & os="linux"}
-    "AS=as -arch i386" {ocaml-option-32bit:installed & os="macos"}
+
+    # 32-bit compilation (Linux)
     "--host=i386-pc-linux-gnu" {ocaml-option-32bit:installed & os="linux"}
-    "--host=i386-apple-darwin" {ocaml-option-32bit:installed & os="macos"}
+    "CC=gcc -m32" {ocaml-option-32bit:installed & os="linux"}
+    "AS=as --32" {ocaml-option-32bit:installed & os="linux"}
+    "ASPP=gcc -m32 -c" {ocaml-option-32bit:installed & os="linux"}
     "PARTIALLD=ld -r -melf_i386" {ocaml-option-32bit:installed & os="linux"}
-    "LIBS=-static" {ocaml-option-static:installed}
-    "--disable-warn-error"
+
+    # 32-bit compilation (macOS)
+    "--host=i386-apple-darwin" {ocaml-option-32bit:installed & os="macos"}
+    "CC=gcc -Wl,-read_only_relocs,suppress -arch i386 -m32" {ocaml-option-32bit:installed & os="macos"}
+    "AS=as -arch i386" {ocaml-option-32bit:installed & os="macos"}
+    "ASPP=gcc -arch i386 -m32 -c" {ocaml-option-32bit:installed & os="macos"}
   ]
   [make "-j%{jobs}%"]
 ]
