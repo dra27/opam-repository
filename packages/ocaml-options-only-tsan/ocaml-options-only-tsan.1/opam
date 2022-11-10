@@ -17,6 +17,7 @@ conflicts: [
   "ocaml-option-nnpchecker"
   "ocaml-option-address-sanitizer"
   "ocaml-option-leak-sanitizer"
+  "ocaml-option-mingw"
 ]
 maintainer: "platform@lists.ocaml.org"
 flags: compiler

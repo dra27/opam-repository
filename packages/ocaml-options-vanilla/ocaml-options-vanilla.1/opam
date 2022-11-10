@@ -22,6 +22,7 @@ conflicts: [
   "ocaml-option-address-sanitizer"
   "ocaml-option-leak-sanitizer"
   "ocaml-option-tsan"
+  "ocaml-option-mingw"
 ]
 maintainer: "platform@lists.ocaml.org"
 flags: compiler
