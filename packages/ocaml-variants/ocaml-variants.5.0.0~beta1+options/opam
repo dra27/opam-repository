@@ -30,6 +30,7 @@ build: [
     "--docdir=%{doc}%/ocaml"
     "-C"
     "--with-afl" {ocaml-option-afl:installed}
+    "--enable-native-compiler" {!ocaml-option-bytecode-only:installed}
     "--disable-native-compiler" {ocaml-option-bytecode-only:installed}
     "--disable-flat-float-array" {ocaml-option-no-flat-float-array:installed}
     "--enable-flambda" {ocaml-option-flambda:installed}
