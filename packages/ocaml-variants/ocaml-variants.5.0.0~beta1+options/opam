@@ -86,7 +86,6 @@ post-messages: [
    to force a sequential build instead."
   {failure & jobs > 1 & opam-version >= "2.0.5"}
 ]
-conflicts: [ "ocaml-option-fp" ]
 depopts: [
   "ocaml-option-32bit"
   "ocaml-option-afl"
