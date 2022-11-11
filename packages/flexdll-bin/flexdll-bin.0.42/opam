@@ -1,0 +1,33 @@
+opam-version: "2.0"
+authors: "Alain Frisch"
+maintainer: "David Allsopp <david@tarides.com>"
+bug-reports: "https://github.com/ocaml/flexdll/issues"
+homepage: "https://github.com/ocaml/flexdll#readme"
+license: "Zlib"
+synopsis: "FlexDLL Binary Release"
+description: "Precompiled flexlink.exe binary (built using 32-bit mingw-w64)
+required for building OCaml 3.11.0-4.02.3"
+build: [
+  [make "MSVC_DETECT=0" "support"
+        "CHAINS=mingw" {ocaml-option-32bit:installed & ocaml-option-mingw:installed}
+        "CHAINS=mingw64" {!ocaml-option-32bit:installed & ocaml-option-mingw:installed}
+        "CHAINS=msvc" {ocaml-option-32bit:installed & ocaml-option-msvc:installed}
+        "CHAINS=msvc64" {!ocaml-option-32bit:installed & ocaml-option-msvc:installed}
+        "CHAINS=cygwin" {ocaml-option-32bit:installed & !ocaml-option-mingw:installed & !ocaml-option-msvc:installed}
+        "CHAINS=cygwin64" {!ocaml-option-32bit:installed & !ocaml-option-mingw:installed & !ocaml-option-msvc:installed}]
+]
+depopts: [
+  "ocaml-option-32bit"
+  "ocaml-option-mingw"
+  "ocaml-option-msvc"
+]
+available: os = "win32" | os = "cygwin"
+flags: avoid-version
+url {
+  src: "https://github.com/dra27/flexdll/releases/download/0.42-dra27/flexlink-bin-0.42.zip"
+  checksum: [
+    "md5=9dfff528b9189067bf35502df8a3141c"
+    "sha256=fb6f45eefb5f2c25b1b0f94671412e4c9ae2e96e102a3c6ddac8ee20b936ed43"
+    "sha512=b4bc3e3f93d2b96467dc4656a851acd15286b4d67406906a3aa4b3f12fd29f0f8d15a3dc78e4f8017fe8a8e8f5530f496b2948561179f636461b45ab868ac00f"
+  ]
+}

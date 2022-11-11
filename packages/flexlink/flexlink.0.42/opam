@@ -1,0 +1,47 @@
+opam-version: "2.0"
+authors: "Alain Frisch"
+maintainer: "David Allsopp <david@tarides.com>"
+bug-reports: "https://github.com/ocaml/flexdll/issues"
+dev-repo: "git+https://github.com/ocaml/flexdll.git"
+homepage: "https://github.com/ocaml/flexdll#readme"
+license: "Zlib"
+synopsis: "FlexDLL Linker"
+description: "Used after compiling OCaml with the precompiled binary release
+of FlexDLL to rebuild and install flexlink.exe using the new OCaml compiler."
+build-env: PATH += "%{lib}%/%{flexdll-bin:installed?flexdll-bin:ocaml}%"
+build: [
+  [make "MSVC_DETECT=0" "support" "flexlink.exe"
+        "CHAINS=mingw" {ocaml-option-32bit:installed & ocaml-option-mingw:installed}
+        "CHAINS=mingw64" {!ocaml-option-32bit:installed & ocaml-option-mingw:installed}
+        "CHAINS=msvc" {ocaml-option-32bit:installed & ocaml-option-msvc:installed}
+        "CHAINS=msvc64" {!ocaml-option-32bit:installed & ocaml-option-msvc:installed}
+        "CHAINS=cygwin" {ocaml-option-32bit:installed & !ocaml-option-mingw:installed & !ocaml-option-msvc:installed}
+        "CHAINS=cygwin64" {!ocaml-option-32bit:installed & !ocaml-option-mingw:installed & !ocaml-option-msvc:installed}]
+]
+depends: [
+  "ocaml"
+  "flexdll-bin" {= _:version}
+]
+depopts: [
+  "ocaml-option-32bit"
+  "ocaml-option-mingw"
+  "ocaml-option-msvc"
+]
+available: (opam-version >= "2.2" & os = "win32") | os = "cygwin"
+url {
+  src: "https://github.com/ocaml/flexdll/archive/refs/tags/0.42.tar.gz"
+  checksum: [
+    "md5=9464ae7a7e566ba7c96336cf2f34cc73"
+    "sha256=a2dce0a0d2f2c5c9f52f65e281db7405f51ff22dc71cdbf494eb241c8a4bdf0f"
+    "sha512=ef432e09e50feb87bc7ce7e9ef9b3b6a9fabf7593a47d66e804758c751ce2a2d97b82b032113a4147f570c52169f39c519202f81d1487ecbe10d5d429ce6ef5d"
+  ]
+}
+extra-source "flexlink.install" {
+  # Final version will refer to the flexdll.install file in the 0.43 release tag
+  src: "https://raw.githubusercontent.com/dra27/flexdll/5beffc10a9c22e37ab5019d4f6eb4e9df805a72c/flexlink.install"
+  checksum: [
+    "md5=dfd749bd49e2fd2dc0d9bdcd126124c9"
+    "sha256=6500b25917c7e38d4c5ef5a2297a590914f727d5570d4fdce790b39266a90e0d"
+    "sha512=f7861edc6eb97381b50f3731002325a69c8b72c5066f711299c316c9ece1e20cbb1173cb4e837cc5a0ca6691fd606cebf2bdf620e3e5f2d69198e227a9b9e78a"
+  ]
+}
