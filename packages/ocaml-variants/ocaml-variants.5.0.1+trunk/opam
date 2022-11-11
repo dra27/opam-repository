@@ -71,6 +71,7 @@ post-messages: [
   {failure & jobs > 1 & os != "cygwin" & opam-version >= "2.0.5"}
 ]
 conflicts: [ "ocaml-option-fp" ]
+available: os != "win32"
 depopts: [
   "ocaml-option-32bit"
   "ocaml-option-afl"
