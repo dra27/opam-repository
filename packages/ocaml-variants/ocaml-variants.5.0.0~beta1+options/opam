@@ -15,11 +15,13 @@ depends: [
   "base-nnp" {post}
   "ocaml-option-bytecode-only" {arch != "arm64" & arch != "x86_64"}
   "ocaml-beta" {opam-version < "2.1.0"}
+  ("flexdll" {os = "win32"} | "flexdll-bin" {os = "win32"} & "flexlink" {post})
 ]
 conflict-class: "ocaml-core-compiler"
 flags: [ compiler avoid-version ]
 setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
 build-env: [
+  [PATH += "%{lib}%/%{flexdll-bin:installed?flexdll-bin:ocaml}%"]
   [LSAN_OPTIONS = "detect_leaks=0,exitcode=0"]
   [ASAN_OPTIONS = "detect_leaks=0,exitcode=0"]
 ]
@@ -27,6 +29,9 @@ build: [
   [
     # General configuration
     "./configure" "-C" "--prefix=%{prefix}%" "--docdir=%{doc}%/ocaml"
+
+    # Windows-specific configuration
+    "--with-flexdll=%{flexdll:share}%" {flexdll:installed}
 
     # Options
     "--disable-warn-error"
@@ -107,4 +112,10 @@ depopts: [
   "ocaml-option-address-sanitizer"
   "ocaml-option-static"
   "ocaml-option-mingw"
+  # TODO: the full behaviour for Cygwin _should_ be that if the Cygwin flexdll is installed and opam's flexdll is not requested,
+  #       then use it; if Cygwin's flexdll is _not_ installed then the opam flexdll package should be pulled in (4.13+) or the
+  #       depext system should cause flexdll to be installed (4.12 and earlier). If opam's flexdll is explicitly requested, then
+  #       OCaml should recompile with it.
+  "flexdll"
 ]
+available: os != "win32" | opam-version >= "2.2"
