@@ -1,14 +1,33 @@
 opam-version: "2.0"
 synopsis: "Select the mingw-w64 Windows port of OCaml"
 depends: [
-  "ocaml-variants" {post & >= "4.12.0~"}
+  ("ocaml-variants" {post & >= "4.12.0~"} |
+   ("ocaml-variants" {os = "win32" & os-distribution = "msys2"} & ("msys2-system-clang" | "msys2-system-msvcrt" | "msys2-system-ucrt")))
 ]
 depopts: [
   "ocaml-option-32bit"
 ]
 depexts: [
-  ["mingw64-i686-gcc-core"] {(os = "win32" | os = "cygwin") & ocaml-option-32bit:installed}
-  ["mingw64-x86_64-gcc-core"] {(os = "win32" | os = "cygwin") & !ocaml-option-32bit:installed}
+  # Cygwin model:
+  ["mingw64-i686-gcc-core"] {(os = "win32" | os = "cygwin") & os-distribution = "cygwin" & ocaml-option-32bit:installed}
+  ["mingw64-x86_64-gcc-core"] {(os = "win32" | os = "cygwin") & os-distribution = "cygwin" & !ocaml-option-32bit:installed}
+
+  # - or - (not doing this yet)
+
+  ["mingw64-%{ocaml-option-32bit:installed?i686:x86_64}%-gcc-core"] {(os = "win32" | os = "cygwin") & os-distribution = "cygwin" & ocaml-option-mingw:installed}
+
+  # MSYS model:
+  # msys2-system-* packages will have available: os = "win32" & os-distribution = "msys2"
+  ["mingw-w64-clang-i686-gcc-core"] {msys2-system-clang:installed & ocaml-option-32bit:installed & ocaml-option-mingw:installed}
+  ["mingw-w64-clang-i686-gcc-core"] {msys2-system-clang:installed & ocaml-option-32bit:installed & ocaml-option-mingw:installed}
+  ["mingw-w64-clang-x86_64-gcc-core"] {msys2-system-clang:installed & !ocaml-option-32bit:installed & ocaml-option-mingw:installed}
+  ["mingw-w64-ucrt-x86_64-gcc-core"] {sys2-system-ucrt:installed & ocaml-option-mingw:installed}
+  ["mingw-w64-i686-gcc-core"] {msys2-system-msvcrt:installed & ocaml-option-32bit:installed & ocaml-option-mingw:installed}
+  ["mingw-w64-x86_64-gcc-core"] {msys2-system-msvcrt:installed & !ocaml-option-32bit:installed & ocaml-option-mingw:installed}
+
+  # - or - (not doing this yet)
+
+  ["mingw-w64%{msys2-system-clang:installed?-clang:}%%{msys-system-ucrt:installed?-ucrt:}%-%{ocaml-option-32bit:installed?i686:x86_64}%-gcc-core"] {os = "win32" & os-distribution = "msys2"}
 ]
 conflicts: [ "ocaml-option-msvc" ]
 available: os = "win32" | os = "cygwin"
