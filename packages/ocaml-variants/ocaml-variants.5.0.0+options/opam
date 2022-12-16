@@ -117,4 +117,3 @@ depopts: [
   #       OCaml should recompile with it.
   "flexdll"
 ]
-available: os != "win32" | opam-version >= "2.2"
