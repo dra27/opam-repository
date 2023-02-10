@@ -45,4 +45,4 @@ extra-files: [
   ["PIC.patch" "md5=53aa5accaa1308e7b9eb434f47068a24"]
   ["alt-signal-stack.patch" "md5=eb6c71b1b8eb8d8ce38381252919d109"]
 ]
-available: arch != "arm64" & arch != "arm32" & arch != "ppc64"
+available: arch != "arm64" & arch != "arm32" & arch != "ppc64" & os != "win32"

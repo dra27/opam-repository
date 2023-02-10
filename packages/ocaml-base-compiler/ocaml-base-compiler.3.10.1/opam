@@ -45,4 +45,4 @@ extra-files: [
   ["pr4867.patch" "md5=3875e5e32cfa8b639785e0963e9eb7c4"]
   ["alt-signal-stack.patch" "md5=49d033082674c9092387a5605c51d34c"]
 ]
-available: arch != "arm64" & arch != "arm32" & arch != "ppc64"
+available: arch != "arm64" & arch != "arm32" & arch != "ppc64" & os != "win32"

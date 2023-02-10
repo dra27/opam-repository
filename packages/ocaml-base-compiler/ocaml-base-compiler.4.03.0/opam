@@ -47,7 +47,7 @@ patches: ["fix-gcc10.patch" "gpr1330.patch" "alt-signal-stack.patch"]
 extra-files: [
   ["fix-gcc10.patch" "md5=4370afea8ee2dea768b0fcba52394a2f"]
 ]
-available: !(os = "macos" & arch = "arm64")
+available: !(os = "macos" & arch = "arm64") & os != "win32"
 extra-source "alt-signal-stack.patch" {
   src: "https://github.com/ocaml/ocaml/commit/a8b2cc3b40f5269ce8525164ec2a63b35722b22b.patch"
   checksum: "sha256=db21341fae44be2f9a429985d3c2849e1d87a883ed456ea74a076145bb2d1482"

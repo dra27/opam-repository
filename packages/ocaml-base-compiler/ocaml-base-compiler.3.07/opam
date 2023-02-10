@@ -47,4 +47,4 @@ extra-files: [
   ["pr2061.patch" "md5=015cc44bb737dccd8cb63d4c37ce9371"]
   ["alt-signal-stack.patch" "md5=e4987d8d6deef9a3cad545db72408600"]
 ]
-available: arch != "arm64" & arch != "arm32" & arch != "ppc64"
+available: arch != "arm64" & arch != "arm32" & arch != "ppc64" & os != "win32"

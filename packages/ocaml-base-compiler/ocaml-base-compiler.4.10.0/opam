@@ -41,7 +41,7 @@ post-messages: [
    to force a sequential build instead."
   {failure & jobs > 1 & opam-version >= "2.0.5"}
 ]
-available: !(os = "macos" & arch = "arm64")
+available: !(os = "macos" & arch = "arm64") & os != "win32"
 patches: ["alt-signal-stack.patch"]
 extra-source "alt-signal-stack.patch" {
   src: "https://github.com/ocaml/ocaml/commit/4b4c643d1d5d28738f6d900cd902851ed9dc5364.patch"

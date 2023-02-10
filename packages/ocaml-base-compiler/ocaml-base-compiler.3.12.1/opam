@@ -40,7 +40,7 @@ url {
   src: "http://caml.inria.fr/pub/distrib/ocaml-3.12/ocaml-3.12.1.tar.gz"
   checksum: "md5=814a047085f0f901ab7d8e3a4b7a9e65"
 }
-available: arch != "arm64" & arch != "arm32" & arch != "ppc64"
+available: arch != "arm64" & arch != "arm32" & arch != "ppc64" & os != "win32"
 patches: ["alt-signal-stack.patch"]
 extra-source "alt-signal-stack.patch" {
   src: "https://github.com/ocaml/ocaml/commit/c90c2c8cf371faab293ff557868dfbda631518e7.patch"
