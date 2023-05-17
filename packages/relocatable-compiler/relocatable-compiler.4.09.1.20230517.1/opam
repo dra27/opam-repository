@@ -1,0 +1,117 @@
+opam-version: "2.0"
+license: "LGPL-2.1-or-later WITH OCaml-LGPL-linking-exception"
+synopsis: "Relocatable OCaml 4.09.1 (from lock be8c62d74b7)"
+maintainer: "David Allsopp <david@tarides.com>"
+authors: [
+  "Xavier Leroy"
+  "Damien Doligez"
+  "Alain Frisch"
+  "Jacques Garrigue"
+  "Didier Rémy"
+  "Jérôme Vouillon"
+]
+homepage: "https://github.com/dra27/relocatable"
+bug-reports: "https://github.com/dra27/relocatable/issues"
+dev-repo: "git+https://github.com/dra27/ocaml.git#backport-4.09"
+depends: [
+  # This is Relocatable OCaml 4.09.1
+  "ocaml" {= "4.09.1" & post}
+  "ocaml-variants" {= "4.09.1+relocatable" & post}
+
+  # General base- packages
+  "base-unix" {post}
+  "base-bigarray" {post}
+  "base-threads" {post}
+
+  # Port selection (Windows)
+  # amd64 mingw-w64 / MSVC
+  (("arch-x86_64" {os = "win32" & arch = "x86_64"} &
+     (("system-mingw" & "mingw-w64-shims" {os-distribution = "cygwin" & post}) |
+      "system-msvc")) |
+  # i686 mingw-w64 / MSVC
+   ("arch-x86_32" {os = "win32"} &
+     (("system-mingw" & "mingw-w64-shims" {os-distribution = "cygwin" & post}) |
+      "system-msvc")) |
+  # Non-Windows systems need to install something to satisfy this formula, so
+  # repeat the base-unix dependency
+   "base-unix" {os != "win32" & post})
+
+  # Support Packages
+  "flexdll" {>= "0.36" & os = "win32"}
+]
+flags: avoid-version
+build-env: MSYS2_ARG_CONV_EXCL = "*"
+build: [
+  [
+    "./configure"
+    "--host=x86_64-pc-windows"  {system-msvc:installed & arch-x86_64:installed}
+    "--host=x86_64-w64-mingw32" {os-distribution = "cygwin" & system-mingw:installed & arch-x86_64:installed}
+    "--host=i686-pc-windows"    {system-msvc:installed & arch-x86_32:installed}
+    "--host=i686-w64-mingw32"   {os-distribution = "cygwin" & system-mingw:installed & arch-x86_32:installed}
+    "--prefix=%{prefix}%"
+    "--docdir=%{doc}%/ocaml"
+    "--enable-relative"
+    "--enable-runtime-search=always"
+    "--with-flexdll=%{flexdll:share}%" {os = "win32" & flexdll:installed}
+    "-C"
+    "--with-afl" {ocaml-option-afl:installed}
+    "--enable-spacetime" {ocaml-option-spacetime:installed}
+    "--disable-native-compiler" {ocaml-option-bytecode-only:installed}
+    "--enable-force-safe-string" {ocaml-option-force-safe-string:installed}
+    "DEFAULT_STRING=unsafe" {ocaml-option-default-unsafe-string:installed}
+    "--disable-flat-float-array" {ocaml-option-no-flat-float-array:installed}
+    "--enable-flambda" {ocaml-option-flambda:installed}
+    "--enable-frame-pointers" {ocaml-option-fp:installed}
+    "--disable-naked-pointers" {ocaml-option-nnp:installed}
+    "CC=cc" {!ocaml-option-32bit:installed & !ocaml-option-musl:installed & (os="openbsd"|os="macos")}
+    "CC=musl-gcc" {ocaml-option-musl:installed & os-distribution!="alpine"}
+    "CFLAGS=-Os" {ocaml-option-musl:installed}
+    "CC=gcc -m32" {ocaml-option-32bit:installed & os="linux"}
+    "CC=gcc -Wl,-read_only_relocs,suppress -arch i386 -m32" {ocaml-option-32bit:installed & os="macos"}
+    "ASPP=cc -c" {!ocaml-option-32bit:installed & !ocaml-option-musl:installed & (os="openbsd"|os="macos")}
+    "ASPP=musl-gcc -c" {ocaml-option-musl:installed & os-distribution!="alpine"}
+    "ASPP=gcc -m32 -c" {ocaml-option-32bit:installed & os="linux"}
+    "ASPP=gcc -arch i386 -m32 -c" {ocaml-option-32bit:installed & os="macos"}
+    "AS=as --32" {ocaml-option-32bit:installed & os="linux"}
+    "AS=as -arch i386" {ocaml-option-32bit:installed & os="macos"}
+    "--host=i386-linux" {ocaml-option-32bit:installed & os="linux"}
+    "--host=i386-apple-darwin13.2.0" {ocaml-option-32bit:installed & os="macos"}
+    "PARTIALLD=ld -r -melf_i386" {ocaml-option-32bit:installed & os="linux"}
+    "LIBS=-static" {ocaml-option-static:installed}
+  ]
+  [make "-j%{jobs}%" "world%{ocaml-option-bytecode-only:installed?:.opt}%"]
+]
+install: [make "install"]
+url {
+  src: "https://github.com/dra27/ocaml/archive/89f4af18551ca728f2963f30aefe39e30e43db18.tar.gz"
+  checksum: "sha256=8d0957784df6d3e87331982d34e81bf3aa8570b5b46e266ac5cdd22ff77c06c8"
+}
+conflicts: [
+  "ocaml-option-flambda"
+]
+depopts: [
+  "ocaml-option-32bit"
+  "ocaml-option-afl"
+  "ocaml-option-bytecode-only"
+  "ocaml-option-default-unsafe-string"
+  "ocaml-option-force-safe-string"
+  "ocaml-option-no-flat-float-array"
+  "ocaml-option-flambda"
+  "ocaml-option-fp"
+  "ocaml-option-musl"
+  "ocaml-option-spacetime"
+  "ocaml-option-static"
+  "ocaml-option-nnp"
+  "ocaml-option-nnpchecker"
+]
+post-messages: [
+"Thanks for trying Relocatable OCaml - sorry there seems to be a problem! 🫣😖
+Relocatable OCaml 4.09.1.20230517.1 is an archive version - please
+try a more recent version.
+" {failure}
+"Thanks for trying Relocatable OCaml! 🥳🙏👏
+This is an archive version from 20230517 - the compiler is relocatable, but opam
+doesn't support cloning it, so while you can rename local switches and so forth,
+you won't see any speed-up in switch creation.
+" {!failure}
+]
