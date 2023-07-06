@@ -2,7 +2,8 @@ opam-version: "2.0"
 synopsis: "Compile OCaml without the native-code compiler"
 depends: [
   "ocaml-variants" {post & >= "4.12.0~"} |
-  "ocaml-base-compiler" {post & >= "5.0.0~~" & arch != "arm64" & arch != "x86_64"}
+  "ocaml-base-compiler" {post & (>= "5.0.0~~" & arch != "arm64" & arch != "x86_64" |
+                                 >= "5.1.0~~" & < "5.2.0~~" & arch = "ppc64")}
 ]
 conflicts: [ "ocaml-option-afl" "ocaml-option-fp" "ocaml-option-flambda" ]
 maintainer: "platform@lists.ocaml.org"
