@@ -25,7 +25,7 @@ depends: [
 "odoc"                 {with-doc}
 ]
 conflicts: [
-  "ocaml-option-flambda"
+  "base-flambda"
 ]
 build: [
   ["dune" "subst"] {dev}

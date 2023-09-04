@@ -20,7 +20,7 @@ depends: [
   "fmt"      {with-test}
   "rresult"  {with-test}
 ]
-conflicts: ["ocaml-option-flambda"]
+conflicts: ["base-flambda"]
 build: [
   ["dune" "subst"] {dev}
   ["dune" "build" "-p" name "-j" jobs]

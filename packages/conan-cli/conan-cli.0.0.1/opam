@@ -30,7 +30,7 @@ depends: [
   "mirage-types-lwt"    {with-test}
   "mirage-runtime"      {with-test & < "4.0"}
 ]
-conflicts: ["ocaml-option-flambda"]
+conflicts: ["base-flambda"]
 build: [
   ["dune" "subst"] {dev}
   ["dune" "build" "-p" name "-j" jobs]
