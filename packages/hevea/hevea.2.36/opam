@@ -13,10 +13,8 @@ post-messages: [
 ]
 depends: [
   "ocaml" {>= "4.08.0"}
+  "base-ocamlopt"
   "ocamlbuild" {build}
-]
-conflicts: [
-  "ocaml-option-bytecode-only"
 ]
 synopsis: "A quite complete and fast LATEX to HTML translator"
 url {

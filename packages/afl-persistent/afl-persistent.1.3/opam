@@ -8,10 +8,8 @@ license: "MIT"
 build: [[ "./build.sh" ]]
 depends: [
   "ocaml" {>= "4.00"}
+  "base-ocamlopt"
   "base-unix"
-]
-conflicts: [
-  "ocaml-option-bytecode-only"
 ]
 post-messages: [
 "afl-persistent is installed, but since AFL instrumentation is not available

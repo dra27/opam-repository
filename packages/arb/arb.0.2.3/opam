@@ -11,6 +11,7 @@ depends: [
   "ctypes" {>= "0.20.1"}
   "conf-mpfr" {>= "3"}
   "ocaml" {>= "4.10"}
+  "base-ocamlopt"
   "conf-pkg-config" {>= "2"}
   "dune-configurator"
   "odoc" {with-doc}
@@ -39,4 +40,3 @@ url {
   ]
 }
 x-commit-hash: "3119bc2f5d6bf656aba5f443132603f18db9594b"
-conflicts: [ "ocaml-option-bytecode-only" ]

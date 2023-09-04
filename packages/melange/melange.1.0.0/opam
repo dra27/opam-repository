@@ -8,6 +8,7 @@ bug-reports: "https://github.com/melange-re/melange/issues"
 depends: [
   "dune" {>= "3.8"}
   "ocaml" {>= "4.13.0"}
+  "base-ocamlopt"
   "cmdliner" {>= "1.1.0"}
   "base64" {>= "3.1.0"}
   "dune-build-info"
@@ -20,9 +21,6 @@ depends: [
   "odoc" {with-doc}
 ]
 available: arch != "x86_32" & arch != "arm32"
-conflicts: [
-  "ocaml-option-bytecode-only"
-]
 build: [
   ["dune" "subst"] {dev}
   [

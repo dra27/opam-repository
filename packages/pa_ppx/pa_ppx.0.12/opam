@@ -35,6 +35,7 @@ doc: "https://github.com/camlp5/pa_ppx/doc"
 
 depends: [
   "ocaml"       { >= "4.10.0" & < "5.01.0" }
+  "base-ocamlopt"
   "conf-perl"
   "camlp5-buildscripts" { >= "0.02" & < "0.03" }
   "camlp5"      { = "8.01.00" }
@@ -57,7 +58,6 @@ depends: [
 ]
 conflicts: [
   "base-effects"
-  "ocaml-option-bytecode-only"
 ]
 build: [
   [make "get-generated"]

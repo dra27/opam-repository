@@ -12,6 +12,7 @@ bug-reports: "https://github.com/ocsigen/js_of_ocaml/issues"
 depends: [
   "dune" {>= "3.2"}
   "ocaml" {>= "4.04" & < "5.1"}
+  "base-ocamlopt"
   "num" {with-test}
   "ppx_expect" {>= "v0.14.2" & with-test}
   "ppxlib" {>= "0.15.0"}
@@ -28,7 +29,6 @@ conflicts: [
   "ocamlfind" {< "1.5.1"}
   "js_of_ocaml" {< "3.0"}
   "ocaml-variants" {= "4.12.0+domains" | = "4.12.0+domains+effects"}
-  "ocaml-option-bytecode-only"
 ]
 dev-repo: "git+https://github.com/ocsigen/js_of_ocaml.git"
 build: [

@@ -10,10 +10,10 @@ build: [
 ]
 depends: [
   "ocaml" {>= "4.03.0"}
+  "base-ocamlopt"
   "base-unix"
   "zarith" {>= "1.12"}
 ]
-conflicts: [ "ocaml-option-bytecode-only" ]
 synopsis: "OCaml CloudI API"
 url {
   src: "https://github.com/CloudI/cloudi_api_ocaml/archive/v2.0.6.tar.gz"

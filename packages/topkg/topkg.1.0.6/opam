@@ -35,11 +35,9 @@ doc: "https://erratique.ch/software/topkg/doc"
 bug-reports: "https://github.com/dbuenzli/topkg/issues"
 depends: [
   "ocaml" {>= "4.05.0"}
+  "base-ocamlopt"
   "ocamlfind" {build & >= "1.6.1"}
   "ocamlbuild"
-]
-conflicts: [
-  "ocaml-option-bytecode-only"
 ]
 build: ["ocaml" "pkg/pkg.ml" "build" "--pkg-name" name "--dev-pkg" "%{dev}%"]
 dev-repo: "git+https://erratique.ch/repos/topkg.git"

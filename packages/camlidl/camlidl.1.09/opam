@@ -18,13 +18,11 @@ an MIDL specification. Also provides some support for Microsoft's COM
 software components."""
 depends: [
   "ocaml" {>= "4.03" & < "5.0"}
+  "base-ocamlopt"
 ]
 extra-files: [
   ["camlidl.install" "md5=cf56e14faed046880b7c9d0f4cd737f1"]
   ["META" "md5=23b140345606a15a304212e930cadaa7"]
-]
-conflicts: [
-  "ocaml-option-bytecode-only"
 ]
 url {
   src:

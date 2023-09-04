@@ -18,6 +18,7 @@ homepage: "https://github.com/CatalaLang/catala"
 bug-reports: "https://github.com/CatalaLang/catala/issues"
 depends: [
   "ANSITerminal" {>= "0.8.2"}
+  "base-ocamlopt"
   "benchmark" {>= "1.6"}
   "bindlib" {>= "5.0.1"}
   "cmdliner" {>= "1.1.0"}
@@ -45,7 +46,6 @@ depends: [
 depopts: ["z3"]
 conflicts: [
   "z3" {< "4.8.11"}
-  "ocaml-option-bytecode-only"
 ]
 build: [
   ["dune" "subst"] {dev}

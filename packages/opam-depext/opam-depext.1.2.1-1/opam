@@ -22,12 +22,12 @@ depends: [
   "cmdliner" {>= "0.9.8" & dev}
   "ocamlfind" {dev}
 ]
-depopts: "ocaml-option-bytecode-only"
+depopts: "base-ocamlopt"
 available: opam-version >= "2.0.0~beta5"
 flags: plugin
 build: [
   ["sed" "-ib" "-e" "/all:/s/ncl//" "src_ext/Makefile"]
-  [make "OCAMLOPT=%{ocaml-option-bytecode-only:installed?no:ocamlopt}%"] {!dev}
+  [make "OCAMLOPT=%{base-ocamlopt:installed?ocamlopt:no}%"] {!dev}
   [
     "ocamlfind"
     "%{ocaml:native?ocamlopt:ocamlc}%"

@@ -7,6 +7,7 @@ build: [
 remove: [["ocamlfind" "remove" "inifiles"]]
 depends: [
   "ocaml"
+  "base-ocamlopt"
   "ocamlfind"
   "pcre"
 ]
@@ -17,7 +18,6 @@ patches: [
 ]
 install: [make "install"]
 synopsis: "An ini file parser"
-conflicts: [ "ocaml-option-bytecode-only" ]
 extra-files: [
   [ "ocaml-inifiles.diff" "md5=9438c43d4f7fa8ad947b94e362aae4b8" ]
   [ "fix_lowercase.diff" "md5=1056860b9461f80caa369985fa3495fa" ]

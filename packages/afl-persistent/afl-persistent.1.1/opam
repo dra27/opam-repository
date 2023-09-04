@@ -11,10 +11,8 @@ build:
 depends: [
   "ocaml" {>= "4.05"}
   "topkg" {build & >= "0.7.6"}
+  "base-ocamlopt"
   "base-unix"
-]
-conflicts: [
-  "ocaml-option-bytecode-only"
 ]
 synopsis: "use afl-fuzz in persistent mode"
 description: """

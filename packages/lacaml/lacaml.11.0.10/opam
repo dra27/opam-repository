@@ -32,6 +32,7 @@ depends: [
   "conf-lapack" {build}
   "base-bytes"
   "base-bigarray"
+  "base-ocamlopt"
   "odoc" {with-doc}
 ]
 build: [
@@ -47,9 +48,6 @@ build: [
     "@runtest" {with-test}
     "@doc" {with-doc}
   ]
-]
-conflicts: [
-  "ocaml-option-bytecode-only"
 ]
 dev-repo: "git+https://github.com/mmottl/lacaml.git"
 url {

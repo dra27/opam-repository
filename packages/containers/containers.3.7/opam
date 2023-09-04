@@ -9,6 +9,7 @@ build: [
 ]
 depends: [
   "ocaml" { >= "4.03.0" }
+  "base-ocamlopt"
   "dune" { >= "2.0" }
   "dune-configurator"
   "seq" # compat
@@ -25,9 +26,6 @@ depends: [
 depopts: [
   "base-unix"
   "base-threads"
-]
-conflicts: [
-  "ocaml-option-bytecode-only"
 ]
 tags: [ "stdlib" "containers" "iterators" "list" "heap" "queue" ]
 homepage: "https://github.com/c-cube/ocaml-containers/"

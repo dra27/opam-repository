@@ -27,6 +27,7 @@ doc: "https://camlp5.github.io/doc/html"
 bug-reports: "https://github.com/camlp5/camlp5/issues"
 depends: [
   "ocaml" {>= "4.10" & < "5.01.0"}
+  "base-ocamlopt"
   "ocamlfind"
   "camlp-streams" { >= "5.0" }
   "conf-perl"
@@ -48,9 +49,6 @@ build: [
 #  [make "-C" "scripts" "clean" "test"] { with-test }
 ]
 install: [make "install"]
-conflicts: [
-   "ocaml-option-bytecode-only"
-]
 dev-repo: "git+https://github.com/camlp5/camlp5.git"
 url {
   src: "https://github.com/camlp5/camlp5/archive/refs/tags/8.00.05.tar.gz"

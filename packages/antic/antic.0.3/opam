@@ -11,6 +11,7 @@ depends: [
   "ctypes" {>= "0.20.1"}
   "conf-mpfr" {>= "3"}
   "ocaml" {>= "4.10"}
+  "base-ocamlopt"
   "conf-pkg-config" {>= "2"}
   "dune-configurator"
   "odoc" {with-doc}
@@ -30,7 +31,6 @@ build: [
   ]
 ]
 dev-repo: "git+https://github.com/bobot/ocaml-flint.git"
-conflicts: [ "ocaml-option-bytecode-only" ]
 url {
   src:
     "https://github.com/bobot/ocaml-flint/releases/download/0.3/flint-0.3.tbz"

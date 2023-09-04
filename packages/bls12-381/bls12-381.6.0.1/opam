@@ -12,6 +12,7 @@ bug-reports:
 depends: [
   "dune" {>= "3.0"}
   "ocaml" {>= "4.08"}
+  "base-ocamlopt"
   "ff-sig" {>= "0.6.1" & < "0.7.0"}
   "zarith" {>= "1.10" & < "2.0"}
   "zarith_stubs_js" {with-test}
@@ -22,7 +23,6 @@ depends: [
   "ff-pbt" {>= "0.6.0" & < "0.7.0" & with-test}
   "odoc" {with-doc}
 ]
-conflicts: ["ocaml-option-bytecode-only"]
 available: arch != "arm32" & arch != "x86_32"
 build: [
   ["dune" "subst"] {dev}

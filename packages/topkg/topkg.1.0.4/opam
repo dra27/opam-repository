@@ -9,11 +9,9 @@ bug-reports: "https://github.com/dbuenzli/topkg/issues"
 license: ["ISC"]
 tags: ["packaging" "ocamlbuild" "org:erratique"]
 depends: ["ocaml" {>= "4.03.0" & < "5.0"}
+          "base-ocamlopt"
           "ocamlfind" {build & >= "1.6.1"}
           "ocamlbuild"]
-conflicts: [
-  "ocaml-option-bytecode-only"
-]
 build: [["ocaml" "pkg/pkg.ml" "build" "--pkg-name" name
                                       "--dev-pkg" "%{dev}%"]]
 url {

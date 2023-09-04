@@ -9,12 +9,10 @@ bug-reports: "https://github.com/dbuenzli/topkg/issues"
 tags: ["packaging" "ocamlbuild" "org:erratique"]
 depends: [
   "ocaml" {>= "4.01.0" & < "4.12.0"}
+  "base-ocamlopt"
   "ocamlfind" {build & >= "1.6.1"}
   "ocamlbuild" {build}
   "result"
-]
-conflicts: [
-  "ocaml-option-bytecode-only"
 ]
 build: [
   "ocaml" "pkg/pkg.ml" "build"

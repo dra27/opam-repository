@@ -19,11 +19,9 @@ install: [
 depends: [
   "ocaml" {>= "4.02.0"}
   "ocamlfind" {build}
+  "base-ocamlopt"
   "base-unix"
   "conf-libcurl"
-]
-conflicts: [
-  "ocaml-option-bytecode-only"
 ]
 depopts: ["lwt" "lwt_ppx"]
 synopsis: "Bindings to libcurl"

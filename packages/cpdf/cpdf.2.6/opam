@@ -4,11 +4,9 @@ license: "LicenseRef-Coherent-Graphics-Ltd-Non-Commercial-Use-License-Agreement"
 build: [[make]]
 depends: [
   "ocaml" {>= "4.10.0"}
+  "base-ocamlopt"
   "ocamlfind" {build}
   "camlpdf" {= version}
-]
-conflicts: [
-  "ocaml-option-bytecode-only"
 ]
 homepage: "http://github.com/johnwhitington/cpdf-source"
 authors: ["John Whitington"]

@@ -12,10 +12,10 @@ depends: [
   "ocaml" {>= "4.01.0"}
   "ocamlfind" {build}
   "ocamlbuild" {build}
+  "base-ocamlopt"
   "base-unix"
   "base-bytes"
 ]
-conflicts:["ocaml-option-bytecode-only"]
 synopsis: "Easy process control"
 description: "process makes it easy to use commands like functions."
 flags: light-uninstall

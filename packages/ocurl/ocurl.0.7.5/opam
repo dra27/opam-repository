@@ -19,13 +19,13 @@ remove: [["ocamlfind" "remove" "curl"]]
 depends: [
   "ocaml" {< "4.06.0"}
   "ocamlfind" {build}
+  "base-ocamlopt"
   "base-unix"
   "conf-libcurl"
 ]
 depopts: ["lwt"]
 conflicts: [
   "lwt" {>= "4.0.0"}
-  "ocaml-option-bytecode-only"
 ]
 depexts: ["libcurl-devel" "openssl-devel"] {os-distribution = "centos"}
 synopsis: "Bindings to libcurl"

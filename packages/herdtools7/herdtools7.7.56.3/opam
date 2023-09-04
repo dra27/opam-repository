@@ -16,10 +16,10 @@ install: ["sh" "./dune-install.sh" "%{prefix}%"]
 # @todo Add "build-test" field
 depends: [
   "ocaml" {>= "4.08.0"}
+  "base-ocamlopt"
   "dune"  {>= "1.4" }
   "menhir" {>= "20200123"}
 ]
-conflicts: ["ocaml-option-bytecode-only"]
 url {
   src: "https://github.com/herd/herdtools7/archive/refs/tags/7.56.3.tar.gz"
   checksum: [

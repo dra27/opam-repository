@@ -27,13 +27,13 @@ bug-reports: "https://github.com/coq/coq/issues"
 depends: [
   "dune" {>= "2.9"}
   "ocaml" {>= "4.09.0"}
+  "base-ocamlopt"
   "ocamlfind" {>= "1.8.1"}
   "zarith" {>= "1.11"}
   "ounit2" {with-test}
 ]
 conflicts: [
   "coq"   { < "8.17" }
-  "ocaml-option-bytecode-only"
 ]
 build: [
   [ "./configure"

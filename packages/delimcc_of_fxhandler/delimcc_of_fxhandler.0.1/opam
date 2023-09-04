@@ -10,11 +10,11 @@ homepage: "https://github.com/kayceesrk/delimcc_of_fxhandler"
 bug-reports: "https://github.com/kayceesrk/delimcc_of_fxhandler/issues"
 depends: [
   "ocaml" {>= "5.0.0"}
+  "base-ocamlopt"
   "multicont"
   "dune" {>= "3.7"}
   "odoc" {with-doc}
 ]
-conflicts: ["ocaml-option-bytecode-only"]
 build: [
   ["dune" "subst"] {dev}
   [

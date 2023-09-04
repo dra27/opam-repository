@@ -12,12 +12,12 @@ homepage: "https://hacl-star.github.io/"
 bug-reports: "https://github.com/hacl-star/hacl-star/issues"
 depends: [
   "ocaml" {>= "4.05.0"}
+  "base-ocamlopt"
   "ocamlfind" {build}
   "ctypes" {< "0.21.0"}
   "ctypes-foreign"
   "conf-which" {build}
 ]
-conflicts: ["ocaml-option-bytecode-only"]
 available: os-family != "bsd"
 x-ci-accept-failures: [
   "centos-7" # GCC is too old

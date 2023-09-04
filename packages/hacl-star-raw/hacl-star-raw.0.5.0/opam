@@ -12,13 +12,13 @@ homepage: "https://hacl-star.github.io/"
 bug-reports: "https://github.com/project-everest/hacl-star/issues"
 depends: [
   "ocaml" {>= "4.08.0"}
+  "base-ocamlopt"
   "dune" {>= "1.2"}
   "ocamlfind" {build}
   "ctypes" {>= "0.18.0" & < "0.21.0"}
   "conf-which" {build}
   "conf-cmake" {build}
 ]
-conflicts: ["ocaml-option-bytecode-only"]
 available:
   arch != "ppc64" & arch != "ppc32" & arch != "arm32" &
   (os = "freebsd" | os-family != "bsd")
