@@ -21,6 +21,7 @@ depends: [
   "base-threads" {post}
   "base-metaocaml-ocamlfind" {post}
   "base-ocamlopt" {post}
+  "base-flambda" {post}
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler

@@ -14,6 +14,7 @@ depends: [
   "base-bigarray" {post}
   "base-threads" {post}
   "base-ocamlopt" {post}
+  "base-flambda" {post}
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler
