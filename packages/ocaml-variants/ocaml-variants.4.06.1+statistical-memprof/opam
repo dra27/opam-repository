@@ -7,6 +7,7 @@ depends: [
   "base-unix" {post}
   "base-bigarray" {post}
   "base-threads" {post}
+  "base-ocamlopt" {post}
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler

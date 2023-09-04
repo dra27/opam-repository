@@ -13,6 +13,7 @@ depends: [
   "base-bigarray" {post}
   "base-domains" {post}
   "base-nnp" {post}
+  "base-ocamlopt" {post & (arch = "x86_64" | arch = "arm64")}
 ]
 conflict-class: "ocaml-core-compiler"
 available: sys-ocaml-version = "5.0.0"

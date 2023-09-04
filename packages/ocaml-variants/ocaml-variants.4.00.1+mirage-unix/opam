@@ -7,6 +7,7 @@ depends: [
   "base-threads" {post}
   "base-ocamlbuild" {post}
   "base-bigarray" {post}
+  "base-ocamlopt" {post}
   "lwt" {post}
   "ocamlfind" {post}
 ]

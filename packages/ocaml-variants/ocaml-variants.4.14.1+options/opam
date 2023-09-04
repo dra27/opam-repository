@@ -11,6 +11,7 @@ depends: [
   "base-unix" {post}
   "base-bigarray" {post}
   "base-threads" {post}
+  ("base-ocamlopt" {post} | "ocaml-option-bytecode-only")
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler

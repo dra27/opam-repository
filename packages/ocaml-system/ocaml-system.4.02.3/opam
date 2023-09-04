@@ -6,6 +6,7 @@ depends: [
   "base-unix" {post}
   "base-threads" {post}
   "base-bigarray" {post}
+  "base-ocamlopt" {post}
 ]
 conflict-class: "ocaml-core-compiler"
 available: sys-ocaml-version = "4.02.3"

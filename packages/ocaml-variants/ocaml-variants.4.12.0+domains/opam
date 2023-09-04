@@ -10,6 +10,7 @@ depends: [
   "base-bigarray" {post}
   "base-threads" {post}
   "base-domains" {post}
+  ("base-ocamlopt" {post} | "ocaml-option-bytecode-only")
   "ocaml-option-nnp"
 ]
 conflict-class: "ocaml-core-compiler"

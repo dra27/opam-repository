@@ -1,0 +1,51 @@
+opam-version: "2.0"
+authors: "David Allsopp"
+bug-reports: "https://github.com/ocaml/opam-repository/issues"
+homepage: "https://github.com/ocaml/opam-repository/wiki/Compilers"
+license: "CC0-1.0"
+maintainer: "David Allsopp <david.allsopp@metastack.com>"
+synopsis: "The OCaml native compiler (ocamlopt)"
+description: """
+Virtual package is installed by OCaml compilers which support native code
+compilation via the ocamlopt command. More generally, this package is not
+installed when only the bytecode compiler is available.
+"""
+conflicts: "ocaml-option-bytecode-only"
+depends:
+  # ocaml-base-compiler and ocaml-system have the same constraint:
+  # - All 3.x and 4.x releases and all 5.x releases on amd64 or arm64
+  # - 5.1.x onwards on riscv64 and s390x
+  # - 5.2 onwards on ppc64
+  "ocaml-base-compiler" {
+    < "5.0" | arch = "x86_64" | arch = "arm64" |
+    >= "5.1" & (arch = "riscv64" | arch = "s390x") |
+    >= "5.2" & arch = "ppc64"
+  } |
+  "ocaml-system" {
+    < "5.0" | arch = "x86_64" | arch = "arm64" |
+    >= "5.1" & (arch = "riscv64" | arch = "s390x") |
+    >= "5.2" & arch = "ppc64"
+  } |
+  # The 4.12+ options packages either require base-ocamlopt or
+  # ocaml-option-bytecode-only to be installed. The contraint for 5.x
+  # architectures has to be included to ensure that ocaml-option-bytecode is
+  # forced for bytecode-only architectures. Pre-4.12 and other legacy
+  # bytecode-only packages must be explcitly listed here.
+  "ocaml-variants" {
+    (< "5.0" | arch = "x86_64" | arch = "arm64" |
+     >= "5.1" & (arch = "riscv64" | arch = "s390x") |
+     >= "5.2" & arch = "ppc64") &
+    != "3.09.1+metaocaml" &
+    != "4.00.1+BER" &
+    != "4.02.1+BER" &
+    != "4.02.1+modular-implicits-ber" &
+    != "4.02.3+bytecode-only" &
+    != "4.04.0+bytecode-only" & != "4.04.1+bytecode-only" & != "4.04.2+bytecode-only" &
+    != "4.05.0+bytecode-only" &
+    != "4.06.0+bytecode-only" & != "4.06.1+bytecode-only" &
+    != "4.07.0+bytecode-only" & != "4.07.1+bytecode-only" &
+    != "4.08.0+bytecode-only" & != "4.08.1+bytecode-only" &
+    != "4.09.0+bytecode-only" & != "4.09.1+bytecode-only" &
+    != "4.10.0+bytecode-only" & != "4.10.1+bytecode-only" & != "4.10.2+bytecode-only"
+    != "4.11.0+bytecode-only" & != "4.11.1+bytecode-only" & != "4.11.2+bytecode-only"
+  }

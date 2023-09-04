@@ -8,7 +8,7 @@ depends: [
 conflicts: [
   "ocaml-option-32bit"
   "ocaml-option-afl"
-  "ocaml-option-bytecode-only" {arch = "arm64" | arch = "x86_64" }
+  "ocaml-option-bytecode-only"
   "ocaml-option-default-unsafe-string"
   "ocaml-option-flambda"
   "ocaml-option-fp"

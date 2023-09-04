@@ -13,7 +13,7 @@ depends: [
   "base-threads" {post}
   "base-domains" {post}
   "base-nnp" {post}
-  "ocaml-option-bytecode-only" {arch != "arm64" & arch != "x86_64"}
+  ("base-ocamlopt" {post} | "ocaml-option-bytecode-only")
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler

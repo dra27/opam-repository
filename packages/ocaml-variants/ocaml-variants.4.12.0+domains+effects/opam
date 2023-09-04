@@ -11,6 +11,7 @@ depends: [
   "base-threads" {post}
   "base-domains" {post}
   "base-effects" {post}
+  ("base-ocamlopt" {post} | "ocaml-option-bytecode-only")
   "ocaml-option-nnp"
 ]
 conflict-class: "ocaml-core-compiler"

@@ -10,6 +10,7 @@ depends: [
   "base-bigarray" {post}
   "base-threads" {post}
   "base-ocamlbuild" {post}
+  "base-ocamlopt" {post}
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler

@@ -12,6 +12,7 @@ depends: [
   "base-bigarray" {post}
   "base-threads" {post}
   "base-metaocaml-ocamlfind" {post}
+  ("base-ocamlopt" {post} | "ocaml-option-bytecode-only")
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler
