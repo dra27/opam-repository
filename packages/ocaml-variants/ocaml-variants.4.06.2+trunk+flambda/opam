@@ -12,6 +12,7 @@ depends: [
   "base-threads" {post}
   "base-ocamlopt" {post}
   "base-flambda" {post}
+  "base-flat-float-array" {post}
   "ocaml-beta" {opam-version < "2.1.0"}
 ]
 conflict-class: "ocaml-core-compiler"

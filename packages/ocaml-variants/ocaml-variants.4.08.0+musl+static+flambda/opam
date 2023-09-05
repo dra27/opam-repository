@@ -15,6 +15,7 @@ depends: [
   "base-threads" {post}
   "base-ocamlopt" {post}
   "base-flambda" {post}
+  "base-flat-float-array" {post}
 ]
 depexts: [
   ["musl-tools"] {os-family = "debian"}

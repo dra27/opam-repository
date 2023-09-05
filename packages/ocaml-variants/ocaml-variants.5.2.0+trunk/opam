@@ -21,6 +21,7 @@ depends: [
   "base-domains" {post}
   "base-nnp" {post}
   ("base-ocamlopt" {post} | "ocaml-option-bytecode-only")
+  ("base-flat-float-array" {post} | "ocaml-option-no-flat-float-array")
   "ocaml-beta" {opam-version < "2.1.0"}
 ]
 conflict-class: "ocaml-core-compiler"

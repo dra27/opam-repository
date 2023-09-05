@@ -13,6 +13,7 @@ depends: [
   "base-threads" {post}
   "base-metaocaml-ocamlfind" {post}
   ("base-ocamlopt" {post} | "ocaml-option-bytecode-only")
+  ("base-flat-float-array" {post} | "ocaml-option-no-flat-float-array")
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler

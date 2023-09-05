@@ -12,6 +12,7 @@ depends: [
   "base-domains" {post}
   "base-effects" {post}
   ("base-ocamlopt" {post} | "ocaml-option-bytecode-only")
+  ("base-flat-float-array" {post} | "ocaml-option-no-flat-float-array")
   "ocaml-option-nnp"
 ]
 conflict-class: "ocaml-core-compiler"

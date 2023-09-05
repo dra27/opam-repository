@@ -22,6 +22,7 @@ depends: [
   "base-metaocaml-ocamlfind" {post}
   "base-ocamlopt" {post}
   "base-flambda" {post}
+  "base-flat-float-array" {post}
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler

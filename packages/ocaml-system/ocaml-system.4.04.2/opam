@@ -7,6 +7,7 @@ depends: [
   "base-threads" {post}
   "base-bigarray" {post}
   "base-ocamlopt" {post}
+  "base-flat-float-array" {post}
 ]
 conflict-class: "ocaml-core-compiler"
 available: sys-ocaml-version = "4.04.2"

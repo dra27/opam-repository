@@ -1,0 +1,43 @@
+opam-version: "2.0"
+authors: "David Allsopp"
+bug-reports: "https://github.com/ocaml/opam-repository/issues"
+homepage: "https://github.com/ocaml/opam-repository/wiki/Compilers"
+license: "CC0-1.0"
+maintainer: "David Allsopp <david.allsopp@metastack.com>"
+synopsis: "The OCaml flambda middleend"
+description: """
+Virtual package is installed by OCaml compilers which use the flambda compiler
+middle-end.
+"""
+conflicts: "ocaml-option-no-flat-float-array"
+depends:
+  "ocaml-base-compiler" | "ocaml-system" | "ocaml-variants" {
+    != "4.06.0+flambda+no-flat-float-array" &
+    != "4.06.0+no-flat-float-array" &
+    != "4.06.1+no-flat-float-array" &
+    != "4.07.0+flambda+no-flat-float-array" &
+    != "4.07.0+no-flat-float-array" &
+    != "4.07.1+flambda+no-flat-float-array" &
+    != "4.07.1+no-flat-float-array" &
+    != "4.07.1+rc1+flambda+no-flat-float-array" &
+    != "4.08.0+flambda+no-flat-float-array" &
+    != "4.08.0+no-flat-float-array" &
+    != "4.08.1+flambda+no-flat-float-array" &
+    != "4.08.1+no-flat-float-array" &
+    != "4.09.0+flambda+no-flat-float-array" &
+    != "4.09.0+no-flat-float-array" &
+    != "4.09.1+flambda+no-flat-float-array" &
+    != "4.09.1+no-flat-float-array" &
+    != "4.10.0+flambda+no-flat-float-array" &
+    != "4.10.0+no-flat-float-array" &
+    != "4.10.1+flambda+no-flat-float-array" &
+    != "4.10.1+no-flat-float-array" &
+    != "4.10.2+flambda+no-flat-float-array" &
+    != "4.10.2+no-flat-float-array" &
+    != "4.11.0+flambda+no-flat-float-array" &
+    != "4.11.0+no-flat-float-array" &
+    != "4.11.1+flambda+no-flat-float-array" &
+    != "4.11.1+no-flat-float-array" &
+    != "4.11.2+flambda+no-flat-float-array" &
+    != "4.11.2+no-flat-float-array"
+  }

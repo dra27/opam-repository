@@ -6,6 +6,7 @@ depends: [
   "base-unix" {post}
   "base-bigarray" {post}
   "base-threads" {post}
+  "base-flat-float-array" {post}
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler

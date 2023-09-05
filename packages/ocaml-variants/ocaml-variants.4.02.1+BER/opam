@@ -20,6 +20,7 @@ depends: [
   "base-threads" {post}
   "base-ocamlbuild" {post}
   "base-metaocaml-ocamlfind" {post}
+  "base-flat-float-array" {post}
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler

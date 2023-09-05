@@ -8,6 +8,7 @@ depends: [
   "base-ocamlbuild" {post}
   "base-bigarray" {post}
   "base-ocamlopt" {post}
+  "base-flat-float-array" {post}
   "lwt" {post}
   "ocamlfind" {post}
 ]

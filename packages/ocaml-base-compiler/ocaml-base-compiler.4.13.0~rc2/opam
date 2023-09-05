@@ -12,6 +12,7 @@ depends: [
   "base-bigarray" {post}
   "base-threads" {post}
   "base-ocamlopt" {post}
+  "base-flat-float-array" {post}
   "ocaml-options-vanilla" {post}
   "ocaml-beta" {opam-version < "2.1.0"}
 ]

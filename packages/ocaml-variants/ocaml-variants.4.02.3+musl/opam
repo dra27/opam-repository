@@ -10,6 +10,7 @@ depends: [
   "base-threads" {post}
   "base-ocamlbuild" {post}
   "base-ocamlopt" {post}
+  "base-flat-float-array" {post}
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler

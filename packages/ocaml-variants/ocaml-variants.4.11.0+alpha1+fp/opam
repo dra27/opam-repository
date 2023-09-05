@@ -11,6 +11,7 @@ depends: [
   "base-bigarray" {post}
   "base-threads" {post}
   "base-ocamlopt" {post}
+  "base-flat-float-array" {post}
   "ocaml-beta"
 ]
 conflict-class: "ocaml-core-compiler"

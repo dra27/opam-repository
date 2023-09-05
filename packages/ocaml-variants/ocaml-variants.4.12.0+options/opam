@@ -12,6 +12,7 @@ depends: [
   "base-bigarray" {post}
   "base-threads" {post}
   ("base-ocamlopt" {post} | "ocaml-option-bytecode-only")
+  ("base-flat-float-array" {post} | "ocaml-option-no-flat-float-array")
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler
