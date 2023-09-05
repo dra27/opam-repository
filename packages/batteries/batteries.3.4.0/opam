@@ -20,6 +20,7 @@ install: [make "install"]
 run-test: [make "test"]
 depends: [
   "ocaml" {>= "4.00.0" & < "4.14.0"}
+  "base-flat-float-array"
   "ocamlfind" {build & >= "1.5.3"}
   "ocamlbuild" {build}
   "qtest" {with-test & >= "2.5"}
@@ -29,7 +30,6 @@ depends: [
 ]
 conflicts: [
   "base-effects"
-  "ocaml-option-no-flat-float-array"
 ]
 url {
   src: "https://github.com/ocaml-batteries-team/batteries-included/archive/refs/tags/v3.4.0.tar.gz"

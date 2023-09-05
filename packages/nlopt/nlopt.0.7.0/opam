@@ -17,12 +17,10 @@ build: [ "dune" "build" "-p" name "-j" jobs
 ]
 depends: [
   "ocaml" {>= "4.08"}
+  "base-flat-float-array"
   "dune" {>= "2.9"}
   "conf-nlopt"
   "odoc" {with-doc}
-]
-conflicts: [
-  "ocaml-option-no-flat-float-array"
 ]
 url {
   src: "https://github.com/mkur/nlopt-ocaml/archive/refs/tags/release-0.7.tar.gz"

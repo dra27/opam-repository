@@ -14,6 +14,7 @@ bug-reports:
   "https://github.com/ocaml-batteries-team/batteries-included/issues"
 depends: [
   "ocaml" {>= "4.02.3" & < "5.1"}
+  "base-flat-float-array"
   "camlp-streams"
   "ocamlfind" {build & >= "1.5.3"}
   "ocamlbuild" {build}
@@ -22,7 +23,7 @@ depends: [
   "benchmark" {with-test & >= "1.6"}
   "num"
 ]
-conflicts: ["base-effects" "ocaml-option-no-flat-float-array"]
+conflicts: ["base-effects"]
 build: [
   [make "all"]
 ]
