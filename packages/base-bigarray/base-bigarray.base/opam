@@ -1,6 +1,12 @@
 opam-version: "2.0"
-maintainer: "https://github.com/ocaml/opam-repository/issues"
+authors: "David Allsopp"
+bug-reports: "https://github.com/ocaml/opam-repository/issues"
+homepage: "https://github.com/ocaml/opam-repository/wiki/Compilers"
+license: "CC0-1.0"
+maintainer: "David Allsopp <david.allsopp@metastack.com>"
+synopsis: "The OCaml Bigarray library"
 description: """
-Bigarray library distributed with the OCaml compiler
+Virtual package installed by OCaml compilers that either have Bigarray in
+the Standard Library or, for older compilers, have been built with the external
+Bigarray library enabled.
 """
-
