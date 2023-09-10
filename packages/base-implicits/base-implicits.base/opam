@@ -1,15 +1,18 @@
 opam-version: "2.0"
-maintainer: "yallop@gmail.com"
-authors: ["Jeremy Yallop"]
-homepage: "https://github.com/ocaml/opam-repository/tree/master/packages/base-implicits/base-implicits.base"
+authors: "Jeremy Yallop"
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
-synopsis: "Dummy base package for compilers with modular implicits support."
+homepage: "https://github.com/ocaml/opam-repository/wiki/Compilers"
+license: "CC0-1.0"
+maintainer: "David Allsopp <david.allsopp@metastack.com>"
+synopsis: "OCaml with modular implicits surface syntax"
 description: """
-Packages which cannot be compiled with a compiler that supports
-modular implicits, typically because 'implicit' is used as an
-identifier, should mark this package as a conflict."""
+Virtual package installed by OCaml compilers that support modular implicits.
+Primary purpose is to allow packages which are incompatible with the syntax
+changes (typically because 'implicit' is used as an identifier) to conflict
+with it."""
 depends: [
-  "ocaml"
-  "ocaml-variants"
-    {= "4.02.1+modular-implicits" | = "4.02.1+modular-implicits-ber"}
+  "ocaml-variants" {
+     = "4.02.1+modular-implicits" |
+     = "4.02.1+modular-implicits-ber"
+   }
 ]
