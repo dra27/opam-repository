@@ -1,7 +1,6 @@
 opam-version: "2.0"
 maintainer: "yallop@gmail.com"
 authors: ["Jeremy Yallop"]
-depopts: ["ocamlfind"]
 homepage: "https://github.com/ocaml/opam-repository/tree/master/packages/base-implicits/base-implicits.base"
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 synopsis: "Dummy base package for compilers with modular implicits support."
