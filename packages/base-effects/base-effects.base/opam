@@ -1,12 +1,18 @@
 opam-version: "2.0"
-maintainer: "https://github.com/ocaml-multicore/multicore-opam/issues"
+authors: "David Allsopp"
+bug-reports: "https://github.com/ocaml/opam-repository/issues"
+homepage: "https://github.com/ocaml/opam-repository/wiki/Compilers"
+license: "CC0-1.0"
+maintainer: "David Allsopp <david.allsopp@metastack.com>"
+synopsis: "OCaml with un-typed effects surface syntax"
 description: """
-Effects-based variant distributed with the Multicore OCaml compiler"
+Virtual package installed by OCaml compilers that support the OCaml Multicore
+project's surface syntax for effect declarations and handling. Primary purpose
+is to allow old packages which require the syntax to depend on it and also
+packages which are incompatible with the syntax changes to conflict with it.
 """
 depends: [
- "ocaml" {>= "4.12.0"}
- "ocaml-variants" {
-    = "4.12.0+domains+effects"
- }
- "base-domains"
+  "ocaml-variants" {
+     = "4.12.0+domains+effects"
+  }
 ]

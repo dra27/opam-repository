@@ -1,7 +1,14 @@
 opam-version: "2.0"
-maintainer: "https://github.com/ocaml-multicore/multicore-opam/issues"
+authors: "David Allsopp"
+bug-reports: "https://github.com/ocaml/opam-repository/issues"
+homepage: "https://github.com/ocaml/opam-repository/wiki/Compilers"
+license: "CC0-1.0"
+maintainer: "David Allsopp <david.allsopp@metastack.com>"
+synopsis: "OCaml with Domains-based parallelism"
 description: """
-Domains-based parallelism distributed with the Multicore OCaml compiler"
+Virtual package installed by OCaml compilers that support Domains-based
+parallelism as implemented in the OCaml Multicore project and the main
+distribution since OCaml 5.0.
 """
 depends: [
   "ocaml" {>= "5.0"} |
