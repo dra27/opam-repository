@@ -13,4 +13,3 @@ depends: [
   "ocaml-variants"
     {= "4.02.1+modular-implicits" | = "4.02.1+modular-implicits-ber"}
 ]
-flags: light-uninstall
