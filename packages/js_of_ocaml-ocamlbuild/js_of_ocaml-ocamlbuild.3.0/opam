@@ -9,9 +9,11 @@ dev-repo:     "git+https://github.com/ocsigen/js_of_ocaml.git"
 build: [["jbuilder" "build" "-p" name "-j" jobs]]
 
 depends: [
-  "ocaml" {>= "4.00.0"}
+  # The META file for ocamlbuild is required, which isn't automatically
+  # available on 4.02 when ocamlbuild was still part of the OCaml distribution.
+  ("ocaml" {>= "4.03"} | "ocamlfind")
   "jbuilder" {>= "1.0+beta9"}
-  ("ocamlbuild" {!= "0"} | ("base-ocamlbuild" "ocamlfind"))
+  "ocamlbuild"
 ]
 synopsis: "Compiler from OCaml bytecode to Javascript"
 url {
