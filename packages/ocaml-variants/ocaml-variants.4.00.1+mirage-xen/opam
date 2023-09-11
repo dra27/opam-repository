@@ -6,6 +6,7 @@ depends: [
   "base-ocamlopt" {post}
   "base-flat-float-array" {post}
   "base-num" {post}
+  "base-ocamlbuild" {post}
   "lwt" {post}
   "ocamlfind" {post}
   "xenbigarray" {post}

@@ -1,8 +1,12 @@
 opam-version: "2.0"
-maintainer: "gabriel.scherer@gmail.com"
-
-synopsis:
-  "OCamlbuild binary and libraries distributed with the OCaml compiler"
-depends: [
-  "ocaml" {>= "3.10" & < "4.03"}
-]
+authors: "David Allsopp"
+bug-reports: "https://github.com/ocaml/opam-repository/issues"
+homepage: "https://github.com/ocaml/opam-repository/wiki/Compilers"
+license: "CC0-1.0"
+maintainer: "David Allsopp <david.allsopp@metastack.com>"
+synopsis: "The ocamlbuild build system (distributed with the compiler)"
+description: """
+Virtual package installed by OCaml compilers that included ocamlbuild.
+ocamlbuild was moved out of the compiler distribution in OCaml 4.03.
+"""
+depends: "ocaml" {>= "3.10" & < "4.03"}

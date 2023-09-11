@@ -9,6 +9,7 @@ depends: [
   "base-ocamlopt" {post}
   "base-flat-float-array" {post}
   "base-num" {post}
+  "base-ocamlbuild" {post}
 ]
 conflict-class: "ocaml-core-compiler"
 available: sys-ocaml-version = "4.00.0"
