@@ -10,6 +10,7 @@ depends: [
   "base-metaocaml-ocamlfind" {post}
   "base-implicits" {post}
   "base-flat-float-array" {post}
+  "base-num" {post}
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler

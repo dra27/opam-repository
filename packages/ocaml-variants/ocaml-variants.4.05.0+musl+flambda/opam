@@ -12,6 +12,7 @@ depends: [
   "base-ocamlopt" {post}
   "base-flambda" {post}
   "base-flat-float-array" {post}
+  "base-num" {post}
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler

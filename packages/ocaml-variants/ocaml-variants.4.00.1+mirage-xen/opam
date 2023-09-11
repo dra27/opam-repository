@@ -5,6 +5,7 @@ depends: [
   "ocaml" {= "4.00.1" & post}
   "base-ocamlopt" {post}
   "base-flat-float-array" {post}
+  "base-num" {post}
   "lwt" {post}
   "ocamlfind" {post}
   "xenbigarray" {post}

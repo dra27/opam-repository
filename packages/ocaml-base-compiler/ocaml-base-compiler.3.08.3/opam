@@ -13,6 +13,7 @@ depends: [
   "base-threads" {post}
   "base-ocamlopt" {post}
   "base-flat-float-array" {post}
+  "base-num" {post}
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler
