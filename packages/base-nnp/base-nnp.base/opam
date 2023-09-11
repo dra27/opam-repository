@@ -1,10 +1,22 @@
 opam-version: "2.0"
-maintainer: "https://github.com/ocaml/opam-repository/issues"
-synopsis: "Naked pointers prohibited in the OCaml heap"
+authors: "David Allsopp"
+bug-reports: "https://github.com/ocaml/opam-repository/issues"
+homepage: "https://github.com/ocaml/opam-repository/wiki/Compilers"
+license: "CC0-1.0"
+maintainer: "David Allsopp <david.allsopp@metastack.com>"
+synopsis: "OCaml with naked pointers prohibited in the heap"
 description: """
-Installed when the compiler does not permit naked pointers in
-the heap. Prior to OCaml 5.00.0, this mode was expressly selected
-by configuring with --disable-naked-pointers. The shared memory
-parallelism added in OCaml 5.00.0 requires this mode.
+Virtual package installed by OCaml compilers that do not permit naked pointers
+in the heap. Prior to OCaml 5.0, this mode had to be expressly selected (see
+ocaml-option-nnp in opam-repository and --disable-naked-pointers in the
+compiler's configuration script). The shared memory parallelism added in
+OCaml 5.0.0 requires this mode.
 """
-depends: "base-domains" | "ocaml-option-nnp" | "ocaml-variants" {= "4.06.1+no-naked-pointers+flambda"}
+depends:
+  # The base-domains dependency captures both OCaml 5.0+ and also the pre-merge
+  # Multicore OCaml project compilers.
+  "base-domains" |
+  "ocaml-option-nnp" |
+  # Packages which explicitly disabled naked pointers before ocaml-option-nnp was
+  # introduced.
+  "ocaml-variants" {= "4.06.1+no-naked-pointers+flambda"}
