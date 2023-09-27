@@ -116,4 +116,3 @@ depopts: [
   #       OCaml should recompile with it.
   "flexdll"
 ]
-available: os = "win32" | os = "cygwin"
