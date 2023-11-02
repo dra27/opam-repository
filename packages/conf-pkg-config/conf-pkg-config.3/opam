@@ -5,8 +5,7 @@ homepage: "http://www.freedesktop.org/wiki/Software/pkg-config/"
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 license: "GPL-1.0-or-later"
 build: [
-  ["pkg-config" "--help"] {os != "openbsd" & (os != "win32" | os-distribution != "cygwin")}
-  ["pkgconf" "--help"] {os = "win32" & os-distribution = "cygwin"}
+  ["pkg-config" "--help"] {os != "openbsd"}
 ]
 setenv: [PKG_CONFIG_PATH += "%{lib}%/pkgconfig"]
 install: [
@@ -29,7 +28,7 @@ depexts: [
   ["pkgconf-pkg-config"] {os-distribution = "centos" & os-version >= "8"}
   ["pkgconf-pkg-config"] {os-distribution = "ol" & os-version >= "8"}
   ["system:pkgconf"] {os = "win32" & os-distribution = "cygwinports"}
-  ["pkgconf"] {os = "win32" & os-distribution = "cygwin"}
+  ["pkg-config"] {os = "win32" & os-distribution = "cygwin"}
 ]
 x-env-path-rewrite: [
   [ PKG_CONFIG_PATH ":" "host" ]
