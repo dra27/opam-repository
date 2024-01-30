@@ -3,4 +3,4 @@ maintainer: "https://github.com/ocaml/opam-repository/issues"
 description: """
 Unix library distributed with the OCaml compiler
 """
-
+conflicts: ["ocaml-option-no-unix"]
