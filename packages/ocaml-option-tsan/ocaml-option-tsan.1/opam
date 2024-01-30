@@ -13,3 +13,4 @@ conflicts: [
 ]
 maintainer: "platform@lists.ocaml.org"
 flags: compiler
+available: os != "win32"

@@ -7,15 +7,47 @@ homepage: "https://ocaml.org"
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 dev-repo: "git+https://github.com/ocaml/ocaml"
 depends: [
-  "ocaml" {post}
+  # This is OCaml 5.1.0
+  "ocaml" {= "5.1.0" & post}
+
+  # General base- packages
   "base-unix" {post}
   "base-threads" {post}
   "base-bigarray" {post}
   "base-domains" {post}
   "base-nnp" {post}
+
+  # Architecture
+  "base-arch-arm32" {sys-ocaml-arch = "arm" & post}
+  "base-arch-arm64" {sys-ocaml-arch = "arm64" & post}
+  "base-arch-ppc64" {sys-ocaml-arch = "power" & post}
+  "base-arch-riscv64" {sys-ocaml-arch = "riscv" & post}
+  "base-arch-s390x" {sys-ocaml-arch = "s390x" & post}
+  "base-arch-x86_32" {sys-ocaml-arch = "i686" & post}
+  "base-arch-x86_64" {sys-ocaml-arch = "x86_64" & post}
+  "base-arch-unknown" {sys-ocaml-arch != "arm" & arch != "arm64" & arch != "power" & arch != "riscv" & arch != "s390x" & arch != "i686" & arch != "x86_64" & post}
+
+  # System (Windows-only at present)
+  "base-system-mingw" {sys-ocaml-libc = "msvc" & sys-ocaml-cc = "cc" & post}
+  # There is no official MSVC support for 5.1.0
+  "base-system-msvc" {sys-ocaml-cc = "msvc" & post}
+  "base-system-other" {sys-ocaml-libc != "msvc" & post}
+
+  # Environment configuration (Windows-only)
+  # NB There are not "system" distributions of OCaml on Windows; the support
+  # here is intended for binary caching setups, choosing to install a build
+  # of OCaml external to opam, but still using opam to provide the C compiler
+  # configuration.
+  "conf-mingw-w64-gcc-x86_64" {sys-ocaml-arch = "x86_64" & sys-ocaml-libc = "msvc" & sys-ocaml-cc = "cc" & post}
+  "conf-mingw-w64-gcc-i686" {sys-ocaml-arch = "i686" & sys-ocaml-libc = "msvc" & sys-ocaml-cc = "cc" & post}
+  "conf-mingw-w64-zstd-x86_64" {sys-ocaml-arch = "x86_64" & sys-ocaml-libc = "msvc" & sys-ocaml-cc = "cc" & post}
+  "conf-mingw-w64-zstd-i686" {sys-ocaml-arch = "i686" & sys-ocaml-libc = "msvc" & sys-ocaml-cc = "cc" & post}
+  "mingw-w64-shims" {sys-ocaml-libc = "msvc" & sys-ocaml-cc = "cc" & os-distribution = "cygwin" & post}
+  "ocaml-msvc32-env" {sys-ocaml-arch = "i686" & sys-ocaml-cc = "msvc" & post}
+  "ocaml-msvc64-env" {sys-ocaml-arch = "x86_64" & sys-ocaml-cc = "msvc" & post}
 ]
 conflict-class: "ocaml-core-compiler"
-available: sys-ocaml-version = "5.1.0"
+available: sys-ocaml-version = "5.1.0" & (os != "win32" | sys-ocaml-libc = "msvc")
 flags: compiler
 build: ["ocaml" "gen_ocaml_config.ml"]
 substs: "gen_ocaml_config.ml"
