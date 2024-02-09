@@ -4,4 +4,8 @@ depends: [
   "ocaml-variants" {post & >= "5.1.0~"}
 ]
 maintainer: "platform@lists.ocaml.org"
-flags: compiler
+# avoid-version is used here since we can't write the dependency for the
+# conf-zstd package as requiring "not ocaml-option-no-compression", so for now
+# we do it by having ("ocaml-option-no-compression" | "conf-zstd") and using
+# avoid-version in this package instead.
+flags: [compiler avoid-version]
