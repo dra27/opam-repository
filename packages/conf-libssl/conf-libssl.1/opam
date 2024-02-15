@@ -31,3 +31,4 @@ description:
   "This package can only install if the OpenSSL library is installed on the system."
 extra-files: ["osx-build.sh" "md5=faf81a6bf30e346abe94610f136c6193"]
 flags: conf
+available: os != "win32" | os-distribution = "cygwinports"
