@@ -100,16 +100,22 @@ url {
   src: "https://github.com/ocaml/ocaml/archive/4.05.0.tar.gz"
   checksum: "md5=7e0079162134336a24b9028349c756bb"
 }
-patches: ["fix-gcc10.patch" "gpr1330.patch" "alt-signal-stack.patch"]
+patches: [
+  "fix-gcc10.patch"
+  # XXX These two disabled because they can't be downloaded
+  #"gpr1330.patch"
+  #"alt-signal-stack.patch"
+]
 extra-files: [
   ["fix-gcc10.patch" "md5=3791e3c17d11ec0f246fc6c5c5e5e2f3"]
 ]
 available: !(os = "macos" & arch = "arm64")
-extra-source "alt-signal-stack.patch" {
-  src: "https://github.com/ocaml/ocaml/commit/50c2d1275e537906ea144bd557fde31e0bf16e5f.patch?full_index=1"
-  checksum: "sha256=22f9244e4d91c2a939594b79c41707acd75a4fc7c63feb0cb5528b43949844f8"
-}
-extra-source "gpr1330.patch" {
-  src: "https://github.com/ocaml/ocaml/commit/b00000c6679804731692362b0baac27fa3fddfd5.patch?full_index=1"
-  checksum: "sha256=e319f67b687499b7bdc3511eee0046dff7d81678c4d6fe4c760494d25c66af3e"
-}
+# XXX This is a much more urgent 2.2.0 issue!
+#extra-source "alt-signal-stack.patch" {
+#  src: "https://github.com/ocaml/ocaml/commit/50c2d1275e537906ea144bd557fde31e0bf16e5f.patch?full_index=1"
+#  checksum: "sha256=22f9244e4d91c2a939594b79c41707acd75a4fc7c63feb0cb5528b43949844f8"
+#}
+#extra-source "gpr1330.patch" {
+#  src: "https://github.com/ocaml/ocaml/commit/b00000c6679804731692362b0baac27fa3fddfd5.patch?full_index=1"
+#  checksum: "sha256=e319f67b687499b7bdc3511eee0046dff7d81678c4d6fe4c760494d25c66af3e"
+#}
