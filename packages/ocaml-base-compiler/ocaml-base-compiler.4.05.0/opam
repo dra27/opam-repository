@@ -7,14 +7,54 @@ homepage: "https://ocaml.org"
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 dev-repo: "git+https://github.com/ocaml/ocaml.git#4.05"
 depends: [
+  # This is OCaml 4.05.0
   "ocaml" {= "4.05.0" & post}
+
+  # General base- packages
   "base-unix" {post}
   "base-bigarray" {post}
   "base-threads" {post}
+
+  # Architecture (non-Windows)
+  # opam-repository at present requires that ocaml-base-compiler is installed
+  # using an architecture which matches the machine's, since arch is used in
+  # available fields. Cross-compilation at this stage is an unstable accident.
+  "base-arch-arm32" {arch = "arm32" & post}
+  "base-arch-arm64" {arch = "arm64" & post}
+  "base-arch-ppc64" {arch = "ppc64" & post}
+  "base-arch-riscv64" {arch = "riscv64" & post}
+  "base-arch-s390x" {arch = "s390x" & post}
+  # The Windows ports explicitly select the architecture (see below) this
+  # facility is not yet available for other platforms.
+  "base-arch-x86_32" {os != "win32" & arch = "x86_32" & post}
+  "base-arch-x86_64" {os != "win32" & arch = "x86_64" & post}
+  "base-arch-unknown" {os != "win32" & arch != "arm32" & arch != "arm64" & arch != "ppc64" & arch != "riscv64" & arch != "s390x" & arch != "x86_32" & arch != "x86_64" & post}
+
+
+  # Port selection (Windows)
+  # amd64 mingw-w64 / MSVC
+  ("ocaml-arch-x86_64" {os = "win32" & arch = "x86_64"} & "base-arch-x86_64" {post} &
+    ("ocaml-system-mingw" & "base-system-mingw" {post} & "mingw-w64-shims" {post} |
+     "ocaml-system-msvc" & "base-system-msvc" {post}) |
+  # i686 mingw-w64 / MSVC
+   "ocaml-arch-x86_32" {os = "win32"} & "base-arch-x86_32" {post} &
+    ("ocaml-system-mingw" & "base-system-mingw" {post} & "mingw-w64-shims" {post} |
+     "ocaml-system-msvc" & "base-system-msvc" {post}) |
+  # Non-Windows systems
+   "base-system-other" {os != "win32"})
+
+  # OCaml with default configuration (no flambda, TSAN, etc.)
+  "ocaml-options-vanilla" {post}
+
+  # Support Packages
+  "flexdll" {os = "win32"}
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler
 setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
+x-env-path-rewrite: [
+  [CAML_LD_LIBRARY_PATH (";" {os = "win32"} ":" {os != "win32"}) "target"]
+]
 build: [
   [
     "sed"
@@ -24,7 +64,7 @@ build: [
     "config/auto-aux/hasgot"
   ] {os = "macos"}
   ["./configure" "-prefix" prefix "-with-debug-runtime"]
-    {os != "openbsd" & os != "freebsd" & os != "macos"}
+    {os != "win32" & os != "openbsd" & os != "freebsd" & os != "macos"}
   [
     "./configure"
     "-prefix"
@@ -35,8 +75,25 @@ build: [
     "-aspp"
     "cc -c"
   ] {os = "openbsd" | os = "freebsd" | os = "macos"}
+  ["cp" "config/s-nt.h" "config/s.h"] {os = "win32"}
+  ["cp" "config/m-nt.h" "config/m.h"] {os = "win32"}
+  ["cp" "-aT" "%{flexdll:share}%" "flexdll"] {os = "win32"}
+  ["cp" "config/Makefile.mingw" {ocaml-system-mingw:installed & ocaml-arch-x86_32:installed}
+        "config/Makefile.mingw64" {ocaml-system-mingw:installed & ocaml-arch-x86_64:installed}
+        "config/Makefile.msvc" {ocaml-system-msvc:installed & ocaml-arch-x86_32:installed}
+        "config/Makefile.msvc64" {ocaml-system-msvc:installed & ocaml-arch-x86_64:installed}
+        "config/Makefile"] {os = "win32"}
+  ["sed" "-i" "-e" "/no-unused/s/$/ -fcommon/" "config/Makefile"] {ocaml-system-mingw:installed}
+  # XXX This ends up being installed in Makefile.config, so it's far from ideal!
+  ["cmd" "/c" "echo PREFIX_WIN=%{prefix}%>> config\\Makefile"] {os = "win32"}
+  ["sed" "-i" "-e" "/PREFIX=/s|=.*|=$(subst \\\\\\\\,/,$(PREFIX_WIN))|"
+              "-e" "s|/lib|&/ocaml|"
+              "config/Makefile"] {os = "win32"}
+  # XXX This is not yet hardened to deal with flexlink in PATH (sed command needed)
+  [make "flexdll"] {os = "win32"}
   [make "world"]
   [make "world.opt"]
+  [make "flexlink.opt"] {os = "win32"}
 ]
 install: [make "install"]
 url {

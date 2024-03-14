@@ -21,7 +21,7 @@ flags: compiler
 # avoid-version in ocaml-arch-x86_32 will be ignored.
 available: os = "win32" & (arch = "x86_64" | arch = "arm64")
 depends: [
-  ("ocaml-base-compiler" {post & >= "4.13.0~"} | "ocaml-variants" {post & >= "4.13.0~"})
+  ("ocaml-base-compiler" {post & (>= "4.13.0~" | = "4.05.0")} | "ocaml-variants" {post & >= "4.13.0~"})
   "base-arch-x86_64" {post}
 ]
 conflict-class: "ocaml-architecture-setting"
