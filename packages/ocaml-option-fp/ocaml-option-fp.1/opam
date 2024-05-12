@@ -1,9 +1,0 @@
-opam-version: "2.0"
-synopsis: "Set OCaml to be compiled with frame-pointers enabled"
-depends: [
-  "ocaml-variants" {post & >= "4.12.0~"}
-]
-conflicts: ["ocaml-option-musl"]
-available: os = "linux" & arch = "x86_64"
-maintainer: "David Allsopp <david@tarides.com>"
-flags: compiler
