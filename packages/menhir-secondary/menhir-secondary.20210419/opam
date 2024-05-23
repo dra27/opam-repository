@@ -8,11 +8,15 @@ homepage: "http://gitlab.inria.fr/fpottier/menhir"
 dev-repo: "git+https://gitlab.inria.fr/fpottier/menhir.git"
 bug-reports: "https://gitlab.inria.fr/fpottier/menhir/-/issues"
 license: "LGPL-2.0-only WITH OCaml-LGPL-linking-exception"
+build-env: [
+  [PATH += "%{ocaml-secondary-compiler:share}%/bin"]
+  [PATH += "%{dune-secondary:share}%/bin"]
+]
 build: [
-  ["sh" "-exc" "PATH=%{ocaml-secondary-compiler:share}%/bin:%{dune-secondary:share}%/bin:$PATH dune build"]
+  ["dune" "build"]
 ]
 install: [
-  ["sh" "-exc" "PATH=%{ocaml-secondary-compiler:share}%/bin:%{dune-secondary:share}%/bin:$PATH dune install --prefix %{_:share}%"]
+  ["dune" "install" "--prefix" _:share]
 ]
 depends: [
   "dune-secondary"
