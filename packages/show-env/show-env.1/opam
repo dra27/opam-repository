@@ -1,0 +1,18 @@
+opam-version: "2.0"
+synopsis: "Show the environment"
+description: "Yet another environment debug package"
+maintainer: "David Allsopp <david.allsopp@metastack.com>"
+authors: "David Allsopp"
+license: "ISC"
+homepage: "https://opam.ocaml.org"
+bug-reports: "https://github.com/ocaml/opam/issues"
+flags: conf
+build: [
+  ["cmd" "/c" "echo %%PATH%%"]
+  ["sh" "-c" "env | grep '^PATH='"]
+  ["cmd" "/c" "env | findstr /R ^^PATH="]
+  ["where" "bash"]
+  ["where" "git"]
+  ["which" "bash"]
+  ["which" "git"]
+]
