@@ -52,7 +52,7 @@ depends: [
   "ocaml-env-msvc64" {?sys-ocaml-arch & sys-ocaml-arch = "x86_64" & sys-ocaml-cc = "msvc" & post}
 ]
 conflict-class: "ocaml-core-compiler"
-available: sys-ocaml-version = "4.13.1" & (os != "win32" | sys-ocaml-libc = "msvc")
+available: sys-ocaml-version = "4.13.1"
 flags: compiler
 build: ["ocaml" "gen_ocaml_config.ml"]
 substs: "gen_ocaml_config.ml"
