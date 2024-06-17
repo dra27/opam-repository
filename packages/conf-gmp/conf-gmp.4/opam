@@ -16,6 +16,11 @@ build: [
     "cc -c $CFLAGS -I/opt/homebrew/include -I/opt/local/include -I/usr/local/include test.c"
   ] {os = "macos"}
 ]
+depends: [
+  "conf-pkg-config" {build}
+  (("host-arch-x86_32" {os = "win32" & os-distribution != "cygwinports"} & "conf-mingw-w64-gmp-i686" {os = "win32" & os-distribution != "cygwinports"}) |
+   ("host-arch-x86_64" {os = "win32" & os-distribution != "cygwinports"} & "conf-mingw-w64-gmp-x86_64" {os = "win32" & os-distribution != "cygwinports"}))
+]
 depexts: [
   ["libgmp-dev"] {os-family = "debian"}
   ["libgmp-dev"] {os-family = "ubuntu"}
