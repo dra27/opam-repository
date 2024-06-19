@@ -4,7 +4,7 @@ homepage: "http://gmplib.org/"
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 license: "GPL-1.0-or-later"
 build: [
-  ["sh" "-exc" "cc -c $CFLAGS -I/usr/local/include test.c"] {os != "macos" && os != "win32" }
+  ["sh" "-exc" "cc -c $CFLAGS -I/usr/local/include test.c"] {os != "macos" & os != "win32" }
   ["sh" "-exc" "$(ocamlc -config-var c_compiler) -c $CFLAGS test.c"] {os = "win32"}
   [
     "sh"
