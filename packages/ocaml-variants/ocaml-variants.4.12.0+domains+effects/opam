@@ -68,3 +68,4 @@ depopts: [
   "ocaml-option-musl"
   "ocaml-option-static"
 ]
+available: os != "win32"
