@@ -23,6 +23,7 @@ conflicts: [
   # ocaml-option-bytecode-only can be installed, but has no effect.
   "ocaml-option-bytecode-only" {arch = "arm64" | (arch = "x86_64" & os != "win32") }
   "ocaml-option-default-unsafe-string"
+  "ocaml-option-force-safe-string"
   "ocaml-option-flambda"
   "ocaml-option-fp"
   "ocaml-option-musl"

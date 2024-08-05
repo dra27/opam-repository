@@ -1,5 +1,5 @@
 opam-version: "2.0"
-synopsis: "Ensure that OCaml is compiled with flambda activated, and no other custom options"
+synopsis: "Ensure that OCaml is compiled without the native-code compiler"
 authors: [
   "David Allsopp"
   "Louis Gesbert"
@@ -7,13 +7,13 @@ authors: [
 homepage: "https://opam.ocaml.org"
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 license: "CC0-1.0+"
-depends: ["ocaml-option-flambda"]
+depends: ["ocaml-option-force-safe-string"]
 conflicts: [
   "ocaml-option-32bit"
   "ocaml-option-afl"
   "ocaml-option-bytecode-only"
   "ocaml-option-default-unsafe-string"
-  "ocaml-option-force-safe-string"
+  "ocaml-option-flambda"
   "ocaml-option-fp"
   "ocaml-option-musl"
   "ocaml-option-no-flat-float-array"
