@@ -1,8 +1,5 @@
 opam-version: "2.0"
-synopsis:
-  "Official release 4.08.0, compiled with musl-gcc and with flambda activated"
-description:
-  "Requires musl-gcc to be installed (package musl on Arch Linux or musl-tools on Debian)"
+synopsis: "Official release of OCaml 4.08.1"
 maintainer: [
   "David Allsopp <david@tarides.com>"
   "Florian Angeletti <florian.angeletti@inria.fr>"
@@ -20,8 +17,7 @@ homepage: "https://ocaml.org"
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 dev-repo: "git+https://github.com/ocaml/ocaml.git#4.08"
 depends: [
-  "ocaml-compiler" {= "4.08.0"}
-  "ocaml-options-only-flambda-musl"
+  "ocaml-compiler" {= "4.08.1"}
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler

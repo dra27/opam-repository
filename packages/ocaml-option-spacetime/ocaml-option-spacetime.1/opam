@@ -8,8 +8,8 @@ homepage: "https://opam.ocaml.org"
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 license: "CC0-1.0+"
 depends: [
-  # Not available until options are ported to earlier compilers
-  "ocaml-variants" {post & >= "4.12.0~" & < "4.12"}
+  "ocaml-variants" {post & >= "4.08.0~" & < "4.09.0~~"} | # TODO Merge this with the next clause when 4.08-4.11 complete, etc.
+  "ocaml-compiler" {post & >= "4.04.0~" & < "4.12"}
 ]
 maintainer: "David Allsopp <david@tarides.com>"
 flags: compiler

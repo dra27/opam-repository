@@ -8,6 +8,7 @@ homepage: "https://opam.ocaml.org"
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 license: "CC0-1.0+"
 depends: [
+  "ocaml-variants" {post & >= "4.08.0~" & < "4.09.0~~"} | # TODO Merge this with the next clause when 4.08-4.11 complete, etc.
   "ocaml-variants" {post & >= "4.12.0~"}
 ]
 depexts: [
