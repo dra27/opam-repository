@@ -138,6 +138,7 @@ depopts: [
 patches: [
   "fix-gcc10.patch"
   "alt-signal-stack.patch"
+  "unified-squash.patch"
   "pr9700-flexdll-bootstrap.patch"
   "pr9925-cygwin-fdebug-prefix-map.patch"
   "pr10062-mingw-lld.patch"
@@ -172,6 +173,10 @@ extra-source "fix-gcc10.patch" {
     "sha256=f658efe87952165713affe6f1653ab94ca85a8d6bb77ff665b1de43074aa5b00"
     "md5=f406119ae0091835cdf158d7d0ff53f7"
   ]
+}
+extra-source "unified-squash.patch" {
+  src: "https://github.com/dra27/ocaml/commit/7072e09f7443b69e4aa225bd3f2f7b060f6ea527.patch?full_index=1"
+  checksum: "sha256=bd701b403776fc3f2520f13294d9f1fa51a2d212465a0162ade01a30afe52825"
 }
 extra-source "pr9700-flexdll-bootstrap.patch" {
   src: "https://github.com/dra27/ocaml/commit/87ef33d3f01e81f715af16b721c2531b13b76681.patch?full_index=1"
