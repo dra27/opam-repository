@@ -14,7 +14,7 @@ bug-reports: "https://github.com/ocaml/opam-repository/issues"
 flags: compiler
 available: os = "win32"
 depends: [
-  ("ocaml-base-compiler" {post & >= "4.13.0~"} | "ocaml-variants" {post & >= "4.13.0~"})
+  ("ocaml-base-compiler" {post & >= "4.12.0~"} | "ocaml-variants" {post & >= "4.12.0~"})
   ("ocaml-env-msvc32" | "ocaml-env-msvc64")
 ]
 conflict-class: "ocaml-system"
