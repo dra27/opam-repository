@@ -152,6 +152,7 @@ patches: [
   "pr9335-encore-manpages.patch"
   "pr9939-mingw-runtime-11.patch" # XXX This patch will definitely alter (location and position)
   "fcommon-mingw64.patch" # XXX As will this one
+  "pr9136-prefix" # XXX As will this one - needed for 4.08 and 4.09
 ]
 # TODO: this should install config.status as well as config.cache
 extra-source "ocaml-compiler.install" {
@@ -229,4 +230,8 @@ extra-source "pr9939-mingw-runtime-11.patch" {
 extra-source "fcommon-mingw64.patch" {
   src: "https://github.com/dra27/ocaml/commit/833c72f990b208ee9d9b06eeaf70fdc1bf2dca8e.patch?full_index=1"
   checksum: "sha256=192a53d1f1afa4cd0b65940d9bd538333714a69d91a3ac8e77edf94095d4b936"
+}
+extra-source "pr9136-prefix.patch" {
+  src: "https://github.com/dra27/ocaml/commit/e4dedd7faa2db03c65235a3ed7397692d5a957f1.patch?full_index=1"
+  checksum: "sha256=a2de4e4460adbe221fbf0c14f14c07276d3b6dbf16329534a7ad8472cf6169ad"
 }
