@@ -11,6 +11,7 @@ build: [
   ["sh" "-exc" "PATH=%{prefix}%/init_deps/bin/:$PATH %{prefix}%/init_deps/bin/dune build @install -j %{jobs}%"]
 ]
 install: [
+  ["sh" "-exc" "PATH=%{prefix}%/init_deps/bin/:$PATH %{prefix}%/init_deps/bin/dune install --prefix %{prefix}%/init_deps/ -p menhir -j %{jobs}%"]
   ["sh" "-exc" "PATH=%{prefix}%/init_deps/bin/:$PATH %{prefix}%/init_deps/bin/dune install --prefix %{prefix}%/init_deps/ -p menhirLib -j %{jobs}%"]
 ]
 depends: [
