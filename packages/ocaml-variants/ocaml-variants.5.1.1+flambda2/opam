@@ -6,6 +6,7 @@ homepage: "https://ocaml.org"
 bug-reports: "https://github.com/ocaml-flambda/flambda-backend/issues"
 dev-repo: "git+https://github.com/ocaml-flambda/flambda-backend#main"
 depends: [
+  "conf-autoconf"
   "init-compiler"
   "init-dune"
   "init-menhir" {= "20210419"}
