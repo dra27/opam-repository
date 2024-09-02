@@ -14,7 +14,7 @@ build: [
   ["sh" "-exc" "PATH=%{prefix}%/init_deps/bin/:$PATH ./_boot/dune.exe build dune.install --release --profile dune-bootstrap -j %{jobs}%"]
 ]
 install: [
-  ["sh" "-exc" "PATH=%{prefix}%/init_deps/bin/:$PATH ./_boot/dune.exe install --prefix %{prefix}%/init_deps/ dune"]
+  ["sh" "-exc" "PATH=%{prefix}%/init_deps/bin/:$PATH ./_boot/dune.exe install --prefix '%{prefix}%/init_deps/' dune"]
 ]
 depends: [
   "init-compiler"
