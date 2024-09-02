@@ -8,7 +8,7 @@ dev-repo: "git+https://github.com/ocaml-flambda/flambda-backend#main"
 depends: [
   "init-compiler"
   "init-dune"
-  "init-menhir"
+  "init-menhir" {= "20210419"}
   "ocaml" {= "5.1.1" & post}
   "base-unix" {post}
   "base-bigarray" {post}
