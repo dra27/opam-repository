@@ -22,7 +22,8 @@ conflict-class: "ocaml-core-compiler"
 flags: compiler
 setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
 build: [
-  ["autoconf"]
+  # Hacks around a PATH resolution bug in opam 2.2
+  ["sh" {os = "win32"} "-c" {os = "win32"} "autoconf"]
   ["./configure" "--enable-runtime5" "--enable-middle-end=flambda2" "--disable-naked-pointers" "--prefix=%{prefix}%" "--with-dune=%{prefix}%/init_deps/bin/dune"]
   ["sh" "-exc" "PATH=%{prefix}%/init_deps/bin/:$PATH make -j%{jobs}%"]
 ]
