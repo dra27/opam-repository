@@ -7,6 +7,9 @@ homepage: "http://gitlab.inria.fr/fpottier/menhir"
 dev-repo: "git+https://gitlab.inria.fr/fpottier/menhir.git"
 bug-reports: "https://gitlab.inria.fr/fpottier/menhir/-/issues"
 license: "LGPL-2.0-only WITH OCaml-LGPL-linking-exception"
+build-env: [
+  PATH += "%{prefix}%/init_deps/bin"
+]
 build: [
   ["sh" "-exc" "PATH=%{prefix}%/init_deps/bin/:$PATH %{prefix}%/init_deps/bin/dune build @install -j %{jobs}%"]
 ]

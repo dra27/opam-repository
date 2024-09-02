@@ -6,6 +6,9 @@ license: "MIT"
 homepage: "https://github.com/ocaml/dune"
 doc: "https://dune.readthedocs.io/"
 bug-reports: "https://github.com/ocaml/dune/issues"
+build-env: [
+  PATH += "%{prefix}%/init_deps/bin"
+]
 build: [
   ["sh" "-exc" "PATH=%{prefix}%/init_deps/bin/:$PATH ocaml boot/bootstrap.ml -j %{jobs}%"]
   ["sh" "-exc" "PATH=%{prefix}%/init_deps/bin/:$PATH ./_boot/dune.exe build dune.install --release --profile dune-bootstrap -j %{jobs}%"]
