@@ -80,9 +80,9 @@ url {
 }
 extra-source "ocaml-base-compiler.install" {
   src:
-    "https://raw.githubusercontent.com/ocaml/opam-source-archives/main/patches/ocaml-base-compiler/ocaml-base-compiler.install"
+    "https://raw.githubusercontent.com/dra27/ocaml/c7643f56fd6cd0f5237c7f6e2bba43f9f4b75de6/files/ocaml-compiler.install"
   checksum: [
-    "sha256=79f2a1a5044a91350a0eb6ce12e261a72a2855c094c425cddf3860e58c486678"
-    "md5=3e969b841df1f51ca448e6e6295cb451"
+    "sha256=7af3dc34e6f9f3be2ffd8d32cd64fa650d6a036c86c4821a7033d24a90fba11c"
+    "md5=781ea69255fd0cb643a9617ff56fd6ba"
   ]
 }
