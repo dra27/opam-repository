@@ -48,7 +48,7 @@ else
     # Just a warning on 4.13
     make "-j$3" flexdll
   else
-    ./configure --prefix "$1" --enable-relative --enable-runtime-search=always --enable -C
+    ./configure --prefix "$1" --enable-relative --enable-runtime-search=always -C
   fi
   make "-j$3"
 fi
