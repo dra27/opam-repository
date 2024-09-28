@@ -20,8 +20,8 @@ setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
 build: ["sh" "./build.sh" prefix os jobs "000v"]
 install: ["sh" "./build.sh" prefix]
 extra-source "ocaml.tar.gz" {
-  src: "https://github.com/dra27/ocaml/archive/backport-4.14.tar.gz"
-  checksum: "md5=3f94ac022d84bba40011a87db311f224"
+  src: "https://github.com/dra27/ocaml/archive/0598df18732107619f4d500f9c372e648b6c0174.tar.gz"
+  checksum: "md5=d4cf5e58d1419ca01cace08ba567b0cd"
 }
 extra-source "flexdll.tar.gz" {
   src: "https://github.com/alainfrisch/flexdll/archive/refs/tags/0.41.tar.gz"
