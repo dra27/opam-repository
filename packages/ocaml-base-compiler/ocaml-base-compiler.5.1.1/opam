@@ -26,9 +26,7 @@ depends: [
      "system-mingw" & "mingw-w64-shims" {os-distribution = "cygwin" & build}) |
   # i686 mingw-w64 only
    ("arch-x86_32" {os = "win32"} & "ocaml-option-bytecode-only" &
-     "system-mingw" & "mingw-w64-shims" {os-distribution = "cygwin" & build}) |
-  # Non-Windows systems
-   "host-system-other" {os != "win32" & post})
+     "system-mingw" & "mingw-w64-shims" {os-distribution = "cygwin" & build}))
 
   # OCaml with default configuration (no flambda, TSAN, etc.)
   "ocaml-options-vanilla" {post}
