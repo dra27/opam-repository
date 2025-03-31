@@ -64,6 +64,7 @@ build: [
     "--with-stublibs=../stublibs" {os != "win32"}
     "--with-stublibs=..\\stublibs" {os = "win32"}
     "--enable-runtime-search=always"
+    "--enable-runtime-search-target"
     "--with-flexdll=%{flexdll:share}%" {os = "win32" & flexdll:installed}
     "--with-winpthreads-msvc=%{winpthreads:share}%" {system-msvc:installed}
     "-C"
