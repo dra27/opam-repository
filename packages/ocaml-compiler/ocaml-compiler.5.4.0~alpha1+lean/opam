@@ -101,7 +101,7 @@ build: [
 install: [make "install"]
 url {
   src: "https://github.com/dra27/ocaml/archive/export-ignore-5.4.0-alpha1.tar.gz"
-  checksum: "sha256=15512f4e0079f1b67ff05d203bb1e8439ea59da99b5774c95af477b2302064f1"
+  checksum: "sha256=be28ac14b0e88a5fd6053934b82e4027d51993afffcdf6b5d15a78492a168de7"
 }
 depopts: [
   "ocaml-option-32bit"
