@@ -97,9 +97,8 @@ build: [
     "--disable-warn-error"
   ]
   [make "-j%{jobs}%"]
-  [make "INSTALL_MODE=opam" "install"]
 ]
-install: ["sh" "./%{name}%-fixup.sh" prefix]
+install: [make "install"]
 url {
   src: "https://github.com/dra27/ocaml/archive/opam-install-file-5.4.tar.gz"
   checksum: "sha256=99b80e9cbe72ecb4f488264fb73559f7049bc7c9ffe25bd177455ea9f6de67b0"
@@ -118,3 +117,11 @@ depopts: [
   "ocaml-option-static"
   "ocaml-option-tsan"
 ]
+extra-source "ocaml-compiler.install" {
+  src:
+    "https://raw.githubusercontent.com/ocaml/ocaml/899b8f3bece45f55161dad72eaa223c2bb7202e8/ocaml-variants.install"
+  checksum: [
+    "sha256=7af3dc34e6f9f3be2ffd8d32cd64fa650d6a036c86c4821a7033d24a90fba11c"
+    "md5=781ea69255fd0cb643a9617ff56fd6ba"
+  ]
+}
