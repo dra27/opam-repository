@@ -1,0 +1,121 @@
+opam-version: "2.0"
+license: "LGPL-2.1-or-later WITH OCaml-LGPL-linking-exception"
+synopsis: "Relocatable OCaml 4.13.2 (from lock ce46c921ddf)"
+maintainer: "David Allsopp <david@tarides.com>"
+authors: [
+  "Xavier Leroy"
+  "Damien Doligez"
+  "Alain Frisch"
+  "Jacques Garrigue"
+  "Didier Rémy"
+  "Jérôme Vouillon"
+]
+homepage: "https://github.com/dra27/relocatable"
+bug-reports: "https://github.com/dra27/relocatable/issues"
+dev-repo: "git+https://github.com/dra27/ocaml.git#backport-4.13"
+depends: [
+  # This is Relocatable OCaml 4.13.2
+  "ocaml" {= "4.13.2" & post}
+  "compiler-cloning" {build}
+
+  # General base- packages
+  "base-unix" {post}
+  "base-bigarray" {post}
+  "base-threads" {post}
+
+  # Port selection (Windows)
+  # amd64 mingw-w64 / MSVC
+  (("arch-x86_64" {os = "win32" & arch = "x86_64"} &
+     (("system-mingw" & "mingw-w64-shims" {os-distribution = "cygwin" & post}) |
+      "system-msvc")) |
+  # i686 mingw-w64 / MSVC
+   ("arch-x86_32" {os = "win32"} &
+     (("system-mingw" & "mingw-w64-shims" {os-distribution = "cygwin" & post}) |
+      "system-msvc")) |
+  # Non-Windows systems need to install something to satisfy this formula, so
+  # repeat the base-unix dependency
+   "base-unix" {os != "win32" & post})
+
+  # Support Packages
+  "flexdll" {>= "0.36" & os = "win32"}
+]
+build-env: MSYS2_ARG_CONV_EXCL = "*"
+build: [
+  [
+    "sh" "process.sh" make "-j%{jobs}%" _:build-id _:name compiler-cloning:version
+    "--host=x86_64-pc-windows"  {system-msvc:installed & arch-x86_64:installed}
+    "--host=x86_64-w64-mingw32" {os-distribution = "cygwin" & system-mingw:installed & arch-x86_64:installed}
+    "--host=i686-pc-windows"    {system-msvc:installed & arch-x86_32:installed}
+    "--host=i686-w64-mingw32"   {os-distribution = "cygwin" & system-mingw:installed & arch-x86_32:installed}
+    "--prefix=%{prefix}%"
+    "--docdir=%{doc}%/ocaml"
+    "--with-relative-libdir=../lib/ocaml" {os != "win32"}
+    "--with-relative-libdir=..\\lib\\ocaml" {os = "win32"}
+    "--with-stublibs=../stublibs" {os != "win32"}
+    "--with-stublibs=..\\stublibs" {os = "win32"}
+    "--enable-runtime-search=always"
+    "--enable-runtime-search-target"
+    "--with-flexdll=%{flexdll:share}%" {os = "win32" & flexdll:installed}
+    "--with-afl" {ocaml-option-afl:installed}
+    "--disable-native-compiler" {ocaml-option-bytecode-only:installed}
+    "--disable-force-safe-string" {ocaml-option-default-unsafe-string:installed}
+    "DEFAULT_STRING=unsafe" {ocaml-option-default-unsafe-string:installed}
+    "--disable-flat-float-array" {ocaml-option-no-flat-float-array:installed}
+    "--enable-flambda" {ocaml-option-flambda:installed}
+    "--enable-frame-pointers" {ocaml-option-fp:installed}
+    "--disable-naked-pointers" {ocaml-option-nnp:installed}
+    "--enable-naked-pointers-checker" {ocaml-option-nnpchecker:installed}
+    "CC=cc" {!ocaml-option-32bit:installed & !ocaml-option-musl:installed & (os="openbsd"|os="macos")}
+    "CC=musl-gcc" {ocaml-option-musl:installed & os-distribution!="alpine"}
+    "CFLAGS=-Os" {ocaml-option-musl:installed}
+    "CC=gcc -m32" {ocaml-option-32bit:installed & os="linux"}
+    "CC=gcc -Wl,-read_only_relocs,suppress -arch i386 -m32" {ocaml-option-32bit:installed & os="macos"}
+    "ASPP=cc -c" {!ocaml-option-32bit:installed & !ocaml-option-musl:installed & (os="openbsd"|os="macos")}
+    "ASPP=musl-gcc -c" {ocaml-option-musl:installed & os-distribution!="alpine"}
+    "ASPP=gcc -m32 -c" {ocaml-option-32bit:installed & os="linux"}
+    "ASPP=gcc -arch i386 -m32 -c" {ocaml-option-32bit:installed & os="macos"}
+    "AS=as --32" {ocaml-option-32bit:installed & os="linux"}
+    "AS=as -arch i386" {ocaml-option-32bit:installed & os="macos"}
+    "--host=i386-linux" {ocaml-option-32bit:installed & os="linux"}
+    "--host=i386-apple-darwin13.2.0" {ocaml-option-32bit:installed & os="macos"}
+    "PARTIALLD=ld -r -melf_i386" {ocaml-option-32bit:installed & os="linux"}
+    "LIBS=-static" {ocaml-option-static:installed}
+  ]
+]
+install: ["sh" "process.sh" make "install" _:build-id _:name prefix]
+url {
+  src: "https://github.com/dra27/ocaml/archive/603c6b3a891604ab8bbe6d444f3eeaa688ffa104.tar.gz"
+  checksum: "sha256=d8a8847755f2dac91c2b0af860423adf5127b5666b609a1f8275d82b76274965"
+}
+conflicts: [
+]
+depopts: [
+  "ocaml-option-32bit"
+  "ocaml-option-afl"
+  "ocaml-option-bytecode-only"
+  "ocaml-option-default-unsafe-string"
+  "ocaml-option-no-flat-float-array"
+  "ocaml-option-flambda"
+  "ocaml-option-fp"
+  "ocaml-option-musl"
+  "ocaml-option-static"
+  "ocaml-option-nnp"
+  "ocaml-option-nnpchecker"
+]
+extra-source "process.sh" {
+  src:
+    "https://raw.githubusercontent.com/dra27/ocaml/a90cb3efd215c063961b33758edab60cb213f351/tools/opam/process.sh"
+  checksum: "sha256=f6fdbd916bb050c4b071cd0a219a487423930d67d82aec427d5917a946f6107d"
+}
+post-messages: [
+"Thanks for trying Relocatable OCaml - sorry there seems to be a problem! 🫣😖
+Please check https://github.com/dra27/relocatable/issues
+" {failure}
+"Thanks for trying Relocatable OCaml! 🥳🙏👏
+Any problems, please check https://github.com/dra27/relocatable/issues
+" {!failure}
+"This switch had to be compiled from sources, but future switches with the 🐌
+same compiler version and configuration should assemble instantly." {!failure & !_:cloned & compiler-cloning:version != "disabled"}
+"As requested, this switch was compiled from sources 😴" {!failure & compiler-cloning:version = "disabled"}
+"Switch cloned by %{_:clone-mechanism}% from %{_:clone-source}% 💨" {!failure & _:cloned}
+]
