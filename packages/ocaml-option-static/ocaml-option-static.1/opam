@@ -9,7 +9,7 @@ bug-reports: "https://github.com/ocaml/opam-repository/issues"
 license: "CC0-1.0+"
 depends: [
   "ocaml-option-musl"
-  "ocaml-variants" {post & >= "4.12.0~"}
+  "ocaml-variants" {post & ( >= "4.12.0~" | >= "4.11.3" | >= "4.10.3" | >= "4.09.2" | >= "4.08.2" )}
 ]
 depexts: [
   ["musl-tools"] {os-family = "debian"}
