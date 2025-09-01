@@ -1,7 +1,7 @@
 opam-version: "2.0"
 synopsis:
-  "OCamlbuild is a build system with builtin rules to easily build most OCaml projects"
-maintainer: "Gabriel Scherer <gabriel.scherer@gmail.com>"
+  "Relocatable OCamlbuild is a build system with builtin rules to easily build most OCaml projects"
+maintainer: "David Allsopp <david@tarides.com>"
 authors: ["Nicolas Pouillard" "Berke Durak"]
 license: "LGPL-2.0-or-later WITH OCaml-LGPL-linking-exception"
 homepage: "https://github.com/ocaml/ocamlbuild/"
@@ -13,7 +13,6 @@ depends: [
 conflicts: [
   "base-ocamlbuild"
   "ocamlfind" {< "1.6.2"}
-  "relocatable"
 ]
 build: [
   [
@@ -23,7 +22,7 @@ build: [
     "all"
     "OCAMLBUILD_PREFIX=%{prefix}%"
     "OCAMLBUILD_BINDIR=%{bin}%"
-    "OCAMLBUILD_LIBDIR=%{lib}%"
+    "OCAMLBUILD_LIBDIR=.."
     "OCAMLBUILD_MANDIR=%{man}%"
     "OCAML_NATIVE=%{ocaml:native}%"
     "OCAML_NATIVE_TOOLS=%{ocaml:native}%"
@@ -38,4 +37,9 @@ url {
     "md5=220df59060c916e8aac2eb471c870485"
     "sha512=def8fa1d5488905fda31f72b7f6f0ebdccefa55a8e984a6ea4a7c1e0856e8ea1f7814410202e0f7f7d5e72aca7e8ae0d6623f7f2bade78b0dd82155de76ec4e5"
   ]
+}
+patches: ["relocatable.patch"]
+extra-source "relocatable.patch" {
+  src: "https://github.com/dra27/ocamlbuild/commit/5a1529c33a4757fcde1500b05ce8da834c2120a5.patch?full_index=1"
+  checksum: "sha256=27f16db29b583f2cce8deaec2851261417d0db269e3f318227da9ccfe0d46c32"
 }
