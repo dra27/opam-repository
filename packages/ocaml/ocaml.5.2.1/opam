@@ -24,6 +24,7 @@ depends: [
 ]
 setenv: [
   [OCAMLTOP_INCLUDE_PATH += "%{toplevel}%"]
+# These are left here so that the existing 5.2.1 packages aren't "broken"
   [CAML_LD_LIBRARY_PATH = "%{_:stubsdir}%"]
   [CAML_LD_LIBRARY_PATH += "%{lib}%/stublibs"]
   # Legacy opam variable
@@ -57,6 +58,6 @@ build: [
 ]
 extra-source "gen_ocaml_config.ml" {
   src:
-    "https://raw.githubusercontent.com/dra27/ocaml/1825189221d11b80aebb3b7f6dea6b8bc60ec8dd/tools/opam/gen_ocaml_config.ml"
-  checksum: "sha256=c7bd27f38e0161ede494a88dde5d910457d6aa75b4be51139b6201c38c25fc6f"
+    "https://raw.githubusercontent.com/dra27/ocaml/977f2d05a98a5aeec260b5ba200f72c4e79e4fdc/tools/opam/gen_ocaml_config.ml"
+  checksum: "sha256=d8d5d7e354bca87df3e8aa9c3bf8544cfba7aa92f4dba72ec5fb51bf9b92cfa8"
 }

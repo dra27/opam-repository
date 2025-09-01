@@ -23,16 +23,12 @@ depends: [
   "ocaml-system" {>= "5.4.1~" & < "5.4.2~"} |
   "dkml-base-compiler" {>= "5.4.1~" & < "5.4.2~"}
 ]
-flags: avoid-version
 setenv: [
   [OCAMLTOP_INCLUDE_PATH += "%{toplevel}%"]
-  [CAML_LD_LIBRARY_PATH = "%{_:stubsdir}%"]
-  [CAML_LD_LIBRARY_PATH += "%{lib}%/stublibs"]
   # Legacy opam variable
   [OCAML_TOPLEVEL_PATH = "%{toplevel}%"]
 ]
 x-env-path-rewrite: [
-  [CAML_LD_LIBRARY_PATH (";" {os = "win32"} ":" {os != "win32"}) "target"]
   [OCAMLTOP_INCLUDE_PATH (";" {os = "win32"} ":" {os != "win32"}) "target"]
 ]
 build-env: [
@@ -40,4 +36,25 @@ build-env: [
   [LSAN_OPTIONS = "detect_leaks=0,exitcode=0"]
   [ASAN_OPTIONS = "detect_leaks=0,exitcode=0"]
 ]
-build: ["ocaml" "%{ocaml-config:share}%/gen_ocaml_config.ml" _:version _:name]
+build: [
+  ["ocaml" "gen_ocaml_config.ml" _:version _:name
+     # The packages referred to in this string must be in the disjunction above
+     # and also all be in the ocaml-core-compiler conflict-class
+     "%{ocaml-system:installed?system}%%{ocaml-base-compiler:version}%%{dkml-base-compiler:version}%%{ocaml-variants:version}%"
+     ocaml-system:installed
+     # The order of these parameters matches the "convention" for the
+     # ocaml-options-only packages
+     "%{ocaml-option-32bit:installed?+32bit:}%"
+     "%{ocaml-option-afl:installed?+afl:}%"
+     "%{ocaml-option-bytecode-only:installed?+bytecode-only:}%"
+     "%{ocaml-option-fp:installed?+fp:}%"
+     "%{ocaml-option-flambda:installed?+flambda:}%"
+     "%{ocaml-option-musl:installed?+musl:}%"
+     "%{ocaml-option-no-flat-float-array:installed?+no-flat-float-array:}%"
+     "%{ocaml-option-static:installed?+static:}%"]
+]
+extra-source "gen_ocaml_config.ml" {
+  src:
+    "https://raw.githubusercontent.com/dra27/ocaml/977f2d05a98a5aeec260b5ba200f72c4e79e4fdc/tools/opam/gen_ocaml_config.ml"
+  checksum: "sha256=d8d5d7e354bca87df3e8aa9c3bf8544cfba7aa92f4dba72ec5fb51bf9b92cfa8"
+}

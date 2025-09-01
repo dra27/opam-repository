@@ -1,0 +1,17 @@
+opam-version: "2.0"
+synopsis: "Relocatable OCaml 4.12.2"
+maintainer: "David Allsopp <david@tarides.com>"
+license: "LGPL-2.1-or-later WITH OCaml-LGPL-linking-exception"
+authors: "Xavier Leroy and many contributors"
+homepage: "https://github.com/dra27/relocatable"
+bug-reports: "https://github.com/dra27/relocatable/issues"
+dev-repo: "git+https://github.com/dra27/ocaml.git#backport-5.3"
+depends: [
+  # This is OCaml 4.12.2
+  "ocaml-compiler" {= "4.12.2"}
+
+  # OCaml with default configuration (no flambda, TSAN, etc.)
+  "ocaml-options-vanilla" {post}
+]
+conflict-class: "ocaml-core-compiler"
+flags: compiler
