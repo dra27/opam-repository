@@ -16,7 +16,8 @@ bug-reports: "https://github.com/ocaml/opam-repository/issues"
 flags: [compiler avoid-version]
 available: os = "win32"
 depends: [
-  ("ocaml-base-compiler" {post & >= "4.13.0~"} | "ocaml-variants" {post & >= "4.13.0~"})
+  ("ocaml-base-compiler" {post & (>= "4.13.0~" | >= "4.12.2" | >= "4.11.3" | >= "4.10.3" | >= "4.09.2" | >= "4.08.2" )} |
+   "ocaml-variants" {post & (>= "4.13.0~" | >= "4.12.2" | >= "4.11.3" | >= "4.10.3" | >= "4.09.2" | >= "4.08.2" )})
   "host-arch-x86_32" {post}
 ]
 conflict-class: "ocaml-arch"
