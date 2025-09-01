@@ -21,7 +21,8 @@ flags: compiler
 # avoid-version in arch-x86_32 will be ignored.
 available: os = "win32" & (arch = "x86_64" | arch = "arm64")
 depends: [
-  ("ocaml-base-compiler" {post & >= "4.13.0~"} | "ocaml-variants" {post & >= "4.13.0~"})
+  ("ocaml-base-compiler" {post & (>= "4.13.0~" | >= "4.12.2" | >= "4.11.3" | >= "4.10.3" | >= "4.09.2" | >= "4.08.2" )} |
+   "ocaml-variants" {post & (>= "4.13.0~" | >= "4.12.2" | >= "4.11.3" | >= "4.10.3" | >= "4.09.2" | >= "4.08.2" )})
   "host-arch-x86_64" {post}
 ]
 conflict-class: "ocaml-arch"

@@ -13,6 +13,7 @@ conflicts: [
   "ocaml-option-afl"
   "ocaml-option-bytecode-only"
   "ocaml-option-default-unsafe-string"
+  "ocaml-option-force-safe-string"
   "ocaml-option-flambda"
   "ocaml-option-fp"
   "ocaml-option-musl"
