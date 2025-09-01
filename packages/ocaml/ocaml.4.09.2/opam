@@ -20,16 +20,12 @@ depends: [
   "ocaml-variants" {>= "4.09.2" & < "4.09.3~"} |
   "ocaml-system" {>= "4.09.2" & < "4.09.3~"}
 ]
-flags: avoid-version
 setenv: [
   [OCAMLTOP_INCLUDE_PATH += "%{toplevel}%"]
-  [CAML_LD_LIBRARY_PATH = "%{_:stubsdir}%"]
-  [CAML_LD_LIBRARY_PATH += "%{lib}%/stublibs"]
   # Legacy opam variable
   [OCAML_TOPLEVEL_PATH = "%{toplevel}%"]
 ]
 x-env-path-rewrite: [
-  [CAML_LD_LIBRARY_PATH (";" {os = "win32"} ":" {os != "win32"}) "target"]
   [OCAMLTOP_INCLUDE_PATH (";" {os = "win32"} ":" {os != "win32"}) "target"]
 ]
 build-env: [
@@ -58,6 +54,6 @@ build: [
 ]
 extra-source "gen_ocaml_config.ml" {
   src:
-    "https://raw.githubusercontent.com/dra27/ocaml/1825189221d11b80aebb3b7f6dea6b8bc60ec8dd/tools/opam/gen_ocaml_config.ml"
-  checksum: "sha256=c7bd27f38e0161ede494a88dde5d910457d6aa75b4be51139b6201c38c25fc6f"
+    "https://raw.githubusercontent.com/dra27/ocaml/0f568deeb2dc679abb3696384bd7f0e35bd5eda1/tools/opam/gen_ocaml_config.ml"
+  checksum: "sha256=a33de3f480c570262da2b6ca7549edfb557238464d1ebecf2b55d388198b5c9a"
 }
