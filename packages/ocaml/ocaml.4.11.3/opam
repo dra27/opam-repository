@@ -5,12 +5,22 @@ description: """
 This package requires a matching implementation of OCaml,
 and polls it to initialise specific variables like `ocaml:native-dynlink`"""
 maintainer: "David Allsopp <david@tarides.com>"
+authors: [
+  "Xavier Leroy"
+  "Damien Doligez"
+  "Alain Frisch"
+  "Jacques Garrigue"
+  "Didier Rémy"
+  "Jérôme Vouillon"
+]
+homepage: "https://ocaml.org"
+bug-reports: "https://github.com/ocaml/opam-repository/issues"
 depends: [
-  "ocaml-config"
   "ocaml-base-compiler" {= "4.11.3"} |
   "ocaml-variants" {>= "4.11.3" & < "4.11.4~"} |
   "ocaml-system" {>= "4.11.3" & < "4.11.4~"}
 ]
+flags: avoid-version
 setenv: [
   [OCAMLTOP_INCLUDE_PATH += "%{toplevel}%"]
   [CAML_LD_LIBRARY_PATH = "%{_:stubsdir}%"]
@@ -22,16 +32,32 @@ x-env-path-rewrite: [
   [CAML_LD_LIBRARY_PATH (";" {os = "win32"} ":" {os != "win32"}) "target"]
   [OCAMLTOP_INCLUDE_PATH (";" {os = "win32"} ":" {os != "win32"}) "target"]
 ]
-build: ["ocaml" "%{ocaml-config:share}%/gen_ocaml_config.ml" _:version _:name]
-build-env: CAML_LD_LIBRARY_PATH = ""
-homepage: "https://ocaml.org"
-bug-reports: "https://github.com/ocaml/opam-repository/issues"
-authors: [
-  "Xavier Leroy"
-  "Damien Doligez"
-  "Alain Frisch"
-  "Jacques Garrigue"
-  "Didier Rémy"
-  "Jérôme Vouillon"
+build-env: [
+  [CAML_LD_LIBRARY_PATH = ""]
 ]
-flags: [conf avoid-version]
+build: [
+  ["ocaml" "gen_ocaml_config.ml" _:version _:name
+     # The packages referred to in this string must be in the disjunction above
+     # and also all be in the ocaml-core-compiler conflict-class
+     "%{ocaml-system:installed?system}%%{ocaml-base-compiler:version}%%{ocaml-variants:version}%"
+     ocaml-system:installed
+     # The order of these parameters matches the "convention" for the
+     # ocaml-options-only packages
+     "%{ocaml-option-32bit:installed?+32bit:}%"
+     "%{ocaml-option-afl:installed?+afl:}%"
+     "%{ocaml-option-bytecode-only:installed?+bytecode-only:}%"
+     "%{ocaml-option-default-unsafe-string:installed?+default-unsafe-string:}%"
+     "%{ocaml-option-fp:installed?+fp:}%"
+     "%{ocaml-option-flambda:installed?+flambda:}%"
+     "%{ocaml-option-force-safe-string:installed?+force-safe-string:}%"
+     "%{ocaml-option-musl:installed?+musl:}%"
+     "%{ocaml-option-nnp:installed?+nnp:}%"
+     "%{ocaml-option-no-flat-float-array:installed?+no-flat-float-array:}%"
+     "%{ocaml-option-spacetime:installed?+spacetime:}%"
+     "%{ocaml-option-static:installed?+static:}%"]
+]
+extra-source "gen_ocaml_config.ml" {
+  src:
+    "https://raw.githubusercontent.com/dra27/ocaml/1825189221d11b80aebb3b7f6dea6b8bc60ec8dd/tools/opam/gen_ocaml_config.ml"
+  checksum: "sha256=c7bd27f38e0161ede494a88dde5d910457d6aa75b4be51139b6201c38c25fc6f"
+}
