@@ -24,3 +24,8 @@ url {
     "sha512=6763bb6b2998cd665ccf401dcb0e515ebb2ed9038f20ea3595d75a0dc77bf001ec76253b91ebd9b85c10ce1570864f35cf495da31d57f0f7f52237ab56ee057c"
   ]
 }
+patches: ["relocatable.patch"]
+extra-source "relocatable.patch" {
+  src: "https://github.com/dra27/stdcompat/commit/b77e947f37d34751aee230ea26185bff33823836.patch?full_index=1"
+  checksum: "sha256=a7d1a84833ac26d118f88eaad1fe2410cca2a619c4f79b30e7b4062210f0b369"
+}
