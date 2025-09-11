@@ -22,7 +22,6 @@ depends: [
   "topkg" {build & >= "1.0.3"}
   "cmdliner" {>= "1.1.0"}
 ]
-conflicts: "relocatable-compiler"
 build: [
   "ocaml" "pkg/pkg.ml" "build" "--dev-pkg" "%{dev}%" "--lib-dir" "%{lib}%"
 ]
@@ -30,9 +29,14 @@ install: [
   ["install" "-d" "%{lib}%/ocaml/"]
   ["install" "src/omod.top" "src/omod.nattop" "%{lib}%/ocaml/"]
 ]
-dev-repo: "git+https://erratique.ch/repos/omod.git"
+dev-repo: "git+https://github.com/dra27/omod.git#relocatable"
 url {
   src: "https://erratique.ch/software/omod/releases/omod-0.0.3.tbz"
   checksum:
     "sha512=4f53b8cdd054dc1a6813427452a91294e0bbcfefe948fc1caec47be136dbcecf13112bf2b620fa2f667592b04b28df74e3bf012ea0fb0038c1da4217155ca626"
+}
+patches: ["relocatable.patch"]
+extra-source "relocatable.patch" {
+  src: "https://github.com/dra27/omod/commit/b459ab8fc34c6c2f52b45674d0bd79782bba0734.patch?full_index=1"
+  checksum: "sha256=06cbbc9ed8653ee1327420e347dac7f4d4aa261cd094436f9e6fac87414b362f"
 }
