@@ -87,6 +87,7 @@ url {
 }
 conflicts: [
   $build"compiler-cloning" {= "enabled"}
+  "ocaml-option-flambda"
 ]
 depopts: [
   "ocaml-option-32bit"
