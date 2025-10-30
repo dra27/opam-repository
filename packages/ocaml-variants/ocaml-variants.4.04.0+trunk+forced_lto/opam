@@ -22,7 +22,7 @@ build: [
   [
     "sh"
     "-exc"
-    "echo \"* : lto = 1\" > %{lib}%/ocaml/ocaml_compiler_internal_params"
+    "mkdir -p \"%{lib}%/ocaml\" && echo \"* : lto = 1\" > %{lib}%/ocaml/ocaml_compiler_internal_params"
   ]
   ["./configure" "-prefix" prefix "-with-debug-runtime" "-flambda"]
     {os != "openbsd" & os != "freebsd" & os != "macos"}
