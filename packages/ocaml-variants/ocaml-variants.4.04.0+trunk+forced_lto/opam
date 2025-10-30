@@ -44,10 +44,10 @@ build: [
 install: [make "install"]
 url {
   src:
-    "https://github.com/ocaml/opam-source-archives/raw/main/ocaml-variants-4.04.0+trunk+forced_lto.tar.gz"
+    "https://github.com/ocaml/ocaml/archive/b9d85ddf742635077bd5a38ff55e670e237d0e18.tar.gz"
   checksum: [
-    "sha256=12b81dc8c0390469c362292db8049205000a90b839a2625356b8525d2870ee9e"
-    "md5=0bc3ded0fed30966a457c47f973e814e"
+    "sha256=3c8811d5158c70a7afa138468af52b3a4d9c91b6d67efbaefef6280bedfe0b53"
+    "md5=dad549809aa8f147116fdec575fe1ad5"
   ]
 }
 available: !(os = "macos" & arch = "arm64")
