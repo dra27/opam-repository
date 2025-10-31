@@ -15,6 +15,9 @@ depends: [
   "base-domains" {post}
   "ocaml-option-nnp"
 ]
+depexts: [
+  ["libexecinfo-dev"] {os-distribution = "alpine" & os-version < "3.17"}
+]
 conflict-class: "ocaml-core-compiler"
 flags: [compiler avoid-version]
 setenv: CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"
