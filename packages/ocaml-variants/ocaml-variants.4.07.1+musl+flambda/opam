@@ -34,9 +34,11 @@ build: [
     "-with-debug-runtime"
     "-flambda"
     "-cc"
-    "musl-gcc -Os"
+    "musl-gcc -Os" {os-distribution != "alpine"}
+    "gcc -Os" {os-distribution = "alpine"}
     "-aspp"
-    "musl-gcc -c"
+    "musl-gcc -c" {os-distribution != "alpine"}
+    "gcc -c" {os-distribution = "alpine"}
     "-no-curses"
     "-no-graph"
   ]

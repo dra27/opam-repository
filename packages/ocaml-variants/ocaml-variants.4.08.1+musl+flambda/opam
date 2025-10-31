@@ -30,8 +30,9 @@ build: [
   [
     "./configure"
     "--prefix=%{prefix}%"
-    "CC=musl-gcc -Os"
-    "ASPP=musl-gcc -c"
+    "CC=musl-gcc -Os" {os-distribution != "alpine"}
+    "CFLAGS=-Os" {os-distribution = "alpine"}
+    "ASPP=musl-gcc -c" {os-distribution != "alpine"}
     "--enable-flambda"
     "--disable-graph-lib"
   ] {os = "openbsd" | os = "freebsd" | os = "macos" | os = "linux"}
