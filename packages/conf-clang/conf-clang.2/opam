@@ -14,7 +14,9 @@ depexts: [
   ["clang"] {os-family = "fedora"}
   ["clang"] {os-distribution = "rhel"}
   ["clang"] {os-distribution = "centos"}
-  ["clang"] {os-distribution = "alpine" & os-version <= "3.18"}
+  ["clang"] {os-distribution = "alpine" & os-version <= "3.16"}
+  ["clang15"] {os-distribution = "alpine" & os-version >= "3.17" & os-version < "3.18"}
+  ["clang16"] {os-distribution = "alpine" & os-version >= "3.18" & os-version < "3.19"}
   ["clang17"] {os-distribution = "alpine" & os-version >= "3.19" & os-version < "3.21"}
   ["clang19"] {os-distribution = "alpine" & os-version >= "3.21" & os-version < "3.22"}
   ["clang20"] {os-distribution = "alpine" & os-version >= "3.22"}
