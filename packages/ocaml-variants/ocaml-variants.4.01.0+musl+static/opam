@@ -37,8 +37,6 @@ build: [
     "-aspp"
     "musl-gcc -c" {os-distribution != "alpine"}
     "gcc -c" {os-distribution = "alpine"}
-    "-libs"
-    "-static"
     "-no-tk"
     "-no-curses"
     "-no-graph"

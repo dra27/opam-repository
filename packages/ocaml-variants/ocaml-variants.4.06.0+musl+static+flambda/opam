@@ -39,8 +39,6 @@ build: [
     "-aspp"
     "musl-clang -c" {os-distribution != "alpine"}
     "clang -c" {os-distribution = "alpine"}
-    "-libs"
-    "-static"
     "-no-curses"
     "-no-graph"
   ]
