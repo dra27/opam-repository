@@ -20,6 +20,7 @@ depends: [
 depexts: [
   ["musl-tools"] {os-family = "debian"}
   ["musl"] {os-distribution = "arch"}
+  ["musl-gcc"] {os-family = "fedora"}
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler

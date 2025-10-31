@@ -14,6 +14,7 @@ depexts: [
   ["musl-tools"] {os-family = "debian"}
   ["musl"] {os-distribution = "arch"}
   ["musl-dev"] {os-distribution = "alpine"}
+  ["musl-gcc"] {os-family = "fedora"}
 ]
 conflict-class: "ocaml-core-compiler"
 flags: compiler

@@ -13,6 +13,7 @@ depends: [
 depexts: [
   ["musl-tools"] {os-family = "debian"}
   ["musl"] {os-distribution = "arch"}
+  ["musl-gcc"] {os-family = "fedora"}
 ]
 conflicts: [ "ocaml-option-32bit" ]
 available: [ os = "openbsd" | os = "freebsd" | os = "macos" | os = "linux" ]
