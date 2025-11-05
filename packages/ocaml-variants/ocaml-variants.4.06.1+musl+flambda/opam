@@ -34,8 +34,9 @@ build: [
     "-with-debug-runtime"
     "-flambda"
     "-cc"
-    "musl-clang -Os" {os-distribution != "alpine"}
+    "musl-clang -Os" {os-distribution != "alpine" & os-family != "fedora"}
     "clang -Os -fcommon" {os-distribution = "alpine"}
+    "musl-clang -Os -fcommon" {os-family = "fedora"}
     "-aspp"
     "musl-clang -c" {os-distribution != "alpine"}
     "clang -c" {os-distribution = "alpine"}
