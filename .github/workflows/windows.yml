@@ -36,7 +36,6 @@ jobs:
             let splits =
               Array.from({ length: Math.ceil(packages.length / 75) },
                          (_, i) => packages.slice(i * 75, i * 75 + 75).join(' '));
-            if (splits.length === 0)
               splits = [""];
             return {build_env: ['cygwin', 'msys2'], packages: splits};
 
