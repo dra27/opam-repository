@@ -116,8 +116,8 @@ depopts: [
 ]
 extra-source "process.sh" {
   src:
-    "https://raw.githubusercontent.com/dra27/ocaml/55ce12b0f197b9a7a0165310b131052951f98a02/tools/opam/process.sh"
-  checksum: "sha256=b2febe05d19e07db4881ef11cf8769c31226f32305ad10ea13b0a2262835d914"
+    "https://raw.githubusercontent.com/dra27/ocaml/e781ff0f4796cd3987d9301bc946c590abdee7bb/tools/opam/process.sh"
+  checksum: "sha256=c6dee585112cc543c4df3d4745d341ef29040283c910987ad788eab91e8f3aac"
 }
 post-messages: [
 "Thanks for trying Relocatable OCaml - sorry there seems to be a problem! 🫣😖
