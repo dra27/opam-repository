@@ -61,6 +61,107 @@ type depext = {
 
 let base_version = OpamPackage.Version.of_string "1"
 
+(* XXX BEGIN Claude *)
+(* Compare two opam files and return a list of field names that differ. *)
+let diff_opam (a : OpamFile.OPAM.t) (b : OpamFile.OPAM.t) : string list =
+  let check name get eq acc =
+    if eq (get a) (get b) then acc else name :: acc
+  in
+  let ( = ) = Stdlib.( = ) in
+  let eq_poly x y = x = y in
+  List.rev (
+    []
+    |> check "opam-version"   OpamFile.OPAM.opam_version   eq_poly
+    |> check "name"           OpamFile.OPAM.name_opt       eq_poly
+    |> check "version"        OpamFile.OPAM.version_opt    eq_poly
+    |> check "synopsis"       OpamFile.OPAM.synopsis       eq_poly
+    |> check "description"    OpamFile.OPAM.descr_body     eq_poly
+    |> check "maintainer"     OpamFile.OPAM.maintainer     eq_poly
+    |> check "authors"        OpamFile.OPAM.author         eq_poly
+    |> check "license"        OpamFile.OPAM.license        eq_poly
+    |> check "tags"           OpamFile.OPAM.tags           eq_poly
+    |> check "homepage"       OpamFile.OPAM.homepage       eq_poly
+    |> check "doc"            OpamFile.OPAM.doc            eq_poly
+    |> check "bug-reports"    OpamFile.OPAM.bug_reports    eq_poly
+    |> check "dev-repo"       OpamFile.OPAM.dev_repo       eq_poly
+    |> check "depends"        OpamFile.OPAM.depends        eq_poly
+    |> check "depopts"        OpamFile.OPAM.depopts        eq_poly
+    |> check "conflicts"      OpamFile.OPAM.conflicts      eq_poly
+    |> check "conflict-class" OpamFile.OPAM.conflict_class eq_poly
+    |> check "available"      OpamFile.OPAM.available      eq_poly
+    |> check "flags"          OpamFile.OPAM.flags          eq_poly
+    |> check "build"          OpamFile.OPAM.build          eq_poly
+    |> check "install"        OpamFile.OPAM.install        eq_poly
+    |> check "remove"         OpamFile.OPAM.remove         eq_poly
+    |> check "run-test"       OpamFile.OPAM.deprecated_build_test eq_poly
+    |> check "build-doc"      OpamFile.OPAM.deprecated_build_doc  eq_poly
+    |> check "substs"         OpamFile.OPAM.substs         eq_poly
+    |> check "patches"        OpamFile.OPAM.patches        eq_poly
+    |> check "build-env"      OpamFile.OPAM.build_env      eq_poly
+    |> check "features"       OpamFile.OPAM.features       eq_poly
+    |> check "messages"       OpamFile.OPAM.messages       eq_poly
+    |> check "post-messages"  OpamFile.OPAM.post_messages  eq_poly
+    |> check "depexts"        OpamFile.OPAM.depexts        eq_poly
+    |> check "libraries"      OpamFile.OPAM.libraries      eq_poly
+    |> check "syntax"         OpamFile.OPAM.syntax         eq_poly
+    |> check "pin-depends"    OpamFile.OPAM.pin_depends    eq_poly
+    |> check "extra-sources"  OpamFile.OPAM.extra_sources  eq_poly
+    |> check "extra-files"    OpamFile.OPAM.extra_files    eq_poly
+    |> check "url"            OpamFile.OPAM.url            eq_poly
+    |> check "descr"          OpamFile.OPAM.descr          eq_poly
+  )
+
+(* Pretty print *)
+let print_diff a b =
+  match diff_opam a b with
+  | [] -> print_endline "opam files are equivalent on all compared fields"
+  | fields ->
+      print_endline "Differing fields:";
+      List.iter (fun f -> Printf.printf "  - %s\n" f) fields
+
+let string_of_relop = function
+  | `Eq  -> "="
+  | `Neq -> "!="
+  | `Geq -> ">="
+  | `Gt  -> ">"
+  | `Leq -> "<="
+  | `Lt  -> "<"
+
+let rec dump_filter = function
+  | OpamTypes.FBool b          -> Printf.sprintf "%b" b
+  | OpamTypes.FString s        -> Printf.sprintf "%S" s
+  | OpamTypes.FIdent (_, v, _) -> OpamVariable.to_string v
+  | OpamTypes.FOp (a, op, b)   -> Printf.sprintf "(%s %s %s)"
+                                    (dump_filter a) (string_of_relop op) (dump_filter b)
+  | OpamTypes.FAnd (a, b)      -> Printf.sprintf "(%s & %s)" (dump_filter a) (dump_filter b)
+  | OpamTypes.FOr  (a, b)      -> Printf.sprintf "(%s | %s)" (dump_filter a) (dump_filter b)
+  | OpamTypes.FNot f           -> Printf.sprintf "!%s" (dump_filter f)
+  | OpamTypes.FDefined f       -> Printf.sprintf "?%s" (dump_filter f)
+  | OpamTypes.FUndef f         -> Printf.sprintf "undef(%s)" (dump_filter f)
+
+let dump_condition_atom = function
+  | OpamTypes.Constraint (op, f) ->
+      Printf.sprintf "%s %s" (string_of_relop op) (dump_filter f)
+  | OpamTypes.Filter f ->
+      dump_filter f
+
+let rec dump_formula dump_atom = function
+  | OpamFormula.Empty      -> "Empty"
+  | OpamFormula.Atom a     -> dump_atom a
+  | OpamFormula.Block f    -> Printf.sprintf "Block(%s)" (dump_formula dump_atom f)
+  | OpamFormula.And (a, b) -> Printf.sprintf "And(%s, %s)"
+                                (dump_formula dump_atom a) (dump_formula dump_atom b)
+  | OpamFormula.Or  (a, b) -> Printf.sprintf "Or(%s, %s)"
+                                (dump_formula dump_atom a) (dump_formula dump_atom b)
+
+let dump_filtered_formula (ff : OpamTypes.filtered_formula) =
+  dump_formula (fun (n, c) ->
+    Printf.sprintf "%s{%s}"
+      (OpamPackage.Name.to_string n)
+      (dump_formula dump_condition_atom c))
+    ff
+(* XXX END Claude *)
+
 let parse_filtered_formula (s : string) : OpamTypes.filtered_formula =
   let v = OpamParser.FullPos.value_from_string s "<string>" in
   OpamPp.parse
@@ -542,7 +643,13 @@ let process package ~prefix:_ ~opam =
       assert false (* XXX Report error! *)
     else
       match OpamStd.String.Map.find name depexts with
-      | opam -> opam
+      | opam' ->
+(*
+          Printf.printf "** opam:\n%s\n** opam':\n%s\n" (print_filtered_formula (OpamFile.OPAM.depends opam)) (print_filtered_formula (OpamFile.OPAM.depends opam'));
+          List.iter print_endline (diff_opam opam opam');
+          Printf.printf "** opam:\n%s\n** opam':\n%s\n" (dump_filtered_formula (OpamFile.OPAM.depends opam)) (dump_filtered_formula (OpamFile.OPAM.depends opam'));
+*)
+          opam' (* XXX Technically speaking, something here is different, because the file is writing *)
       | exception Not_found -> Printf.printf "UNKNOWN %s\n%!" name; opam
   else
     opam
