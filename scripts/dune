@@ -1,0 +1,3 @@
+(executable
+  (name windows_depexts)
+  (libraries opam-repository))
