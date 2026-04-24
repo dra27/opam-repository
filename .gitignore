@@ -1,6 +1,7 @@
 *~
 *.sw?
 archives/
+scripts/_build
 index.tar.gz
 urls.txt
 *.tar.gz

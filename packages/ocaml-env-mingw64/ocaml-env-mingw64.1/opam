@@ -22,7 +22,7 @@ bug-reports: "https://github.com/ocaml/opam-repository/issues"
 depends: [
   "host-system-mingw" {post}
   "host-arch-x86_64" {post}
-  "conf-mingw-w64-gcc-x86_64"
+  ("conf-mingw-w64-gcc-x86_64" | "conf-mingw-w64-ucrt-gcc-x86_64")
 ]
 conflict-class: "ocaml-env-mingw"
 flags: conf

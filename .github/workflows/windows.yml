@@ -58,12 +58,19 @@ jobs:
           opam-pin: false
           windows-environment: ${{ matrix.windows_environment }}
 
+      - name: Remove the compiler
+        run: |
+          opam switch set-invariant -n ${{ matrix.windows_environment == 'msys2' && 'msys2-mingw64' || 'host-system-mingw' }}
+          opam remove ocaml-compiler ocaml -y
+          opam switch set-invariant -n host-system-mingw
+
       - name: Install packages
+        if: always()
         run: |
           $failed = $false
           Foreach ($pkg in '${{ matrix.packages }}' -split ' ') {
             Write-Host "::group::Testing `e[1;34m$pkg`e[0m"
-            opam install --color=always --confirm-level=unsafe-yes "$pkg"
+            opam install -v --color=always --confirm-level=unsafe-yes "$pkg"
             Write-Host "::endgroup::"
             switch ($LASTEXITCODE) {
               0 { Write-Host "`e[1;32m$pkg installed successfully`e[0m."; Break }
