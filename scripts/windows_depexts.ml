@@ -192,15 +192,6 @@ let depexts =
         `X86_64 (~msys2:(Some (depext, Pkgconf pkgconf)), ~cygwin:None);
         `I686 (~msys2:(Some (depext, Pkgconf pkgconf)), ~cygwin:None)]
   in
-  (* XXX Missing mechanism variants:
-     - gcc, g++, pkgconf use direct binary invocation (e.g. "x86_64-w64-mingw32-gcc" "--version"),
-       not pkgconf. They need a new mechanism variant, e.g. Binary of string.
-     - ucrt-gcc is similar but deferred for now. *)
-
-  (* XXX license field is string but some packages have multiple licenses
-     (cairo: LGPL-2.1-only + MPL-1.1, liblz4: GPL-2.0-only + BSD-2-Clause).
-     Consider changing to string list. *)
-
   let depexts = [
     {name     = "allegro5";
      project  = "allegro5";
@@ -214,12 +205,6 @@ let depexts =
      license  = ["GPL-2.0-only"];
      homepage = "https://www.xiph.org/ao/";
      systems  = systems ~pkgconf:"ao" "libao"};
-    (* XXX bzip2: Cygwin package has no bzip2.pc file.
-       Existing opam uses "true" {os = "win32" & os-distribution = "cygwin"} as the build
-       command on Cygwin, with a comment:
-         https://cygwin.com/cgi-bin2/package-cat.cgi?file=noarch%2Fmingw64-x86_64-bzip2%2Fmingw64-x86_64-bzip2-1.0.6-4
-         no bzip2.pc file in cygwin package
-       Also: existing opam is missing conf-mingw-w64-gcc-x86_64 dep. *)
     {name     = "bzip2";
      project  = "bzip2";
      authors  = ["Julian Seward"];
@@ -241,10 +226,6 @@ let depexts =
      license  = ["MIT"];
      homepage = "http://curl.haxx.se/";
      systems  = systems ~pkgconf:"libcurl" "curl"};
-    (* XXX freeglut: Cygwin package is missing a pkg-config .pc file.
-       Existing opam only probes on MSYS2:
-         ["pkg-config" "--personality=x86_64-w64-mingw32" "freeglut"] {os = "win32" & os-distribution = "msys2"}
-       Also uses "pkg-config" instead of "pkgconf". *)
     {name     = "freeglut";
      project  = "FreeGLUT";
      authors  = ["Pawel W. Olszta"; "Andreas Umbach"; "Steve Baker"; "John F. Fay"; "John Tsiombikas"; "Diederick C. Niehorster"];
@@ -269,10 +250,6 @@ let depexts =
        `X86_64 (~msys2:(Some ("libglade", Pkgconf "libglade-2.0")), ~cygwin:(Some ("libglade2.0", Pkgconf "libglade-2.0")));
        `I686 (~msys2:None, ~cygwin:(Some ("libglade2.0", Pkgconf "libglade-2.0")));
      ]};
-    (* XXX gmp: existing opam has --personality only for Cygwin:
-         build: ["pkgconf" "--personality=x86_64-w64-mingw32" {os-distribution = "cygwin"} "gmp"]
-       The current model always adds --personality for Cygwin. On MSYS2, pkgconf
-       is run without --personality, which differs from the standard pattern. *)
     {name     = "gmp";
      project  = "libgmp";
      authors  = ["Torbjörn Granlund et al"];
@@ -297,11 +274,6 @@ let depexts =
        `X86_64 (~msys2:(Some ("gcc", Version "x86_64-w64-mingw32-gcc")), ~cygwin:(Some ("gcc-core", Version "x86_64-w64-mingw32-gcc")));
        `I686 (~msys2:(Some ("gcc", Version "i686-w64-mingw32-gcc")), ~cygwin:(Some ("gcc-core", Version "i686-w64-mingw32-gcc")))
      ]};
-    (* XXX gnomecanvas: existing opam has two separate build commands:
-         ["pkgconf" "--personality=x86_64-w64-mingw32" "libgnomecanvas-2.0"] {os = "win32" & os-distribution = "cygwin"}
-         ["pkg-config" "libgnomecanvas-2.0"] {os = "win32" & os-distribution = "msys2"}
-       Uses pkgconf with --personality on Cygwin but plain pkg-config on MSYS2.
-       Current model can't express per-distribution build commands. *)
     {name     = "gnomecanvas";
      project  = "gnomecanvas";
      authors  = ["The GNOME Project"];
@@ -362,10 +334,6 @@ let depexts =
      license  = ["GPL-2.0-only"; "BSD-2-Clause"];
      homepage = "http://lz4.org";
      systems  = systems ~pkgconf:"liblz4" "lz4"};
-    (* XXX mbedtls: x86_64 only (no i686 variant).
-       No Cygwin support: available: os = "win32" & os-distribution != "cygwin"
-       Cygwin depext is commented out in the existing opam file.
-       The current model doesn't express available constraints beyond os = "win32". *)
     {name     = "mbedtls";
      project  = "libmbedtls";
      authors  = ["Mbedtls contributors"];
@@ -374,9 +342,6 @@ let depexts =
      systems  = [
        `X86_64 (~msys2:(Some ("mbedtls", Pkgconf "mbedtls")), ~cygwin:None);
      ]};
-    (* XXX ncurses: probes different pkgconf module names per distribution:
-         "ncurses" on Cygwin, "ncursesw" on MSYS2.
-       Current model only supports a single Pkgconf module name. *)
     {name     = "ncurses";
      project  = "ncurses";
      authors  = ["GNU Project"];
@@ -386,8 +351,6 @@ let depexts =
        `X86_64 (~msys2:(Some ("ncurses", Pkgconf "ncursesw")), ~cygwin:(Some ("ncurses", Pkgconf "ncurses")));
        `I686 (~msys2:(Some ("ncurses", Pkgconf "ncursesw")), ~cygwin:(Some ("ncurses", Pkgconf "ncurses")));
      ]};
-    (* XXX nettle: existing opam file has wrong homepage (gnutls.org) and
-       wrong authors (GnuTLS authors). These are copied from the existing file as-is. *)
     {name     = "nettle";
      project  = "nettle";
      authors  = ["Nikos Mavrogiannopoulos"; "Simon Josefsson"]; (* FIXME These are GnuTLS authors, not Nettle *)
@@ -414,10 +377,7 @@ let depexts =
      authors  = ["Philip Hazel"; "Zoltan Herczeg"];
      license  = ["BSD-3-Clause"];
      homepage = "https://www.pcre.org/";
-     systems  = systems ~pkgconf:"libpcre2-8" "pcre2" (*[
-       `X86_64 (~msys2:(Some ("pcre2", Pkgconf "libpcre2-8")), ~cygwin:(Some ("pcre2", Pkgconf "libpcre2-8")));
-       `I686 (~msys2:(Some ("pcre2", Pkgconf "libpcre2-8")), ~cygwin:(Some ("pcre2", Pkgconf "libpcre2-8")));
-     ]*)};
+     systems  = systems ~pkgconf:"libpcre2-8" "pcre2"};
     {name     = "pkgconf";
      project  = "pkgconf";
      authors  = ["Ariadne Conill et al"];
