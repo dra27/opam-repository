@@ -3,7 +3,7 @@ maintainer: "garrigue@math.nagoya-u.ac.jp"
 authors: "The GTK Toolkit"
 license: "LGPL-2.1-or-later"
 homepage: "https://www.gtk.org/"
-bug-reports: "https://github.com/garrigue/lablgtk/issues"
+bug-reports: "https://github.com/ocaml/opam-repository/issues"
 build: [
   [conf-pkg-config:command
      "--short-errors" {os != "win32" | os-distribution = "cygwinports"} "--atleast-version" {os != "win32" | os-distribution = "cygwinports"} "3.18" {os != "win32" | os-distribution = "cygwinports"}
