@@ -55,6 +55,7 @@ type depext = {
   authors: string list;
   license: string list;
   homepage: string;
+  conf: string;
   systems: [ `X86_64 of msys2:depext_info * cygwin:depext_info
            | `I686 of msys2:depext_info * cygwin:depext_info ] list;
 }
@@ -180,7 +181,10 @@ let print_filtered_formula (ff : OpamTypes.filtered_formula) : string =
 let canonicalise depends =
   parse_filtered_formula (print_filtered_formula depends)
 
-let depexts =
+let pkg name filter : OpamTypes.filtered_formula =
+  OpamTypes.Atom (OpamPackage.Name.of_string name, OpamTypes.Atom (OpamTypes.Filter filter))
+
+let depexts, confs =
   let rec systems ?(template = `Default) ?pkgconf depext =
     let pkgconf = Option.value ~default:depext pkgconf in
     match template with
@@ -198,18 +202,21 @@ let depexts =
      authors  = ["The Allegro authors"];
      license  = ["Giftware"];
      homepage = "https://liballeg.org";
+     conf     = "allegro5";
      systems  = systems ~template:`MSYS2_only ~pkgconf:"allegro-5" "allegro"};
     {name     = "ao";
      project  = "libao";
      authors  = ["libao dev team"];
      license  = ["GPL-2.0-only"];
      homepage = "https://www.xiph.org/ao/";
+     conf     = "ao";
      systems  = systems ~pkgconf:"ao" "libao"};
     {name     = "bzip2";
      project  = "bzip2";
      authors  = ["Julian Seward"];
      license  = ["bzip2-1.0.6"];
      homepage = "https://sourceware.org/bzip2/";
+     conf     = "bzip2";
      systems  = [
        `X86_64 (~msys2:(Some ("bzip2", Pkgconf "bzip2")), ~cygwin:(Some ("bzip2", No_test)));
        `I686 (~msys2:(Some ("bzip2", Pkgconf "bzip2")), ~cygwin:(Some ("bzip2", No_test)));
@@ -219,18 +226,21 @@ let depexts =
      authors  = ["Keith Packard"; "Carl Worth"; "Behdad Esfahbod"];
      license  = ["LGPL-2.1-only"; "MPL-1.1"];
      homepage = "http://cairographics.org/";
+     conf     = "cairo";
      systems  = systems "cairo"};
     {name     = "curl";
      project  = "libcurl";
      authors  = ["Daniel Stenberg"];
-     license  = ["MIT"];
+     license  = ["curl"];
      homepage = "http://curl.haxx.se/";
+     conf     = "libcurl";
      systems  = systems ~pkgconf:"libcurl" "curl"};
     {name     = "freeglut";
      project  = "FreeGLUT";
      authors  = ["Pawel W. Olszta"; "Andreas Umbach"; "Steve Baker"; "John F. Fay"; "John Tsiombikas"; "Diederick C. Niehorster"];
      license  = ["X11"];
      homepage = "https://freeglut.sourceforge.net/";
+     conf     = "freeglut";
      systems  = [
        `X86_64 (~msys2:(Some ("freeglut", Pkgconf "freeglut")), ~cygwin:(Some ("freeglut", No_test)));
        `I686 (~msys2:(Some ("freeglut", Pkgconf "freeglut")), ~cygwin:(Some ("freeglut", No_test)));
@@ -240,12 +250,14 @@ let depexts =
      authors  = ["Christophe Troestler <Christophe.Troestler@umons.ac.be>"]; (* FIXME These are opam pkg authors, not freetype authors *)
      license  = ["GPL-1.0-or-later"];
      homepage = "http://www.freetype.org";
+     conf     = "freetype";
      systems  = systems ~template:(`Cygwin "freetype2") ~pkgconf:"freetype2" "freetype"};
     {name     = "glade";
      project  = "glade";
      authors  = ["The Glade Authors"];
      license  = ["LGPL-2.1-or-later"];
      homepage = "https://glade.gnome.org/";
+     conf     = "glade";
      systems  = [
        `X86_64 (~msys2:(Some ("libglade", Pkgconf "libglade-2.0")), ~cygwin:(Some ("libglade2.0", Pkgconf "libglade-2.0")));
        `I686 (~msys2:None, ~cygwin:(Some ("libglade2.0", Pkgconf "libglade-2.0")));
@@ -255,21 +267,24 @@ let depexts =
      authors  = ["Torbjörn Granlund et al"];
      license  = ["GPL-1.0-or-later"];
      homepage = "http://gmplib.org/";
+     conf     = "gmp";
      systems  = systems "gmp"};
     {name     = "g++";
      project  = "g++";
-     authors  = ["David Allsopp"]; (* FIXME Not last time I checked... *)
+     authors  = ["The GCC Developers"];
      license  = ["GPL-3.0-or-later"];
      homepage = "https://www.mingw-w64.org";
+     conf     = "g++"; (* XXX conf-c++ as well *)
      systems  = [
        `X86_64 (~msys2:(Some ("", Version "x86_64-w64-mingw32-g++")), ~cygwin:(Some ("gcc-g++", Version "x86_64-w64-mingw32-g++")));
        `I686 (~msys2:(Some ("", Version "i686-w64-mingw32-g++")), ~cygwin:(Some ("gcc-g++", Version "i686-w64-mingw32-g++")));
      ]};
     {name     = "gcc";
      project  = "GCC";
-     authors  = ["David Allsopp"]; (* FIXME Not last time I checked... *)
+     authors  = ["The GCC Developers"];
      license  = ["GPL-3.0-or-later"];
      homepage = "https://www.mingw-w64.org";
+     conf     = "gcc";
      systems  = [
        `X86_64 (~msys2:(Some ("gcc", Version "x86_64-w64-mingw32-gcc")), ~cygwin:(Some ("gcc-core", Version "x86_64-w64-mingw32-gcc")));
        `I686 (~msys2:(Some ("gcc", Version "i686-w64-mingw32-gcc")), ~cygwin:(Some ("gcc-core", Version "i686-w64-mingw32-gcc")))
@@ -279,6 +294,7 @@ let depexts =
      authors  = ["The GNOME Project"];
      license  = ["LGPL-2.1-or-later"];
      homepage = "https://developer.gnome.org/libgnomecanvas/2.30/";
+     conf     = "gnomecanvas";
      systems  = [
        `X86_64 (~msys2:(Some ("libgnomecanvas", Pkgconf "libgnomecanvas-2.0")), ~cygwin:(Some ("libgnomecanvas2", Pkgconf "libgnomecanvas-2.0")));
        `I686 (~msys2:None, ~cygwin:(Some ("libgnomecanvas2", Pkgconf "libgnomecanvas-2.0")));
@@ -288,12 +304,14 @@ let depexts =
      authors  = ["Nikos Mavrogiannopoulos"; "Simon Josefsson"];
      license  = ["LGPL-2.1-or-later"];
      homepage = "https://www.gnutls.org";
+     conf     = "gnutls";
      systems  = systems "gnutls"};
     {name     = "gtk2";
      project  = "gtk2";
      authors  = ["The GNOME Project"];
      license  = ["LGPL-2.1-or-later"];
      homepage = "https://gtk.org/";
+     conf     = "gtk2";
      systems  = [
        `X86_64 (~msys2:(Some ("gtk2", Pkgconf "gtk+-2.0")), ~cygwin:(Some ("gtk2.0", Pkgconf "gtk+-2.0")));
        `I686 (~msys2:None, ~cygwin:(Some ("gtk2.0", Pkgconf "gtk+-2.0")));
@@ -303,12 +321,14 @@ let depexts =
      authors  = ["The GTK Toolkit"];
      license  = ["LGPL-2.1-or-later"];
      homepage = "https://www.gtk.org/";
+     conf     = "gtk3";
      systems  = systems ~pkgconf:"gtk+-3.0" "gtk3"};
     {name     = "gtksourceview3";
      project  = "gtksourceview3";
      authors  = ["The gtksourceview programmers"];
      license  = ["LGPL-2.1-or-later"];
      homepage = "https://projects.gnome.org/gtksourceview/";
+     conf     = "gtksourceview3";
      systems  = [
        `X86_64 (~msys2:(Some ("gtksourceview3", Pkgconf "gtksourceview-3.0")), ~cygwin:(Some ("gtksourceview3.0", Pkgconf "gtksourceview-3.0")));
        `I686 (~msys2:None, ~cygwin:(Some ("gtksourceview3.0", Pkgconf "gtksourceview-3.0")));
@@ -318,6 +338,7 @@ let depexts =
      authors  = ["Libevent dev team"];
      license  = ["BSD-3-clause"];
      homepage = "https://libevent.org";
+     conf     = "libevent";
      systems  = [
        `X86_64 (~msys2:(Some ("libevent", Pkgconf "libevent")), ~cygwin:(Some ("libevent", Pkgconf "libevent")));
        `I686 (~msys2:None, ~cygwin:(Some ("libevent", Pkgconf "libevent")));
@@ -327,18 +348,21 @@ let depexts =
      authors  = ["Anthony Green"];
      license  = ["MIT"];
      homepage = "https://sourceware.org/libffi";
+     conf     = "libffi";
      systems  = systems "libffi"};
     {name     = "liblz4";
      project  = "liblz4";
      authors  = ["Yann Collet"];
      license  = ["GPL-2.0-only"; "BSD-2-Clause"];
      homepage = "http://lz4.org";
+     conf     = "liblz4";
      systems  = systems ~pkgconf:"liblz4" "lz4"};
     {name     = "mbedtls";
      project  = "libmbedtls";
-     authors  = ["Mbedtls contributors"];
-     license  = ["Apache-2.0"];
+     authors  = ["The Mbed TLS Contributors"];
+     license  = ["Apache-2.0 OR GPL-2.0-or-later"];
      homepage = "https://www.trustedfirmware.org/projects/mbed-tls/";
+     conf     = "mbedtls";
      systems  = [
        `X86_64 (~msys2:(Some ("mbedtls", Pkgconf "mbedtls")), ~cygwin:None);
      ]};
@@ -347,27 +371,32 @@ let depexts =
      authors  = ["GNU Project"];
      license  = ["MIT"];
      homepage = "https://www.gnu.org/software/ncurses/";
+     conf     = "ncurses";
      systems  = [
        `X86_64 (~msys2:(Some ("ncurses", Pkgconf "ncursesw")), ~cygwin:(Some ("ncurses", Pkgconf "ncurses")));
        `I686 (~msys2:(Some ("ncurses", Pkgconf "ncursesw")), ~cygwin:(Some ("ncurses", Pkgconf "ncurses")));
      ]};
+    (* XXX It's possible I advised mte to do it this way, but why isn't this does a second atom on the gnutls package? *)
     {name     = "nettle";
      project  = "nettle";
-     authors  = ["Nikos Mavrogiannopoulos"; "Simon Josefsson"]; (* FIXME These are GnuTLS authors, not Nettle *)
+     authors  = ["Nikos Mavrogiannopoulos"; "Simon Josefsson"]; (* FIXME Niels Möller *)
      license  = ["LGPL-2.1-or-later"];
      homepage = "https://www.gnutls.org"; (* FIXME Should be https://www.lysator.liu.se/~nisse/nettle/ *)
+     conf     = "gnutls";
      systems  = systems "nettle"};
     {name     = "openssl";
      project  = "libssl";
      authors  = ["The OpenSSL Project"];
      license  = ["Apache-1.0"];
      homepage = "https://www.openssl.org";
+     conf     = "libssl";
      systems  = systems "openssl"};
     {name     = "pcre";
      project  = "libpcre";
      authors  = ["Philip Hazel"; "Zoltan Herczeg"];
      license  = ["BSD-3-Clause"];
      homepage = "https://www.pcre.org/";
+     conf     = "libpcre";
      systems  = [
        `X86_64 (~msys2:(Some ("pcre", Pkgconf "libpcre")), ~cygwin:(Some ("pcre", Pkgconf "libpcre")));
        `I686 (~msys2:None, ~cygwin:(Some ("pcre", Pkgconf "libpcre")));
@@ -377,12 +406,14 @@ let depexts =
      authors  = ["Philip Hazel"; "Zoltan Herczeg"];
      license  = ["BSD-3-Clause"];
      homepage = "https://www.pcre.org/";
+     conf     = "libpcre2-8";
      systems  = systems ~pkgconf:"libpcre2-8" "pcre2"};
     {name     = "pkgconf";
      project  = "pkgconf";
      authors  = ["Ariadne Conill et al"];
      license  = ["ISC"];
      homepage = "http://pkgconf.org";
+     conf     = "pkg-config";
      systems  = [
        (* XXX Likewise, this would be better to install on Cygwin and run anyway? *)
        `X86_64 (~msys2:(Some ("pkgconf", Version "x86_64-w64-mingw32-pkgconf")), ~cygwin:None);
@@ -390,9 +421,10 @@ let depexts =
      ]};
     {name     = "postgresql";
      project  = "postgresql";
-     authors  = ["Markus Mottl"]; (* FIXME This is the opam package author *)
-     license  = ["blessing"];
-     homepage = "http://www.postgresql.org";
+     authors  = ["PostgreSQL Global Development Group"];
+     license  = ["PostgreSQL"];
+     homepage = "https://www.postgresql.org";
+     conf     = "postgresql";
      systems  = [
        `X86_64 (~msys2:(Some ("postgresql", Pkgconf "libpq")), ~cygwin:(Some ("postgresql", Pkgconf "libpq")));
        `I686 (~msys2:None, ~cygwin:(Some ("postgresql", Pkgconf "libpq")));
@@ -402,12 +434,14 @@ let depexts =
      authors  = ["Sam Lantinga"];
      license  = ["Zlib"];
      homepage = "http://libsdl.org/"; (* FIXME https://libsdl.org/ *)
+     conf     = "sdl2";
      systems  = systems ~pkgconf:"sdl2" "SDL2"};
     {name     = "sdl2-image";
      project  = "sdl2-image";
      authors  = ["Sam Lantinga"];
      license  = ["Zlib"];
      homepage = "http://www.libsdl.org/projects/SDL_image/";
+     conf     = "sdl2-image";
      systems  = [
        `X86_64 (~msys2:(Some ("SDL2_image", Pkgconf "SDL2_image")), ~cygwin:(Some ("SDL2_image", Pkgconf "SDL2_image")));
        `I686 (~msys2:None, ~cygwin:(Some ("SDL2_image", Pkgconf "SDL2_image")));
@@ -417,39 +451,45 @@ let depexts =
      authors  = ["Sam Lantinga"];
      license  = ["Zlib"];
      homepage = "http://www.libsdl.org/projects/SDL_mixer/";
+     conf     = "sdl2-mixer";
      systems  = systems "SDL2_mixer"};
     {name     = "sdl2-net";
      project  = "sdl2-net";
      authors  = ["Sam Lantinga"];
      license  = ["Zlib"];
      homepage = "http://www.libsdl.org/projects/SDL_net/";
+     conf     = "sdl2-net";
      systems  = systems "SDL2_net"};
     {name     = "sdl2-ttf";
      project  = "sdl2-ttf";
      authors  = ["Sam Lantinga"];
      license  = ["Zlib"];
      homepage = "http://www.libsdl.org/projects/SDL_ttf/";
+     conf     = "sdl2-ttf";
      systems  = systems "SDL2_ttf"};
     {name     = "sqlite3";
      project  = "sqlite3";
      authors  = ["D. Richard Hipp"; "Dan Kennedy"; "Joe Mistachkin"];
      license  = ["blessing"];
      homepage = "http://www.sqlite3.org"; (* FIXME https://sqlite.org/ *)
+     conf     = "sqlite3";
      systems  = systems "sqlite3"};
     {name     = "zlib";
      project  = "zlib";
      authors  = ["Jean-loup Gailly"; "Mark Adler"];
      license  = ["zlib"];
      homepage = "http://www.zlib.net/"; (* FIXME https://www.zlib.net/ *)
+     conf     = "zlib";
      systems  = systems "zlib"};
     {name     = "zstd";
      project  = "libzstd";
      authors  = ["Facebook"];
      license  = ["BSD-3-Clause"];
      homepage = "http://zstd.net"; (* FIXME https://facebook.github.io/zstd/ *)
+     conf     = "zstd";
      systems  = systems ~pkgconf:"libzstd" "zstd"};
   ] in
-  let process (names, packages) {name; project; authors; license; homepage; systems} =
+  let process (names, packages, confs) ({name; project; authors; license; homepage; conf; systems} as lib) =
     if OpamStd.String.Set.mem name names then
       assert false (* XXX Error handling! *)
     else
@@ -501,7 +541,6 @@ let depexts =
           in
           let build, depends =
             let arg ?filter s = OpamTypes.CString s, filter in
-            let pkg name filter : OpamTypes.filtered_formula = OpamFormula.Atom (OpamPackage.Name.of_string name, OpamTypes.Atom (OpamTypes.Filter filter)) in
             let depends =
               let root = "conf-mingw-w64-gcc-" ^ arch in
               if root <> package && name <> "pkgconf" then (* XXX If another special case comes up, add an attribute *)
@@ -513,7 +552,7 @@ let depexts =
               match msys2, cygwin with
               | Some (_, Pkgconf _), _
               | _, Some (_, Pkgconf _) ->
-                (pkg "conf-pkg-config" build) :: depends
+                  ((pkg "conf-pkg-config" build) :: depends)
               | _ ->
                   depends
             in
@@ -591,9 +630,25 @@ let depexts =
             Printf.eprintf "WARNING! %s not found\n" package; (* XXX Better handling *)
           systems, OpamStd.String.Map.add package opam packages) (SystemSet.empty, packages) systems
       in
-      names, packages
+      let confs =
+        let conf = "conf-" ^ conf in
+        if not (OpamPackage.Set.exists (fun nv -> OpamPackage.name_to_string nv = conf) all_packages) then
+          Printf.eprintf "WARNING! %s not found\n" conf; (* XXX Better handling *)
+        let systems =
+          match OpamStd.String.Map.find conf confs with
+          | others ->
+              lib :: others
+          | exception Not_found ->
+              [lib]
+        in
+        OpamStd.String.Map.add conf systems confs
+      in
+      names, packages, confs
   in
-  snd (List.fold_left process (OpamStd.String.Set.empty, OpamStd.String.Map.empty) depexts)
+  let (_, depexts, confs) =
+    List.fold_left process (OpamStd.String.Set.empty, OpamStd.String.Map.empty, OpamStd.String.Map.empty) depexts
+  in
+  depexts, confs
 
 (* XXX Ultimately do this by iterating over the list of depexts *)
 let process package ~prefix:_ ~opam =
@@ -611,6 +666,52 @@ let process package ~prefix:_ ~opam =
 *)
           opam' (* XXX Technically speaking, something here is different, because the file is writing *)
       | exception Not_found -> Printf.printf "UNKNOWN %s\n%!" name; opam
+  else if String.starts_with ~prefix:"conf-" name then
+    match OpamStd.String.Map.find name confs with
+    | depexts ->
+        let module OPAM = OpamFile.OPAM in
+        (* XXX nettle is a strange exception here... *)
+        let {name; project = _; authors; license; homepage; _} = List.hd depexts in
+        (* XXX If another special case comes up, make this more generic *)
+        let homepage =
+          match name with
+          | "g++" | "gcc" ->
+              "https://gcc.gnu.org/"
+          | "pkgconf" ->
+              "http://www.freedesktop.org/wiki/Software/pkg-config/" (* XXX https:// *)
+          | _ ->
+              homepage
+        in
+        let authors =
+          match name with
+          | "pkgconf" ->
+              ["James Henstridge"; "Tim Janik"; "Havoc Pennington"; "Scott Remnant"]
+          | _ ->
+              authors
+        in
+        let license =
+          match name with
+          | "pkgconf" ->
+              ["GPL-2.0-or-later"]
+          | _ ->
+              license
+        in
+        opam
+(* XXX Analysis needed
+        |> OPAM.with_synopsis ("Virtual package for " ^ project)
+*)
+        (* TODO with_descr_body *)
+        (* TODO with_maintainer <- only doable when the packages are totally covered by the metadata *)
+        |> OPAM.with_author authors
+        |> OPAM.with_license license
+        |> OPAM.with_homepage [homepage]
+        |> OPAM.with_bug_reports ["https://github.com/ocaml/opam-repository/issues"]
+        (* XXX with_available ? *)
+        (* TODO with_build *)
+        (* TODO with_depends *)
+        (* XXX with_depexts ? *)
+    | exception Not_found ->
+        opam
   else
     opam
 
