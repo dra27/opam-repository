@@ -1,6 +1,6 @@
 opam-version: "2.0"
 maintainer: "https://github.com/ocaml/opam-repository/issues"
-homepage: "https://libevent.org/"
+homepage: "https://libevent.org"
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 authors: "Libevent dev team"
 license: "BSD-3-clause"
