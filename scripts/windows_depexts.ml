@@ -711,7 +711,7 @@ let process package ~prefix:_ ~opam =
               let filter =
                 match data with
                 | (~msys2:(Some _), ~cygwin:(Some _)) ->
-                    OpamTypes.FOr (dist_msys2, dist_cygwin)
+                    OpamTypes.FOr (dist_cygwin, dist_msys2)
                 | (~msys2:(Some _), ~cygwin:None) ->
                     dist_msys2
                 | (~msys2:None, ~cygwin:(Some _)) ->
@@ -737,7 +737,7 @@ let process package ~prefix:_ ~opam =
             | `I686 l, `I686 r -> Stdlib.compare l r
           in
           (* XXX Map over all the depexts! *)
-          [OpamFormula.ors (List.map f (List.sort g (List.hd depexts).systems))]
+          [OpamFormula.Block(OpamFormula.ors (List.map f (List.sort g (List.hd depexts).systems)))]
         in
         let depends =
           (* FIXME function is definitely crap, but it hints so's the representation! *)
