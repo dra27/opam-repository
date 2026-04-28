@@ -672,7 +672,7 @@ let process package ~prefix:_ ~opam =
         let module OPAM = OpamFile.OPAM in
         (* XXX nettle is a strange exception here... *)
         let {name; project = _; authors; license; homepage; _} = List.hd depexts in
-        (* XXX If another special case comes up, make this more generic *)
+        (* XXX If more special cases comes up, might make this more generic... *)
         let homepage =
           match name with
           | "g++" | "gcc" ->
@@ -696,6 +696,16 @@ let process package ~prefix:_ ~opam =
           | _ ->
               license
         in
+        (* XXX Very duppy - also wondering if it would be better just to write these as code fragments
+               and parse them?? *)
+        let build = OpamTypes.FIdent ([], OpamVariable.of_string "build", None) in
+        let depends =
+          (* FIXME function is definitely crap, but it hints so's the representation! *)
+          if List.exists (fun {systems; _} -> List.exists (function `I686 (~msys2:(Some (_, Pkgconf _)), ~cygwin:_) | `I686 (~msys2:_, ~cygwin:(Some (_, Pkgconf _)))| `X86_64 (~msys2:(Some (_, Pkgconf _)), ~cygwin:_) | `X86_64 (~msys2:_, ~cygwin:(Some (_, Pkgconf _))) -> true | _ -> false) systems) depexts then
+            [pkg "conf-pkg-config" build]
+          else
+            []
+        in
         opam
 (* XXX Analysis needed
         |> OPAM.with_synopsis ("Virtual package for " ^ project)
@@ -708,7 +718,7 @@ let process package ~prefix:_ ~opam =
         |> OPAM.with_bug_reports ["https://github.com/ocaml/opam-repository/issues"]
         (* XXX with_available ? *)
         (* TODO with_build *)
-        (* TODO with_depends *)
+        |> OPAM.with_depends (canonicalise (OpamFormula.ands depends))
         (* XXX with_depexts ? *)
     | exception Not_found ->
         opam
