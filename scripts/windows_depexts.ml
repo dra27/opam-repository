@@ -699,12 +699,52 @@ let process package ~prefix:_ ~opam =
         (* XXX Very duppy - also wondering if it would be better just to write these as code fragments
                and parse them?? *)
         let build = OpamTypes.FIdent ([], OpamVariable.of_string "build", None) in
+        let os = OpamTypes.FIdent ([], OpamVariable.of_string "os", None) in
+        let os_distribution = OpamTypes.FIdent ([], OpamVariable.of_string "os-distribution", None) in
+        let os_win32 = OpamTypes.FOp (os, `Eq, FString "win32") in
+        let dist_msys2 = OpamTypes.FOp (os_distribution, `Eq, FString "msys2") in
+        let dist_cygwin = OpamTypes.FOp (os_distribution, `Eq, FString "cygwin") in
+        let depends =
+          let convert arch pkg_arch data =
+            let filter =
+              (* XXX Much clearer to use Filter.of_string ... *)
+              let filter =
+                match data with
+                | (~msys2:(Some _), ~cygwin:(Some _)) ->
+                    OpamTypes.FOr (dist_msys2, dist_cygwin)
+                | (~msys2:(Some _), ~cygwin:None) ->
+                    dist_msys2
+                | (~msys2:None, ~cygwin:(Some _)) ->
+                    dist_cygwin
+                | (~msys2:None, ~cygwin:None) ->
+                    assert false
+              in
+              OpamTypes.FAnd(os_win32, filter)
+            in
+            OpamFormula.And(pkg ("host-arch-" ^ arch) filter, pkg ("conf-mingw-w64-" ^ name ^ "-" ^ pkg_arch) filter)
+          in
+          let f = function
+          | `X86_64 data ->
+              convert "x86_64" "x86_64" data
+          | `I686 data ->
+              convert "x86_32" "i686" data
+          in
+          let g l r =
+            match l, r with
+            | `I686 _, `X86_64 _ -> -1
+            | `X86_64 _, `I686 _ -> 1
+            | `X86_64 l, `X86_64 r
+            | `I686 l, `I686 r -> Stdlib.compare l r
+          in
+          (* XXX Map over all the depexts! *)
+          [OpamFormula.ors (List.map f (List.sort g (List.hd depexts).systems))]
+        in
         let depends =
           (* FIXME function is definitely crap, but it hints so's the representation! *)
           if List.exists (fun {systems; _} -> List.exists (function `I686 (~msys2:(Some (_, Pkgconf _)), ~cygwin:_) | `I686 (~msys2:_, ~cygwin:(Some (_, Pkgconf _)))| `X86_64 (~msys2:(Some (_, Pkgconf _)), ~cygwin:_) | `X86_64 (~msys2:_, ~cygwin:(Some (_, Pkgconf _))) -> true | _ -> false) systems) depexts then
-            [pkg "conf-pkg-config" build]
+            (pkg "conf-pkg-config" build) :: depends
           else
-            []
+            depends
         in
         opam
 (* XXX Analysis needed
