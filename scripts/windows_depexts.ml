@@ -737,14 +737,14 @@ let process package ~prefix:_ ~opam =
             | `I686 l, `I686 r -> Stdlib.compare l r
           in
           (* XXX Map over all the depexts! *)
-          [OpamFormula.Block(OpamFormula.ors (List.map f (List.sort g (List.hd depexts).systems)))]
+          List.map f (List.sort g (List.hd depexts).systems)
         in
         let depends =
           (* FIXME function is definitely crap, but it hints so's the representation! *)
           if List.exists (fun {systems; _} -> List.exists (function `I686 (~msys2:(Some (_, Pkgconf _)), ~cygwin:_) | `I686 (~msys2:_, ~cygwin:(Some (_, Pkgconf _)))| `X86_64 (~msys2:(Some (_, Pkgconf _)), ~cygwin:_) | `X86_64 (~msys2:_, ~cygwin:(Some (_, Pkgconf _))) -> true | _ -> false) systems) depexts then
-            (pkg "conf-pkg-config" build) :: depends
+            [(pkg "conf-pkg-config" build); OpamFormula.Block (OpamFormula.ors depends)]
           else
-            depends
+            [OpamFormula.ors (List.map (fun f -> OpamFormula.Block f) depends)]
         in
         opam
 (* XXX Analysis needed
