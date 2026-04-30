@@ -12,7 +12,7 @@ build:
 depends: [
  "conf-pkg-config" {>= "5"}
   ("host-arch-x86_64" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")} & "conf-mingw-w64-pcre-x86_64" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")} |
-   "host-arch-x86_32" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")} & "conf-mingw-w64-pcre-i686" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")})
+   "host-arch-x86_32" {os = "win32" & os-distribution = "cygwin"} & "conf-mingw-w64-pcre-i686" {os = "win32" & os-distribution = "cygwin"})
  ]
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 depexts: [
