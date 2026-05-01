@@ -20,6 +20,7 @@ depexts: [
   ["mbedtls"] {os = "freebsd"}
   ["mbedtls"] {os = "macos" & os-distribution = "homebrew"}
 ]
+available: os != "win32"
 x-ci-accept-failures: [
   "oraclelinux-7"
   "oraclelinux-8"
