@@ -17,6 +17,17 @@ depexts: [
   ["gcc"] {os = "freebsd"}
   ["gcc-core"] {os = "win32" & os-distribution = "cygwinports"}
 ]
+depends: [
+  # At the moment this is only done for MSYS2 because its GCC package is
+  # installed as a host compiler (i.e. it installs a binary called gcc). The
+  # Cygwin packages install cross-compilers (i.e. the gcc command is
+  # triplet-prefixed). It needs checking whether this matters for uses of
+  # conf-gcc - i.e. whether this package strictly signals the availability of a
+  # command called gcc or whether it signals the available of GCC (or a
+  # toolchain such as Clang emulating GCC)
+  ("host-arch-x86_32" {os = "win32" & os-distribution = "msys2"} & "conf-mingw-w64-gcc-i686" {os = "win32" & os-distribution = "msys2"}) |
+  ("host-arch-x86_64" {os = "win32" & os-distribution = "msys2"} & "conf-mingw-w64-gcc-x86_64" {os = "win32" & os-distribution = "msys2"})
+]
 synopsis: "Virtual package relying on the gcc compiler (for C)"
 description:
   "This package can only install if the gcc compiler is installed on the system."
