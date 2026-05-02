@@ -49,15 +49,27 @@ type mechanism =
 
 type depext_info = (string * mechanism) option
 
-type depext = {
+type systems = [ `X86_64 of msys2:depext_info * cygwin:depext_info
+               | `I686 of msys2:depext_info * cygwin:depext_info ] list
+
+type member =
+  | Define of {
+      name: string;
+      project: string;
+      authors: string list;
+      license: string list;
+      homepage: string;
+      systems: systems;
+    }
+  | Ref of string
+
+type conf_def = {
   name: string;
   project: string;
   authors: string list;
   license: string list;
   homepage: string;
-  conf: string;
-  systems: [ `X86_64 of msys2:depext_info * cygwin:depext_info
-           | `I686 of msys2:depext_info * cygwin:depext_info ] list;
+  members: (project:string -> authors:string list -> license:string list -> homepage:string -> member) list;
 }
 
 let base_version = OpamPackage.Version.of_string "1"
@@ -194,471 +206,474 @@ let filter_holds_on_windows filter =
   OpamFilter.eval_to_bool ~default:true (env "msys2") filter
   || OpamFilter.eval_to_bool ~default:true (env "cygwin") filter
 
-let depexts, confs =
-  let rec systems ?(template = `Default) ?pkgconf depext =
+let depexts, confs, define_index =
+  let define ?project ?authors ?license ?homepage
+             ?template ?pkgconf ?depext
+             name
+             ~project:conf_project ~authors:conf_authors ~license:conf_license ~homepage:conf_homepage =
+    let depext = Option.value depext ~default:name in
     let pkgconf = Option.value ~default:depext pkgconf in
-    match template with
-    | `Default -> systems ~template:(`Cygwin depext) ~pkgconf depext
-    | `Cygwin cygwin_depext -> [
-        `X86_64 (~msys2:(Some (depext, Pkgconf pkgconf)), ~cygwin:(Some (cygwin_depext, Pkgconf pkgconf)));
-        `I686 (~msys2:(Some (depext, Pkgconf pkgconf)), ~cygwin:(Some (cygwin_depext, Pkgconf pkgconf)))]
-    | `MSYS2_only -> [
-        `X86_64 (~msys2:(Some (depext, Pkgconf pkgconf)), ~cygwin:None);
-        `I686 (~msys2:(Some (depext, Pkgconf pkgconf)), ~cygwin:None)]
+    let template = Option.value ~default:(`Cygwin depext) template in
+    let systems =
+      match template with
+      | `Cygwin cygwin_depext -> [
+          `X86_64 (~msys2:(Some (depext, Pkgconf pkgconf)),
+                   ~cygwin:(Some (cygwin_depext, Pkgconf pkgconf)));
+          `I686 (~msys2:(Some (depext, Pkgconf pkgconf)),
+                 ~cygwin:(Some (cygwin_depext, Pkgconf pkgconf)))]
+      | `MSYS2_only -> [
+          `X86_64 (~msys2:(Some (depext, Pkgconf pkgconf)), ~cygwin:None);
+          `I686 (~msys2:(Some (depext, Pkgconf pkgconf)), ~cygwin:None)]
+      | `Manual systems -> systems
+    in
+    Define {name;
+            project = Option.value project ~default:conf_project;
+            authors = Option.value authors ~default:conf_authors;
+            license = Option.value license ~default:conf_license;
+            homepage = Option.value homepage ~default:conf_homepage;
+            systems}
   in
-  let depexts = [
-    {name     = "allegro5";
-     project  = "allegro5";
-     authors  = ["The Allegro authors"];
-     license  = ["Giftware"];
-     homepage = "https://liballeg.org";
-     conf     = "allegro5";
-     systems  = systems ~template:`MSYS2_only ~pkgconf:"allegro-5" "allegro"};
-    {name     = "ao";
-     project  = "libao";
-     authors  = ["libao dev team"];
-     license  = ["GPL-2.0-only"];
-     homepage = "https://www.xiph.org/ao/";
-     conf     = "ao";
-     systems  = systems ~pkgconf:"ao" "libao"};
-    {name     = "bzip2";
-     project  = "bzip2";
-     authors  = ["Julian Seward"];
-     license  = ["bzip2-1.0.6"];
-     homepage = "https://sourceware.org/bzip2/";
-     conf     = "bzip2";
-     systems  = [
+  let conf_defs = [
+    {name      = "allegro5";
+     project   = "allegro5";
+     authors   = ["The Allegro authors"];
+     license   = ["Giftware"];
+     homepage  = "https://liballeg.org";
+     members   = [define ~template:`MSYS2_only ~pkgconf:"allegro-5" ~depext:"allegro" "allegro5"]};
+    {name      = "ao";
+     project   = "libao";
+     authors   = ["libao dev team"];
+     license   = ["GPL-2.0-only"];
+     homepage  = "https://www.xiph.org/ao/";
+     members   = [define ~pkgconf:"ao" ~depext:"libao" "ao"]};
+    {name      = "bzip2";
+     project   = "bzip2";
+     authors   = ["Julian Seward"];
+     license   = ["bzip2-1.0.6"];
+     homepage  = "https://sourceware.org/bzip2/";
+     members   = [define ~template:(`Manual [
        `X86_64 (~msys2:(Some ("bzip2", Pkgconf "bzip2")), ~cygwin:(Some ("bzip2", No_test)));
        `I686 (~msys2:(Some ("bzip2", Pkgconf "bzip2")), ~cygwin:(Some ("bzip2", No_test)));
-     ]};
-    {name     = "cairo";
-     project  = "cairo";
-     authors  = ["Keith Packard"; "Carl Worth"; "Behdad Esfahbod"];
-     license  = ["LGPL-2.1-only"; "MPL-1.1"];
-     homepage = "http://cairographics.org/";
-     conf     = "cairo";
-     systems  = systems "cairo"};
-    {name     = "curl";
-     project  = "libcurl";
-     authors  = ["Daniel Stenberg"];
-     license  = ["curl"];
-     homepage = "http://curl.haxx.se/";
-     conf     = "libcurl";
-     systems  = systems ~pkgconf:"libcurl" "curl"};
-    {name     = "freeglut";
-     project  = "FreeGLUT";
-     authors  = ["Pawel W. Olszta"; "Andreas Umbach"; "Steve Baker"; "John F. Fay"; "John Tsiombikas"; "Diederick C. Niehorster"];
-     license  = ["X11"];
-     homepage = "https://freeglut.sourceforge.net/";
-     conf     = "freeglut";
-     systems  = [
+     ]) "bzip2"]};
+    {name      = "cairo";
+     project   = "cairo";
+     authors   = ["Keith Packard"; "Carl Worth"; "Behdad Esfahbod"];
+     license   = ["LGPL-2.1-only"; "MPL-1.1"];
+     homepage  = "http://cairographics.org/";
+     members   = [define "cairo"]};
+    {name      = "libcurl";
+     project   = "libcurl";
+     authors   = ["Daniel Stenberg"];
+     license   = ["curl"];
+     homepage  = "http://curl.haxx.se/";
+     members   = [define ~pkgconf:"libcurl" "curl"]};
+    {name      = "freeglut";
+     project   = "FreeGLUT";
+     authors   = ["Pawel W. Olszta"; "Andreas Umbach"; "Steve Baker"; "John F. Fay"; "John Tsiombikas"; "Diederick C. Niehorster"];
+     license   = ["X11"];
+     homepage  = "https://freeglut.sourceforge.net/";
+     members   = [define ~template:(`Manual [
        `X86_64 (~msys2:(Some ("freeglut", Pkgconf "freeglut")), ~cygwin:(Some ("freeglut", No_test)));
        `I686 (~msys2:(Some ("freeglut", Pkgconf "freeglut")), ~cygwin:(Some ("freeglut", No_test)));
-     ]};
-    {name     = "freetype";
-     project  = "freetype";
-     authors  = ["Christophe Troestler <Christophe.Troestler@umons.ac.be>"]; (* FIXME These are opam pkg authors, not freetype authors *)
-     license  = ["GPL-1.0-or-later"];
-     homepage = "http://www.freetype.org";
-     conf     = "freetype";
-     systems  = systems ~template:(`Cygwin "freetype2") ~pkgconf:"freetype2" "freetype"};
-    {name     = "glade";
-     project  = "glade";
-     authors  = ["The Glade Authors"];
-     license  = ["LGPL-2.1-or-later"];
-     homepage = "https://glade.gnome.org/";
-     conf     = "glade";
-     systems  = [
+     ]) "freeglut"]};
+    {name      = "freetype";
+     project   = "freetype";
+     authors   = ["Christophe Troestler <Christophe.Troestler@umons.ac.be>"]; (* FIXME These are opam pkg authors, not freetype authors *)
+     license   = ["GPL-1.0-or-later"];
+     homepage  = "http://www.freetype.org";
+     members   = [define ~template:(`Cygwin "freetype2") ~pkgconf:"freetype2" "freetype"]};
+    {name      = "glade";
+     project   = "glade";
+     authors   = ["The Glade Authors"];
+     license   = ["LGPL-2.1-or-later"];
+     homepage  = "https://glade.gnome.org/";
+     members   = [define ~template:(`Manual [
        `X86_64 (~msys2:(Some ("libglade", Pkgconf "libglade-2.0")), ~cygwin:(Some ("libglade2.0", Pkgconf "libglade-2.0")));
        `I686 (~msys2:None, ~cygwin:(Some ("libglade2.0", Pkgconf "libglade-2.0")));
-     ]};
-    {name     = "gmp";
-     project  = "libgmp";
-     authors  = ["Torbjörn Granlund et al"];
-     license  = ["GPL-1.0-or-later"];
-     homepage = "http://gmplib.org/";
-     conf     = "gmp";
-     systems  = systems "gmp"};
-    {name     = "g++";
-     project  = "g++";
-     authors  = ["The GCC Developers"];
-     license  = ["GPL-3.0-or-later"];
-     homepage = "https://www.mingw-w64.org";
-     conf     = "g++"; (* XXX conf-c++ as well *)
-     systems  = [
+     ]) "glade"]};
+    {name      = "gmp";
+     project   = "libgmp";
+     authors   = ["Torbjörn Granlund et al"];
+     license   = ["GPL-1.0-or-later"];
+     homepage  = "http://gmplib.org/";
+     members   = [define "gmp"]};
+    {name      = "g++"; (* XXX conf-c++ as well *)
+     project   = "g++";
+     authors   = ["The GCC Developers"];
+     license   = ["GPL-3.0-or-later"];
+     homepage  = "https://gcc.gnu.org/";
+     members   = [define ~homepage:"https://www.mingw-w64.org"
+                         ~template:(`Manual [
        `X86_64 (~msys2:(Some ("", Version "x86_64-w64-mingw32-g++")), ~cygwin:(Some ("gcc-g++", Version "x86_64-w64-mingw32-g++")));
        `I686 (~msys2:(Some ("", Version "i686-w64-mingw32-g++")), ~cygwin:(Some ("gcc-g++", Version "i686-w64-mingw32-g++")));
-     ]};
-    {name     = "gcc";
-     project  = "GCC";
-     authors  = ["The GCC Developers"];
-     license  = ["GPL-3.0-or-later"];
-     homepage = "https://www.mingw-w64.org";
-     conf     = "gcc";
-     systems  = [
+     ]) "g++"]};
+    {name      = "gcc";
+     project   = "GCC";
+     authors   = ["The GCC Developers"];
+     license   = ["GPL-3.0-or-later"];
+     homepage  = "https://gcc.gnu.org/";
+     members   = [define ~homepage:"https://www.mingw-w64.org"
+                         ~template:(`Manual [
        `X86_64 (~msys2:(Some ("gcc", Version "x86_64-w64-mingw32-gcc")), ~cygwin:(Some ("gcc-core", Version "x86_64-w64-mingw32-gcc")));
-       `I686 (~msys2:(Some ("gcc", Version "i686-w64-mingw32-gcc")), ~cygwin:(Some ("gcc-core", Version "i686-w64-mingw32-gcc")))
-     ]};
-    {name     = "gnomecanvas";
-     project  = "gnomecanvas";
-     authors  = ["The GNOME Project"];
-     license  = ["LGPL-2.1-or-later"];
-     homepage = "https://developer.gnome.org/libgnomecanvas/2.30/";
-     conf     = "gnomecanvas";
-     systems  = [
+       `I686 (~msys2:(Some ("gcc", Version "i686-w64-mingw32-gcc")), ~cygwin:(Some ("gcc-core", Version "i686-w64-mingw32-gcc")));
+     ]) "gcc"]};
+    {name      = "gnomecanvas";
+     project   = "gnomecanvas";
+     authors   = ["The GNOME Project"];
+     license   = ["LGPL-2.1-or-later"];
+     homepage  = "https://developer.gnome.org/libgnomecanvas/2.30/";
+     members   = [define ~template:(`Manual [
        `X86_64 (~msys2:(Some ("libgnomecanvas", Pkgconf "libgnomecanvas-2.0")), ~cygwin:(Some ("libgnomecanvas2", Pkgconf "libgnomecanvas-2.0")));
        `I686 (~msys2:None, ~cygwin:(Some ("libgnomecanvas2", Pkgconf "libgnomecanvas-2.0")));
+     ]) "gnomecanvas"]};
+    (* XXX It's possible I advised mte to do it this way, but why isn't this does a second atom on the gnutls package? *)
+    (* nettle's authors and homepage match the conf-package's GnuTLS values
+       in the existing data (FIXME: nettle's authors should be Niels Möller
+       and homepage should be lysator.liu.se/~nisse/nettle/). Only project
+       differs. *)
+    {name      = "gnutls";
+     project   = "GnuTLS";
+     authors   = ["Nikos Mavrogiannopoulos"; "Simon Josefsson"];
+     license   = ["LGPL-2.1-or-later"];
+     homepage  = "https://www.gnutls.org";
+     members   = [
+       define ~project:"nettle" "nettle";
+       define "gnutls";
      ]};
-    {name     = "gnutls";
-     project  = "GnuTLS";
-     authors  = ["Nikos Mavrogiannopoulos"; "Simon Josefsson"];
-     license  = ["LGPL-2.1-or-later"];
-     homepage = "https://www.gnutls.org";
-     conf     = "gnutls";
-     systems  = systems "gnutls"};
-    {name     = "gtk2";
-     project  = "gtk2";
-     authors  = ["The GNOME Project"];
-     license  = ["LGPL-2.1-or-later"];
-     homepage = "https://gtk.org/";
-     conf     = "gtk2";
-     systems  = [
+    {name      = "gtk2";
+     project   = "gtk2";
+     authors   = ["The GNOME Project"];
+     license   = ["LGPL-2.1-or-later"];
+     homepage  = "https://gtk.org/";
+     members   = [define ~template:(`Manual [
        `X86_64 (~msys2:(Some ("gtk2", Pkgconf "gtk+-2.0")), ~cygwin:(Some ("gtk2.0", Pkgconf "gtk+-2.0")));
        `I686 (~msys2:None, ~cygwin:(Some ("gtk2.0", Pkgconf "gtk+-2.0")));
-     ]};
-    {name     = "gtk3";
-     project  = "GTK+ 3";
-     authors  = ["The GTK Toolkit"];
-     license  = ["LGPL-2.1-or-later"];
-     homepage = "https://www.gtk.org/";
-     conf     = "gtk3";
-     systems  = systems ~pkgconf:"gtk+-3.0" "gtk3"};
-    {name     = "gtksourceview3";
-     project  = "gtksourceview3";
-     authors  = ["The gtksourceview programmers"];
-     license  = ["LGPL-2.1-or-later"];
-     homepage = "https://projects.gnome.org/gtksourceview/";
-     conf     = "gtksourceview3";
-     systems  = [
+     ]) "gtk2"]};
+    {name      = "gtk3";
+     project   = "GTK+ 3";
+     authors   = ["The GTK Toolkit"];
+     license   = ["LGPL-2.1-or-later"];
+     homepage  = "https://www.gtk.org/";
+     members   = [define ~pkgconf:"gtk+-3.0" "gtk3"]};
+    {name      = "gtksourceview3";
+     project   = "gtksourceview3";
+     authors   = ["The gtksourceview programmers"];
+     license   = ["LGPL-2.1-or-later"];
+     homepage  = "https://projects.gnome.org/gtksourceview/";
+     members   = [define ~template:(`Manual [
        `X86_64 (~msys2:(Some ("gtksourceview3", Pkgconf "gtksourceview-3.0")), ~cygwin:(Some ("gtksourceview3.0", Pkgconf "gtksourceview-3.0")));
        `I686 (~msys2:None, ~cygwin:(Some ("gtksourceview3.0", Pkgconf "gtksourceview-3.0")));
-     ]};
-    {name     = "libevent";
-     project  = "libevent";
-     authors  = ["Libevent dev team"];
-     license  = ["BSD-3-clause"];
-     homepage = "https://libevent.org";
-     conf     = "libevent";
-     systems  = [
+     ]) "gtksourceview3"]};
+    {name      = "libevent";
+     project   = "libevent";
+     authors   = ["Libevent dev team"];
+     license   = ["BSD-3-clause"];
+     homepage  = "https://libevent.org";
+     members   = [define ~template:(`Manual [
        `X86_64 (~msys2:(Some ("libevent", Pkgconf "libevent")), ~cygwin:(Some ("libevent", Pkgconf "libevent")));
        `I686 (~msys2:None, ~cygwin:(Some ("libevent", Pkgconf "libevent")));
-     ]};
-    {name     = "libffi";
-     project  = "libffi";
-     authors  = ["Anthony Green"];
-     license  = ["MIT"];
-     homepage = "https://sourceware.org/libffi";
-     conf     = "libffi";
-     systems  = systems "libffi"};
-    {name     = "liblz4";
-     project  = "liblz4";
-     authors  = ["Yann Collet"];
-     license  = ["GPL-2.0-only"; "BSD-2-Clause"];
-     homepage = "http://lz4.org";
-     conf     = "liblz4";
-     systems  = systems ~pkgconf:"liblz4" "lz4"};
-    {name     = "mbedtls";
-     project  = "libmbedtls";
-     authors  = ["The Mbed TLS Contributors"];
-     license  = ["Apache-2.0 OR GPL-2.0-or-later"];
-     homepage = "https://www.trustedfirmware.org/projects/mbed-tls/";
-     conf     = "mbedtls";
-     systems  = [
+     ]) "libevent"]};
+    {name      = "libffi";
+     project   = "libffi";
+     authors   = ["Anthony Green"];
+     license   = ["MIT"];
+     homepage  = "https://sourceware.org/libffi";
+     members   = [define "libffi"]};
+    {name      = "liblz4";
+     project   = "liblz4";
+     authors   = ["Yann Collet"];
+     license   = ["GPL-2.0-only"; "BSD-2-Clause"];
+     homepage  = "http://lz4.org";
+     members   = [define ~pkgconf:"liblz4" ~depext:"lz4" "liblz4"]};
+    {name      = "mbedtls";
+     project   = "libmbedtls";
+     authors   = ["The Mbed TLS Contributors"];
+     license   = ["Apache-2.0 OR GPL-2.0-or-later"];
+     homepage  = "https://www.trustedfirmware.org/projects/mbed-tls/";
+     members   = [define ~template:(`Manual [
        `X86_64 (~msys2:(Some ("mbedtls", Pkgconf "mbedtls")), ~cygwin:None);
-     ]};
-    {name     = "ncurses";
-     project  = "ncurses";
-     authors  = ["GNU Project"];
-     license  = ["MIT"];
-     homepage = "https://www.gnu.org/software/ncurses/";
-     conf     = "ncurses";
-     systems  = [
+     ]) "mbedtls"]};
+    {name      = "ncurses";
+     project   = "ncurses";
+     authors   = ["GNU Project"];
+     license   = ["MIT"];
+     homepage  = "https://www.gnu.org/software/ncurses/";
+     members   = [define ~template:(`Manual [
        `X86_64 (~msys2:(Some ("ncurses", Pkgconf "ncursesw")), ~cygwin:(Some ("ncurses", Pkgconf "ncurses")));
        `I686 (~msys2:(Some ("ncurses", Pkgconf "ncursesw")), ~cygwin:(Some ("ncurses", Pkgconf "ncurses")));
-     ]};
-    (* XXX It's possible I advised mte to do it this way, but why isn't this does a second atom on the gnutls package? *)
-    {name     = "nettle";
-     project  = "nettle";
-     authors  = ["Nikos Mavrogiannopoulos"; "Simon Josefsson"]; (* FIXME Niels Möller *)
-     license  = ["LGPL-2.1-or-later"];
-     homepage = "https://www.gnutls.org"; (* FIXME Should be https://www.lysator.liu.se/~nisse/nettle/ *)
-     conf     = "gnutls";
-     systems  = systems "nettle"};
-    {name     = "openssl";
-     project  = "libssl";
-     authors  = ["The OpenSSL Project"];
-     license  = ["Apache-1.0"];
-     homepage = "https://www.openssl.org";
-     conf     = "libssl";
-     systems  = systems "openssl"};
-    {name     = "pcre";
-     project  = "libpcre";
-     authors  = ["Philip Hazel"; "Zoltan Herczeg"];
-     license  = ["BSD-3-Clause"];
-     homepage = "https://www.pcre.org/";
-     conf     = "libpcre";
-     systems  = [
+     ]) "ncurses"]};
+    {name      = "libssl";
+     project   = "libssl";
+     authors   = ["The OpenSSL Project"];
+     license   = ["Apache-1.0"];
+     homepage  = "https://www.openssl.org";
+     members   = [define "openssl"]};
+    {name      = "libpcre";
+     project   = "libpcre";
+     authors   = ["Philip Hazel"; "Zoltan Herczeg"];
+     license   = ["BSD-3-Clause"];
+     homepage  = "https://www.pcre.org/";
+     members   = [define ~template:(`Manual [
        `X86_64 (~msys2:(Some ("pcre", Pkgconf "libpcre")), ~cygwin:(Some ("pcre", Pkgconf "libpcre")));
        `I686 (~msys2:None, ~cygwin:(Some ("pcre", Pkgconf "libpcre")));
-     ]};
-    {name     = "pcre2";
-     project  = "libpcre2";
-     authors  = ["Philip Hazel"; "Zoltan Herczeg"];
-     license  = ["BSD-3-Clause"];
-     homepage = "https://www.pcre.org/";
-     conf     = "libpcre2-8";
-     systems  = systems ~pkgconf:"libpcre2-8" "pcre2"};
-    {name     = "pkgconf";
-     project  = "pkgconf";
-     authors  = ["Ariadne Conill et al"];
-     license  = ["ISC"];
-     homepage = "http://pkgconf.org";
-     conf     = "pkg-config";
-     systems  = [
+     ]) "pcre"]};
+    {name      = "libpcre2-8";
+     project   = "libpcre2";
+     authors   = ["Philip Hazel"; "Zoltan Herczeg"];
+     license   = ["BSD-3-Clause"];
+     homepage  = "https://www.pcre.org/";
+     members   = [define ~pkgconf:"libpcre2-8" "pcre2"]};
+    {name      = "pkg-config";
+     project   = "pkg-config";
+     authors   = ["James Henstridge"; "Tim Janik"; "Havoc Pennington"; "Scott Remnant"];
+     license   = ["GPL-2.0-or-later"];
+     homepage  = "http://www.freedesktop.org/wiki/Software/pkg-config/"; (* XXX https:// *)
+     members   = [define
+                    ~project:"pkgconf"
+                    ~authors:["Ariadne Conill et al"]
+                    ~license:["ISC"]
+                    ~homepage:"http://pkgconf.org"
+                    ~template:(`Manual [
        (* XXX Likewise, this would be better to install on Cygwin and run anyway? *)
        `X86_64 (~msys2:(Some ("pkgconf", Version "x86_64-w64-mingw32-pkgconf")), ~cygwin:None);
        `I686 (~msys2:(Some ("pkgconf", Version "i686-w64-mingw32-pkgconf")), ~cygwin:None);
-     ]};
-    {name     = "postgresql";
-     project  = "postgresql";
-     authors  = ["PostgreSQL Global Development Group"];
-     license  = ["PostgreSQL"];
-     homepage = "https://www.postgresql.org";
-     conf     = "postgresql";
-     systems  = [
+     ]) "pkgconf"]};
+    {name      = "postgresql";
+     project   = "postgresql";
+     authors   = ["PostgreSQL Global Development Group"];
+     license   = ["PostgreSQL"];
+     homepage  = "https://www.postgresql.org";
+     members   = [define ~template:(`Manual [
        `X86_64 (~msys2:(Some ("postgresql", Pkgconf "libpq")), ~cygwin:(Some ("postgresql", Pkgconf "libpq")));
        `I686 (~msys2:None, ~cygwin:(Some ("postgresql", Pkgconf "libpq")));
-     ]};
-    {name     = "sdl2"; (* FIXME SDL2 *)
-     project  = "sdl2"; (* FIXME SDL2 *)
-     authors  = ["Sam Lantinga"];
-     license  = ["Zlib"];
-     homepage = "http://libsdl.org/"; (* FIXME https://libsdl.org/ *)
-     conf     = "sdl2";
-     systems  = systems ~pkgconf:"sdl2" "SDL2"};
-    {name     = "sdl2-image";
-     project  = "sdl2-image";
-     authors  = ["Sam Lantinga"];
-     license  = ["Zlib"];
-     homepage = "http://www.libsdl.org/projects/SDL_image/";
-     conf     = "sdl2-image";
-     systems  = [
+     ]) "postgresql"]};
+    {name      = "sdl2"; (* FIXME SDL2 *)
+     project   = "sdl2"; (* FIXME SDL2 *)
+     authors   = ["Sam Lantinga"];
+     license   = ["Zlib"];
+     homepage  = "http://libsdl.org/"; (* FIXME https://libsdl.org/ *)
+     members   = [define ~pkgconf:"sdl2" ~depext:"SDL2" "sdl2"]};
+    {name      = "sdl2-image";
+     project   = "sdl2-image";
+     authors   = ["Sam Lantinga"];
+     license   = ["Zlib"];
+     homepage  = "http://www.libsdl.org/projects/SDL_image/";
+     members   = [define ~template:(`Manual [
        `X86_64 (~msys2:(Some ("SDL2_image", Pkgconf "SDL2_image")), ~cygwin:(Some ("SDL2_image", Pkgconf "SDL2_image")));
        `I686 (~msys2:None, ~cygwin:(Some ("SDL2_image", Pkgconf "SDL2_image")));
-     ]};
-    {name     = "sdl2-mixer";
-     project  = "sdl2-mixer";
-     authors  = ["Sam Lantinga"];
-     license  = ["Zlib"];
-     homepage = "http://www.libsdl.org/projects/SDL_mixer/";
-     conf     = "sdl2-mixer";
-     systems  = systems "SDL2_mixer"};
-    {name     = "sdl2-net";
-     project  = "sdl2-net";
-     authors  = ["Sam Lantinga"];
-     license  = ["Zlib"];
-     homepage = "http://www.libsdl.org/projects/SDL_net/";
-     conf     = "sdl2-net";
-     systems  = systems "SDL2_net"};
-    {name     = "sdl2-ttf";
-     project  = "sdl2-ttf";
-     authors  = ["Sam Lantinga"];
-     license  = ["Zlib"];
-     homepage = "http://www.libsdl.org/projects/SDL_ttf/";
-     conf     = "sdl2-ttf";
-     systems  = systems "SDL2_ttf"};
-    {name     = "sqlite3";
-     project  = "sqlite3";
-     authors  = ["D. Richard Hipp"; "Dan Kennedy"; "Joe Mistachkin"];
-     license  = ["blessing"];
-     homepage = "http://www.sqlite3.org"; (* FIXME https://sqlite.org/ *)
-     conf     = "sqlite3";
-     systems  = systems "sqlite3"};
-    {name     = "zlib";
-     project  = "zlib";
-     authors  = ["Jean-loup Gailly"; "Mark Adler"];
-     license  = ["zlib"];
-     homepage = "http://www.zlib.net/"; (* FIXME https://www.zlib.net/ *)
-     conf     = "zlib";
-     systems  = systems "zlib"};
-    {name     = "zstd";
-     project  = "libzstd";
-     authors  = ["Facebook"];
-     license  = ["BSD-3-Clause"];
-     homepage = "http://zstd.net"; (* FIXME https://facebook.github.io/zstd/ *)
-     conf     = "zstd";
-     systems  = systems ~pkgconf:"libzstd" "zstd"};
+     ]) "sdl2-image"]};
+    {name      = "sdl2-mixer";
+     project   = "sdl2-mixer";
+     authors   = ["Sam Lantinga"];
+     license   = ["Zlib"];
+     homepage  = "http://www.libsdl.org/projects/SDL_mixer/";
+     members   = [define ~depext:"SDL2_mixer" "sdl2-mixer"]};
+    {name      = "sdl2-net";
+     project   = "sdl2-net";
+     authors   = ["Sam Lantinga"];
+     license   = ["Zlib"];
+     homepage  = "http://www.libsdl.org/projects/SDL_net/";
+     members   = [define ~depext:"SDL2_net" "sdl2-net"]};
+    {name      = "sdl2-ttf";
+     project   = "sdl2-ttf";
+     authors   = ["Sam Lantinga"];
+     license   = ["Zlib"];
+     homepage  = "http://www.libsdl.org/projects/SDL_ttf/";
+     members   = [define ~depext:"SDL2_ttf" "sdl2-ttf"]};
+    {name      = "sqlite3";
+     project   = "sqlite3";
+     authors   = ["D. Richard Hipp"; "Dan Kennedy"; "Joe Mistachkin"];
+     license   = ["blessing"];
+     homepage  = "http://www.sqlite3.org"; (* FIXME https://sqlite.org/ *)
+     members   = [define "sqlite3"]};
+    {name      = "zlib";
+     project   = "zlib";
+     authors   = ["Jean-loup Gailly"; "Mark Adler"];
+     license   = ["zlib"];
+     homepage  = "http://www.zlib.net/"; (* FIXME https://www.zlib.net/ *)
+     members   = [define "zlib"]};
+    {name      = "zstd";
+     project   = "libzstd";
+     authors   = ["Facebook"];
+     license   = ["BSD-3-Clause"];
+     homepage  = "http://zstd.net"; (* FIXME https://facebook.github.io/zstd/ *)
+     members   = [define ~pkgconf:"libzstd" "zstd"]};
   ] in
-  let process (names, packages, confs) ({name; project; authors; license; homepage; conf; systems} as lib) =
-    if OpamStd.String.Set.mem name names then
-      assert false (* XXX Error handling! *)
-    else
-      let names = OpamStd.String.Set.add name names in
-      let _, packages = List.fold_left (fun (systems, packages) system ->
-        let synopsis, arch, system, (~msys2, ~cygwin) =
-          match system with
-          | `X86_64 environments ->
-              "x86_64 mingw-w64 (64-bit x86_64)", "x86_64", X86_64, environments
-          | `I686 environments ->
-              "i686 mingw-w64 (32-bit x86)", "i686", I686, environments
-        in
-        if SystemSet.mem system systems then
-          assert false (* XXX A bit of error handling here... *)
-        else
-          let systems = SystemSet.add system systems in
-          let module OPAM = OpamFile.OPAM in
-          let package = "conf-mingw-w64-" ^ name ^ "-" ^ arch in
-          let build = OpamTypes.FIdent ([], OpamVariable.of_string "build", None) in
-          let os = OpamTypes.FIdent ([], OpamVariable.of_string "os", None) in
-          let os_distribution = OpamTypes.FIdent ([], OpamVariable.of_string "os-distribution", None) in
-          let os_win32 = OpamTypes.FOp (os, `Eq, FString "win32") in
-          let dist_msys2 = OpamTypes.FOp (os_distribution, `Eq, FString "msys2") in
-          let dist_cygwin = OpamTypes.FOp (os_distribution, `Eq, FString "cygwin") in
-          let build_os_msys2 = OpamTypes.(FAnd (build, FAnd (os_win32, dist_msys2))) in
-          let os_msys2 = OpamTypes.FAnd (os_win32, dist_msys2) in
-          let os_cygwin = OpamTypes.FAnd (os_win32, dist_cygwin) in
-          let depexts =
-            match msys2 with
-            | None
-            | Some ("", _) -> []
-            | Some (package, _) ->
-                [OpamSysPkg.(Set.singleton (of_string ("mingw-w64-" ^ arch ^ "-" ^ package))), os_msys2]
-          in
-          let depexts =
-            match cygwin with
-            | None
-            | Some ("", _) -> depexts
-            | Some (package, _) ->
-                (OpamSysPkg.(Set.singleton (of_string ("mingw64-" ^ arch ^ "-" ^ package))), os_cygwin) :: depexts
-          in
-          let available =
-            if msys2 = None then
-              os_cygwin
-            else if cygwin = None then
-              os_msys2
+  let process (names, packages, confs, define_index) ({name; project; authors; license; homepage; members} as conf_def) =
+    let members = List.map (fun f -> f ~project ~authors ~license ~homepage) members in
+    let names =
+      List.fold_left (fun names m ->
+        match m with
+        | Ref _ -> names
+        | Define {name; _} ->
+            if OpamStd.String.Set.mem name names then
+              assert false (* XXX Error handling! *)
             else
-              os_win32
-          in
-          let build, depends =
-            let arg ?filter s = OpamTypes.CString s, filter in
-            let depends =
-              let root = "conf-mingw-w64-gcc-" ^ arch in
-              if root <> package && name <> "pkgconf" then (* XXX If another special case comes up, add an attribute *)
-                [pkg root build]
-              else
-                []
+              OpamStd.String.Set.add name names) names members
+    in
+    let packages, define_index =
+      List.fold_left (fun (packages, define_index) m ->
+        match m with
+        | Ref _ -> packages, define_index
+        | Define {name; project; authors; license; homepage; systems} as define ->
+            let define_index =
+              OpamStd.String.Map.add name define define_index
             in
-            let depends =
-              match msys2, cygwin with
-              | Some (_, Pkgconf _), _
-              | _, Some (_, Pkgconf _) ->
-                  ((pkg "conf-pkg-config" build) :: depends)
-              | _ ->
-                  depends
-            in
-            let depends : OpamTypes.filtered_formula list =
-              if msys2 = None then
-                depends
-              else
-                (pkg "msys2" build_os_msys2) :: (pkg (if system = X86_64 then "msys2-mingw64" else "msys2-mingw32") os_msys2) :: depends
-            in
-            let build =
-              let f = function
-              | Some (_, No_test)
-              | None -> None
-              | Some (_, probe) -> Some probe
+            let _, packages = List.fold_left (fun (seen_systems, packages) system ->
+              let synopsis, arch, system, (~msys2, ~cygwin) =
+                match system with
+                | `X86_64 environments ->
+                    "x86_64 mingw-w64 (64-bit x86_64)", "x86_64", X86_64, environments
+                | `I686 environments ->
+                    "i686 mingw-w64 (32-bit x86)", "i686", I686, environments
               in
-              match f msys2, f cygwin with
-              | Some (Pkgconf msys2), Some (Pkgconf cygwin) ->
-                  let command =
-                    if msys2 = cygwin then
-                      [arg msys2]
-                    else
-                      [arg ~filter:dist_cygwin cygwin; arg ~filter:dist_msys2 msys2]
-                  in
-                  let personality =
-                    match system with
-                    | X86_64 -> "--personality=x86_64-w64-mingw32"
-                    | I686 -> "--personality=i686-w64-mingw32"
-                  in
-                    [(arg "pkgconf" :: arg ~filter:dist_cygwin personality :: command), None]
-              | Some (Pkgconf name), None ->
-                  [[arg "pkgconf"; arg name], (Option.map (Fun.const dist_msys2) cygwin)]
-              | None, Some (Pkgconf name) ->
-                  let personality =
-                    match system with
-                    | X86_64 -> "--personality=x86_64-w64-mingw32"
-                    | I686 -> "--personality=i686-w64-mingw32"
-                  in
-                    [[arg "pkgconf"; arg ~filter:dist_cygwin personality; arg name], None]
-              | Some (Version msys2), Some (Version cygwin) ->
-                  if msys2 = cygwin then
-                    [[arg msys2; arg "--version"], None]
+              if SystemSet.mem system seen_systems then
+                assert false (* XXX A bit of error handling here... *)
+              else
+                let seen_systems = SystemSet.add system seen_systems in
+                let module OPAM = OpamFile.OPAM in
+                let package = "conf-mingw-w64-" ^ name ^ "-" ^ arch in
+                let build = OpamTypes.FIdent ([], OpamVariable.of_string "build", None) in
+                let os = OpamTypes.FIdent ([], OpamVariable.of_string "os", None) in
+                let os_distribution = OpamTypes.FIdent ([], OpamVariable.of_string "os-distribution", None) in
+                let os_win32 = OpamTypes.FOp (os, `Eq, FString "win32") in
+                let dist_msys2 = OpamTypes.FOp (os_distribution, `Eq, FString "msys2") in
+                let dist_cygwin = OpamTypes.FOp (os_distribution, `Eq, FString "cygwin") in
+                let build_os_msys2 = OpamTypes.(FAnd (build, FAnd (os_win32, dist_msys2))) in
+                let os_msys2 = OpamTypes.FAnd (os_win32, dist_msys2) in
+                let os_cygwin = OpamTypes.FAnd (os_win32, dist_cygwin) in
+                let depexts =
+                  match msys2 with
+                  | None
+                  | Some ("", _) -> []
+                  | Some (package, _) ->
+                      [OpamSysPkg.(Set.singleton (of_string ("mingw-w64-" ^ arch ^ "-" ^ package))), os_msys2]
+                in
+                let depexts =
+                  match cygwin with
+                  | None
+                  | Some ("", _) -> depexts
+                  | Some (package, _) ->
+                      (OpamSysPkg.(Set.singleton (of_string ("mingw64-" ^ arch ^ "-" ^ package))), os_cygwin) :: depexts
+                in
+                let available =
+                  if msys2 = None then
+                    os_cygwin
+                  else if cygwin = None then
+                    os_msys2
                   else
-                    [[arg ~filter:dist_cygwin cygwin; arg ~filter:dist_msys2 msys2; arg "--version"], None]
-              | Some (Version cmd), None
-              | None, Some (Version cmd) ->
-                  (* FIXME This should have a filter if the other environment _is_ installed but doesn't support the probe
-                           (although that's weird - maybe it should more be an assertion the the other environment is being supported at all) *)
-                  [[arg cmd; arg "--version"], None]
-              | None, None ->
-                  []
-              | _, _ ->
-                  assert false
+                    os_win32
+                in
+                let build, depends =
+                  let arg ?filter s = OpamTypes.CString s, filter in
+                  let depends =
+                    let root = "conf-mingw-w64-gcc-" ^ arch in
+                    if root <> package && name <> "pkgconf" then (* XXX If another special case comes up, add an attribute *)
+                      [pkg root build]
+                    else
+                      []
+                  in
+                  let depends =
+                    match msys2, cygwin with
+                    | Some (_, Pkgconf _), _
+                    | _, Some (_, Pkgconf _) ->
+                        ((pkg "conf-pkg-config" build) :: depends)
+                    | _ ->
+                        depends
+                  in
+                  let depends : OpamTypes.filtered_formula list =
+                    if msys2 = None then
+                      depends
+                    else
+                      (pkg "msys2" build_os_msys2) :: (pkg (if system = X86_64 then "msys2-mingw64" else "msys2-mingw32") os_msys2) :: depends
+                  in
+                  let build =
+                    let f = function
+                    | Some (_, No_test)
+                    | None -> None
+                    | Some (_, probe) -> Some probe
+                    in
+                    match f msys2, f cygwin with
+                    | Some (Pkgconf msys2), Some (Pkgconf cygwin) ->
+                        let command =
+                          if msys2 = cygwin then
+                            [arg msys2]
+                          else
+                            [arg ~filter:dist_cygwin cygwin; arg ~filter:dist_msys2 msys2]
+                        in
+                        let personality =
+                          match system with
+                          | X86_64 -> "--personality=x86_64-w64-mingw32"
+                          | I686 -> "--personality=i686-w64-mingw32"
+                        in
+                          [(arg "pkgconf" :: arg ~filter:dist_cygwin personality :: command), None]
+                    | Some (Pkgconf name), None ->
+                        [[arg "pkgconf"; arg name], (Option.map (Fun.const dist_msys2) cygwin)]
+                    | None, Some (Pkgconf name) ->
+                        let personality =
+                          match system with
+                          | X86_64 -> "--personality=x86_64-w64-mingw32"
+                          | I686 -> "--personality=i686-w64-mingw32"
+                        in
+                          [[arg "pkgconf"; arg ~filter:dist_cygwin personality; arg name], None]
+                    | Some (Version msys2), Some (Version cygwin) ->
+                        if msys2 = cygwin then
+                          [[arg msys2; arg "--version"], None]
+                        else
+                          [[arg ~filter:dist_cygwin cygwin; arg ~filter:dist_msys2 msys2; arg "--version"], None]
+                    | Some (Version cmd), None
+                    | None, Some (Version cmd) ->
+                        (* FIXME This should have a filter if the other environment _is_ installed but doesn't support the probe
+                                 (although that's weird - maybe it should more be an assertion the the other environment is being supported at all) *)
+                        [[arg cmd; arg "--version"], None]
+                    | None, None ->
+                        []
+                    | _, _ ->
+                        assert false
+                  in
+                  build, OpamFormula.ands depends
+                in
+                let opam =
+                  OPAM.empty
+                  |> OPAM.with_name (OpamPackage.Name.of_string package)
+                  |> OPAM.with_version base_version
+                  |> OPAM.with_synopsis ("Virtual package for " ^ project ^ " on " ^ synopsis)
+                  |> OPAM.with_descr_body ("Ensures the " ^ arch ^ " version of " ^ project ^ " for the mingw-w64 project is available")
+                  |> OPAM.with_maintainer ["David Allsopp <dra27@dra27.uk>"] (* FIXME Update! *)
+                  |> OPAM.with_author authors
+                  |> OPAM.with_license license
+                  |> OPAM.with_homepage [homepage]
+                  |> OPAM.with_bug_reports ["https://github.com/ocaml/opam-repository/issues"]
+                  |> OPAM.with_flags [OpamTypes.Pkgflag_Conf]
+                  |> OPAM.with_available available
+                  |> OPAM.with_build build
+                  |> OPAM.with_depends (canonicalise depends)
+                  |> OPAM.with_depexts depexts
+                in
+                let nv = OpamPackage.(create (Name.of_string package) base_version) in
+                if not (OpamPackage.Set.mem nv all_packages) then
+                  Printf.eprintf "WARNING! %s not found\n" package; (* XXX Better handling *)
+                seen_systems, OpamStd.String.Map.add package opam packages) (SystemSet.empty, packages) systems
             in
-            build, OpamFormula.ands depends
-          in
-          let opam =
-            OPAM.empty
-            |> OPAM.with_name (OpamPackage.Name.of_string package)
-            |> OPAM.with_version base_version
-            |> OPAM.with_synopsis ("Virtual package for " ^ project ^ " on " ^ synopsis)
-            |> OPAM.with_descr_body ("Ensures the " ^ arch ^ " version of " ^ project ^ " for the mingw-w64 project is available")
-            |> OPAM.with_maintainer ["David Allsopp <dra27@dra27.uk>"] (* FIXME Update! *)
-            |> OPAM.with_author authors
-            |> OPAM.with_license license
-            |> OPAM.with_homepage [homepage]
-            |> OPAM.with_bug_reports ["https://github.com/ocaml/opam-repository/issues"]
-            |> OPAM.with_flags [OpamTypes.Pkgflag_Conf]
-            |> OPAM.with_available available
-            |> OPAM.with_build build
-            |> OPAM.with_depends (canonicalise depends)
-            |> OPAM.with_depexts depexts
-          in
-          let nv = OpamPackage.(create (Name.of_string package) base_version) in
-          if not (OpamPackage.Set.mem nv all_packages) then
-            Printf.eprintf "WARNING! %s not found\n" package; (* XXX Better handling *)
-          systems, OpamStd.String.Map.add package opam packages) (SystemSet.empty, packages) systems
-      in
-      let confs =
-        let conf = "conf-" ^ conf in
-        if not (OpamPackage.Set.exists (fun nv -> OpamPackage.name_to_string nv = conf) all_packages) then
-          Printf.eprintf "WARNING! %s not found\n" conf; (* XXX Better handling *)
-        let systems =
-          match OpamStd.String.Map.find conf confs with
-          | others ->
-              lib :: others
-          | exception Not_found ->
-              [lib]
-        in
-        OpamStd.String.Map.add conf systems confs
-      in
-      names, packages, confs
+            packages, define_index) (packages, define_index) members
+    in
+    let confs =
+      let conf = "conf-" ^ name in
+      if not (OpamPackage.Set.exists (fun nv -> OpamPackage.name_to_string nv = conf) all_packages) then
+        Printf.eprintf "WARNING! %s not found\n" conf; (* XXX Better handling *)
+      OpamStd.String.Map.add conf (conf_def, members) confs
+    in
+    names, packages, confs, define_index
   in
-  let (_, depexts, confs) =
-    List.fold_left process (OpamStd.String.Set.empty, OpamStd.String.Map.empty, OpamStd.String.Map.empty) depexts
+  let (_, depexts, confs, define_index) =
+    List.fold_left process
+      (OpamStd.String.Set.empty,
+       OpamStd.String.Map.empty,
+       OpamStd.String.Map.empty,
+       OpamStd.String.Map.empty)
+      conf_defs
   in
-  depexts, confs
+  depexts, confs, define_index
 
 (* XXX Ultimately do this by iterating over the list of depexts *)
 let process package ~prefix:_ ~opam =
@@ -678,55 +693,50 @@ let process package ~prefix:_ ~opam =
       | exception Not_found -> Printf.printf "UNKNOWN %s\n%!" name; opam
   else if String.starts_with ~prefix:"conf-" name then
     match OpamStd.String.Map.find name confs with
-    | depexts ->
+    | ({name; authors; license; homepage; _}, members) ->
         let module OPAM = OpamFile.OPAM in
-        (* The head depext drives per-arch host filters and the iteration
-           order over architectures; every other depext in the group must
+        (* Resolve members: Define stays as-is, Ref looks up in define_index. *)
+        let defines =
+          List.map (function
+            | Define _ as d -> d
+            | Ref ref_name ->
+                match OpamStd.String.Map.find ref_name define_index with
+                | Define _ as d -> d
+                | Ref _ -> assert false (* index never holds Refs *)
+                | exception Not_found ->
+                    failwith (Printf.sprintf
+                      "%s: Ref %S not found in define_index" name ref_name)
+          ) members
+        in
+        let define_systems = function
+          | Define {systems; _} -> systems
+          | Ref _ -> assert false
+        in
+        let define_name = function
+          | Define {name; _} -> name
+          | Ref _ -> assert false
+        in
+        (* The head member drives per-arch host filters and the iteration
+           order over architectures; every other member in the group must
            agree on which architectures are present and which of MSYS2 /
            Cygwin each supports for that to be sound. *)
         let () =
-          let shape depext =
+          let shape define =
             List.sort Stdlib.compare (
               List.map (function
                 | `X86_64 (~msys2, ~cygwin) ->
                     `X86_64 (Option.is_some msys2, Option.is_some cygwin)
                 | `I686 (~msys2, ~cygwin) ->
                     `I686 (Option.is_some msys2, Option.is_some cygwin)
-              ) depext.systems)
+              ) (define_systems define))
           in
-          let head_shape = shape (List.hd depexts) in
-          List.iter (fun depext ->
-            if shape depext <> head_shape then
+          let head_shape = shape (List.hd defines) in
+          List.iter (fun define ->
+            if shape define <> head_shape then
               failwith (Printf.sprintf
-                "%s: depexts %S and %S disagree on architectures or MSYS2/Cygwin support"
-                name (List.hd depexts).name depext.name)
-          ) depexts
-        in
-        (* XXX nettle is a strange exception here... *)
-        let {name; project = _; authors; license; homepage; _} = List.hd depexts in
-        (* XXX If more special cases comes up, might make this more generic... *)
-        let homepage =
-          match name with
-          | "g++" | "gcc" ->
-              "https://gcc.gnu.org/"
-          | "pkgconf" ->
-              "http://www.freedesktop.org/wiki/Software/pkg-config/" (* XXX https:// *)
-          | _ ->
-              homepage
-        in
-        let authors =
-          match name with
-          | "pkgconf" ->
-              ["James Henstridge"; "Tim Janik"; "Havoc Pennington"; "Scott Remnant"]
-          | _ ->
-              authors
-        in
-        let license =
-          match name with
-          | "pkgconf" ->
-              ["GPL-2.0-or-later"]
-          | _ ->
-              license
+                "%s: members %S and %S disagree on architectures or MSYS2/Cygwin support"
+                name (define_name (List.hd defines)) (define_name define))
+          ) defines
         in
         (* XXX Very duppy - also wondering if it would be better just to write these as code fragments
                and parse them?? *)
@@ -755,23 +765,23 @@ let process package ~prefix:_ ~opam =
             in
             let convert arch pkg_arch data =
               let host_filter = make_filter data in
-              let find_for_arch depext =
+              let find_for_arch define =
                 List.find_map (fun s ->
                   match arch, s with
                   | "x86_64", `X86_64 d -> Some d
                   | "x86_32", `I686 d -> Some d
                   | _ -> None
-                ) depext.systems
+                ) (define_systems define)
               in
-              let depext_atoms =
-                List.filter_map (fun depext ->
-                  match find_for_arch depext with
+              let define_atoms =
+                List.filter_map (fun define ->
+                  match find_for_arch define with
                   | None -> None
                   | Some d ->
-                      Some (pkg ("conf-mingw-w64-" ^ depext.name ^ "-" ^ pkg_arch) (make_filter d))
-                ) depexts
+                      Some (pkg ("conf-mingw-w64-" ^ define_name define ^ "-" ^ pkg_arch) (make_filter d))
+                ) defines
               in
-              OpamFormula.ands (pkg ("host-arch-" ^ arch) host_filter :: depext_atoms)
+              OpamFormula.ands (pkg ("host-arch-" ^ arch) host_filter :: define_atoms)
             in
             let f = function
             | `X86_64 data ->
@@ -788,10 +798,16 @@ let process package ~prefix:_ ~opam =
             in
             let depends =
               let depends =
-                List.map f (List.sort g (List.hd depexts).systems)
+                List.map f (List.sort g (define_systems (List.hd defines)))
               in
               (* FIXME function is definitely crap, but it hints so's the representation! *)
-              if List.exists (fun {systems; _} -> List.exists (function `I686 (~msys2:(Some (_, Pkgconf _)), ~cygwin:_) | `I686 (~msys2:_, ~cygwin:(Some (_, Pkgconf _)))| `X86_64 (~msys2:(Some (_, Pkgconf _)), ~cygwin:_) | `X86_64 (~msys2:_, ~cygwin:(Some (_, Pkgconf _))) -> true | _ -> false) systems) depexts then
+              if List.exists (fun define ->
+                   List.exists (function
+                     | `I686 (~msys2:(Some (_, Pkgconf _)), ~cygwin:_)
+                     | `I686 (~msys2:_, ~cygwin:(Some (_, Pkgconf _)))
+                     | `X86_64 (~msys2:(Some (_, Pkgconf _)), ~cygwin:_)
+                     | `X86_64 (~msys2:_, ~cygwin:(Some (_, Pkgconf _))) -> true
+                     | _ -> false) (define_systems define)) defines then
                 [(pkg "conf-pkg-config" build); OpamFormula.Block (OpamFormula.ors depends)]
               else
                 [OpamFormula.ors (List.map (fun f -> OpamFormula.Block f) depends)]
