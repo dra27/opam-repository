@@ -680,6 +680,28 @@ let process package ~prefix:_ ~opam =
     match OpamStd.String.Map.find name confs with
     | depexts ->
         let module OPAM = OpamFile.OPAM in
+        (* The head depext drives per-arch host filters and the iteration
+           order over architectures; every other depext in the group must
+           agree on which architectures are present and which of MSYS2 /
+           Cygwin each supports for that to be sound. *)
+        let () =
+          let shape depext =
+            List.sort Stdlib.compare (
+              List.map (function
+                | `X86_64 (~msys2, ~cygwin) ->
+                    `X86_64 (Option.is_some msys2, Option.is_some cygwin)
+                | `I686 (~msys2, ~cygwin) ->
+                    `I686 (Option.is_some msys2, Option.is_some cygwin)
+              ) depext.systems)
+          in
+          let head_shape = shape (List.hd depexts) in
+          List.iter (fun depext ->
+            if shape depext <> head_shape then
+              failwith (Printf.sprintf
+                "%s: depexts %S and %S disagree on architectures or MSYS2/Cygwin support"
+                name (List.hd depexts).name depext.name)
+          ) depexts
+        in
         (* XXX nettle is a strange exception here... *)
         let {name; project = _; authors; license; homepage; _} = List.hd depexts in
         (* XXX If more special cases comes up, might make this more generic... *)
@@ -716,23 +738,40 @@ let process package ~prefix:_ ~opam =
         let dist_cygwin = OpamTypes.FOp (os_distribution, `Eq, FString "cygwin") in
         let depends =
           if filter_holds_on_windows (OPAM.available opam) then
-            let convert arch pkg_arch data =
+            let make_filter data =
+              (* XXX Much clearer to use Filter.of_string ... *)
               let filter =
-                (* XXX Much clearer to use Filter.of_string ... *)
-                let filter =
-                  match data with
-                  | (~msys2:(Some _), ~cygwin:(Some _)) ->
-                      OpamTypes.FOr (dist_cygwin, dist_msys2)
-                  | (~msys2:(Some _), ~cygwin:None) ->
-                      dist_msys2
-                  | (~msys2:None, ~cygwin:(Some _)) ->
-                      dist_cygwin
-                  | (~msys2:None, ~cygwin:None) ->
-                      assert false
-                in
-                OpamTypes.FAnd(os_win32, filter)
+                match data with
+                | (~msys2:(Some _), ~cygwin:(Some _)) ->
+                    OpamTypes.FOr (dist_cygwin, dist_msys2)
+                | (~msys2:(Some _), ~cygwin:None) ->
+                    dist_msys2
+                | (~msys2:None, ~cygwin:(Some _)) ->
+                    dist_cygwin
+                | (~msys2:None, ~cygwin:None) ->
+                    assert false
               in
-              OpamFormula.And(pkg ("host-arch-" ^ arch) filter, pkg ("conf-mingw-w64-" ^ name ^ "-" ^ pkg_arch) filter)
+              OpamTypes.FAnd(os_win32, filter)
+            in
+            let convert arch pkg_arch data =
+              let host_filter = make_filter data in
+              let find_for_arch depext =
+                List.find_map (fun s ->
+                  match arch, s with
+                  | "x86_64", `X86_64 d -> Some d
+                  | "x86_32", `I686 d -> Some d
+                  | _ -> None
+                ) depext.systems
+              in
+              let depext_atoms =
+                List.filter_map (fun depext ->
+                  match find_for_arch depext with
+                  | None -> None
+                  | Some d ->
+                      Some (pkg ("conf-mingw-w64-" ^ depext.name ^ "-" ^ pkg_arch) (make_filter d))
+                ) depexts
+              in
+              OpamFormula.ands (pkg ("host-arch-" ^ arch) host_filter :: depext_atoms)
             in
             let f = function
             | `X86_64 data ->
@@ -749,7 +788,6 @@ let process package ~prefix:_ ~opam =
             in
             let depends =
               let depends =
-                (* XXX Map over all the depexts! *)
                 List.map f (List.sort g (List.hd depexts).systems)
               in
               (* FIXME function is definitely crap, but it hints so's the representation! *)
