@@ -184,6 +184,16 @@ let canonicalise depends =
 let pkg name filter : OpamTypes.filtered_formula =
   OpamTypes.Atom (OpamPackage.Name.of_string name, OpamTypes.Atom (OpamTypes.Filter filter))
 
+let filter_holds_on_windows filter =
+  let env os_distribution v =
+    match OpamVariable.(to_string (Full.variable v)) with
+    | "os" -> Some (OpamTypes.S "win32")
+    | "os-distribution" -> Some (OpamTypes.S os_distribution)
+    | _ -> None
+  in
+  OpamFilter.eval_to_bool ~default:true (env "msys2") filter
+  || OpamFilter.eval_to_bool ~default:true (env "cygwin") filter
+
 let depexts, confs =
   let rec systems ?(template = `Default) ?pkgconf depext =
     let pkgconf = Option.value ~default:depext pkgconf in
@@ -705,46 +715,53 @@ let process package ~prefix:_ ~opam =
         let dist_msys2 = OpamTypes.FOp (os_distribution, `Eq, FString "msys2") in
         let dist_cygwin = OpamTypes.FOp (os_distribution, `Eq, FString "cygwin") in
         let depends =
-          let convert arch pkg_arch data =
-            let filter =
-              (* XXX Much clearer to use Filter.of_string ... *)
+          if filter_holds_on_windows (OPAM.available opam) then
+            let convert arch pkg_arch data =
               let filter =
-                match data with
-                | (~msys2:(Some _), ~cygwin:(Some _)) ->
-                    OpamTypes.FOr (dist_cygwin, dist_msys2)
-                | (~msys2:(Some _), ~cygwin:None) ->
-                    dist_msys2
-                | (~msys2:None, ~cygwin:(Some _)) ->
-                    dist_cygwin
-                | (~msys2:None, ~cygwin:None) ->
-                    assert false
+                (* XXX Much clearer to use Filter.of_string ... *)
+                let filter =
+                  match data with
+                  | (~msys2:(Some _), ~cygwin:(Some _)) ->
+                      OpamTypes.FOr (dist_cygwin, dist_msys2)
+                  | (~msys2:(Some _), ~cygwin:None) ->
+                      dist_msys2
+                  | (~msys2:None, ~cygwin:(Some _)) ->
+                      dist_cygwin
+                  | (~msys2:None, ~cygwin:None) ->
+                      assert false
+                in
+                OpamTypes.FAnd(os_win32, filter)
               in
-              OpamTypes.FAnd(os_win32, filter)
+              OpamFormula.And(pkg ("host-arch-" ^ arch) filter, pkg ("conf-mingw-w64-" ^ name ^ "-" ^ pkg_arch) filter)
             in
-            OpamFormula.And(pkg ("host-arch-" ^ arch) filter, pkg ("conf-mingw-w64-" ^ name ^ "-" ^ pkg_arch) filter)
-          in
-          let f = function
-          | `X86_64 data ->
-              convert "x86_64" "x86_64" data
-          | `I686 data ->
-              convert "x86_32" "i686" data
-          in
-          let g l r =
-            match l, r with
-            | `I686 _, `X86_64 _ -> -1
-            | `X86_64 _, `I686 _ -> 1
-            | `X86_64 l, `X86_64 r
-            | `I686 l, `I686 r -> Stdlib.compare l r
-          in
-          (* XXX Map over all the depexts! *)
-          List.map f (List.sort g (List.hd depexts).systems)
-        in
-        let depends =
-          (* FIXME function is definitely crap, but it hints so's the representation! *)
-          if List.exists (fun {systems; _} -> List.exists (function `I686 (~msys2:(Some (_, Pkgconf _)), ~cygwin:_) | `I686 (~msys2:_, ~cygwin:(Some (_, Pkgconf _)))| `X86_64 (~msys2:(Some (_, Pkgconf _)), ~cygwin:_) | `X86_64 (~msys2:_, ~cygwin:(Some (_, Pkgconf _))) -> true | _ -> false) systems) depexts then
-            [(pkg "conf-pkg-config" build); OpamFormula.Block (OpamFormula.ors depends)]
+            let f = function
+            | `X86_64 data ->
+                convert "x86_64" "x86_64" data
+            | `I686 data ->
+                convert "x86_32" "i686" data
+            in
+            let g l r =
+              match l, r with
+              | `I686 _, `X86_64 _ -> -1
+              | `X86_64 _, `I686 _ -> 1
+              | `X86_64 l, `X86_64 r
+              | `I686 l, `I686 r -> Stdlib.compare l r
+            in
+            let depends =
+              let depends =
+                (* XXX Map over all the depexts! *)
+                List.map f (List.sort g (List.hd depexts).systems)
+              in
+              (* FIXME function is definitely crap, but it hints so's the representation! *)
+              if List.exists (fun {systems; _} -> List.exists (function `I686 (~msys2:(Some (_, Pkgconf _)), ~cygwin:_) | `I686 (~msys2:_, ~cygwin:(Some (_, Pkgconf _)))| `X86_64 (~msys2:(Some (_, Pkgconf _)), ~cygwin:_) | `X86_64 (~msys2:_, ~cygwin:(Some (_, Pkgconf _))) -> true | _ -> false) systems) depexts then
+                [(pkg "conf-pkg-config" build); OpamFormula.Block (OpamFormula.ors depends)]
+              else
+                [OpamFormula.ors (List.map (fun f -> OpamFormula.Block f) depends)]
+            in
+            canonicalise (OpamFormula.ands depends)
           else
-            [OpamFormula.ors (List.map (fun f -> OpamFormula.Block f) depends)]
+            let () = Printf.printf "NOT-WINDOWS: %s\n%!" name in
+            OPAM.depends opam
         in
         opam
 (* XXX Analysis needed
@@ -758,7 +775,7 @@ let process package ~prefix:_ ~opam =
         |> OPAM.with_bug_reports ["https://github.com/ocaml/opam-repository/issues"]
         (* XXX with_available ? *)
         (* TODO with_build *)
-        |> OPAM.with_depends (canonicalise (OpamFormula.ands depends))
+        |> OPAM.with_depends depends
         (* XXX with_depexts ? *)
     | exception Not_found ->
         opam
