@@ -25,8 +25,14 @@ depends: [
   # conf-gcc - i.e. whether this package strictly signals the availability of a
   # command called gcc or whether it signals the available of GCC (or a
   # toolchain such as Clang emulating GCC)
-  ("host-arch-x86_32" {os = "win32" & os-distribution = "msys2"} & "conf-mingw-w64-gcc-i686" {os = "win32" & os-distribution = "msys2"}) |
-  ("host-arch-x86_64" {os = "win32" & os-distribution = "msys2"} & "conf-mingw-w64-gcc-x86_64" {os = "win32" & os-distribution = "msys2"})
+  ("host-arch-x86_32"
+   {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")} &
+ "conf-mingw-w64-gcc-i686"
+   {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")}) |
+("host-arch-x86_64"
+   {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")} &
+ "conf-mingw-w64-gcc-x86_64"
+   {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")})
 ]
 synopsis: "Virtual package relying on the gcc compiler (for C)"
 description:
