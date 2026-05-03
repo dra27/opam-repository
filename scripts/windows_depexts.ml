@@ -193,6 +193,49 @@ let print_filtered_formula (ff : OpamTypes.filtered_formula) : string =
 let canonicalise depends =
   parse_filtered_formula (print_filtered_formula depends)
 
+let compare_filter_or_constraint l r =
+  match l, r with
+  | OpamTypes.Filter _, OpamTypes.Constraint _ -> -1
+  | OpamTypes.Constraint _, OpamTypes.Filter _ -> 1
+  | OpamTypes.Filter l, OpamTypes.Filter r ->
+      Stdlib.compare l r
+  | OpamTypes.Constraint l, OpamTypes.Constraint r ->
+      Pair.compare OpamFormula.compare_relop Stdlib.compare l r
+
+let compare_filtered_formula =
+  OpamFormula.compare_formula
+    (Pair.compare OpamPackage.Name.compare
+                  (OpamFormula.compare_formula compare_filter_or_constraint))
+
+let rec normalise_filtered ff =
+  let rec collect_and = function
+    | OpamFormula.And (a, b) -> collect_and a @ collect_and b
+    | OpamFormula.Block f    -> collect_and f
+    | f                      -> [f]
+  in
+  let rec collect_or = function
+    | OpamFormula.Or (a, b)  -> collect_or a @ collect_or b
+    | OpamFormula.Block f    -> collect_or f
+    | f                      -> [f]
+  in
+  match ff with
+  | OpamFormula.Empty   -> OpamFormula.Empty
+  | OpamFormula.Atom _ as a -> a
+  | OpamFormula.Block f -> normalise_filtered f
+  | OpamFormula.And _   ->
+      collect_and ff
+      |> List.map normalise_filtered
+      |> List.sort compare_filtered_formula
+      |> OpamFormula.ands
+  | OpamFormula.Or _    ->
+      collect_or ff
+      |> List.map normalise_filtered
+      |> List.sort compare_filtered_formula
+      |> OpamFormula.ors
+
+let formulae_equivalent a b =
+  compare_filtered_formula (normalise_filtered a) (normalise_filtered b) = 0
+
 let pkg name filter : OpamTypes.filtered_formula =
   OpamTypes.Atom (OpamPackage.Name.of_string name, OpamTypes.Atom (OpamTypes.Filter filter))
 
@@ -796,23 +839,35 @@ let process package ~prefix:_ ~opam =
               | `X86_64 l, `X86_64 r
               | `I686 l, `I686 r -> Stdlib.compare l r
             in
-            let depends =
+            let regenerated =
               let depends =
-                List.map f (List.sort g (define_systems (List.hd defines)))
+                let depends =
+                  List.map f (List.sort g (define_systems (List.hd defines)))
+                in
+                (* FIXME function is definitely crap, but it hints so's the representation! *)
+                if List.exists (fun define ->
+                     List.exists (function
+                       | `I686 (~msys2:(Some (_, Pkgconf _)), ~cygwin:_)
+                       | `I686 (~msys2:_, ~cygwin:(Some (_, Pkgconf _)))
+                       | `X86_64 (~msys2:(Some (_, Pkgconf _)), ~cygwin:_)
+                       | `X86_64 (~msys2:_, ~cygwin:(Some (_, Pkgconf _))) -> true
+                       | _ -> false) (define_systems define)) defines then
+                  [(pkg "conf-pkg-config" build); OpamFormula.Block (OpamFormula.ors depends)]
+                else
+                  [OpamFormula.ors (List.map (fun f -> OpamFormula.Block f) depends)]
               in
-              (* FIXME function is definitely crap, but it hints so's the representation! *)
-              if List.exists (fun define ->
-                   List.exists (function
-                     | `I686 (~msys2:(Some (_, Pkgconf _)), ~cygwin:_)
-                     | `I686 (~msys2:_, ~cygwin:(Some (_, Pkgconf _)))
-                     | `X86_64 (~msys2:(Some (_, Pkgconf _)), ~cygwin:_)
-                     | `X86_64 (~msys2:_, ~cygwin:(Some (_, Pkgconf _))) -> true
-                     | _ -> false) (define_systems define)) defines then
-                [(pkg "conf-pkg-config" build); OpamFormula.Block (OpamFormula.ors depends)]
-              else
-                [OpamFormula.ors (List.map (fun f -> OpamFormula.Block f) depends)]
+              canonicalise (OpamFormula.ands depends)
             in
-            canonicalise (OpamFormula.ands depends)
+            let original = OPAM.depends opam in
+            if regenerated = original then
+              regenerated
+            else if formulae_equivalent regenerated original then begin
+              Printf.eprintf
+                "%s: existing depends is semantically equivalent; keeping original\n%!"
+                name;
+              original
+            end else
+              regenerated
           else
             let () = Printf.printf "NOT-WINDOWS: %s\n%!" name in
             OPAM.depends opam
