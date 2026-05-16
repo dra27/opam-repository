@@ -1,0 +1,1039 @@
+# x-revision additions
+
+Adding `x-revision` field to opam files that need version-revision tracking.
+
+## Rules
+
+- **ocaml.X.Y.Z**: needs revision if a same-version `ocaml-variants`, `ocaml-compiler`, `ocaml-system`, or `ocaml-base-compiler` package's opam contains `"system-mingw"` (double-quoted; `host-system-mingw` does NOT count).
+- **Other packages**: needs revision if it references `"mingw-w64-shims"` (double-quoted), except `conf-libcurl` and `conf-libffi`.
+- Revision number = count of pertinent merges in `git log --first-parent --oneline -- <opam-file>`.
+- File creation is always pertinent (revision 1).
+- Pertinence rules:
+  - typos in text descriptions: NOT pertinent
+  - typos in fields like `depends`: pertinent
+
+## Notes on three `ocaml` versions without a direct same-version match
+
+`ocaml.5.3.1`, `ocaml.5.4.2`, and `ocaml.5.6.0` only have `+trunk` variants which lack `"system-mingw"`. They are still in scope via the transitive dependency to `ocaml-compiler.5.3`, `ocaml-compiler.5.4`, and `ocaml-compiler.5.6` (each of which contains `"system-mingw"`).
+
+## Files to update
+
+Each file has its `git log --first-parent --oneline` history as sub-items. Mark each commit with `+` (pertinent) or `-` (not pertinent). Revision number = count of `+`s.
+
+### `ocaml`
+
+- [x] `packages/ocaml/ocaml.4.13.0/opam` — revision 6
+  - [+] `b8021439f8` Merge pull request #28261 from kit-ty-kate/deploy-fix-25819
+    - adds `OCAMLTOP_INCLUDE_PATH` to `setenv` and `x-env-path-rewrite`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds `x-env-path-rewrite` block for Windows path handling
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `da74458778` Merge pull request #19428 from zapashcanon/ocaml
+    - adds `flags: conf`
+  - [-] `d5333457df` Merge pull request #19327 from kit-ty-kate/fix-17
+    - adds `license:` field only
+  - [+] `4f5b3793cb` Merge pull request #18793 from Octachron/OCaml_4.13.0-alpha1
+    - loosens `depends` version constraints on `ocaml-base-compiler` and `ocaml-variants`
+  - [-] `5f6ebf4899` Merge pull request #18485 from avsm/redirect-issues-to-opam-repo
+    - `bug-reports` URL change only
+  - [+] `de897adf36` Merge pull request #17978 from Octachron/OCaml_4.12.0_beta1
+    - adds `{>= "2"}` constraint on `ocaml-config` dependency
+  - [+] `c6f228c40a` Merge pull request #17440 from Octachron/OCaml_4.12_branching
+    - file creation (revision 1)
+- [x] `packages/ocaml/ocaml.4.13.1/opam` — revision 4
+  - [+] `b8021439f8` Merge pull request #28261 from kit-ty-kate/deploy-fix-25819
+    - adds `OCAMLTOP_INCLUDE_PATH` to `setenv` and `x-env-path-rewrite`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds `x-env-path-rewrite` block for Windows path handling
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `448eb8eb91` Merge pull request #20540 from dra27/conf-ocaml
+    - adds `flags: conf`
+  - [+] `ec07d6d5f3` Merge pull request #19636 from Octachron/OCaml_4.13.0_release
+    - file creation (revision 1)
+- [x] `packages/ocaml/ocaml.4.13.2/opam` — revision 5
+  - [+] `b8021439f8` Merge pull request #28261 from kit-ty-kate/deploy-fix-25819
+    - adds `OCAMLTOP_INCLUDE_PATH` to `setenv` and `x-env-path-rewrite`
+  - [+] `83221ae442` Merge pull request #27227 from kit-ty-kate/ocaml-5.4.0-avoid-version
+    - adds `avoid-version` flag to `flags`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds `x-env-path-rewrite` block for Windows path handling
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `448eb8eb91` Merge pull request #20540 from dra27/conf-ocaml
+    - adds `flags: conf`
+  - [+] `5ea76a555a` Merge pull request #19675 from Octachron/OCaml_4.13.1_bugfix
+    - file creation (revision 1)
+- [x] `packages/ocaml/ocaml.4.14.0/opam` — revision 6
+  - [+] `b8021439f8` Merge pull request #28261 from kit-ty-kate/deploy-fix-25819
+    - adds `OCAMLTOP_INCLUDE_PATH` to `setenv` and `x-env-path-rewrite`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds `x-env-path-rewrite` block for Windows path handling
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `bd612b9155` Merge pull request #22719 from jonahbeckford/opam-publish-ocaml.4.14.0
+    - adds `dkml-base-compiler` alternative to `depends`
+  - [+] `da74458778` Merge pull request #19428 from zapashcanon/ocaml
+    - adds `flags: conf`
+  - [+] `c55441be99` Merge pull request #20495 from Octachron/OCaml-4.14.0-alpha1
+    - loosens `depends` version constraints
+  - [-] `d5333457df` Merge pull request #19327 from kit-ty-kate/fix-17
+    - adds `license:` field only
+  - [+] `e0ccc5047c` Merge pull request #18784 from Octachron/OCaml_4.14.0_dev_packages
+    - file creation (revision 1)
+- [x] `packages/ocaml/ocaml.4.14.1/opam` — revision 5
+  - [+] `b8021439f8` Merge pull request #28261 from kit-ty-kate/deploy-fix-25819
+    - adds `OCAMLTOP_INCLUDE_PATH` to `setenv` and `x-env-path-rewrite`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds `x-env-path-rewrite` block for Windows path handling
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `a34fc27786` Merge pull request #24488 from ocaml/revert-22902-dkml
+    - removes `dkml-base-compiler` from `depends` (revert)
+  - [+] `353d7bce42` Merge pull request #22902 from dra27/dkml
+    - adds `dkml-base-compiler` alternative to `depends`
+  - [+] `122f9dee4d` Merge pull request #21040 from Octachron/OCaml_4.14.0
+    - file creation (revision 1)
+- [x] `packages/ocaml/ocaml.4.14.2/opam` — revision 4
+  - [+] `b8021439f8` Merge pull request #28261 from kit-ty-kate/deploy-fix-25819
+    - adds `OCAMLTOP_INCLUDE_PATH` to `setenv` and `x-env-path-rewrite`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds `x-env-path-rewrite` block for Windows path handling
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `0e970838e3` Merge pull request #22901 from dra27/dkml-trunk
+    - adds `dkml-base-compiler` alternative to `depends`
+  - [+] `0abdb2a18c` Merge pull request #22724 from Octachron/OCaml_4.14.1
+    - file creation (revision 1)
+- [x] `packages/ocaml/ocaml.4.14.3/opam` — revision 5
+  - [+] `beecdf41d4` Merge pull request #29429 from hannesm/4143-541-not-avoid
+    - removes `avoid-version` from `flags`
+  - [+] `b8021439f8` Merge pull request #28261 from kit-ty-kate/deploy-fix-25819
+    - adds `OCAMLTOP_INCLUDE_PATH` to `setenv` and `x-env-path-rewrite`
+  - [+] `83221ae442` Merge pull request #27227 from kit-ty-kate/ocaml-5.4.0-avoid-version
+    - adds `avoid-version` flag to `flags`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds `x-env-path-rewrite` block for Windows path handling
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `e1c7af37da` Merge pull request #25505 from Octachron/OCaml_4.14.2_release
+    - file creation (revision 1)
+- [x] `packages/ocaml/ocaml.4.14.4/opam` — revision 1
+  - [+] `b5f07b3c26` Merge pull request #29408 from Octachron/release_OCaml_5.4.1_and_4.14.3
+    - file creation (revision 1)
+- [x] `packages/ocaml/ocaml.5.0.0/opam` — revision 8
+  - [-] `ee48e882f0` Merge pull request #29082 from dra27/ocaml-metadata
+    - adds an author to `authors:`
+  - [+] `b8021439f8` Merge pull request #28261 from kit-ty-kate/deploy-fix-25819
+    - adds `OCAMLTOP_INCLUDE_PATH` to `setenv` and `x-env-path-rewrite`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds `x-env-path-rewrite` block for Windows path handling
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `a34fc27786` Merge pull request #24488 from ocaml/revert-22902-dkml
+    - removes `dkml-base-compiler` from `depends` (revert)
+  - [+] `353d7bce42` Merge pull request #22902 from dra27/dkml
+    - adds `dkml-base-compiler` alternative to `depends`
+  - [+] `5393541858` Merge pull request #22566 from Octachron/OCaml_5.0.0_beta2
+    - extends `build-env` with `LSAN_OPTIONS` and `ASAN_OPTIONS`
+  - [+] `d621e72817` Merge pull request #21531 from Octachron/OCaml_5.0.0-alpha0
+    - loosens `depends` version constraints
+  - [+] `d15f6d627c` Merge pull request #21495 from Octachron/OCaml_5.1+trunk
+    - tightens `ocaml-config` dependency to `>= "3"`
+  - [+] `f902c67d16` Merge pull request #20805 from patricoferris/ocaml.5.0.0
+    - re-creation of file after the 5.00.0 rename was reverted (revision 1)
+  - [-] `e152d07679` Merge pull request #19959 from dra27/5.00
+    - deletion (file renamed to 5.00.0); paired with `a349ee914e`/`f902c67d16`
+  - [-] `a349ee914e` Merge pull request #19957 from Octachron/OCaml_4.14.0_branching
+    - earlier creation, later deleted by `e152d07679`
+- [x] `packages/ocaml/ocaml.5.0.1/opam` — revision 5
+  - [-] `ee48e882f0` Merge pull request #29082 from dra27/ocaml-metadata
+    - adds an author to `authors:`
+  - [+] `b8021439f8` Merge pull request #28261 from kit-ty-kate/deploy-fix-25819
+    - adds `OCAMLTOP_INCLUDE_PATH` to `setenv` and `x-env-path-rewrite`
+  - [+] `83221ae442` Merge pull request #27227 from kit-ty-kate/ocaml-5.4.0-avoid-version
+    - adds `avoid-version` flag to `flags`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds `x-env-path-rewrite` block for Windows path handling
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `0e970838e3` Merge pull request #22901 from dra27/dkml-trunk
+    - adds `dkml-base-compiler` alternative to `depends`
+  - [+] `9b5072bf32` Merge pull request #22687 from Octachron/OCaml_5.0_release
+    - file creation (revision 1)
+- [x] `packages/ocaml/ocaml.5.1.0/opam` — revision 7
+  - [-] `ee48e882f0` Merge pull request #29082 from dra27/ocaml-metadata
+    - adds an author to `authors:`
+  - [+] `b8021439f8` Merge pull request #28261 from kit-ty-kate/deploy-fix-25819
+    - adds `OCAMLTOP_INCLUDE_PATH` to `setenv` and `x-env-path-rewrite`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds `x-env-path-rewrite` block for Windows path handling
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `5e7f1a51a8` Merge pull request #23668 from Octachron/OCaml_5.1.0_alpha1
+    - loosens `depends` version constraint on `ocaml-base-compiler`
+  - [+] `331309a76b` Merge pull request #23659 from Octachron/OCaml_5.1_branch
+    - loosens `depends` version constraints (ocaml-variants, ocaml-system)
+  - [+] `0e970838e3` Merge pull request #22901 from dra27/dkml-trunk
+    - adds `dkml-base-compiler` alternative to `depends`
+  - [+] `5393541858` Merge pull request #22566 from Octachron/OCaml_5.0.0_beta2
+    - extends `build-env` with `LSAN_OPTIONS` and `ASAN_OPTIONS`
+  - [+] `d15f6d627c` Merge pull request #21495 from Octachron/OCaml_5.1+trunk
+    - file creation (revision 1)
+- [x] `packages/ocaml/ocaml.5.1.1/opam` — revision 3
+  - [-] `ee48e882f0` Merge pull request #29082 from dra27/ocaml-metadata
+    - adds an author to `authors:`
+  - [+] `b8021439f8` Merge pull request #28261 from kit-ty-kate/deploy-fix-25819
+    - adds `OCAMLTOP_INCLUDE_PATH` to `setenv` and `x-env-path-rewrite`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds `x-env-path-rewrite` block for Windows path handling
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `48ca7aa69c` Merge pull request #24433 from Octachron/OCaml_5.1.0_release
+    - file creation (revision 1)
+- [x] `packages/ocaml/ocaml.5.1.2/opam` — revision 4
+  - [-] `ee48e882f0` Merge pull request #29082 from dra27/ocaml-metadata
+    - adds an author to `authors:`
+  - [+] `b8021439f8` Merge pull request #28261 from kit-ty-kate/deploy-fix-25819
+    - adds `OCAMLTOP_INCLUDE_PATH` to `setenv` and `x-env-path-rewrite`
+  - [+] `83221ae442` Merge pull request #27227 from kit-ty-kate/ocaml-5.4.0-avoid-version
+    - adds `avoid-version` flag to `flags`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds `x-env-path-rewrite` block for Windows path handling
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `fd6c3f4558` Merge pull request #24917 from Octachron/OCaml_5.1.1
+    - file creation (revision 1)
+- [x] `packages/ocaml/ocaml.5.2.0/opam` — revision 4
+  - [-] `ee48e882f0` Merge pull request #29082 from dra27/ocaml-metadata
+    - adds an author to `authors:`
+  - [+] `b8021439f8` Merge pull request #28261 from kit-ty-kate/deploy-fix-25819
+    - adds `OCAMLTOP_INCLUDE_PATH` to `setenv` and `x-env-path-rewrite`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds `x-env-path-rewrite` block for Windows path handling
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `edd55b2925` Merge pull request #25180 from Octachron/OCaml_5.2.0_alpha1
+    - loosens `depends` version constraint on `ocaml-base-compiler`
+  - [+] `331309a76b` Merge pull request #23659 from Octachron/OCaml_5.1_branch
+    - file creation (revision 1)
+- [x] `packages/ocaml/ocaml.5.2.1/opam` — revision 3
+  - [-] `ee48e882f0` Merge pull request #29082 from dra27/ocaml-metadata
+    - adds an author to `authors:`
+  - [+] `b8021439f8` Merge pull request #28261 from kit-ty-kate/deploy-fix-25819
+    - adds `OCAMLTOP_INCLUDE_PATH` to `setenv` and `x-env-path-rewrite`
+  - [+] `34c3343b5f` Merge pull request #27426 from dra27/ocaml.5.2.1
+    - adds missing `x-env-path-rewrite` block
+  - [+] `76d09264e9` Merge pull request #25865 from Octachron/OCaml_5.2.0_release
+    - file creation (revision 1)
+- [x] `packages/ocaml/ocaml.5.2.2/opam` — revision 4
+  - [-] `ee48e882f0` Merge pull request #29082 from dra27/ocaml-metadata
+    - adds an author to `authors:`
+  - [+] `b8021439f8` Merge pull request #28261 from kit-ty-kate/deploy-fix-25819
+    - adds `OCAMLTOP_INCLUDE_PATH` to `setenv` and `x-env-path-rewrite`
+  - [+] `34c3343b5f` Merge pull request #27426 from dra27/ocaml.5.2.1
+    - adds missing `x-env-path-rewrite` block
+  - [+] `83221ae442` Merge pull request #27227 from kit-ty-kate/ocaml-5.4.0-avoid-version
+    - adds `avoid-version` flag to `flags`
+  - [+] `11bdbee611` Merge pull request #26909 from Octachron/ocaml-5.2.1
+    - file creation (revision 1)
+- [x] `packages/ocaml/ocaml.5.3.0/opam` — revision 3
+  - [+] `bb1cb588eb` Merge pull request #26594 from dra27/ocaml-5.3.0-alpha1
+    - loosens `depends` constraint on `ocaml-base-compiler` and adds `OCAMLTOP_INCLUDE_PATH` env handling (multi-change)
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds `x-env-path-rewrite` block for Windows path handling
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `f97f75eaac` Merge pull request #24986 from Octachron/OCaml_5.3_dev_packages
+    - file creation (revision 1)
+- [x] `packages/ocaml/ocaml.5.3.1/opam` — revision 2
+  - [+] `83221ae442` Merge pull request #27227 from kit-ty-kate/ocaml-5.4.0-avoid-version
+    - adds `avoid-version` flag to `flags`
+  - [+] `a78e724dc5` Merge pull request #27231 from Octachron/OCaml_5.3.0
+    - file creation (revision 1)
+- [x] `packages/ocaml/ocaml.5.4.0/opam` — revision 4
+  - [+] `7f9c784b97` Merge pull request #28787 from ocaml/mseri-patch-1
+    - removes `avoid-version` flag
+  - [+] `20fc22dcaa` Merge pull request #27915 from Octachron/OCaml_5.4.0_alpha1
+    - loosens `depends` constraint on `ocaml-base-compiler` and adds `OCAMLTOP_INCLUDE_PATH` env handling (multi-change)
+  - [+] `83221ae442` Merge pull request #27227 from kit-ty-kate/ocaml-5.4.0-avoid-version
+    - adds `avoid-version` flag to `flags`
+  - [+] `99ae874625` Merge pull request #26426 from Octachron/OCaml_5.3_dev
+    - file creation (revision 1)
+- [x] `packages/ocaml/ocaml.5.4.1/opam` - revision 3
+  - [-] `e5fe3b4fd8` Add x-revision fields to compiler packages
+  - [+] `beecdf41d4` Merge pull request #29429 from hannesm/4143-541-not-avoid
+  - [+] `783aaeb06a` Merge pull request #28793 from dra27/5.4-trunk
+  - [+] `c603e596bf` Merge pull request #28683 from Octachron/OCaml_5.4.0_release
+- [x] `packages/ocaml/ocaml.5.4.2/opam` — revision 1
+  - [+] `b5f07b3c26` Merge pull request #29408 from Octachron/release_OCaml_5.4.1_and_4.14.3
+    - file creation (revision 1)
+- [x] `packages/ocaml/ocaml.5.5.0/opam` — revision 7
+  - [+] `769093ffd0` Merge pull request #29472 from Octachron/ocaml.5.5.0-alpha1-fix-ocaml-bound
+    - loosens `depends` constraint on `ocaml-base-compiler`
+  - [+] `5119fbb077` Merge pull request #29462 from Octachron/OCaml_5.5.0_alpha1
+    - removes `avoid-version` flag (maintainer email change ignored)
+  - [+] `93d6c2f462` Merge pull request #29224 from dra27/relocatable-ocaml
+    - fixes typo in `build` command (`installed?system` → `installed?system:`)
+  - [+] `43322f182c` Merge pull request #29085 from dra27/relocatable-ocaml
+    - major changes to `build`, `flags`, adds `extra-source`, removes `ocaml-config` dep
+  - [+] `5f59cff387` Merge pull request #29089 from kit-ty-kate/relocatable-ocaml-5.5
+    - removes `CAML_LD_LIBRARY_PATH` entries from `setenv` and `x-env-path-rewrite`
+  - [+] `ee48e882f0` Merge pull request #29082 from dra27/ocaml-metadata
+    - adds `OCAMLTOP_INCLUDE_PATH` env handling and `avoid-version` flag (multi-change)
+  - [+] `836a09bd5e` Merge pull request #27833 from Octachron/OCaml_5.5_trunk
+    - file creation (revision 1)
+- [x] `packages/ocaml/ocaml.5.6.0/opam` — revision 2
+  - [+] `d6d1ae33b0` Merge pull request #29473 from dra27/ocaml-constraints
+    - loosens `depends` constraint on `ocaml-base-compiler`
+  - [+] `da10f1e072` Merge pull request #29290 from Octachron/ocaml_5.6_dev_packages
+    - file creation (revision 1)
+
+### `ocaml-base-compiler`
+
+- [x] `packages/ocaml-base-compiler/ocaml-base-compiler.4.13.0/opam` — revision 7
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps for non-Windows, replaces `host-system-other` with `base-unix`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source` (new URL, stronger checksums)
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `e0262986e5` Merge pull request #19932 from kit-ty-kate/github-without-git
+    - changes `dev-repo` from `git://` to `git+https://`
+  - [+] `ec07d6d5f3` Merge pull request #19636 from Octachron/OCaml_4.13.0_release
+    - file creation (revision 1)
+- [x] `packages/ocaml-base-compiler/ocaml-base-compiler.4.13.1/opam` — revision 7
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `e0262986e5` Merge pull request #19932 from kit-ty-kate/github-without-git
+    - changes `dev-repo` from `git://` to `git+https://`
+  - [+] `5ea76a555a` Merge pull request #19675 from Octachron/OCaml_4.13.1_bugfix
+    - file creation (revision 1)
+- [x] `packages/ocaml-base-compiler/ocaml-base-compiler.4.14.0/opam` — revision 8
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `45f961713f` Merge pull request #26585 from dra27/trunk-tweaks
+    - removes the parallelism-failure `post-messages` block
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `bc8df14f0d` Merge pull request #21890 from dra27/fix-docdir
+    - adds `--docdir=...` to build command
+  - [+] `122f9dee4d` Merge pull request #21040 from Octachron/OCaml_4.14.0
+    - file creation (revision 1)
+- [x] `packages/ocaml-base-compiler/ocaml-base-compiler.4.14.1/opam` — revision 7
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `45f961713f` Merge pull request #26585 from dra27/trunk-tweaks
+    - removes the parallelism-failure `post-messages` block
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `0abdb2a18c` Merge pull request #22724 from Octachron/OCaml_4.14.1
+    - file creation (revision 1)
+- [x] `packages/ocaml-base-compiler/ocaml-base-compiler.4.14.2/opam` — revision 7
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `45f961713f` Merge pull request #26585 from dra27/trunk-tweaks
+    - removes the parallelism-failure `post-messages` block
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `e1c7af37da` Merge pull request #25505 from Octachron/OCaml_4.14.2_release
+    - file creation (revision 1)
+- [x] `packages/ocaml-base-compiler/ocaml-base-compiler.4.14.3/opam` — revision 2
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `b5f07b3c26` Merge pull request #29408 from Octachron/release_OCaml_5.4.1_and_4.14.3
+    - file creation (revision 1)
+- [x] `packages/ocaml-base-compiler/ocaml-base-compiler.5.0.0/opam` — revision 7
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `relocatable` to `conflicts` list
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `45f961713f` Merge pull request #26585 from dra27/trunk-tweaks
+    - removes the parallelism-failure `post-messages` block
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `9b5072bf32` Merge pull request #22687 from Octachron/OCaml_5.0_release
+    - file creation (revision 1)
+- [x] `packages/ocaml-base-compiler/ocaml-base-compiler.5.1.0/opam` — revision 8
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `relocatable` to `conflicts` list
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `45f961713f` Merge pull request #26585 from dra27/trunk-tweaks
+    - removes the parallelism-failure `post-messages` block
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `9b068e4304` Merge pull request #24447 from Octachron/OCaml_5.1.0_fp_fix
+    - adds s390x/riscv64 to `ocaml-option-bytecode-only` filter; updates `dev-repo` to `#5.1`
+  - [+] `48ca7aa69c` Merge pull request #24433 from Octachron/OCaml_5.1.0_release
+    - file creation (revision 1)
+- [x] `packages/ocaml-base-compiler/ocaml-base-compiler.5.1.1/opam` — revision 7
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `relocatable` to `conflicts` list
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `45f961713f` Merge pull request #26585 from dra27/trunk-tweaks
+    - removes the parallelism-failure `post-messages` block
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `fd6c3f4558` Merge pull request #24917 from Octachron/OCaml_5.1.1
+    - file creation (revision 1)
+- [x] `packages/ocaml-base-compiler/ocaml-base-compiler.5.2.0/opam` — revision 8
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `relocatable` to `conflicts` list
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `45f961713f` Merge pull request #26585 from dra27/trunk-tweaks
+    - removes the parallelism-failure `post-messages` block
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [+] `6921369f47` Merge pull request #25875 from dra27/fix-5.2.0-tsan
+    - adds `ppc64` to the `ocaml-option-bytecode-only` filter
+  - [+] `76d09264e9` Merge pull request #25865 from Octachron/OCaml_5.2.0_release
+    - file creation (revision 1)
+- [x] `packages/ocaml-base-compiler/ocaml-base-compiler.5.2.1/opam` — revision 4
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `relocatable` to `conflicts` list
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `11bdbee611` Merge pull request #26909 from Octachron/ocaml-5.2.1
+    - file creation (revision 1)
+
+### `ocaml-compiler`
+
+- [x] `packages/ocaml-compiler/ocaml-compiler.5.3.0/opam` — revision 2
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `a78e724dc5` Merge pull request #27231 from Octachron/OCaml_5.3.0
+    - file creation (revision 1)
+- [x] `packages/ocaml-compiler/ocaml-compiler.5.3/opam` — revision 4
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `40b3e664a2` Merge pull request #27472 from avsm/fix-5.3.1+trunk
+    - changes `ocaml` dep from `= "5.3.0"` to `= "5.3.1"`
+  - [+] `95bfbde2be` Merge pull request #27145 from Octachron/OCaml_5.3.0_release_candidate
+    - removes `compiler` from `flags`, leaving `avoid-version`
+  - [+] `bb1cb588eb` Merge pull request #26594 from dra27/ocaml-5.3.0-alpha1
+    - file creation (revision 1)
+- [x] `packages/ocaml-compiler/ocaml-compiler.5.4.0/opam` — revision 2
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `c603e596bf` Merge pull request #28683 from Octachron/OCaml_5.4.0_release
+    - file creation (revision 1)
+- [x] `packages/ocaml-compiler/ocaml-compiler.5.4.0~alpha1/opam` — revision 2
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `20fc22dcaa` Merge pull request #27915 from Octachron/OCaml_5.4.0_alpha1
+    - file creation (revision 1)
+- [x] `packages/ocaml-compiler/ocaml-compiler.5.4.0~beta1/opam` — revision 2
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `833b5ed3a5` Merge pull request #28223 from Octachron/OCaml_5.4.0_beta1
+    - file creation (revision 1)
+- [x] `packages/ocaml-compiler/ocaml-compiler.5.4.0~beta2/opam` — revision 2
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `4028320478` Merge pull request #28483 from Octachron/OCaml_5.4.0_beta2
+    - file creation (revision 1)
+- [x] `packages/ocaml-compiler/ocaml-compiler.5.4.0~rc1/opam` — revision 2
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `4f9a23ad75` Merge pull request #28622 from Octachron/OCaml_5.4.0_rc1
+    - file creation (revision 1)
+- [x] `packages/ocaml-compiler/ocaml-compiler.5.4.1/opam` - revision 2
+  - [-] `e5fe3b4fd8` Add x-revision fields to compiler packages
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+  - [+] `b5f07b3c26` Merge pull request #29408 from Octachron/release_OCaml_5.4.1_and_4.14.3
+- [x] `packages/ocaml-compiler/ocaml-compiler.5.4/opam` — revision 3
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `783aaeb06a` Merge pull request #28793 from dra27/5.4-trunk
+    - changes `ocaml` dep from `= "5.4.0"` to `= "5.4.1"`
+  - [+] `8106bcf57f` Merge pull request #27808 from Octachron/Ocaml_5.4.0_branching
+    - file creation (revision 1)
+- [x] `packages/ocaml-compiler/ocaml-compiler.5.5.0~alpha1/opam` — revision 1
+  - [+] `5119fbb077` Merge pull request #29462 from Octachron/OCaml_5.5.0_alpha1
+    - file creation (revision 1)
+- [x] `packages/ocaml-compiler/ocaml-compiler.5.5.0~alpha3/opam` — revision 1
+  - [+] `5fb62347de` Merge pull request #29600 from Octachron/OCaml_5.5_alpha3
+    - file creation (revision 1)
+- [x] `packages/ocaml-compiler/ocaml-compiler.5.5.0~beta1/opam` — revision 1
+  - [+] `306a3c410f` Merge pull request #29750 from Octachron/OCaml_5.5.0_beta1
+    - file creation (revision 1)
+- [x] `packages/ocaml-compiler/ocaml-compiler.5.5/opam` — revision 5
+  - [+] `5119fbb077` Merge pull request #29462 from Octachron/OCaml_5.5.0_alpha1
+    - adds `compiler-cloning {= "disabled"}` to `depends`
+  - [+] `347643551a` Merge pull request #29264 from Octachron/ocaml_update_5.5.0+trunk
+    - changes `dev-repo` from `#trunk` to `#5.5` and `url` from trunk to 5.5
+  - [+] `5f59cff387` Merge pull request #29089 from kit-ty-kate/relocatable-ocaml-5.5
+    - removes `setenv`/`x-env-path-rewrite` for `CAML_LD_LIBRARY_PATH`; adds 4 configure options
+  - [+] `ee48e882f0` Merge pull request #29082 from dra27/ocaml-metadata
+    - bumps `flexdll` min from `>= "0.42"` to `>= "0.44"`
+  - [+] `836a09bd5e` Merge pull request #27833 from Octachron/OCaml_5.5_trunk
+    - file creation (revision 1)
+- [x] `packages/ocaml-compiler/ocaml-compiler.5.6/opam` — revision 1
+  - [+] `da10f1e072` Merge pull request #29290 from Octachron/ocaml_5.6_dev_packages
+    - file creation (revision 1)
+
+### `ocaml-secondary-compiler`
+
+- [x] `packages/ocaml-secondary-compiler/ocaml-secondary-compiler.4.14.2/opam` — revision 3
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `e90d00913c` Merge pull request #26471 from dkalinichenko-js/js-comp
+    - file creation (revision 1)
+
+### `ocaml-system`
+
+- [x] `packages/ocaml-system/ocaml-system.4.13.0/opam` — revision 7
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `46ed88f089` Merge pull request #27845 from kit-ty-kate/avoid-ocaml-system
+    - adds `avoid-version` to `flags`
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - depends restricted to Windows; removes generic `host-arch-*`/`host-system-*` entries
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds full Windows depends (arch/system/conf-mingw-w64/etc.); ties `ocaml` to exact version; tightens `available`
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `e0262986e5` Merge pull request #19932 from kit-ty-kate/github-without-git
+    - changes `dev-repo` from `git://` to `git+https://`
+  - [+] `ec07d6d5f3` Merge pull request #19636 from Octachron/OCaml_4.13.0_release
+    - file creation (revision 1)
+- [x] `packages/ocaml-system/ocaml-system.4.13.1/opam` — revision 8
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `46ed88f089` Merge pull request #27845 from kit-ty-kate/avoid-ocaml-system
+    - adds `avoid-version` to `flags`
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - depends restricted to Windows
+  - [+] `dff745994c` Merge pull request #26026 from dra27/off-by-one
+    - fixes `ocaml` dep version from `= "4.13.0"` to `= "4.13.1"`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows depends and tightens `available`
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `e0262986e5` Merge pull request #19932 from kit-ty-kate/github-without-git
+    - changes `dev-repo` from `git://` to `git+https://`
+  - [+] `5ea76a555a` Merge pull request #19675 from Octachron/OCaml_4.13.1_bugfix
+    - file creation (revision 1)
+- [x] `packages/ocaml-system/ocaml-system.4.14.0/opam` — revision 6
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `46ed88f089` Merge pull request #27845 from kit-ty-kate/avoid-ocaml-system
+    - adds `avoid-version` to `flags`
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - depends restricted to Windows
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows depends and tightens `available`
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `122f9dee4d` Merge pull request #21040 from Octachron/OCaml_4.14.0
+    - file creation (revision 1)
+- [x] `packages/ocaml-system/ocaml-system.4.14.1/opam` — revision 6
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `46ed88f089` Merge pull request #27845 from kit-ty-kate/avoid-ocaml-system
+    - adds `avoid-version` to `flags`
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - depends restricted to Windows
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows depends and tightens `available`
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `0abdb2a18c` Merge pull request #22724 from Octachron/OCaml_4.14.1
+    - file creation (revision 1)
+- [x] `packages/ocaml-system/ocaml-system.4.14.2/opam` — revision 6
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `46ed88f089` Merge pull request #27845 from kit-ty-kate/avoid-ocaml-system
+    - adds `avoid-version` to `flags`
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - depends restricted to Windows
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows depends and tightens `available`
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `e1c7af37da` Merge pull request #25505 from Octachron/OCaml_4.14.2_release
+    - file creation (revision 1)
+- [x] `packages/ocaml-system/ocaml-system.4.14.3/opam` — revision 1
+  - [+] `b5f07b3c26` Merge pull request #29408 from Octachron/release_OCaml_5.4.1_and_4.14.3
+    - file creation (revision 1)
+- [x] `packages/ocaml-system/ocaml-system.5.0.0/opam` — revision 6
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `46ed88f089` Merge pull request #27845 from kit-ty-kate/avoid-ocaml-system
+    - adds `avoid-version` to `flags`
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - depends restricted to Windows
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows depends and tightens `available`
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `9b5072bf32` Merge pull request #22687 from Octachron/OCaml_5.0_release
+    - file creation (revision 1)
+- [x] `packages/ocaml-system/ocaml-system.5.1.0/opam` — revision 6
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `46ed88f089` Merge pull request #27845 from kit-ty-kate/avoid-ocaml-system
+    - adds `avoid-version` to `flags`
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - depends restricted to Windows
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows depends and tightens `available`
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `48ca7aa69c` Merge pull request #24433 from Octachron/OCaml_5.1.0_release
+    - file creation (revision 1)
+- [x] `packages/ocaml-system/ocaml-system.5.1.1/opam` — revision 6
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `46ed88f089` Merge pull request #27845 from kit-ty-kate/avoid-ocaml-system
+    - adds `avoid-version` to `flags`
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - depends restricted to Windows
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows depends and tightens `available`
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `fd6c3f4558` Merge pull request #24917 from Octachron/OCaml_5.1.1
+    - file creation (revision 1)
+- [x] `packages/ocaml-system/ocaml-system.5.2.0/opam` — revision 6
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `46ed88f089` Merge pull request #27845 from kit-ty-kate/avoid-ocaml-system
+    - adds `avoid-version` to `flags`
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - depends restricted to Windows
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows depends and tightens `available`
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [+] `76d09264e9` Merge pull request #25865 from Octachron/OCaml_5.2.0_release
+    - file creation (revision 1)
+- [x] `packages/ocaml-system/ocaml-system.5.2.1/opam` — revision 4
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `46ed88f089` Merge pull request #27845 from kit-ty-kate/avoid-ocaml-system
+    - adds `avoid-version` to `flags`
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - depends restricted to Windows
+  - [+] `11bdbee611` Merge pull request #26909 from Octachron/ocaml-5.2.1
+    - file creation (revision 1)
+- [x] `packages/ocaml-system/ocaml-system.5.3.0/opam` — revision 3
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `46ed88f089` Merge pull request #27845 from kit-ty-kate/avoid-ocaml-system
+    - adds `avoid-version` to `flags`
+  - [+] `a78e724dc5` Merge pull request #27231 from Octachron/OCaml_5.3.0
+    - file creation (revision 1)
+- [x] `packages/ocaml-system/ocaml-system.5.4.0/opam` — revision 2
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `c603e596bf` Merge pull request #28683 from Octachron/OCaml_5.4.0_release
+    - file creation (revision 1)
+- [x] `packages/ocaml-system/ocaml-system.5.4.1/opam` — revision 1
+  - [+] `b5f07b3c26` Merge pull request #29408 from Octachron/release_OCaml_5.4.1_and_4.14.3
+    - file creation (revision 1)
+
+### `ocaml-variants`
+
+- [x] `packages/ocaml-variants/ocaml-variants.4.13.0+options/opam` — revision 9
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `940717b321` Merge pull request #26033 from dra27/gah-disjunctions
+    - fixes `host-arch-*` disjunction in `depends`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `c016d194c4` Merge pull request #25239 from dra27/dev-repos
+    - corrects `dev-repo` branch suffix
+  - [+] `de8bfa383b` Merge pull request #21081 from dra27/fix-spacetime-option
+    - removes the `spacetime` option from build and depopts
+  - [+] `ec07d6d5f3` Merge pull request #19636 from Octachron/OCaml_4.13.0_release
+    - file creation (revision 1)
+- [x] `packages/ocaml-variants/ocaml-variants.4.13.1+options/opam` — revision 9
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `940717b321` Merge pull request #26033 from dra27/gah-disjunctions
+    - fixes `host-arch-*` disjunction in `depends`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `c016d194c4` Merge pull request #25239 from dra27/dev-repos
+    - corrects `dev-repo` branch suffix
+  - [+] `de8bfa383b` Merge pull request #21081 from dra27/fix-spacetime-option
+    - removes the `spacetime` option from build and depopts
+  - [+] `5ea76a555a` Merge pull request #19675 from Octachron/OCaml_4.13.1_bugfix
+    - file creation (revision 1)
+- [x] `packages/ocaml-variants/ocaml-variants.4.13.2+trunk/opam` — revision 10
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `45f961713f` Merge pull request #26585 from dra27/trunk-tweaks
+    - removes the parallelism-failure `post-messages` block
+  - [+] `940717b321` Merge pull request #26033 from dra27/gah-disjunctions
+    - fixes `host-arch-*` disjunction in `depends`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `0b9453aa60` Merge pull request #25962 from hannesm/no-check-for-ocaml-trunk
+    - removes the checksum from `url`
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `c016d194c4` Merge pull request #25239 from dra27/dev-repos
+    - corrects `dev-repo` branch suffix
+  - [+] `de8bfa383b` Merge pull request #21081 from dra27/fix-spacetime-option
+    - removes the `spacetime` option from build and depopts
+  - [+] `3c005040bf` Merge pull request #20519 from kit-ty-kate/rm-hidden-version
+    - removes `hidden-version` from `flags`; updates `ocaml-beta` constraint
+  - [+] `5ea76a555a` Merge pull request #19675 from Octachron/OCaml_4.13.1_bugfix
+    - file creation (revision 1)
+- [x] `packages/ocaml-variants/ocaml-variants.4.14.0+options/opam` — revision 10
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `45f961713f` Merge pull request #26585 from dra27/trunk-tweaks
+    - removes the parallelism-failure `post-messages` block
+  - [+] `940717b321` Merge pull request #26033 from dra27/gah-disjunctions
+    - fixes `host-arch-*` disjunction in `depends`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `bc8df14f0d` Merge pull request #21890 from dra27/fix-docdir
+    - adds `--docdir=...` to build command
+  - [+] `de8bfa383b` Merge pull request #21081 from dra27/fix-spacetime-option
+    - removes the `spacetime` option from build and depopts
+  - [+] `122f9dee4d` Merge pull request #21040 from Octachron/OCaml_4.14.0
+    - file creation (revision 1)
+- [x] `packages/ocaml-variants/ocaml-variants.4.14.1+options/opam` — revision 8
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `45f961713f` Merge pull request #26585 from dra27/trunk-tweaks
+    - removes the parallelism-failure `post-messages` block
+  - [+] `940717b321` Merge pull request #26033 from dra27/gah-disjunctions
+    - fixes `host-arch-*` disjunction in `depends`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `0abdb2a18c` Merge pull request #22724 from Octachron/OCaml_4.14.1
+    - file creation (revision 1)
+- [x] `packages/ocaml-variants/ocaml-variants.4.14.2+options/opam` — revision 8
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `45f961713f` Merge pull request #26585 from dra27/trunk-tweaks
+    - removes the parallelism-failure `post-messages` block
+  - [+] `940717b321` Merge pull request #26033 from dra27/gah-disjunctions
+    - fixes `host-arch-*` disjunction in `depends`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `e1c7af37da` Merge pull request #25505 from Octachron/OCaml_4.14.2_release
+    - file creation (revision 1)
+- [x] `packages/ocaml-variants/ocaml-variants.4.14.3+options/opam` — revision 2
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `b5f07b3c26` Merge pull request #29408 from Octachron/release_OCaml_5.4.1_and_4.14.3
+    - file creation (revision 1)
+- [x] `packages/ocaml-variants/ocaml-variants.4.14.4+trunk/opam` — revision 2
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `b5f07b3c26` Merge pull request #29408 from Octachron/release_OCaml_5.4.1_and_4.14.3
+    - file creation (revision 1)
+- [x] `packages/ocaml-variants/ocaml-variants.5.0.0+options/opam` — revision 9
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `45f961713f` Merge pull request #26585 from dra27/trunk-tweaks
+    - removes the parallelism-failure `post-messages` block
+  - [+] `4e44b0a9d3` Merge pull request #26323 from cknitt/fix-arm64-static-build
+    - adds arm64 CFLAGS variant for static builds
+  - [+] `940717b321` Merge pull request #26033 from dra27/gah-disjunctions
+    - fixes `host-arch-*` disjunction in `depends`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `9b5072bf32` Merge pull request #22687 from Octachron/OCaml_5.0_release
+    - file creation (revision 1)
+- [x] `packages/ocaml-variants/ocaml-variants.5.0.1+trunk/opam` — revision 8
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `45f961713f` Merge pull request #26585 from dra27/trunk-tweaks
+    - removes the parallelism-failure `post-messages` block
+  - [+] `940717b321` Merge pull request #26033 from dra27/gah-disjunctions
+    - fixes `host-arch-*` disjunction in `depends`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `0b9453aa60` Merge pull request #25962 from hannesm/no-check-for-ocaml-trunk
+    - removes the checksum from `url`
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `c016d194c4` Merge pull request #25239 from dra27/dev-repos
+    - corrects `dev-repo` branch suffix
+  - [+] `0abdb2a18c` Merge pull request #22724 from Octachron/OCaml_4.14.1
+    - file creation (revision 1)
+- [x] `packages/ocaml-variants/ocaml-variants.5.1.0+options/opam` — revision 10
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `a84c997171` Merge pull request #25828 from dra27/zstd-backport
+    - back-ports zstd-detection patch via `patches`/`extra-source`
+  - [+] `940717b321` Merge pull request #26033 from dra27/gah-disjunctions
+    - fixes `host-arch-*` disjunction in `depends`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `921c985874` Merge pull request #24608 from Octachron/ocaml-option-no-compression
+    - adds `ocaml-option-no-compression` to build and depopts
+  - [+] `9b068e4304` Merge pull request #24447 from Octachron/OCaml_5.1.0_fp_fix
+    - adds s390x/riscv64 to `ocaml-option-bytecode-only` filter; updates `dev-repo`
+  - [+] `48ca7aa69c` Merge pull request #24433 from Octachron/OCaml_5.1.0_release
+    - file creation (revision 1)
+- [x] `packages/ocaml-variants/ocaml-variants.5.1.1+effect-syntax/opam` — revision 9
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `a84c997171` Merge pull request #25828 from dra27/zstd-backport
+    - back-ports zstd-detection patch via `patches`/`extra-source`
+  - [+] `940717b321` Merge pull request #26033 from dra27/gah-disjunctions
+    - fixes `host-arch-*` disjunction in `depends`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `c06ca4cbc3` Merge pull request #25645 from dra27/effectful
+    - swaps `--enable-tsan` build option for `--without-zstd`; reshuffles depopts
+  - [+] `139a0a2dc3` Merge pull request #25296 from Octachron/5.1.1+effects
+    - file creation (revision 1)
+- [x] `packages/ocaml-variants/ocaml-variants.5.1.1+options/opam` — revision 9
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `4e44b0a9d3` Merge pull request #26323 from cknitt/fix-arm64-static-build
+    - adds arm64 CFLAGS variant for static builds
+  - [+] `a84c997171` Merge pull request #25828 from dra27/zstd-backport
+    - back-ports zstd-detection patch via `patches`/`extra-source`
+  - [+] `940717b321` Merge pull request #26033 from dra27/gah-disjunctions
+    - fixes `host-arch-*` disjunction in `depends`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `fd6c3f4558` Merge pull request #24917 from Octachron/OCaml_5.1.1
+    - file creation (revision 1)
+- [x] `packages/ocaml-variants/ocaml-variants.5.1.2+trunk/opam` — revision 8
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `45f961713f` Merge pull request #26585 from dra27/trunk-tweaks
+    - removes the parallelism-failure `post-messages` block
+  - [+] `940717b321` Merge pull request #26033 from dra27/gah-disjunctions
+    - fixes `host-arch-*` disjunction in `depends`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `0b9453aa60` Merge pull request #25962 from hannesm/no-check-for-ocaml-trunk
+    - removes the checksum from `url`
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [-] `b76c203d72` Merge pull request #25826 from dra27/platform-maintainer
+    - maintainer field change only
+  - [+] `c016d194c4` Merge pull request #25239 from dra27/dev-repos
+    - corrects `dev-repo` branch suffix
+  - [+] `fd6c3f4558` Merge pull request #24917 from Octachron/OCaml_5.1.1
+    - file creation (revision 1)
+- [x] `packages/ocaml-variants/ocaml-variants.5.2.0+options/opam` — revision 9
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `4e44b0a9d3` Merge pull request #26323 from cknitt/fix-arm64-static-build
+    - adds arm64 CFLAGS variant for static builds
+  - [+] `940717b321` Merge pull request #26033 from dra27/gah-disjunctions
+    - fixes `host-arch-*` disjunction in `depends`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [+] `6921369f47` Merge pull request #25875 from dra27/fix-5.2.0-tsan
+    - adds `ppc64` to the `ocaml-option-bytecode-only` filter
+  - [+] `76d09264e9` Merge pull request #25865 from Octachron/OCaml_5.2.0_release
+    - file creation (revision 1)
+- [x] `packages/ocaml-variants/ocaml-variants.5.2.0+statmemprof/opam` — revision 7
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `940717b321` Merge pull request #26033 from dra27/gah-disjunctions
+    - fixes `host-arch-*` disjunction in `depends`
+  - [+] `0042660a91` Merge pull request #25861 from dra27/windows-initial
+    - adds Windows-specific depends, build config, and env vars
+  - [+] `59a416934d` Merge pull request #25960 from mseri/hannes-extra-sources
+    - replaces `extra-files` with `extra-source`
+  - [+] `0d0ea4993d` Merge pull request #25911 from dra27/5.2.0+statmemprof
+    - file creation (revision 1)
+- [x] `packages/ocaml-variants/ocaml-variants.5.2.1+options/opam` — revision 4
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `b41fc63234` Merge pull request #27302 from ocaml/dra27--rm-non-win32-host-pkgs
+    - removes `host-arch-*` deps, replaces `host-system-other` with `base-unix`
+  - [+] `11bdbee611` Merge pull request #26909 from Octachron/ocaml-5.2.1
+    - file creation (revision 1)
+- [x] `packages/ocaml-variants/ocaml-variants.5.2.1~rc1+options/opam` — revision 3
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `c65fcb1165` Merge pull request #29080 from dra27/ocaml-config-urls
+    - updates `extra-source` URL
+  - [+] `a420fd72a2` Merge pull request #26846 from Octachron/OCaml_5.2.1_rc1
+    - file creation (revision 1)
+- [x] `packages/ocaml-variants/ocaml-variants.5.2.2+trunk/opam` — revision 2
+  - [+] `31462e7d24` Merge pull request #29451 from dra27/relocatable-package
+    - adds `conflicts: "relocatable"`
+  - [+] `11bdbee611` Merge pull request #26909 from Octachron/ocaml-5.2.1
+    - file creation (revision 1)
+
