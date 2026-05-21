@@ -239,6 +239,9 @@ let formulae_equivalent a b =
 let pkg name filter : OpamTypes.filtered_formula =
   OpamTypes.Atom (OpamPackage.Name.of_string name, OpamTypes.Atom (OpamTypes.Filter filter))
 
+let pkg_constraint name cons : OpamTypes.filtered_formula =
+  OpamTypes.Atom (OpamPackage.Name.of_string name, OpamTypes.Atom (OpamTypes.Constraint cons))
+
 let filter_holds_on_windows filter =
   let env os_distribution v =
     match OpamVariable.(to_string (Full.variable v)) with
@@ -477,7 +480,6 @@ let depexts, confs, define_index =
                     ~license:["ISC"]
                     ~homepage:"http://pkgconf.org"
                     ~template:(`Manual [
-       (* XXX Likewise, this would be better to install on Cygwin and run anyway? *)
        `X86_64 (~msys2:(Some ("pkgconf", Version "x86_64-w64-mingw32-pkgconf")), ~cygwin:None);
        `I686 (~msys2:(Some ("pkgconf", Version "i686-w64-mingw32-pkgconf")), ~cygwin:None);
      ]) "pkgconf"]};
@@ -722,7 +724,7 @@ let depexts, confs, define_index =
 let process package ~prefix:_ ~opam =
   let name = OpamPackage.name_to_string package in
   if String.starts_with ~prefix:"conf-mingw-w64-" name then
-    if OpamPackage.version_to_string package <> "1" then
+    if OpamPackage.version_to_string package <> "1" && not (String.starts_with ~prefix:"conf-mingw-w64-g++" name) && not (String.starts_with ~prefix:"conf-mingw-w64-gcc" name) then
       assert false (* XXX Report error! *)
     else
       match OpamStd.String.Map.find name depexts with
@@ -783,7 +785,6 @@ let process package ~prefix:_ ~opam =
         in
         (* XXX Very duppy - also wondering if it would be better just to write these as code fragments
                and parse them?? *)
-        let build = OpamTypes.FIdent ([], OpamVariable.of_string "build", None) in
         let os = OpamTypes.FIdent ([], OpamVariable.of_string "os", None) in
         let os_distribution = OpamTypes.FIdent ([], OpamVariable.of_string "os-distribution", None) in
         let os_win32 = OpamTypes.FOp (os, `Eq, FString "win32") in
@@ -834,8 +835,8 @@ let process package ~prefix:_ ~opam =
             in
             let g l r =
               match l, r with
-              | `I686 _, `X86_64 _ -> -1
-              | `X86_64 _, `I686 _ -> 1
+              | `I686 _, `X86_64 _ -> 1
+              | `X86_64 _, `I686 _ -> -1
               | `X86_64 l, `X86_64 r
               | `I686 l, `I686 r -> Stdlib.compare l r
             in
@@ -852,7 +853,7 @@ let process package ~prefix:_ ~opam =
                        | `X86_64 (~msys2:(Some (_, Pkgconf _)), ~cygwin:_)
                        | `X86_64 (~msys2:_, ~cygwin:(Some (_, Pkgconf _))) -> true
                        | _ -> false) (define_systems define)) defines then
-                  [(pkg "conf-pkg-config" build); OpamFormula.Block (OpamFormula.ors depends)]
+                  [(pkg_constraint "conf-pkg-config" (`Geq, FString "5")); OpamFormula.Block (OpamFormula.ors depends)]
                 else
                   [OpamFormula.ors (List.map (fun f -> OpamFormula.Block f) depends)]
               in
