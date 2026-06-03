@@ -1,6 +1,6 @@
 opam-version: "2.0"
 maintainer: "Jane Street developers"
-homepage: "http://zstd.net/"
+homepage: "http://zstd.net"
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 authors: ["Facebook"]
 license: "BSD-3-Clause"
@@ -9,8 +9,8 @@ build: [
 ]
 depends: [
   "conf-pkg-config" {>= "5"}
-  (("host-arch-x86_64" {os = "win32" & os-distribution != "cygwinports"} & "conf-mingw-w64-zstd-x86_64" {os = "win32" & os-distribution != "cygwinports"}) |
-   ("host-arch-x86_32" {os = "win32" & os-distribution != "cygwinports"} & "conf-mingw-w64-zstd-i686" {os = "win32" & os-distribution != "cygwinports"}))
+  (("host-arch-x86_64" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")} & "conf-mingw-w64-zstd-x86_64" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")}) |
+   ("host-arch-x86_32" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")} & "conf-mingw-w64-zstd-i686" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")}))
 ]
 depexts: [
   ["libzstd-dev"] {os-family = "debian"}

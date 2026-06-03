@@ -9,11 +9,11 @@ build: [
     {(os != "win32" | os-distribution = "msys2") & os-distribution != "debian" & os-distribution != "ubuntu" & !(os-distribution = "ol" & os-version < "9")}
 ]
 depends: [
-  "conf-pkg-config" {>= "5" & os-distribution != "debian" & os-distribution != "ubuntu" & !(os-distribution = "ol" & os-version < "9")}
-  ("host-arch-x86_64" {os = "win32" & os-distribution != "cygwinports"} &
-   "conf-mingw-w64-freeglut-x86_64" {os = "win32" & os-distribution != "cygwinports"} |
-   "host-arch-x86_32" {os = "win32" & os-distribution != "cygwinports"} &
-   "conf-mingw-w64-freeglut-i686" {os = "win32" & os-distribution != "cygwinports"})
+  "conf-pkg-config" {>= "5"}
+  ("host-arch-x86_64" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")} &
+   "conf-mingw-w64-freeglut-x86_64" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")} |
+   "host-arch-x86_32" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")} &
+   "conf-mingw-w64-freeglut-i686" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")})
 ]
 depexts: [
   ["freeglut3-dev"] {os-family = "debian" | os-family = "ubuntu"}

@@ -1,9 +1,9 @@
 opam-version: "2.0"
 maintainer: "unixjunkie@sdf.org"
-authors: ["Francois Berenger" "Francois Bobot"]
-homepage: "https://github.com/ocaml/opam-repository"
+authors: "The GCC Developers"
+homepage: "https://gcc.gnu.org/"
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
-license: "GPL-2.0-or-later"
+license: "GPL-3.0-or-later"
 build: [["gcc" "--version"]]
 depexts: [
   ["gcc"] {os-distribution = "centos"}
@@ -16,6 +16,23 @@ depexts: [
   ["gcc"] {os = "macos" & os-distribution = "homebrew"}
   ["gcc"] {os = "freebsd"}
   ["gcc-core"] {os = "win32" & os-distribution = "cygwinports"}
+]
+depends: [
+  # At the moment this is only done for MSYS2 because its GCC package is
+  # installed as a host compiler (i.e. it installs a binary called gcc). The
+  # Cygwin packages install cross-compilers (i.e. the gcc command is
+  # triplet-prefixed). It needs checking whether this matters for uses of
+  # conf-gcc - i.e. whether this package strictly signals the availability of a
+  # command called gcc or whether it signals the available of GCC (or a
+  # toolchain such as Clang emulating GCC)
+  ("host-arch-x86_32"
+   {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")} &
+ "conf-mingw-w64-gcc-i686"
+   {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")}) |
+("host-arch-x86_64"
+   {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")} &
+ "conf-mingw-w64-gcc-x86_64"
+   {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")})
 ]
 synopsis: "Virtual package relying on the gcc compiler (for C)"
 description:

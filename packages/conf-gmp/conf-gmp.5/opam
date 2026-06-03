@@ -17,9 +17,9 @@ build: [
   ] {os = "win32" & os-distribution != "cygwinports"}
 ]
 depends: [
-  "conf-pkg-config" {os = "macos"}
-  (("host-arch-x86_32" {os = "win32" & os-distribution != "cygwinports"} & "conf-mingw-w64-gmp-i686" {os = "win32" & os-distribution != "cygwinports"}) |
-   ("host-arch-x86_64" {os = "win32" & os-distribution != "cygwinports"} & "conf-mingw-w64-gmp-x86_64" {os = "win32" & os-distribution != "cygwinports"}))
+  "conf-pkg-config" {>= "5"}
+  (("host-arch-x86_32" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")} & "conf-mingw-w64-gmp-i686" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")}) |
+   ("host-arch-x86_64" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")} & "conf-mingw-w64-gmp-x86_64" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")}))
 ]
 depexts: [
   ["libgmp-dev"] {os-family = "debian"}
@@ -41,7 +41,7 @@ depexts: [
 synopsis: "Virtual package relying on a GMP lib system installation"
 description:
   "This package can only install if the GMP lib is installed on the system."
-authors: "nbraud"
+authors: "Torbjörn Granlund et al"
 flags: conf
 extra-source "test.c" {
   src:

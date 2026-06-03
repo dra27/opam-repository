@@ -2,7 +2,7 @@ opam-version: "2.0"
 maintainer: "blue-prawn"
 authors: ["Daniel Stenberg"]
 homepage: "http://curl.haxx.se/"
-license: "BSD-like"
+license: "curl"
 build: [
   ["sh" {os = "win32" & os-distribution != "cygwinports"} "curl-config" "--libs"]
 ]
@@ -23,11 +23,12 @@ depexts: [
   ["curl"] {os = "freebsd"}
 ]
 depends: [
+  "conf-pkg-config" {>= "5"}
   # curl-config is in the sys-root bin directory, which needs to be in PATH for
   # the build command above to work; this package therefore depends on the C
   # compiler as well.
-  ("host-arch-x86_64" {os = "win32" & os-distribution != "cygwinports"} & "conf-mingw-w64-gcc-x86_64" {os = "win32" & os-distribution != "cygwinports"} & "conf-mingw-w64-curl-x86_64" {os = "win32" & os-distribution != "cygwinports"} |
-   "host-arch-x86_32" {os = "win32" & os-distribution != "cygwinports"} & "conf-mingw-w64-gcc-i686" {os = "win32" & os-distribution != "cygwinports"} & "conf-mingw-w64-curl-i686" {os = "win32" & os-distribution != "cygwinports"})
+  ("host-arch-x86_64" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")} & "conf-mingw-w64-curl-x86_64" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")} |
+   "host-arch-x86_32" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")} & "conf-mingw-w64-curl-i686" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")})
 ]
 synopsis: "Virtual package relying on a libcurl system installation"
 description:

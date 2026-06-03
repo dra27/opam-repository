@@ -1,17 +1,17 @@
 opam-version: "2.0"
-authors: "Mbedtls contributors"
+authors: "The Mbed TLS Contributors"
 maintainer: "Andy Li <andy@onthewings.net>"
 homepage: "https://www.trustedfirmware.org/projects/mbed-tls/"
-bug-reports: "https://github.com/Mbed-TLS/mbedtls/issues"
-license: "Apache-2.0"
-available: os-distribution != "cygwin"
+bug-reports: "https://github.com/ocaml/opam-repository/issues"
+license: "Apache-2.0 OR GPL-2.0-or-later"
 build: [
   ["cc" {os != "win32"} "gcc" {os = "win32"} "-I/usr/local/include" "test.c"] { os != "macos" | os-distribution != "homebrew" }
   ["sh" "-c" "cc -I\"$(brew --prefix mbedtls)/include\" test.c"] {os = "macos" & os-distribution = "homebrew"}
 ]
 depends: [
-  "host-arch-x86_64" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")}
-  "conf-mingw-w64-mbedtls-x86_64" {os = "win32" & (os-distribution = "cygwin" | os-distribution = "msys2")}
+  "conf-pkg-config" {>= "5"}
+  ("host-arch-x86_64" {os = "win32" & os-distribution = "msys2"} &
+ "conf-mingw-w64-mbedtls-x86_64" {os = "win32" & os-distribution = "msys2"})
 ]
 depexts: [
   ["mbedtls-dev"] {os-distribution = "alpine"}

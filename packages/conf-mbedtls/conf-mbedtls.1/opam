@@ -1,9 +1,9 @@
 opam-version: "2.0"
-authors: "ARM Limited"
+authors: "The Mbed TLS Contributors"
 maintainer: "Andy Li <andy@onthewings.net>"
-homepage: "https://tls.mbed.org/"
-bug-reports: "https://github.com/ARMmbed/mbedtls/issues"
-license: "Apache-2.0"
+homepage: "https://www.trustedfirmware.org/projects/mbed-tls/"
+bug-reports: "https://github.com/ocaml/opam-repository/issues"
+license: "Apache-2.0 OR GPL-2.0-or-later"
 build: [
   ["cc" "-I/usr/local/include" "test.c"] {os != "macos" | os-distribution != "homebrew"}
   ["sh" "-c" "cc -I\"$(brew --prefix mbedtls)/include\" test.c"] {os = "macos" & os-distribution = "homebrew"}
@@ -20,6 +20,7 @@ depexts: [
   ["mbedtls"] {os = "freebsd"}
   ["mbedtls"] {os = "macos" & os-distribution = "homebrew"}
 ]
+available: os != "win32"
 x-ci-accept-failures: [
   "oraclelinux-7"
   "oraclelinux-8"
